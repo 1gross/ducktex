@@ -1,0 +1,2 @@
+<img src="/contacts/image4.png" style="height: 20px;"><a rel="nofollow" href="mailto:info@ducktex.ru"> info@ducktex.ru</a><br>
+<img src="/contacts/image5.png" style="height: 20px;"> Instagram @ducktex.ru

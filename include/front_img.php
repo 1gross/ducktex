@@ -1,0 +1,1 @@
+<img alt="companypic.png" src="/include/main1.jpg" title="ducktex.ru">
