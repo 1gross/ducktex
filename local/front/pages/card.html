@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Карточка товара</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="../files/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../files/slick/slick.css"/>
+    <link rel="stylesheet" href="../files/css/main.css">
+    <link rel="import"  href="../header.html">
+    <link rel="import"  href="../footer.html">
+
+    <link rel="stylesheet" href="../files/fancybox/jquery.fancybox.min.css">
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7586449d-5a86-43b5-8f8a-61552f466d81" type="text/javascript"></script>
+</head>
+<body>
+
+<main>
+    <section id="card">
+        <div class="wrapper">
+            <div class="card-block">
+                <div class="card-header">
+                    <h1>Замша Баклажан</h1>
+                    <div class="card-buttons">
+                        <a href="/" class="compare"><span>0</span></a>
+                        <button class="like"></button>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div class="slider-box">
+                        <div class="slider-big">
+                            <a data-fancybox="gallery" href="../files/img/card1.jpg"><img src="../files/img/card1.jpg"></a>
+                            <a data-fancybox="gallery" href="../files/img/card2.png"><img src="../files/img/card2.png"></a>
+                            <a data-fancybox="gallery" href="../files/img/card1.jpg"><img src="../files/img/card1.jpg"></a>
+                            <a data-fancybox="gallery" href="../files/img/card2.png"><img src="../files/img/card2.png"></a>
+                            <a data-fancybox="gallery" href="../files/img/card1.jpg"><img src="../files/img/card1.jpg"></a>
+                            <a data-fancybox="gallery" href="../files/img/card2.png"><img src="../files/img/card2.png"></a>
+                        </div>
+                        <div class="slider-thumb">
+                            <div>
+                                <img src="../files/img/card1.jpg">
+                            </div>
+                            <div>
+                                <img src="../files/img/card2.png">
+                            </div>
+                            <div>
+                                <img src="../files/img/card1.jpg">
+                            </div>
+                            <div>
+                                <img src="../files/img/card2.png">
+                            </div>
+                            <div>
+                                <img src="../files/img/card1.jpg">
+                            </div>
+                            <div>
+                                <img src="../files/img/card2.png">
+                            </div>
+                        </div>
+                        <div class="address">
+                            <h2 class="title">Наш шоурум в Москве</h2>
+                            <div class="street">г. Москва, ул. Инициативная 11, ЗАО, ст.м. Кунцевская</div>
+                            <div class="work-times">Пн-Пт: 09:00 - 19:00 <span>//</span> Сб: 10:00 до 17:00</div>
+                        </div>
+                    </div>
+                    <div class="data">
+                        <div class="product-number">
+                            Артикул: <span>F8354</span>
+                        </div>
+                        <div class="price-block">
+                            <div class="price">
+                                <div class="price-item">
+                                    до 4,9 м. - 749 руб / м
+                                </div>
+                                <div class="price-item">
+                                    от 5 м. - 600 руб / м
+                                </div>
+                                <div class="price-item">
+                                    от 10 м. - 400 руб / м
+                                </div>
+                            </div>
+                            <div class="quantity-block">
+                                <button class="quant-btn quantity-arrow-minus"> - </button>
+                                <input class="quantity-num" disabled data-min="0.1" data-max="10" data-step="0.1" data-unit="м" type="text" value="" />
+                                <button class="quant-btn quantity-arrow-plus"> + </button>
+                            </div>
+                        </div>
+                        <div class="bonus">
+                            Ваш бонус за товар: <span>200 руб</span>
+                        </div>
+                        <button class="btn blue add-cart">В КОРЗИНУ</button>
+                        <div class="props">
+                            <div class="props-item">
+                                <div class="name">Цвет:</div>
+                                <div class="value">Баклажановый</div>
+                            </div>
+                            <div class="props-item">
+                                <div class="name">Состав:</div>
+                                <div class="value">90% полиэстер 10% спандекс</div>
+                            </div>
+                            <div class="props-item">
+                                <div class="name">Ширина:</div>
+                                <div class="value">150см</div>
+                            </div>
+                            <div class="props-item">
+                                <div class="name">Плотность:</div>
+                                <div class="value">460гр</div>
+                            </div>
+                        </div>
+                        <div class="pluses">
+                            <div class="pluses-block">
+                                <div class="item">
+                                    <img src="../files/img/quality-icon.svg" alt="">
+                                    <div class="text">
+                                        Ткани <br>высокого качества
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="../files/img/delivery-icon.svg" alt="">
+                                    <div class="text">
+                                        Оперативная отправка <br>в течение 1 - 3 дней
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="../files/img/pay-icon.svg" alt="">
+                                    <div class="text">
+                                        Оплата на <br>сайте
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="../files/img/showroom-icon.svg" alt="">
+                                    <div class="text">
+                                        Шоурум в <br>Москве
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="help-block">
+                                <div class="info">
+                                    <div>Нужна помощь с выбором?</div>
+                                    <div>проконсультируйтесь с нашим специалистом</div>
+                                </div>
+                                <a class="tel" href="tel:+79253414699">+7(925)341-46-99</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabs-block">
+                <ul class="tabs">
+                    <li class="tab-link current" data-tab="tab-1">Описание</li>
+                    <li class="tab-link" data-tab="tab-2">Доставка</li>
+                    <li class="tab-link" data-tab="tab-3">Возврат</li>
+                    <li class="tab-link" data-tab="tab-4">Шоурум</li>
+                </ul>
+                <div id="tab-1" class="tab-content current">
+                    <p>
+                        Цвет: Баклажановый<br>
+                        Состав: 90% полиэстер 10% спандекс<br>
+                        Ширина: 150см<br>
+                        Плотность: 460гр
+                    </p>
+
+                    <p>Описание: двусторонняя искусственная замша с небольшим ворсом.</p>
+
+                    <p>
+                        Благодаря современным технологиям производства искусственная замша практически не уступает в качестве своему натуральному прототипу, а во многом и превосходят его.<br>
+                        Искусственная замша
+                    </p>
+                        <ul>
+                            <li>Очень пластичная и мягкая;</li>
+                            <li>Обладает высокой износостойкостью;</li>
+                            <li>Благодаря тефлоновому покрытию не впитывают жидкости и грязь;</li>
+                            <li>Не дает усадку;</li>
+                            <li>Не мнется и не оставляет заломов, в отличие от натуральной замши;</li>
+                            <li>Не оставляет ворса и не окрашивает нижнее белье.</li>
+                        </ul>
+                    <p>
+                        Уход:<br>
+                        Рекомендуем Ручную стирку.<br>
+                        Но искуственная замша прекрасно стирается в теплой воде и в стиральной машине на программе «шерсть» или «шелк» с мягкими моющими средствами. Отжимается в машинке на щадящих оборотах, чтобы не образовывались заломы.
+                    </p>
+                </div>
+                <div id="tab-2" class="tab-content">
+                    <p>Доставка осуществляется в течение 2-3 дней после оплаты</p>
+                    <h3>Способы доставки:</h3>
+                    <ul>
+                        <li>Dostavista - ежедневно</li>
+                        <li>ТК СДЭК - ежедневно</li>
+                        <li>Почта России - ежедневно</li>
+                        <li>Отправка через ТК DPD, КИТ, ПЭК, Деловые линии обсуждается индивидуально</li>
+                    </ul>
+                    <p>
+                        Dostavista – курьерская служба доставки День-в-День по Москве. Оформите заказ и получите его через 4 часа (предложение действует по будням)!
+                    </p>
+                    <p>Вы можете выбрать Пункт выдачи заказа наиболее удобный для Вас на сайтах наших партнеров,  транспортных компаний:
+                        Стоимость отправления рассчитывается менеджером после формирования Заказа и зависит от веса и габаритов Посылки. Заказ отправляется при 100% оплате Заказа и Доставки. При отправке Транспортными компания возможна оплата при получении. Наложенным платежом не работаем.</p>
+                    <h3>ВАЖНО</h3>
+                    <p>
+                        Если у Вас срочный заказ, мы готовы пойти Вам навстречу и отправить его день-в-день, если есть такая возможность. Для этого свяжитесь с менеджером по телефону
+                        <a href="tel:+79253414699">+7-925-3414-699</a>
+                    </p>
+                </div>
+                <div id="tab-3" class="tab-content">
+                    <p>
+                        Если товар ненадлежащего качества с браком, мы вернем/обменяем его с оплатой доставки за счет компании.<br>
+                        Возврат переведенных средств, производится на Ваш банковский счет в течение 5—30 рабочих дней (срок зависит от Банка, который выдал Вашу банковскую карту).
+                    </p>
+                </div>
+                <div id="tab-4" class="tab-content">
+                    <div class="map-block">
+                        <div class="data">
+                            <h2 class="title">Наш шоурум в Москве</h2>
+                            <div class="street">г. Москва, ул. Инициативная, 11</div>
+                            <div class="work-times">Пн-Пт: 09:00 - 19:00 <span>//</span> Сб: 10:00 до 17:00</div>
+                        </div>
+                        <div id="address"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="block sales slider-block">
+        <div class="wrapper">
+            <div class="sales-block">
+                <div class="header">
+                    <h2>Рекомендованные товары</h2>
+                    <div class="сontrol">
+                        <button class="arrow left"></button>
+                        <div class="count"></div>
+                        <button class="arrow right"></button>
+                    </div>
+                </div>
+                <div class="slider">
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            new
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе с Люрексом Черный с серебром
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="block sales slider-block">
+        <div class="wrapper">
+            <div class="sales-block">
+                <div class="header">
+                    <h2>вы недавно смотрели</h2>
+                    <div class="сontrol">
+                        <button class="arrow left"></button>
+                        <div class="count"></div>
+                        <button class="arrow right"></button>
+                    </div>
+                </div>
+                <div class="slider">
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе с Люрексом Черный с серебром
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="image" style="background-image: url('../files/img/product-bg.jpg');">
+
+                        </div>
+                        <div class="badge">
+                            -20%
+                        </div>
+                        <div class="title">
+                            Кашкорсе
+                        </div>
+                        <div class="price">
+                            <div class="new">от 792 руб. / м.</div>
+                            <div class="last">990 руб.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="../files/js/map.js"></script>
+<script type="text/javascript" src="../files/fancybox/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="../files/slick/slick.min.js"></script>
+
+<script>
+    function quantity() {
+        var quant = $('.quantity-block').find('.quantity-num');
+        var quantMinus = $('.quantity-block').find('.quantity-arrow-minus');
+        var quantPlus =  $('.quantity-block').find('.quantity-arrow-plus');
+        var min = parseFloat(quant.attr('data-min'));
+        var max = parseFloat(quant.attr('data-max'));
+        var step = parseFloat(quant.attr('data-step'));
+        var unit = quant.attr('data-unit');
+
+        quant.val(min + ' ' + unit);
+
+        quantMinus.on('click', function () {
+            if (parseFloat(quant.val().replace(unit, '')) > min) {
+                var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
+
+                if (parseInt(min) === min){
+                    quant.val(parseInt(tempMin) + ' ' + unit);
+                } else {
+                    quant.val(tempMin.toFixed(1) + ' ' + unit);
+                }
+            }
+        });
+        quantPlus.on('click',  function () {
+            if (parseFloat(quant.val().replace(unit, '')) < max) {
+                var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
+                if (parseInt(min) === min){
+                    quant.val(parseInt(tempMax) + ' ' + unit);
+                } else {
+                    quant.val(tempMax.toFixed(1) + ' ' + unit);
+                }
+
+            }
+        });
+
+    }
+    $(document).ready(function () {
+        quantity();
+
+        $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+        });
+
+    });
+</script>
+<script>
+    $('.slider').each(function () {
+        var status = $(this).prev().find('.count');
+        $(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            status.html(i + '/<span>' + slick.slideCount + '</span>');
+        });
+        $(this).slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            prevArrow: $(this).prev().find('.left'),
+            nextArrow: $(this).prev().find('.right'),
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+
+
+</script>
+
+<script>
+    $('.slider-big').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-thumb'
+    });
+    $('.slider-thumb').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-big',
+        focusOnSelect: true
+    });
+</script>
+
+
+<script>
+    //просто для вставки хидера и футера, на проде не нужно будет
+    var link = document.querySelector('link[rel=import]');
+    var header = link.import.querySelector('#header');
+    var footer = link.import.querySelector('#footer');
+    document.body.insertBefore(header.cloneNode(true), document.querySelector('main'));
+    document.body.appendChild(footer.cloneNode(true));
+</script>
+
+
+</body>
+</html>

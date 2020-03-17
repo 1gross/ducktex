@@ -242,6 +242,26 @@ h2 {
           #header .nav-line .nav-line-block .main-menu ul li a:hover {
             color: #22AAB8; }
 
+#header .breadcrumbs {
+  background-color: #F6F6F6;
+  padding: 15px 0;
+  font-size: 18px; }
+  #header .breadcrumbs .breadcrumbs-block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; }
+    #header .breadcrumbs .breadcrumbs-block .item {
+      display: flex;
+      justify-items: flex-start;
+      align-items: center; }
+      #header .breadcrumbs .breadcrumbs-block .item:last-child::after {
+        display: none; }
+      #header .breadcrumbs .breadcrumbs-block .item::after {
+        content: '/';
+        margin: 0 5px; }
+    #header .breadcrumbs .breadcrumbs-block a {
+      color: black; }
+
 section.block {
   padding: 50px 0; }
 
@@ -381,27 +401,28 @@ section.with-sea .wrapper::before {
     .product-card .price .last {
       text-decoration: line-through; }
 
-.map .map-block {
+.map-block {
   display: flex;
   justify-content: space-between;
   align-items: center; }
-  .map .map-block .data {
+  .map-block .data {
     flex: 1;
     font-size: 18px;
-    font-weight: bold; }
-    .map .map-block .data .title {
+    font-weight: bold;
+    line-height: 1; }
+    .map-block .data .title {
       margin-bottom: 60px; }
-    .map .map-block .data .street {
+    .map-block .data .street {
       background: url("../img/marker.svg") no-repeat 0 4px;
       padding-left: 20px;
       margin-bottom: 20px; }
-    .map .map-block .data .work-times {
+    .map-block .data .work-times {
       background: url("../img/calendar.svg") no-repeat 0 4px;
       padding-left: 20px; }
-      .map .map-block .data .work-times span {
+      .map-block .data .work-times span {
         color: #22AAB8;
         margin: 0 5px; }
-  .map .map-block #address {
+  .map-block #address {
     flex: 0 0 600px;
     height: 405px; }
 
@@ -550,3 +571,241 @@ section.with-sea .wrapper::before {
           content: url("../img/instagram.svg"); }
   #footer .studio {
     margin-top: 50px; }
+
+#card {
+  padding: 40px 0; }
+  #card h1 {
+    font-size: 24px;
+    margin: 0 0 20px; }
+  #card .card-block .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  #card .card-block .card-body {
+    display: flex; }
+    #card .card-block .card-body .slider-box {
+      flex: 0 0 600px;
+      max-width: 600px; }
+      #card .card-block .card-body .slider-box .slider-big img {
+        max-width: 100%; }
+      #card .card-block .card-body .slider-box .slider-thumb {
+        margin-top: 20px;
+        padding: 0 40px;
+        position: relative; }
+        #card .card-block .card-body .slider-box .slider-thumb .slick-arrow {
+          font-size: 0;
+          width: 30px;
+          height: 30px;
+          padding: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 50%;
+          margin-top: -15px; }
+          #card .card-block .card-body .slider-box .slider-thumb .slick-arrow.slick-prev {
+            left: 0; }
+          #card .card-block .card-body .slider-box .slider-thumb .slick-arrow.slick-next {
+            right: 0;
+            transform: scale(-1, 1); }
+          #card .card-block .card-body .slider-box .slider-thumb .slick-arrow::after {
+            content: url("../../files/img/arrow-slider.svg"); }
+        #card .card-block .card-body .slider-box .slider-thumb div {
+          margin: 0 4px;
+          cursor: pointer; }
+          #card .card-block .card-body .slider-box .slider-thumb div img {
+            max-height: 195px;
+            max-width: 100%; }
+      #card .card-block .card-body .slider-box .address {
+        margin-top: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        #card .card-block .card-body .slider-box .address .title {
+          margin-bottom: 20px; }
+        #card .card-block .card-body .slider-box .address .street {
+          background: url("../img/marker.svg") no-repeat 0 4px;
+          padding-left: 20px;
+          margin-bottom: 20px; }
+        #card .card-block .card-body .slider-box .address .work-times {
+          background: url("../img/calendar.svg") no-repeat 0 4px;
+          padding-left: 20px; }
+          #card .card-block .card-body .slider-box .address .work-times span {
+            color: #22AAB8;
+            margin: 0 5px; }
+    #card .card-block .card-body .data {
+      flex: 1;
+      font-size: 18px;
+      padding-left: 35px; }
+      #card .card-block .card-body .data .product-number {
+        margin-bottom: 20px; }
+      #card .card-block .card-body .data .price-block {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; }
+        #card .card-block .card-body .data .price-block .price {
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 2; }
+        #card .card-block .card-body .data .price-block .quantity-block {
+          margin: 0 auto; }
+          #card .card-block .card-body .data .price-block .quantity-block .quant-btn {
+            width: 31px;
+            height: 31px;
+            background-color: #22AAB8;
+            border: 0;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+            transition: background-color .3s; }
+            #card .card-block .card-body .data .price-block .quantity-block .quant-btn:hover {
+              background-color: #1a828d; }
+          #card .card-block .card-body .data .price-block .quantity-block input {
+            font-weight: bold;
+            font-size: 18px;
+            height: 31px;
+            line-height: 30px;
+            width: 50px;
+            text-align: center;
+            border: 0;
+            padding: 0; }
+      #card .card-block .card-body .data .bonus {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px; }
+      #card .card-block .card-body .data .add-cart {
+        max-width: 100%;
+        font-size: 24px;
+        margin-top: 20px; }
+      #card .card-block .card-body .data .props {
+        margin-top: 25px;
+        padding: 30px 0;
+        border-top: 1px solid #F6F6F6;
+        border-bottom: 1px solid #F6F6F6; }
+        #card .card-block .card-body .data .props .props-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 18px;
+          margin-bottom: 10px; }
+          #card .card-block .card-body .data .props .props-item:last-child {
+            margin-bottom: 0; }
+      #card .card-block .card-body .data .pluses {
+        margin-top: 20px;
+        background-color: #F6F6F6; }
+        #card .card-block .card-body .data .pluses .pluses-block {
+          display: flex;
+          justify-content: space-between;
+          padding: 17px;
+          font-size: 14px;
+          line-height: 16px;
+          border-bottom: 1px solid #6E6E6E; }
+          #card .card-block .card-body .data .pluses .pluses-block .item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start; }
+            #card .card-block .card-body .data .pluses .pluses-block .item img {
+              margin-bottom: 10px; }
+            #card .card-block .card-body .data .pluses .pluses-block .item .text {
+              margin-top: auto; }
+        #card .card-block .card-body .data .pluses .help-block {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 17px; }
+          #card .card-block .card-body .data .pluses .help-block .info div:first-child {
+            font-size: 18px; }
+          #card .card-block .card-body .data .pluses .help-block .info div:last-child {
+            margin-top: 4px;
+            font-size: 13px; }
+          #card .card-block .card-body .data .pluses .help-block .tel {
+            white-space: nowrap;
+            font-weight: bold;
+            font-size: 24px; }
+  #card .tabs-block {
+    background-color: #F6F6F6;
+    margin-top: 60px; }
+    #card .tabs-block .tabs {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      border-bottom: 1px solid #22AAB8; }
+      #card .tabs-block .tabs li {
+        padding: 25px 60px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        transition: .1s background-color, .1s color; }
+        #card .tabs-block .tabs li.current, #card .tabs-block .tabs li:hover {
+          transition: .3s background-color, .3s color;
+          background-color: #22AAB8;
+          color: white; }
+    #card .tabs-block .tab-content {
+      display: none;
+      background-color: #F6F6F6;
+      padding: 30px 45px;
+      line-height: 2; }
+      #card .tabs-block .tab-content.current {
+        display: inherit; }
+      #card .tabs-block .tab-content p {
+        margin-bottom: 20px; }
+        #card .tabs-block .tab-content p:last-child {
+          margin-bottom: 0; }
+      #card .tabs-block .tab-content ul {
+        padding: 0;
+        list-style: none;
+        line-height: 1; }
+        #card .tabs-block .tab-content ul li {
+          margin-bottom: 14px; }
+          #card .tabs-block .tab-content ul li:last-child {
+            margin-bottom: 0; }
+          #card .tabs-block .tab-content ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #22AAB8;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px; }
+  #card .card-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
+    #card .card-buttons > * {
+      margin-right: 15px; }
+      #card .card-buttons > *:last-child {
+        margin-right: 0; }
+    #card .card-buttons .like {
+      background: url("../img/like.svg") no-repeat 50%;
+      width: 32px;
+      height: 30px; }
+    #card .card-buttons .compare::before {
+      content: '';
+      background: url("../img/compare.svg") no-repeat 50%;
+      display: inline-block;
+      vertical-align: middle;
+      width: 37px;
+      height: 31px;
+      margin-right: 10px; }
+    #card .card-buttons .compare span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      background-color: #E9E9E9;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      letter-spacing: 0;
+      color: #929292; }

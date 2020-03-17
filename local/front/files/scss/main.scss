@@ -301,6 +301,34 @@ h2{
       }
     }
   }
+  .breadcrumbs{
+    background-color: #F6F6F6;
+    padding: 15px 0;
+    font-size: 18px;
+    .breadcrumbs-block{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .item{
+        display: flex;
+        justify-items: flex-start;
+        align-items: center;
+        &:last-child{
+          &::after{
+            display: none;
+          }
+        }
+        &::after{
+          content: '/';
+          margin: 0 5px;
+
+        }
+      }
+      a{
+        color: black;
+      }
+    }
+  }
 }
 section{
   &.block{
@@ -473,36 +501,35 @@ section{
   }
 }
 
-.map{
-  .map-block{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .data{
-      flex: 1;
-      font-size: 18px;
-      font-weight: bold;
-      .title{
-        margin-bottom: 60px;
-      }
-      .street{
-        background: url('../img/marker.svg') no-repeat 0 4px;
-        padding-left: 20px;
-        margin-bottom: 20px;
-      }
-      .work-times{
-        background: url('../img/calendar.svg') no-repeat 0 4px;
-        padding-left: 20px;
-        span{
-          color: $main-color;
-          margin: 0 5px;
-        }
+.map-block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .data{
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    .title{
+      margin-bottom: 60px;
+    }
+    .street{
+      background: url('../img/marker.svg') no-repeat 0 4px;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    .work-times{
+      background: url('../img/calendar.svg') no-repeat 0 4px;
+      padding-left: 20px;
+      span{
+        color: $main-color;
+        margin: 0 5px;
       }
     }
-    #address{
-      flex: 0 0 600px;
-      height: 405px;
-    }
+  }
+  #address{
+    flex: 0 0 600px;
+    height: 405px;
   }
 }
 .form-group{
@@ -697,3 +724,5 @@ section{
     margin-top: 50px;
   }
 }
+
+@import 'card.scss';

@@ -1,0 +1,55 @@
+#card .user-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  #card .user-buttons > * {
+    margin-right: 30px; }
+    #card .user-buttons > *:last-child {
+      margin-right: 0; }
+  #card .user-buttons .login {
+    color: #A5A5A5; }
+    #card .user-buttons .login::before {
+      content: '';
+      background: url("../img/login.svg") no-repeat 50%;
+      display: inline-block;
+      vertical-align: middle;
+      width: 31px;
+      height: 31px;
+      margin-right: 10px; }
+    #card .user-buttons .login:hover {
+      text-decoration: underline; }
+  #card .user-buttons .compare::before {
+    content: '';
+    background: url("../img/compare.svg") no-repeat 50%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 37px;
+    height: 31px;
+    margin-right: 10px; }
+  #card .user-buttons .compare span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    background-color: #E9E9E9;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    letter-spacing: 0;
+    color: #929292; }
+  #card .user-buttons .basket {
+    background: url("../img/cart.svg") no-repeat 50%;
+    width: 35px;
+    height: 31px;
+    position: relative; }
+    #card .user-buttons .basket span {
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      color: #929292; }
+  #card .user-buttons .search button {
+    background: url("../img/search.svg") no-repeat 50%;
+    width: 30px;
+    height: 31px; }
