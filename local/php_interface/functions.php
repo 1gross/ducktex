@@ -20,3 +20,10 @@ function AppGetCascadeDirProperties($PROPERTY_ID, $default_value = false)
 
     return $propertyValue === false ? $default_value : $propertyValue;
 }
+
+function dump($var)
+{
+    echo '<pre>';
+    var_dump($var);
+    echo '</pre>';
+}

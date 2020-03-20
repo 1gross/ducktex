@@ -16,7 +16,7 @@ ErrorDocument 404 /404.php
   RewriteCond %{REQUEST_URI} !(.*)/$
   RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
   RewriteCond %{REQUEST_URI} /index\.php
-  RewriteRule ^(.*)index\.php$ http://ducktex.ru/$1 [R=301,L]
+  #RewriteRule ^(.*)index\.php$ http://ducktex.ru/$1 [R=301,L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-l
   RewriteCond %{REQUEST_FILENAME} !-d

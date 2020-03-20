@@ -16,6 +16,7 @@ if (function_exists("getmoduleevents")) {
 }
 
 $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATION->GetPageProperty("PAGE_LAYOUT", AppGetCascadeDirProperties("PAGE_LAYOUT", "column1"));
+//require_once 'modules/settings.php';
 ?>
 <!DOCTYPE html>
 <html xml:lang="<?=LANGUAGE_ID?>" lang="<?=LANGUAGE_ID?>" xmlns="http://www.w3.org/1999/xhtml">
@@ -24,7 +25,7 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <?Asset::getInstance()->addCss('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic');?>
     <?Asset::getInstance()->addCss("/local/front/files/css/normalize.css");?>
     <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
-    <?Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
+    <?//Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
     <?$APPLICATION->ShowMeta("viewport");?>
     <?$APPLICATION->ShowMeta("HandheldFriendly");?>
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-capable", "yes");?>
@@ -34,6 +35,7 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
 </head>
 <body>
 <main>
+    <?$APPLICATION->ShowPanel();?>
     <?
     //include header
     $APPLICATION->IncludeFile(
