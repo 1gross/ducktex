@@ -3,6 +3,8 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 
+use \Bitrix\Main\Loader;
+use \Bitrix\Highloadblock as HL;
 
 function AppGetCascadeDirProperties($PROPERTY_ID, $default_value = false)
 {
@@ -21,6 +23,47 @@ function AppGetCascadeDirProperties($PROPERTY_ID, $default_value = false)
     return $propertyValue === false ? $default_value : $propertyValue;
 }
 
+function GetPropertyForHlBlock($sTableName, $propertyXmlId)
+{
+    /**
+     * Работаем только при условии, что
+     *    - модуль highloadblock подключен
+     *    - в описании присутствует таблица
+     *    - есть заполненные значения
+     */
+    if ( Loader::IncludeModule('highloadblock') && !empty($sTableName) && !empty($propertyXmlId) )
+    {
+        /**
+         * @var array Описание Highload-блока
+         */
+        $hlblock = HL\HighloadBlockTable::getRow([
+            'filter' => [
+                '=TABLE_NAME' => $sTableName
+            ],
+        ]);
+
+        if ( $hlblock )
+        {
+            /**
+             * Магия highload-блоков компилируем сущность, чтобы мы смогли с ней работать
+             *
+             */
+            $entity      = HL\HighloadBlockTable::compileEntity( $hlblock );
+            $entityClass = $entity->getDataClass();
+
+            $arRecords = $entityClass::getList([
+                'filter' => [
+                    'UF_XML_ID' => $propertyXmlId
+                ],
+            ]);
+            foreach ($arRecords as $record)
+            {
+                return $record;
+            }
+        }
+    }
+    return false;
+}
 function dump($var)
 {
     echo '<pre>';

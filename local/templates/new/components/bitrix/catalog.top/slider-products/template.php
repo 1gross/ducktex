@@ -36,9 +36,9 @@
                                 NEW
                             </div>
                         <?}?>
-                        <div class="title">
+                        <a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="title">
                             <?=$arItem['NAME']?>
-                        </div>
+                        </a>
                         <div class="price" data-ratio="<?=$arItem['CATALOG_MEASURE_RATIO']?>">
                             <div class="new">от <?=$arItem['MIN_PRICE']['PRINT_VALUE_NOVAT']?> / <?=$arItem['CATALOG_MEASURE_NAME']?></div>
                             <div class="last"><?=$arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']?></div>

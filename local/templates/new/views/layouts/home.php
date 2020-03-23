@@ -97,9 +97,9 @@ global $arrFilterProp;
 $arrFilterProp = array('PROPERTY_HIT_VALUE' => array('Акция'));
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.top", 
-	"home_products",
+	"slider-products",
 	array(
-		"COMPONENT_TEMPLATE" => "home_products",
+		"COMPONENT_TEMPLATE" => "slider-products",
 		"IBLOCK_TYPE" => "aspro_mshop_catalog",
 		"IBLOCK_ID" => "13",
 		"FILTER_NAME" => "arrFilterProp",
@@ -167,9 +167,9 @@ global $arrFilterProp;
 $arrFilterProp = array('PROPERTY_HIT_VALUE' => array('Новинка'));
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.top",
-    "home_products",
+    "slider-products",
     array(
-        "COMPONENT_TEMPLATE" => "home_products",
+        "COMPONENT_TEMPLATE" => "slider-products",
         "IBLOCK_TYPE" => "aspro_mshop_catalog",
         "IBLOCK_ID" => "13",
         "FILTER_NAME" => "arrFilterProp",
@@ -394,45 +394,3 @@ $APPLICATION->IncludeComponent(
         </div>
     </div>
 </section>
-<script>
-	$('.slider').each(function () {
-		var status = $(this).prev().find('.count');
-		$(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-			var i = (currentSlide ? currentSlide : 0) + 1;
-			status.html(i + '/<span>' + slick.slideCount + '</span>');
-		});
-		$(this).slick({
-			infinite: true,
-			speed: 300,
-			slidesToShow: 5,
-			slidesToScroll: 1,
-			prevArrow: $(this).prev().find('.left'),
-			nextArrow: $(this).prev().find('.right'),
-			responsive: [
-				{
-					breakpoint: 1024,
-					settings: {
-						slidesToShow: 3,
-						slidesToScroll: 3,
-						infinite: true,
-						dots: true
-					}
-				},
-				{
-					breakpoint: 600,
-					settings: {
-						slidesToShow: 2,
-						slidesToScroll: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1,
-						slidesToScroll: 1
-					}
-				}
-			]
-		});
-	});
-</script>
