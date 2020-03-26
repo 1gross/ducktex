@@ -77,6 +77,24 @@ h2 {
     color: white; }
     .btn.blue:hover {
       background-color: #1a828d; }
+  .btn.outline {
+    border: 1px solid #22AAB8;
+    height: 40px;
+    line-height: 40px; }
+    .btn.outline:hover {
+      background-color: #22AAB8;
+      color: white; }
+  .btn.simple {
+    height: auto;
+    width: auto;
+    max-width: none;
+    line-height: 1;
+    color: #FF0000;
+    text-transform: inherit; }
+    .btn.simple:hover {
+      text-decoration: underline; }
+    .btn.simple.gray {
+      color: #A5A5A5; }
 
 .link {
   font-size: 18px;
@@ -572,6 +590,34 @@ section.with-sea .wrapper::before {
   #footer .studio {
     margin-top: 50px; }
 
+.pagination {
+  display: flex;
+  margin-top: 35px; }
+  .pagination.center {
+    justify-content: center;
+    align-items: center; }
+  .pagination a {
+    width: 31px;
+    height: 31px;
+    background: url("../img/arrow-pagination.svg") #22AAB8 no-repeat 50%;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    transition: background-color .3s; }
+    .pagination a:hover {
+      background-color: #1a828d; }
+    .pagination a.next {
+      transform: scale(-1, 1); }
+  .pagination div {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 15px; }
+    .pagination div span {
+      color: #C4C4C4; }
+
 #card {
   padding: 40px 0; }
   #card h1 {
@@ -809,3 +855,237 @@ section.with-sea .wrapper::before {
       line-height: 20px;
       letter-spacing: 0;
       color: #929292; }
+
+#personal {
+  padding: 30px 0; }
+  #personal h2 {
+    font-size: 24px;
+    margin: 0 0 30px;
+    text-transform: inherit; }
+  #personal .personal-block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start; }
+    #personal .personal-block .personal-menu {
+      flex: 0 0 210px;
+      list-style: none;
+      padding: 0;
+      margin: 40px 0 0;
+      font-size: 18px; }
+      #personal .personal-block .personal-menu li {
+        margin-bottom: 20px; }
+        #personal .personal-block .personal-menu li:last-child {
+          margin-bottom: 0; }
+        #personal .personal-block .personal-menu li.active {
+          font-weight: bold; }
+    #personal .personal-block .personal-item {
+      flex: 1; }
+      #personal .personal-block .personal-item .personal-wrap {
+        background-color: #F6F6F6;
+        padding: 40px 35px; }
+      #personal .personal-block .personal-item .buttons-group {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; }
+        #personal .personal-block .personal-item .buttons-group .btn {
+          margin-right: 45px; }
+          #personal .personal-block .personal-item .buttons-group .btn:last-child {
+            margin-right: 0; }
+
+.personal-info .personal-info-item {
+  margin-bottom: 25px; }
+  .personal-info .personal-info-item .title {
+    color: #A7A7A7;
+    display: block;
+    margin-bottom: 5px; }
+  .personal-info .personal-info-item .text {
+    font-size: 18px; }
+
+.personal-favorites .favorites-block {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0 -10px; }
+  .personal-favorites .favorites-block .product-card {
+    flex: 0 0 calc(100% / 4 - 20px);
+    margin: 0 10px; }
+    .personal-favorites .favorites-block .product-card .favorites-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px; }
+      .personal-favorites .favorites-block .product-card .favorites-header .add-to-cart {
+        font-size: 14px;
+        font-weight: bold; }
+      .personal-favorites .favorites-block .product-card .favorites-header .favorites-delete {
+        width: 18px;
+        height: 18px;
+        background: url("../img/delete.svg") no-repeat 50%;
+        opacity: .45;
+        transition: .1s opacity; }
+        .personal-favorites .favorites-block .product-card .favorites-header .favorites-delete:hover {
+          transition: .3s opacity;
+          opacity: 1; }
+    .personal-favorites .favorites-block .product-card .badge {
+      top: 38px; }
+
+.personal-favorites .clear-all {
+  margin-top: 40px; }
+  .personal-favorites .clear-all .btn {
+    max-width: 280px; }
+
+.personal-orders .order-item {
+  border-bottom: 1px solid #C4C4C4;
+  padding-bottom: 40px;
+  margin-bottom: 40px; }
+  .personal-orders .order-item:last-child {
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0; }
+  .personal-orders .order-item .data {
+    font-weight: bold;
+    font-size: 18px;
+    color: #C4C4C4;
+    margin-bottom: 20px; }
+  .personal-orders .order-item .order-list .order-list-item {
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px; }
+    .personal-orders .order-item .order-list .order-list-item:last-child {
+      margin-bottom: 0; }
+    .personal-orders .order-item .order-list .order-list-item .info {
+      display: flex;
+      justify-content: flex-start; }
+      .personal-orders .order-item .order-list .order-list-item .info .image {
+        width: 131px;
+        background-size: cover;
+        background-position: 50%;
+        margin-right: 15px;
+        min-height: 140px; }
+      .personal-orders .order-item .order-list .order-list-item .info .order-info {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        min-width: 250px; }
+        .personal-orders .order-item .order-list .order-list-item .info .order-info .name {
+          margin-bottom: 15px; }
+        .personal-orders .order-item .order-list .order-list-item .info .order-info .price {
+          margin-bottom: 15px; }
+        .personal-orders .order-item .order-list .order-list-item .info .order-info .quantity {
+          margin-bottom: 15px; }
+        .personal-orders .order-item .order-list .order-list-item .info .order-info .status {
+          margin-top: auto; }
+          .personal-orders .order-item .order-list .order-list-item .info .order-info .status.green {
+            color: #22AAB8; }
+    .personal-orders .order-item .order-list .order-list-item .repeat {
+      max-width: 280px;
+      margin-left: 40px; }
+
+.personal-bonus .bonus-block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 15px;
+  border-bottom: 1px solid #C4C4C4;
+  padding-bottom: 40px; }
+  .personal-bonus .bonus-block .bonus-balanсe {
+    flex: 0 0 290px;
+    margin-top: 9px; }
+    .personal-bonus .bonus-block .bonus-balanсe .amount {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px; }
+      .personal-bonus .bonus-block .bonus-balanсe .amount span {
+        color: #22AAB8; }
+    .personal-bonus .bonus-block .bonus-balanсe .status span {
+      font-weight: bold;
+      color: #22AAB8; }
+  .personal-bonus .bonus-block .bonus-line {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-left: 40px; }
+    .personal-bonus .bonus-block .bonus-line .bonus-item {
+      background-color: #E2E2E2;
+      color: white;
+      font-weight: 300;
+      line-height: 36px;
+      flex: 1;
+      padding: 0 8px;
+      white-space: nowrap;
+      margin-right: 4px;
+      text-align: center;
+      position: relative; }
+      .personal-bonus .bonus-block .bonus-line .bonus-item::after {
+        content: attr(data-percent);
+        position: absolute;
+        top: -40px;
+        right: 0;
+        display: block;
+        background-color: #22AAB8;
+        color: white;
+        line-height: 26px;
+        width: 60px;
+        font-weight: bold;
+        border-radius: 5px 5px 0 5px;
+        text-align: center; }
+      .personal-bonus .bonus-block .bonus-line .bonus-item::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: -14px;
+        width: 0;
+        height: 0;
+        border-top: 12px solid #22AAB8;
+        border-left: 6px solid transparent; }
+      .personal-bonus .bonus-block .bonus-line .bonus-item.active {
+        background-color: #22AAB8; }
+      .personal-bonus .bonus-block .bonus-line .bonus-item:first-child {
+        border-radius: 10px 0 0 10px; }
+      .personal-bonus .bonus-block .bonus-line .bonus-item:last-child {
+        flex: 2;
+        text-align: right;
+        font-weight: bold;
+        margin-right: 0;
+        border-radius: 0 10px 10px 0; }
+
+.personal-bonus .bonus-rules {
+  padding: 30px 0; }
+  .personal-bonus .bonus-rules .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px; }
+  .personal-bonus .bonus-rules .bonus-rules-item {
+    margin-bottom: 10px; }
+    .personal-bonus .bonus-rules .bonus-rules-item:last-child {
+      margin-bottom: 0; }
+
+.personal-history .history-count {
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 18px; }
+
+.personal-history .table-history {
+  width: calc(100% + 70px);
+  margin: 0 -35px;
+  border-collapse: collapse;
+  font-size: 18px;
+  margin-top: 40px; }
+  .personal-history .table-history thead tr {
+    background-color: white; }
+    .personal-history .table-history thead tr td {
+      height: 60px; }
+  .personal-history .table-history tbody tr {
+    border-bottom: 1px solid white; }
+    .personal-history .table-history tbody tr td {
+      height: 80px;
+      vertical-align: middle; }
+  .personal-history .table-history td:first-child {
+    padding-left: 35px; }
+  .personal-history .table-history td:last-child {
+    padding-right: 35px; }
+  .personal-history .table-history td.minus {
+    color: red; }

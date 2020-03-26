@@ -1,0 +1,308 @@
+#personal{
+  padding: 30px 0;
+  h2{
+    font-size: 24px;
+    margin: 0 0 30px;
+    text-transform: inherit;
+  }
+  .personal-block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .personal-menu{
+      flex: 0 0 210px;
+      list-style: none;
+      padding: 0;
+      margin: 40px 0 0;
+      font-size: 18px;
+      li{
+        margin-bottom: 20px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+        &.active{
+          font-weight: bold;
+        }
+      }
+    }
+    .personal-item{
+      flex: 1;
+      .personal-wrap{
+        background-color: #F6F6F6;
+        padding: 40px 35px;
+      }
+      .buttons-group{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .btn{
+          margin-right: 45px;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.personal-info{
+  .personal-info-item{
+    margin-bottom: 25px;
+    .title{
+      color: #A7A7A7;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .text{
+      font-size: 18px;
+    }
+  }
+}
+.personal-favorites{
+  .favorites-block{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    .product-card{
+      flex: 0 0 calc(100% / 4 - 20px);
+      margin: 0 10px;
+      .favorites-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        .add-to-cart{
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .favorites-delete{
+          width: 18px;
+          height: 18px;
+          background: url('../img/delete.svg') no-repeat 50%;
+          opacity: .45;
+          transition: .1s opacity;
+          &:hover{
+            transition: .3s opacity;
+            opacity: 1;
+          }
+        }
+      }
+      .badge{
+        top: 38px;
+      }
+    }
+  }
+  .clear-all{
+    margin-top: 40px;
+    .btn{
+      max-width: 280px;
+    }
+  }
+}
+.personal-orders{
+  .order-item{
+    border-bottom: 1px solid #C4C4C4;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    &:last-child{
+      margin-bottom: 0;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .data{
+      font-weight: bold;
+      font-size: 18px;
+      color: #C4C4C4;
+      margin-bottom: 20px;
+    }
+    .order-list{
+      .order-list-item{
+        font-size: 18px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+        .info{
+          display: flex;
+          justify-content: flex-start;
+          .image{
+            width: 131px;
+            background-size: cover;
+            background-position: 50%;
+            margin-right: 15px;
+            min-height: 140px;
+          }
+          .order-info{
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            min-width: 250px;
+            .name{
+              margin-bottom: 15px;
+            }
+            .price{
+              margin-bottom: 15px;
+            }
+            .quantity{
+              margin-bottom: 15px;
+            }
+            .status{
+              margin-top: auto;
+              &.green{
+                color: $main-color;
+              }
+            }
+          }
+        }
+        .repeat{
+          max-width: 280px;
+          margin-left: 40px;
+        }
+      }
+    }
+  }
+}
+.personal-bonus{
+  .bonus-block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 15px;
+    border-bottom: 1px solid #C4C4C4;
+    padding-bottom: 40px;
+    .bonus-balanсe{
+      flex: 0 0 290px;
+      margin-top: 9px;
+      .amount{
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+        span{
+          color: $main-color;
+        }
+      }
+      .status{
+        span{
+          font-weight: bold;
+          color: $main-color;
+        }
+      }
+    }
+    .bonus-line{
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      margin-left: 40px;
+      .bonus-item{
+        background-color: #E2E2E2;
+        color: white;
+        font-weight: 300;
+        line-height: 36px;
+        flex: 1;
+        padding: 0 8px;
+        white-space: nowrap;
+        margin-right: 4px;
+        text-align: center;
+        position: relative;
+        &::after{
+          content: attr(data-percent);
+          position: absolute;
+          top: -40px;
+          right: 0;
+          display: block;
+          background-color: $main-color;
+          color: white;
+          line-height: 26px;
+          width: 60px;
+          font-weight: bold;
+          border-radius: 5px 5px 0 5px;
+          text-align: center;
+        }
+        &::before{
+          content: '';
+          position: absolute;
+          right: 0;
+          top: -14px;
+          width: 0;
+          height: 0;
+          border-top: 12px solid $main-color;
+          border-left: 6px solid transparent;
+        }
+        &.active{
+          background-color: $main-color;
+        }
+        &:first-child{
+          border-radius: 10px 0 0 10px;
+        }
+        &:last-child{
+          flex: 2;
+          text-align: right;
+          font-weight: bold;
+          margin-right: 0;
+          border-radius: 0 10px 10px 0;
+        }
+      }
+    }
+  }
+  .bonus-rules{
+    padding: 30px 0;
+    .title{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .bonus-rules-item{
+      margin-bottom: 10px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.personal-history{
+  .history-count{
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .table-history{
+    width: calc(100% + 70px);
+    margin: 0 -35px;
+    border-collapse: collapse;
+    font-size: 18px;
+    margin-top: 40px;
+    thead{
+      tr{
+        background-color: white;
+        td{
+          height: 60px;
+        }
+      }
+    }
+    tbody{
+      tr{
+        border-bottom: 1px solid white;
+        td{
+          height: 80px;
+          vertical-align: middle;
+        }
+      }
+    }
+    td{
+      &:first-child{
+        padding-left: 35px;
+      }
+      &:last-child{
+        padding-right: 35px;
+      }
+      &.minus{
+        color: red;
+      }
+    }
+  }
+}

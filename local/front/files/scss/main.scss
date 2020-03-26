@@ -86,6 +86,29 @@ h2{
       background-color: darken($main-color, 10);
     }
   }
+  &.outline{
+    border: 1px solid $main-color;
+    height: 40px;
+    line-height: 40px;
+    &:hover{
+      background-color: $main-color;
+      color: white;
+    }
+  }
+  &.simple{
+    height: auto;
+    width: auto;
+    max-width: none;
+    line-height: 1;
+    color: #FF0000;
+    text-transform: inherit;
+    &:hover{
+      text-decoration: underline;
+    }
+    &.gray{
+      color: #A5A5A5;
+    }
+  }
 }
 .link{
   font-size: 18px;
@@ -725,4 +748,40 @@ section{
   }
 }
 
+.pagination{
+  display: flex;
+  margin-top: 35px;
+  &.center{
+    justify-content: center;
+    align-items: center;
+  }
+  a{
+    width: 31px;
+    height: 31px;
+    background: url('../img/arrow-pagination.svg') #22AAB8 no-repeat 50%;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    transition: background-color .3s;
+    &:hover{
+      background-color: darken($main-color, 10);
+    }
+    &.next{
+      transform: scale(-1, 1);
+    }
+  }
+  div{
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 15px;
+    span{
+      color: #C4C4C4;
+    }
+  }
+}
+
 @import 'card.scss';
+@import 'personal.scss';

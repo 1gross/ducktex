@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>История операций</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="../files/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../files/slick/slick.css"/>
+    <link rel="stylesheet" href="../files/css/main.css">
+    <link rel="import"  href="../header.html">
+    <link rel="import"  href="../footer.html">
+
+    <link rel="stylesheet" href="../files/fancybox/jquery.fancybox.min.css">
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7586449d-5a86-43b5-8f8a-61552f466d81" type="text/javascript"></script>
+</head>
+<body>
+
+<main>
+    <section id="personal">
+        <div class="wrapper">
+            <div class="personal-block">
+                <ul class="personal-menu">
+                    <li>
+                        <a href="/">Личная информация</a>
+                    </li>
+                    <li>
+                        <a href="/">Избранное</a>
+                    </li>
+                    <li>
+                        <a href="/">Мои заказы</a>
+                    </li>
+                    <li>
+                        <a href="/">Мои бонусы</a>
+                    </li>
+                    <li class="active">
+                        <a href="/">История операций</a>
+                    </li>
+                </ul>
+                <div class="personal-item">
+                    <div class="personal-wrap personal-history">
+                        <h2>История операций</h2>
+                        <div class="history-count">
+                            Всего <span>4</span> операций
+                        </div>
+                        <table class="table-history">
+                            <thead>
+                                <tr>
+                                    <td>Сумма</td>
+                                    <td>Дата и время</td>
+                                    <td>Операция</td>
+                                    <td>Заказ</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="minus">
+                                        -507
+                                    </td>
+                                    <td>24 декабря 2019 в 17:20</td>
+                                    <td>Оплата заказа</td>
+                                    <td>2560</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        +507
+                                    </td>
+                                    <td>24 декабря 2019 в 17:20</td>
+                                    <td>Оплата заказа</td>
+                                    <td>2560</td>
+                                </tr>
+                                <tr>
+                                    <td class="minus">
+                                        -507
+                                    </td>
+                                    <td>24 декабря 2019 в 17:20</td>
+                                    <td>Оплата заказа</td>
+                                    <td>2560</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        +507
+                                    </td>
+                                    <td>24 декабря 2019 в 17:20</td>
+                                    <td>Оплата заказа</td>
+                                    <td>2560</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagination center">
+                            <a href="/" class="prev"></a>
+                            <div class="count">1/<span>4</span></div>
+                            <a href="/" class="next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="../files/js/map.js"></script>
+<script type="text/javascript" src="../files/fancybox/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="../files/slick/slick.min.js"></script>
+
+<script>
+    function quantity() {
+        var quant = $('.quantity-block').find('.quantity-num');
+        var quantMinus = $('.quantity-block').find('.quantity-arrow-minus');
+        var quantPlus =  $('.quantity-block').find('.quantity-arrow-plus');
+        var min = parseFloat(quant.attr('data-min'));
+        var max = parseFloat(quant.attr('data-max'));
+        var step = parseFloat(quant.attr('data-step'));
+        var unit = quant.attr('data-unit');
+
+        quant.val(min + ' ' + unit);
+
+        quantMinus.on('click', function () {
+            if (parseFloat(quant.val().replace(unit, '')) > min) {
+                var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
+
+                if (parseInt(min) === min){
+                    quant.val(parseInt(tempMin) + ' ' + unit);
+                } else {
+                    quant.val(tempMin.toFixed(1) + ' ' + unit);
+                }
+            }
+        });
+        quantPlus.on('click',  function () {
+            if (parseFloat(quant.val().replace(unit, '')) < max) {
+                var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
+                if (parseInt(min) === min){
+                    quant.val(parseInt(tempMax) + ' ' + unit);
+                } else {
+                    quant.val(tempMax.toFixed(1) + ' ' + unit);
+                }
+
+            }
+        });
+
+    }
+    $(document).ready(function () {
+        quantity();
+
+        $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+        });
+
+    });
+</script>
+<script>
+    $('.slider').each(function () {
+        var status = $(this).prev().find('.count');
+        $(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            status.html(i + '/<span>' + slick.slideCount + '</span>');
+        });
+        $(this).slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            prevArrow: $(this).prev().find('.left'),
+            nextArrow: $(this).prev().find('.right'),
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+
+
+</script>
+
+<script>
+    $('.slider-big').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-thumb'
+    });
+    $('.slider-thumb').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-big',
+        focusOnSelect: true
+    });
+</script>
+
+
+<script>
+    //просто для вставки хидера и футера, на проде не нужно будет
+    var link = document.querySelector('link[rel=import]');
+    var header = link.import.querySelector('#header');
+    var footer = link.import.querySelector('#footer');
+    document.body.insertBefore(header.cloneNode(true), document.querySelector('main'));
+    document.body.appendChild(footer.cloneNode(true));
+</script>
+
+
+</body>
+</html>
