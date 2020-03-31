@@ -40,7 +40,7 @@ body{
   margin: 0 auto;
   padding: 0 15px;
 }
-input[type='text'], input[type='email']{
+input[type='text'], input[type='email'], input[type='tel']{
   font-weight: 300;
   font-size: 18px;
   height: 80px;
@@ -90,6 +90,15 @@ h2{
     border: 1px solid $main-color;
     height: 40px;
     line-height: 40px;
+    &.big{
+      height: 80px;
+      line-height: 80px;
+      max-width: none;
+      width: auto;
+      padding: 0 40px;
+      font-size: 24px;
+      font-weight: normal;
+    }
     &:hover{
       background-color: $main-color;
       color: white;
@@ -782,6 +791,148 @@ section{
     }
   }
 }
+.switch-box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  span{
+    width: 90px;
+    text-align: center;
+    &.first{
+      order: 1;
+    }
+    &.second{
+      order: 3;
+    }
+  }
+  .switch {
+    position: relative;
+    -webkit-appearance: none;
+    outline: none;
+    width: 62px;
+    height: 28px;
+    background-color: $main-color;
+    border-radius: 50px;
+    cursor: pointer;
+    order: 2;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 6px;
+      background: white;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-top: -9px;
+      transition: .1s left;
+    }
+    & ~ .first{
+      font-weight: bold;
+    }
+    &:checked {
+      &::after {
+        left: 38px;
+      }
+      & ~ .first{
+        font-weight: normal;
+      }
+      & ~ .second{
+        font-weight: bold;
+      }
+    }
+  }
+}
+.checkbox-box {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 20px;
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 1px solid black;
+
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    & ~ .checkmark {
+
+    }
+    &:checked{
+      & ~ .checkmark {
+        background: url('../img/check.svg') white no-repeat 50%;
+
+      }
+    }
+  }
+}
+.radio-box {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 22px;
+  font-size: 14px;
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::after{
+      content: '';
+      width: 12px;
+      height: 12px;
+      background-color: $main-color;
+      display: none;
+      border-radius: 50%;
+    }
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    & ~ .checkmark {
+
+    }
+    &:checked{
+      & ~ .checkmark {
+        &::after{
+          display: block;
+        }
+
+      }
+    }
+  }
+}
+
 
 @import 'card.scss';
 @import 'personal.scss';
+@import 'basket.scss';

@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Корзина</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="../files/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../files/slick/slick.css"/>
+    <link rel="stylesheet" href="../files/css/main.css">
+    <link rel="import"  href="../header.html">
+    <link rel="import"  href="../footer.html">
+
+    <link rel="stylesheet" href="../files/fancybox/jquery.fancybox.min.css">
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7586449d-5a86-43b5-8f8a-61552f466d81" type="text/javascript"></script>
+</head>
+<body>
+
+<main>
+    <section id="basket">
+        <div class="wrapper">
+            <h1>Корзина</h1>
+            <table class="basket-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Наименование</th>
+                        <th>Цена</th>
+                        <th>Колличество</th>
+                        <th>Итого</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="/" class="product-image" style="background-image: url('../files/img/card1.jpg');"></a></td>
+                        <td><div class="product-name">Лапша Пепельная Роза</div></td>
+                        <td>
+                            <div class="product-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="quantity-block">
+                                <button class="quant-btn quantity-arrow-minus"> - </button>
+                                <input class="quantity-num" disabled data-min="0.1" data-max="10" data-step="0.1" data-unit="м" type="text" value="" />
+                                <button class="quant-btn quantity-arrow-plus"> + </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-final-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="product-delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/" class="product-image" style="background-image: url('../files/img/card1.jpg');"></a></td>
+                        <td><div class="product-name">Лапша Пепельная Роза</div></td>
+                        <td>
+                            <div class="product-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="quantity-block">
+                                <button class="quant-btn quantity-arrow-minus"> - </button>
+                                <input class="quantity-num" disabled data-min="0.1" data-max="10" data-step="0.1" data-unit="м" type="text" value="" />
+                                <button class="quant-btn quantity-arrow-plus"> + </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-final-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="product-delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/" class="product-image" style="background-image: url('../files/img/card1.jpg');"></a></td>
+                        <td><div class="product-name">Лапша Пепельная Роза</div></td>
+                        <td>
+                            <div class="product-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="quantity-block">
+                                <button class="quant-btn quantity-arrow-minus"> - </button>
+                                <input class="quantity-num" disabled data-min="0.1" data-max="10" data-step="0.1" data-unit="м" type="text" value="" />
+                                <button class="quant-btn quantity-arrow-plus"> + </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-final-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="product-delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/" class="product-image" style="background-image: url('../files/img/card1.jpg');"></a></td>
+                        <td><div class="product-name">Лапша Пепельная Роза</div></td>
+                        <td>
+                            <div class="product-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="quantity-block">
+                                <button class="quant-btn quantity-arrow-minus"> - </button>
+                                <input class="quantity-num" disabled data-min="0.1" data-max="10" data-step="0.1" data-unit="м" type="text" value="" />
+                                <button class="quant-btn quantity-arrow-plus"> + </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-final-price">
+                                <div class="last">1200 руб. / м.</div>
+                                <div class="new">660 руб. / м.</div>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="product-delete"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="basket-footer">
+                <div class="promocode">
+                    <input type="text" placeholder="Введите код купона для скидки">
+                    <input type="submit" value="применить" class="btn outline big">
+                </div>
+                <div class="bonus">
+                    Бонус за заказ: <span>1000 руб</span>
+                </div>
+                <div class="final-price">
+                    ИТОГО: <span>4620 руб</span>.
+                </div>
+            </div>
+            <div class="order-block">
+                <div class="order-info">
+                    <h2>Оформите заказ</h2>
+                    <div class="order-info-name">1. Ваши данные</div>
+                    <div class="order-info-item">
+                        <div class="title">Выберите тип плательщика</div>
+                        <div class="switch-box">
+                            <input type="checkbox" class="switch">
+                            <span class="first">Физ. лицо</span>
+                            <span class="second">Юр. лицо</span>
+                        </div>
+
+                        <div class="entity">
+                            <div class="form-item">
+                                <input type="text" placeholder="ИНН*">
+                            </div>
+                            <div class="form-item">
+                                <input type="text" placeholder="Название организации*">
+                            </div>
+                            <div class="form-item">
+                                <input type="text" placeholder="БИК*">
+                            </div>
+                            <div class="form-item">
+                                <input type="text" placeholder="Расчетный счет*">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <input type="text" placeholder="Как в Вам обращаться*">
+                        </div>
+                        <div class="form-item">
+                            <input type="tel" placeholder="+7 (___) ___  __  __*">
+                        </div>
+                        <div class="form-item">
+                            <input type="email" placeholder="E-mail">
+                        </div>
+
+                        <label class="checkbox-box">
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                            Учавствовать в бонусной программе
+                        </label>
+                    </div>
+
+                    <div class="order-info-name">2. Выберите способ оплаты</div>
+                    <div class="order-info-item">
+                        <label class="radio-box">
+                            <input type="radio" name="payments" checked="checked">
+                            <span class="checkmark"></span>
+                            Картой онлайн
+                        </label>
+                        <label class="radio-box">
+                            <input type="radio" name="payments">
+                            <span class="checkmark"></span>
+                            Выставить счет на юр. лицо
+                        </label>
+                        <label class="radio-box">
+                            <input type="radio" name="payments">
+                            <span class="checkmark"></span>
+                            Использовать бонусы за заказ в качестве оплаты (Ваши бонусы: 2000 руб)
+                        </label>
+                    </div>
+
+                    <div class="order-info-name">3. Выберите способ получения</div>
+
+                    <div class="order-info-item">
+                        <label class="radio-box">
+                            <input type="radio" name="delivery" checked="checked">
+                            <span class="checkmark"></span>
+                            Почта России (<button>выбрать место получения</button>)
+                        </label>
+                        <label class="radio-box">
+                            <input type="radio" name="delivery">
+                            <span class="checkmark"></span>
+                            СДЭК (Самовывоз из пункта выдачи) (<button>выбрать пункт выдачи</button>)
+                        </label>
+                        <label class="radio-box">
+                            <input type="radio" name="delivery">
+                            <span class="checkmark"></span>
+                            СДЭК (Доставка курьером до двери) (<button>выбрать адрес доставки</button>)
+                        </label>
+                        <label class="radio-box">
+                            <input type="radio" name="delivery">
+                            <span class="checkmark"></span>
+                            Самовывоз со склада в г. Москва,Ул.Инициативная 11, ЗАО, ст.м. Кунцевская (<button>посмотреть на карте</button>)
+                        </label>
+                        <label class="radio-box">
+                            <input type="radio" name="delivery">
+                            <span class="checkmark"></span>
+                            Обсудить способ доставки с менеджером
+                        </label>
+                    </div>
+                    <div class="order-info-item">
+                        <div class="title">Комментарий к заказу</div>
+                        <div class="form-item">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="order-check">
+                    <div class="order-check-block">
+                        <div class="title">ВАШ ЗАКАЗ</div>
+                        <div class="order-check-item">
+                            <div class="order-check-title">Сумма заказа:</div>
+                            <div class="order-check-sum">6620 руб.</div>
+                        </div>
+                        <div class="order-check-item">
+                            <div class="order-check-title">Сумма скидки:</div>
+                            <div class="order-check-sum">2000 руб.</div>
+                        </div>
+                        <div class="order-check-item">
+                            <div class="order-check-title">Доставка:</div>
+                            <div class="order-check-sum">не выбрана</div>
+                        </div>
+                        <div class="order-check-item">
+                            <div class="order-check-title">Оплачено бонусом:</div>
+                            <div class="order-check-sum">1000 руб.</div>
+                        </div>
+                        <div class="order-check-footer">
+                            <div class="order-check-item">
+                                <div class="order-check-title">ИТОГО:</div>
+                                <div class="order-check-sum">4620 руб.</div>
+                            </div>
+                            <div class="order-check-item small">
+                                <div class="order-check-title">БОНУС ЗА ЗАКАЗ:</div>
+                                <div class="order-check-sum">1000 руб.</div>
+                            </div>
+                            <button class="btn blue">оформить заказ</button>
+                            <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="../files/js/map.js"></script>
+<script type="text/javascript" src="../files/fancybox/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="../files/slick/slick.min.js"></script>
+
+<script>
+    function quantity() {
+        jQuery('.quantity-block').each(function () {
+            var quant = $(this).find('.quantity-num');
+            var quantMinus = $(this).find('.quantity-arrow-minus');
+            var quantPlus =  $(this).find('.quantity-arrow-plus');
+            var min = parseFloat(quant.attr('data-min'));
+            var max = parseFloat(quant.attr('data-max'));
+            var step = parseFloat(quant.attr('data-step'));
+            var unit = quant.attr('data-unit');
+
+            quant.val(min + ' ' + unit);
+
+            quantMinus.on('click', function () {
+                if (parseFloat(quant.val().replace(unit, '')) > min) {
+                    var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
+
+                    if (parseInt(min) === min){
+                        quant.val(parseInt(tempMin) + ' ' + unit);
+                    } else {
+                        quant.val(tempMin.toFixed(1) + ' ' + unit);
+                    }
+                }
+            });
+            quantPlus.on('click',  function () {
+                if (parseFloat(quant.val().replace(unit, '')) < max) {
+                    var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
+                    if (parseInt(min) === min){
+                        quant.val(parseInt(tempMax) + ' ' + unit);
+                    } else {
+                        quant.val(tempMax.toFixed(1) + ' ' + unit);
+                    }
+
+                }
+            });
+        });
+
+    }
+    $(document).ready(function () {
+        quantity();
+        jQuery('.switch').on('change', function () {
+            if (jQuery(this).prop("checked")){
+                jQuery('.entity').addClass('show');
+            } else {
+                jQuery('.entity').removeClass('show');
+            }
+        });
+    });
+</script>
+<script>
+    $('.slider').each(function () {
+        var status = $(this).prev().find('.count');
+        $(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            status.html(i + '/<span>' + slick.slideCount + '</span>');
+        });
+        $(this).slick({
+            infinite: true,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            prevArrow: $(this).prev().find('.left'),
+            nextArrow: $(this).prev().find('.right'),
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+
+
+</script>
+
+<script>
+    $('.slider-big').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-thumb'
+    });
+    $('.slider-thumb').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-big',
+        focusOnSelect: true
+    });
+</script>
+
+
+<script>
+    //просто для вставки хидера и футера, на проде не нужно будет
+    var link = document.querySelector('link[rel=import]');
+    var header = link.import.querySelector('#header');
+    var footer = link.import.querySelector('#footer');
+    document.body.insertBefore(header.cloneNode(true), document.querySelector('main'));
+    document.body.appendChild(footer.cloneNode(true));
+</script>
+
+
+</body>
+</html>
