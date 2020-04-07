@@ -3,6 +3,43 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Корзина");
 ?>
 <?$APPLICATION->IncludeComponent(
+	"b24tech:sale.order", 
+	".default", 
+	array(
+		"COMPONENT_TEMPLATE" => ".default",
+		"PROPS_FADE_LIST_1" => array(
+			0 => "1",
+			1 => "2",
+			2 => "3",
+			3 => "4",
+			4 => "7",
+			5 => "20",
+			6 => "22",
+			7 => "24",
+			8 => "25",
+		),
+		"PROPS_FADE_LIST_2" => array(
+			0 => "8",
+			1 => "9",
+			2 => "10",
+			3 => "11",
+			4 => "12",
+			5 => "13",
+			6 => "14",
+			7 => "15",
+			8 => "16",
+			9 => "19",
+			10 => "21",
+			11 => "23",
+			12 => "26",
+			13 => "27",
+		),
+		"TEMP" => "",
+		"SHOW_PARTICIPATE_BONUS" => "Y"
+	),
+	false
+);?>
+<?/*$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket", 
 	".default", 
 	array(
@@ -95,8 +132,8 @@ $APPLICATION->SetTitle("Корзина");
 		"USE_ENHANCED_ECOMMERCE" => "N"
 	),
 	false
-);?>
-<?$APPLICATION->IncludeComponent(
+);*/?>
+<?/*$APPLICATION->IncludeComponent(
 	"bitrix:catalog.bigdata.products", 
 	CMShop::checkVersionExt("mshop"), 
 	array(
@@ -171,5 +208,5 @@ $APPLICATION->SetTitle("Корзина");
 	),
 	false
 );
-?>
+*/?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

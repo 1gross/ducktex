@@ -1,4 +1,10 @@
 <?
+//BASKET ITEMS
+$MESS['HEADER_NAME'] = 'Наименование';
+$MESS['HEADER_PRICE'] = 'Цена';
+$MESS['HEADER_QUANTITY'] = 'Количество';
+$MESS['HEADER_SUM'] = 'Итого';
+
 $MESS["CLEAR_ALL_BASKET"] = "Очистить";
 $MESS["SALE_ORDER"] = "Оформить заказ";
 $MESS["SALE_OR"] = "или";

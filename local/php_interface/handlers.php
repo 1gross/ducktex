@@ -38,3 +38,14 @@ AddEventHandler("main", "OnLayoutRender", function () {
         }
     }
 });
+
+//catalog handler
+
+
+class CustomCatalog
+{
+    function addProduct($id, $quantity)
+    {
+
+    }
+}

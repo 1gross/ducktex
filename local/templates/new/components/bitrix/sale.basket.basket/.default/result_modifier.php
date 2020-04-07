@@ -1,5 +1,9 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
+//CUSTOM IMAGE SIZE
+$arParams["PICTURE_WIDTH"] = 131;
+$arParams["PICTURE_HEIGHT"] = 139;
+
 	if (is_array($arResult["GRID"]["ROWS"]))
 	{
 		usort($arResult["GRID"]["ROWS"], 'CMShop::cmpByID');
