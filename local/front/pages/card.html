@@ -24,6 +24,9 @@
         <div class="wrapper">
             <div class="card-block">
                 <div class="card-header">
+                    <div class="product-number-mob">
+                        Артикул: <span>F8354</span>
+                    </div>
                     <h1>Замша Баклажан</h1>
                     <div class="card-buttons">
                         <a href="/" class="compare"><span>0</span></a>
@@ -71,6 +74,7 @@
                         <div class="product-number">
                             Артикул: <span>F8354</span>
                         </div>
+                        <h1 class="title-mob">Замша Баклажан</h1>
                         <div class="price-block">
                             <div class="price">
                                 <div class="price-item">
@@ -114,25 +118,29 @@
                         <div class="pluses">
                             <div class="pluses-block">
                                 <div class="item">
-                                    <img src="../files/img/quality-icon.svg" alt="">
+                                    <img class="icon" src="../files/img/quality-icon.svg" alt="">
+                                    <img src="../files/img/high.svg" class="icon-mob" alt="">
                                     <div class="text">
                                         Ткани <br>высокого качества
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="../files/img/delivery-icon.svg" alt="">
+                                    <img class="icon" src="../files/img/delivery-icon.svg" alt="">
+                                    <img src="../files/img/delivery.svg" class="icon-mob" alt="">
                                     <div class="text">
                                         Оперативная отправка <br>в течение 1 - 3 дней
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="../files/img/pay-icon.svg" alt="">
+                                    <img class="icon" src="../files/img/pay-icon.svg" alt="">
+                                    <img src="../files/img/pay.svg" class="icon-mob" alt="">
                                     <div class="text">
                                         Оплата на <br>сайте
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="../files/img/showroom-icon.svg" alt="">
+                                    <img class="icon" src="../files/img/showroom-icon.svg" alt="">
+                                    <img src="../files/img/showroom.svg" class="icon-mob" alt="">
                                     <div class="text">
                                         Шоурум в <br>Москве
                                     </div>
@@ -146,6 +154,11 @@
                                 <a class="tel" href="tel:+79253414699">+7(925)341-46-99</a>
                             </div>
                         </div>
+                        <div class="address mob">
+                            <h2 class="title">Наш шоурум в Москве</h2>
+                            <div class="street">г. Москва, ул. Инициативная 11, ЗАО, ст.м. Кунцевская</div>
+                            <div class="work-times">Пн-Пт: 09:00 - 19:00 <span>//</span> Сб: 10:00 до 17:00</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,6 +169,7 @@
                     <li class="tab-link" data-tab="tab-3">Возврат</li>
                     <li class="tab-link" data-tab="tab-4">Шоурум</li>
                 </ul>
+                <button class="tab-link current" data-tab="tab-1">Описание</button>
                 <div id="tab-1" class="tab-content current">
                     <p>
                         Цвет: Баклажановый<br>
@@ -184,6 +198,7 @@
                         Но искуственная замша прекрасно стирается в теплой воде и в стиральной машине на программе «шерсть» или «шелк» с мягкими моющими средствами. Отжимается в машинке на щадящих оборотах, чтобы не образовывались заломы.
                     </p>
                 </div>
+                <button class="tab-link" data-tab="tab-2">Доставка</button>
                 <div id="tab-2" class="tab-content">
                     <p>Доставка осуществляется в течение 2-3 дней после оплаты</p>
                     <h3>Способы доставки:</h3>
@@ -204,12 +219,14 @@
                         <a href="tel:+79253414699">+7-925-3414-699</a>
                     </p>
                 </div>
+                <button class="tab-link" data-tab="tab-3">Возврат</button>
                 <div id="tab-3" class="tab-content">
                     <p>
                         Если товар ненадлежащего качества с браком, мы вернем/обменяем его с оплатой доставки за счет компании.<br>
                         Возврат переведенных средств, производится на Ваш банковский счет в течение 5—30 рабочих дней (срок зависит от Банка, который выдал Вашу банковскую карту).
                     </p>
                 </div>
+                <button class="tab-link" data-tab="tab-4">Шоурум</button>
                 <div id="tab-4" class="tab-content">
                     <div class="map-block">
                         <div class="data">
@@ -444,6 +461,7 @@
 <script type="text/javascript" src="../files/js/map.js"></script>
 <script type="text/javascript" src="../files/fancybox/jquery.fancybox.min.js"></script>
 <script type="text/javascript" src="../files/slick/slick.min.js"></script>
+<script type="text/javascript" src="../files/js/main.js"></script>
 
 <script>
     function quantity() {
@@ -493,69 +511,17 @@
             $(this).addClass('current');
             $("#"+tab_id).addClass('current');
         });
+        $('button.tab-link').click(function(){
+            var tab_id = $(this).attr('data-tab');
 
-    });
-</script>
-<script>
-    $('.slider').each(function () {
-        var status = $(this).prev().find('.count');
-        $(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-            var i = (currentSlide ? currentSlide : 0) + 1;
-            status.html(i + '/<span>' + slick.slideCount + '</span>');
+            $(this).toggleClass('current');
+            $("#"+tab_id).slideToggle();
         });
-        $(this).slick({
-            infinite: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            prevArrow: $(this).prev().find('.left'),
-            nextArrow: $(this).prev().find('.right'),
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-    });
 
 
-</script>
-
-<script>
-    $('.slider-big').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-thumb'
-    });
-    $('.slider-thumb').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.slider-big',
-        focusOnSelect: true
     });
 </script>
+
 
 
 <script>

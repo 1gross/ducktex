@@ -1,30 +1,106 @@
 #basket{
   padding: 40px 0;
+  @media screen and (max-width: $md-max){
+    padding: 20px 0;
+  }
   h1{
     font-size: 24px;
     margin: 0 0 20px;
+    @media screen and (max-width: $md-max){
+      text-align: center;
+    }
   }
   .basket-table{
     font-size: 18px;
     width: 100%;
     text-align: left;
     border-collapse: collapse;
+    @media screen and (max-width: $md-max){
+      font-size: 16px;
+      display: block;
+      padding: 20px 0;
+    }
+    @media screen and (max-width: $sm-max){
+        font-size: 14px;
+    }
     thead{
       border-top: 1px solid #C4C4C4;
+      @media screen and (max-width: $md-max){
+          display: none;
+      }
       th{
         padding: 40px 0;
       }
     }
     tbody{
+      @media screen and (max-width: $md-max){
+        display: block;
+      }
       tr{
         border-bottom: 1px solid #C4C4C4;
+        @media screen and (max-width: $md-max){
+          padding-left: 180px;
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0 -10px;
+          position: relative;
+        }
+        @media screen and (max-width: $sm-max){
+          flex-direction: column;
+            padding-left: 135px;
+          padding-bottom: 15px;
+          margin: 0 0 30px;
+          &:last-child{
+            margin-bottom: 0;
+          }
+        }
         &:first-child{
           td{
             padding-top: 0;
+            .product-delete{
+              top: 0;
+            }
           }
         }
         td{
           padding: 30px 0;
+          @media screen and (max-width: $md-max){
+            display: block;
+            margin: 0 10px;
+            flex: 0 0 calc(100% / 2 - 20px);
+            &:nth-of-type(2)::before { content: "Наименование"; }
+            &:nth-of-type(3)::before { content: "Цена"; }
+            &:nth-of-type(4)::before { content: "Колличество"; }
+            &:nth-of-type(5)::before { content: "Итого"; }
+          }
+          @media screen and (max-width: $sm-max){
+              margin: 0 0 15px;
+            padding: 0;
+            &:last-child{
+              margin-bottom: 0;
+            }
+          }
+          &:first-child{
+            @media screen and (max-width: $md-max) {
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+            @media screen and (max-width: $sm-max){
+                margin: 0;
+            }
+          }
+          &::before{
+            @media screen and (max-width: $md-max) {
+              display: block;
+              font-weight: bold;
+              margin-bottom: 10px;
+              font-size: 18px;
+            }
+            @media screen and (max-width: $sm-max){
+                font-size: 14px;
+            }
+          }
         }
       }
     }
@@ -34,15 +110,28 @@
       display: block;
       background-size: cover;
       background-position: 50%;
+      @media screen and (max-width: $sm-max){
+          width: 113px;
+        height: 120px;
+      }
     }
     .product-name{
       text-transform: uppercase;
     }
     .product-price, .product-final-price{
+      @media screen and (max-width: $sm-max){
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row-reverse;
+      }
       .last{
         color: #B0B0B0;
         text-decoration: line-through;
         margin-bottom: 10px;
+        @media screen and (max-width: $sm-max){
+          margin-bottom: 0;
+          margin-left: 15px;
+        }
       }
     }
     .quantity-block{
@@ -58,6 +147,10 @@
         font-size: 17px;
         line-height: 20px;
         transition: background-color .3s;
+        @media screen and (max-width: $sm-max){
+          font-size: 16px;
+          line-height: 21px;
+        }
         &:hover{
           background-color: darken($main-color, 10);
         }
@@ -71,6 +164,10 @@
         text-align: center;
         border: 0;
         padding: 0;
+        @media screen and (max-width: $sm-max){
+            font-size: 14px;
+          width: 70px;
+        }
       }
     }
     .product-delete{
@@ -79,6 +176,18 @@
       background: url('../img/delete.svg') no-repeat 50%;
       opacity: .45;
       transition: .1s opacity;
+      @media screen and (max-width: $md-max){
+        position: absolute;
+        top: 30px;
+        right: 15px;
+      }
+      @media screen and (max-width: $sm-max){
+          background-size: 12px;
+        width: 12px;
+        height: 12px;
+        right: 0;
+        top: 0;
+      }
       &:hover{
         transition: .3s opacity;
         opacity: 1;
@@ -92,23 +201,62 @@
     font-weight: bold;
     padding: 40px 0 60px;
     border-bottom: 1px solid #F6F6F6;
+    @media screen and (max-width: $md-max){
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px 0 30px;
+    }
+    @media screen and (max-width: $sm-max){
+      justify-content: flex-start;
+      padding: 10px 0;
+      border-bottom: 0;
+    }
     .promocode{
       display: flex;
       justify-content: flex-start;
       align-items: center;
       margin-right: 50px;
+      @media screen and (max-width: $md-max){
+        margin-right: 0;
+        flex: 0 0 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      @media screen and (max-width: $sm-max){
+        margin-bottom: 15px;
+      }
       input[type="text"]{
         width: 300px;
         margin-right: 10px;
+        @media screen and (max-width: $sm-max){
+            width: 192px;
+          margin-right: 25px;
+        }
+      }
+      .btn{
+        @media screen and (max-width: $sm-max){
+            padding: 0 20px;
+        }
       }
     }
     .bonus{
       font-size: 16px;
       text-transform: uppercase;
+      @media screen and (max-width: $sm-max){
+          font-size: 14px;
+        margin-bottom: 15px;
+      }
     }
     .final-price{
       font-size: 24px;
       margin-left: auto;
+      @media screen and (max-width: $md-max){
+        margin-left: 50px;
+      }
+      @media screen and (max-width: $sm-max){
+        margin-left: 0;
+        font-size: 18px;
+      }
     }
   }
   .order-block{
@@ -116,11 +264,27 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    @media screen and (max-width: $md-max){
+      flex-direction: column;
+    }
+    @media screen and (max-width: $sm-max){
+        padding: 10px 0;
+    }
     .order-info{
       font-size: 16px;
       flex: 0 0 600px;
+      @media screen and (max-width: $md-max){
+          flex: 0 0 auto;
+        width: 100%;
+      }
       h2{
         margin: 0 0 40px;
+        @media screen and (max-width: $md-max){
+            text-align: center;
+        }
+        @media screen and (max-width: $sm-max){
+            margin: 0 0 25px;
+        }
       }
       .order-info-name{
         font-weight: bold;
@@ -128,9 +292,16 @@
         color: $main-color;
         margin: 0 0 30px;
         text-transform: uppercase;
+        @media screen and (max-width: $sm-max){
+            font-size: 14px;
+          margin: 0 0 10px;
+        }
       }
       .order-info-item{
         margin: 30px 0;
+        @media screen and (max-width: $sm-max){
+            margin: 10px 0 20px;
+        }
         .title{
           margin-bottom: 15px;
         }
@@ -145,6 +316,9 @@
         }
         .form-item{
           margin-bottom: 20px;
+          @media screen and (max-width: $sm-max){
+            margin-bottom: 15px;
+          }
           input[type="text"], input[type="tel"], input[type="email"]{
             font-size: 16px;
             height: 40px;
@@ -154,6 +328,9 @@
             border-left: 0;
             border-right: 0;
             padding: 0;
+            @media screen and (max-width: $sm-max){
+                font-size: 14px;
+            }
           }
           textarea{
             resize: none;
@@ -181,18 +358,37 @@
     .order-check{
       flex: 1;
       padding-left: 95px;
+      @media screen and (max-width: $md-max){
+        padding-left: 0;
+      }
      .order-check-block{
        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
        border-radius: 5px;
        padding: 20px 30px;
        font-size: 18px;
+       @media screen and (max-width: $sm-max){
+           font-size: 14px;
+         box-shadow: none;
+         padding: 0;
+       }
        .title{
          font-size: 24px;
          margin-bottom: 30px;
+         @media screen and (max-width: $sm-max){
+           font-weight: bold;
+           font-size: 14px;
+           margin-bottom: 15px;
+         }
        }
        .order-check-footer{
          border-top: 1px solid #414141;
          padding-top: 40px;
+         @media screen and (max-width: $md-max){
+           text-align: center;
+         }
+         @media screen and (max-width: $sm-max){
+           padding-top: 20px;
+         }
          .order-check-item{
            font-weight: bold;
            font-size: 24px;
@@ -200,12 +396,21 @@
          button{
            margin-top: 30px;
            font-size: 24px;
+           @media screen and (max-width: $sm-max){
+             margin-top: 5px;
+             font-size: 16px;
+           }
          }
          .politic{
            font-weight: 300;
            font-size: 14px;
            text-align: center;
            margin-top: 7px;
+         }
+         .order-check-item{
+           @media screen and (max-width: $sm-max){
+             margin-bottom: 15px;
+           }
          }
        }
        .order-check-item{
@@ -215,6 +420,9 @@
          margin-bottom: 25px;
          &.small{
            font-size: 16px;
+           @media screen and (max-width: $sm-max){
+               font-size: 14px;
+           }
          }
          &:last-child{
            margin-bottom: 0;
