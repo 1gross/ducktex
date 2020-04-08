@@ -1,0 +1,12 @@
+.entity,
+.order-block-select {
+    display: none!important;
+}
+.order-block-select.active,
+.entity.active {
+    display: block!important;
+}
+.error input,
+.error textarea {
+    border-bottom:1px solid #f00!important;
+}

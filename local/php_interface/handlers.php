@@ -2,6 +2,16 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
+use Bitrix\Main\PhoneNumber\Format,
+    Bitrix\Main\PhoneNumber\Parser;
+
+AddEventHandler("main", "OnBeforeUserAdd", 'checkUserPhone');
+AddEventHandler("main", "OnBeforeUserUpdate", 'checkUserPhone');
+function checkUserPhone(&$arFields)
+{
+
+
+}
 
 AddEventHandler("main", "OnLayoutRender", function () {
     global $APPLICATION;
@@ -38,3 +48,14 @@ AddEventHandler("main", "OnLayoutRender", function () {
         }
     }
 });
+
+//catalog handler
+
+
+class CustomCatalog
+{
+    function addProduct($id, $quantity)
+    {
+
+    }
+}

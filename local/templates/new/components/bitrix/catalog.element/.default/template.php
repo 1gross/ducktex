@@ -6,7 +6,6 @@ use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
 ?>
-<?//dump($arResult);?>
 <section id="card">
     <div class="wrapper">
         <div class="card-block">
@@ -14,7 +13,7 @@ Loc::loadMessages(__FILE__);
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
                     <a href="/" class="compare"><span>0</span></a>
-                    <button class="like"></button>
+                    <button class="like <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
                 </div>
             </div>
             <div class="card-body">
@@ -141,11 +140,23 @@ Loc::loadMessages(__FILE__);
                             <button class="quant-btn quantity-arrow-plus"> + </button>
                         </div>
                     </div>
-                    <?if ($arResult['BONUSEL']) {?>
+                    <? $APPLICATION->IncludeComponent(
+                        "logictim:bonus.catalog",
+                        ".default",
+                        Array(
+                            "COMPONENT_TEMPLATE" => ".default",
+                            "COMPOSITE_FRAME_MODE" => "A",
+                            "COMPOSITE_FRAME_TYPE" => "AUTO",
+                            "AJAX" => "N",
+                            "ITEMS" => array("ITEMS"=>$arResult)
+                        )
+                    );?>
+                    <div class="bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
+                    <?/*if ($arResult['BONUSEL']) {?>
                         <div class="bonus">
                             <?=$arResult['BONUSEL']?>
                         </div>
-                    <?}?>
+                    <?}*/?>
                     <button class="btn blue add-cart" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
                     <?if ($arParams['PROPERTY_CODE']) {?>
                         <div class="props">
