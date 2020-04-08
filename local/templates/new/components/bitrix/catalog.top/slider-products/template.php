@@ -41,7 +41,9 @@
                         </a>
                         <div class="price" data-ratio="<?=$arItem['CATALOG_MEASURE_RATIO']?>">
                             <div class="new">от <?=$arItem['MIN_PRICE']['PRINT_VALUE_NOVAT']?> / <?=$arItem['CATALOG_MEASURE_NAME']?></div>
-                            <div class="last"><?=$arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']?></div>
+                            <?if ($arItem['MIN_PRICE']['PRINT_VALUE_NOVAT'] > $arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']) {?>
+                                <div class="last"><?=$arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']?></div>
+                            <?}?>
                         </div>
                     </div>
                 <?}?>
