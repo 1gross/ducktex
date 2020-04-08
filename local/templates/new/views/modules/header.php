@@ -6,6 +6,7 @@ use Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
 
 $arBasket = B24TechSiteHelper::getBasket();
+$arCompare = B24TechSiteHelper::getCompareList();
 ?>
 
 <header id="header">
@@ -41,7 +42,7 @@ $arBasket = B24TechSiteHelper::getBasket();
                     <?} else {?>
                         <a href="<?=SITE_DIR?>personal/" class="login"><?=Loc::getMessage('LK')?></a>
                     <?}?>
-                    <a href="/" class="compare"><span>0</span></a>
+                    <a href="<?=SITE_DIR?>compare/" class="compare"><span><?=count($arCompare)?></span></a>
                     <a href="<?=SITE_DIR?>basket/" class="basket"><span><?=$arBasket['count_items']?></span></a>
                     <div class="search">
                         <button></button>

@@ -38,7 +38,10 @@ class B24TechSiteHelper
         return $arResult;
     }
 
-
+    public static function getCompareList()
+    {
+        return $_SESSION["CATALOG_COMPARE_LIST"][13]["ITEMS"];
+    }
     public static function checkFavoritesById($id)
     {
         return in_array($id, self::getFavorites());
