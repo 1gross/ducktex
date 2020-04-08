@@ -36,7 +36,11 @@ $arBasket = B24TechSiteHelper::getBasket();
                     );?>
                 </nav>
                 <div class="user-buttons">
-                    <button class="login"><?=Loc::getMessage('SIGN_IN')?></button>
+                    <?if (!$USER->IsAuthorized()) {?>
+                        <button class="login"><?=Loc::getMessage('SIGN_IN')?></button>
+                    <?} else {?>
+                        <a href="<?=SITE_DIR?>personal/" class="login"><?=Loc::getMessage('LK')?></a>
+                    <?}?>
                     <a href="/" class="compare"><span>0</span></a>
                     <a href="<?=SITE_DIR?>basket/" class="basket"><span><?=$arBasket['count_items']?></span></a>
                     <div class="search">

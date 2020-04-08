@@ -19,13 +19,23 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
     $arResponse = array();
     switch ($_REQUEST['action']) {
+        case 'add_compare':
+            $iblock_id = 13;
+            if(!empty($_SESSION["CATALOG_COMPARE_LIST"]) && !empty($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]) && array_key_exists($_REQUEST["id"], $_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"])){
+                unset($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"][$_REQUEST["id"]]);
+            }
+            else{
+                $_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"][$_REQUEST["id"]] = CIBlockElement::GetByID($_REQUEST["id"])->Fetch();
+            }
+            $arResponse['result'] = true;
+            break;
         case 'remove_basket':
             $products = B24TechSiteHelper::getBasket();
 
             $arResponse['result'] = CSaleBasket::Delete(intval($products['items'][$_REQUEST['id']]['ids']));
             break;
         case 'update_basket':
-            
+
             break;
         case 'add_basket':
             $quantity = $_REQUEST['quantity'] ?: 0.1;

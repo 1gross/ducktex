@@ -6,7 +6,9 @@
 <section id="personal">
     <div class="wrapper">
         <div class="personal-block">
-            <?$APPLICATION->IncludeComponent('bitrix:menu', 'personal_menu', array())?>
+            <?if ($USER->IsAuthorized()) {?>
+                <?$APPLICATION->IncludeComponent('bitrix:menu', 'personal_menu', array())?>
+            <?}?>
             <div class="personal-item">
                 <?=$arParams['CONTENT']?>
             </div>
