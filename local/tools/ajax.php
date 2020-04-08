@@ -19,6 +19,23 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
     $arResponse = array();
     switch ($_REQUEST['action']) {
+        case 'remove_basket':
+            $products = B24TechSiteHelper::getBasket();
+
+            $arResponse['result'] = CSaleBasket::Delete(intval($products['items'][$_REQUEST['id']]['ids']));
+            break;
+        case 'update_basket':
+            
+            break;
+        case 'add_basket':
+            $quantity = $_REQUEST['quantity'] ?: 0.1;
+            $id = $_REQUEST['id'];
+            $rs = Add2BasketByProductID($id, $quantity, array(), array());
+            if ($rs) {
+                $arResponse['result'] = true;
+                $arResponse['basket'] = B24TechSiteHelper::getBasket();
+            }
+            break;
         case 'add_favorites':
             if(!$USER->IsAuthorized()) {
                 $arElements = unserialize($APPLICATION->get_cookie('favorites'));
@@ -33,15 +50,14 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                 $rsUser = CUser::GetByID($USER->GetID());
                 $arUser = $rsUser->Fetch();
                 $arElements = $arUser['UF_FAVORITES'] ?: array();
-                dump($arUser['UF_FAVORITES']);
                 if(!in_array($_REQUEST['id'], $arElements)) {
                     $arElements[] = $_REQUEST['id'];
                 } else {
                     $key = array_search($_REQUEST['id'], $arElements);
                     unset($arElements[$key]);
                 }
-                dump($arElements);
-                dump($USER->Update($USER->GetID(), Array("UF_FAVORITES"=>$arElements )));
+
+                $USER->Update($USER->GetID(), Array("UF_FAVORITES"=>$arElements));
             }
             $arResponse['result'] = true;
             break;
@@ -49,3 +65,4 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     echo json_encode($arResponse);
     die();
 }
+

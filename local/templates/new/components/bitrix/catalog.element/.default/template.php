@@ -6,7 +6,6 @@ use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
 ?>
-<?//dump($arResult);?>
 <section id="card">
     <div class="wrapper">
         <div class="card-block">
@@ -14,7 +13,7 @@ Loc::loadMessages(__FILE__);
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
                     <a href="/" class="compare"><span>0</span></a>
-                    <button class="like"></button>
+                    <button class="like <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
                 </div>
             </div>
             <div class="card-body">

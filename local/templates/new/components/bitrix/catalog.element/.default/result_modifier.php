@@ -3,20 +3,7 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 
-if(CModule::IncludeModule("vbcherepanov.bonus")){
-    ob_start();
-    $APPLICATION->IncludeComponent("vbcherepanov:vbcherepanov.bonuselement",".default",
-        Array(
-            "CACHE_TIME" => "0",
-            "CACHE_TYPE" => "N",
-            "ELEMENT" => $arResult, //передаем весь результирующий массив в компонент
-            "OFFERS_AR" => "OFFERS", //ключ массива $arResult в котором находятся торговые предложения
-            "OFFERS_ID" => "OFFER_ID_SELECTED", //ключ массива $arResult с ID выбранного торгового предложения
-            "ONLY_NUM" => "N", //возвратит бонус в виде числа без валюты
-        )
-    );
-    $arResult['BONUSEL'] = ob_get_clean(); // сохраняем вывод бонусов в переменную массива
-}
+$arResult['IS_FAVORITES'] = B24TechSiteHelper::checkFavoritesById($arResult['ID']);
 
 $arPhoto = array();
 if ($arResult['DETAIL_PICTURE']['SRC']) {
