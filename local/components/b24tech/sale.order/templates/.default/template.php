@@ -6,6 +6,7 @@
 use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
+dump($arResult['DELIVERY']);
 ?>
 <section id="basket">
     <div class="wrapper">
