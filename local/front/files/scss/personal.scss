@@ -100,6 +100,9 @@
            }
          }
         }
+        a{
+          text-decoration: none;
+        }
       }
     }
     .personal-item{
@@ -273,6 +276,23 @@
   }
 }
 .personal-orders{
+  .personal-order-clear-block{
+    text-align: center;
+    .title{
+      font-weight: bold;
+      font-size: 36px;
+    }
+    .start{
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 24px;
+      color: $main-color;
+      display: inline-block;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
   .order-item{
     border-bottom: 1px solid #C4C4C4;
     padding-bottom: 40px;

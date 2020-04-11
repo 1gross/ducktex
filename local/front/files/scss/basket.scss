@@ -389,12 +389,17 @@
          @media screen and (max-width: $sm-max){
            padding-top: 20px;
          }
-         .order-check-item{
+         .order-check-gray{
+           background-color: #F2F2F2;
+           padding: 25px 30px;
+           margin: 0 -30px;
            font-weight: bold;
-           font-size: 24px;
+         }
+         .order-check-item{
+           font-size: 18px;
          }
          button{
-           margin-top: 30px;
+           margin-top: 40px;
            font-size: 24px;
            @media screen and (max-width: $sm-max){
              margin-top: 5px;

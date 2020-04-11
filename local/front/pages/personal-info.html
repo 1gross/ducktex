@@ -19,6 +19,8 @@
 </head>
 <body>
 
+
+
 <main>
     <section id="personal">
         <div class="wrapper">
@@ -69,145 +71,57 @@
                                 <div class="text">г. Москва, ул. Победы 123/50</div>
                             </div>
                             <div class="buttons-group">
-                                <button class="btn outline">Редактировать личные данные</button>
-                                <button class="btn simple">удалить профиль</button>
+                                <button class="btn outline modal-link" data-modal="#edit-personal-info">Редактировать личные данные</button>
+                                <button class="btn simple modal-link" data-modal="#delete-profile">удалить профиль</button>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
 
+<div class="modal" id="edit-personal-info">
+    <div class="modal-block">
+        <button class="close"></button>
+        <div class="modal-title">Личная информация</div>
+        <div class="modal-body">
+            <form action="">
+                <input type="text" placeholder="ФИО">
+                <input type="text" name="dob" placeholder="Дата рождения (дд/мм/г)">
+                <input type="tel" placeholder="Телефон">
+                <input type="text" placeholder="Instagram">
+                <input type="text" placeholder="Email">
+                <input type="submit" class="btn blue" value="сохранить">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="delete-profile">
+    <div class="modal-block">
+        <button class="close"></button>
+        <div class="modal-title">Удаление профиля</div>
+        <div class="modal-desc">Пожалуйста, расскажите, почему Вы решили удалить профиль?</div>
+        <div class="modal-body">
+            <form action="">
+                <textarea id="" cols="30" rows="10" required=""></textarea>
+                <div class="buttons-group"><input type="submit" class="btn outline" value="Продолжить"> <button class="btn blue">отмена</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script
         src="https://code.jquery.com/jquery-1.12.4.min.js"
         integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
         crossorigin="anonymous"></script>
+<script type="text/javascript" src="../files/js/jquery.mask.js"></script>
+
 <script type="text/javascript" src="../files/js/map.js"></script>
-<script type="text/javascript" src="../files/fancybox/jquery.fancybox.min.js"></script>
 <script type="text/javascript" src="../files/slick/slick.min.js"></script>
-
-<script>
-    function quantity() {
-        var quant = $('.quantity-block').find('.quantity-num');
-        var quantMinus = $('.quantity-block').find('.quantity-arrow-minus');
-        var quantPlus =  $('.quantity-block').find('.quantity-arrow-plus');
-        var min = parseFloat(quant.attr('data-min'));
-        var max = parseFloat(quant.attr('data-max'));
-        var step = parseFloat(quant.attr('data-step'));
-        var unit = quant.attr('data-unit');
-
-        quant.val(min + ' ' + unit);
-
-        quantMinus.on('click', function () {
-            if (parseFloat(quant.val().replace(unit, '')) > min) {
-                var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
-
-                if (parseInt(min) === min){
-                    quant.val(parseInt(tempMin) + ' ' + unit);
-                } else {
-                    quant.val(tempMin.toFixed(1) + ' ' + unit);
-                }
-            }
-        });
-        quantPlus.on('click',  function () {
-            if (parseFloat(quant.val().replace(unit, '')) < max) {
-                var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
-                if (parseInt(min) === min){
-                    quant.val(parseInt(tempMax) + ' ' + unit);
-                } else {
-                    quant.val(tempMax.toFixed(1) + ' ' + unit);
-                }
-
-            }
-        });
-
-    }
-    $(document).ready(function () {
-        quantity();
-
-        $('ul.tabs li').click(function(){
-            var tab_id = $(this).attr('data-tab');
-
-            $('ul.tabs li').removeClass('current');
-            $('.tab-content').removeClass('current');
-
-            $(this).addClass('current');
-            $("#"+tab_id).addClass('current');
-        });
-
-    });
-</script>
-<script>
-    $('.slider').each(function () {
-        var status = $(this).prev().find('.count');
-        $(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-            var i = (currentSlide ? currentSlide : 0) + 1;
-            status.html(i + '/<span>' + slick.slideCount + '</span>');
-        });
-        $(this).slick({
-            infinite: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            prevArrow: $(this).prev().find('.left'),
-            nextArrow: $(this).prev().find('.right'),
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-    });
-
-
-</script>
-
-<script>
-    $('.slider-big').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-thumb'
-    });
-    $('.slider-thumb').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.slider-big',
-        focusOnSelect: true
-    });
-</script>
-
-
-<script>
-    //просто для вставки хидера и футера, на проде не нужно будет
-    var link = document.querySelector('link[rel=import]');
-    var header = link.import.querySelector('#header');
-    var footer = link.import.querySelector('#footer');
-    document.body.insertBefore(header.cloneNode(true), document.querySelector('main'));
-    document.body.appendChild(footer.cloneNode(true));
-</script>
+<script type="text/javascript" src="../files/js/main.js"></script>
 
 
 </body>

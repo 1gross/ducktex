@@ -160,7 +160,7 @@
                     <div class="order-info-item">
                         <div class="title">Выберите тип плательщика</div>
                         <div class="switch-box">
-                            <input type="checkbox" class="switch">
+                            <input type="checkbox" class="switch switch-entity">
                             <span class="first">Физ. лицо</span>
                             <span class="second">Юр. лицо</span>
                         </div>
@@ -273,12 +273,24 @@
                         </div>
                         <div class="order-check-footer">
                             <div class="order-check-item">
-                                <div class="order-check-title">ИТОГО:</div>
-                                <div class="order-check-sum">4620 руб.</div>
+                                <div class="order-check-title">Бонусы:</div>
+                                <div class="order-check-sum">
+                                    <div class="switch-box">
+                                        <input type="checkbox" class="switch">
+                                        <span class="first">Начислить</span>
+                                        <span class="second">Списать</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="order-check-item small">
-                                <div class="order-check-title">БОНУС ЗА ЗАКАЗ:</div>
-                                <div class="order-check-sum">1000 руб.</div>
+                            <div class="order-check-gray">
+                                <div class="order-check-item">
+                                    <div class="order-check-title">ИТОГО:</div>
+                                    <div class="order-check-sum">4620 руб.</div>
+                                </div>
+                                <div class="order-check-item">
+                                    <div class="order-check-title">БОНУС ЗА ЗАКАЗ:</div>
+                                    <div class="order-check-sum">1000 руб.</div>
+                                </div>
                             </div>
                             <button class="btn blue">оформить заказ</button>
                             <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
@@ -338,7 +350,7 @@
     }
     $(document).ready(function () {
         quantity();
-        jQuery('.switch').on('change', function () {
+        jQuery('.switch-entity').on('change', function () {
             if (jQuery(this).prop("checked")){
                 jQuery('.entity').addClass('show');
             } else {

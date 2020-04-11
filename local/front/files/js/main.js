@@ -104,4 +104,55 @@ $(document).ready(function() {
 
     }
 
+    $(".sms-code input").keypress(function (e) {
+        if (e.which != 8 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $('.sms-code input').keyup(function (e) {
+
+    });
+
+    $('.sms-code input').keydown(function (e) {
+        if (this.value.length == this.maxLength && e.which != 8) {
+            if($(this).next('input').length == 0){
+                var final = '';
+                $('.sms-code input').each(function () {
+                    final = final + $(this).val();
+                });
+                console.log(final);
+            } else {
+                $(this).next('input').focus();
+            }
+        } else if(this.value.length == 0 && e.which == 8){
+            $(this).prev('input').focus().val('');
+        }
+
+    });
+
+    $('.modal-link').on('click', function () {
+        $('.show').removeClass('show');
+       $($(this).attr('data-modal')).addClass('show');
+    });
+    $('.modal').on('click', function (e) {
+        var div = $(".modal-block");
+        if (!div.is(e.target)
+            && div.has(e.target).length === 0) {
+            $('.modal.show').removeClass('show');
+        }
+    });
+    $('.modal-block .close').on('click', function (e) {
+        $('.modal.show').removeClass('show');
+    });
+
+    $('.modal .back').on('click', function (e) {
+        $('.modal.show').removeClass('show');
+        $('#sign').addClass('show');
+    });
+
+    $('[type="tel"]').mask("+7 (000) 000-00-00");
+    $('[name="dob"]').mask("00/00/0000");
+
 });
+
+
