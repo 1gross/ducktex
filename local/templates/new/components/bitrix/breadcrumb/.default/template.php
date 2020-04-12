@@ -2,9 +2,13 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
-?>
 
-<?if (count($arResult) > 1) {?>
+if (empty($arResult)) {
+    return;
+}
+ob_start();
+
+if (count($arResult) > 1) {?>
     <div class="breadcrumbs">
         <div class="wrapper">
             <div class="breadcrumbs-block">
@@ -20,4 +24,5 @@
             </div>
         </div>
     </div>
-<?}?>
+<?}
+return ob_get_clean();?>
