@@ -40,6 +40,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
             break;
         case 'update_basket':
 
+            $arResponse['result'] = true;
             break;
         case 'add_basket':
             $quantity = $_REQUEST['quantity'] ?: 0.1;

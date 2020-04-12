@@ -78,6 +78,16 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
             "MODE" => "php"
         )
     );?>
+    <?
+    //include modals
+    $APPLICATION->IncludeFile(
+        "views/modules/modal.php",
+        array(),
+        array(
+            "SHOW_BORDER" => false,
+            "MODE" => "php"
+        )
+    );?>
 </main>
 </body>
 </html>
