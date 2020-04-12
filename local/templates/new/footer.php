@@ -25,7 +25,7 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <?Asset::getInstance()->addCss('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic');?>
     <?Asset::getInstance()->addCss("/local/front/files/css/normalize.css");?>
     <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
-    <?//Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
+    <?Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
     <?$APPLICATION->ShowMeta("viewport");?>
     <?$APPLICATION->ShowMeta("HandheldFriendly");?>
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-capable", "yes");?>
