@@ -153,6 +153,12 @@ $(document).ready(function() {
     $('[type="tel"]').mask("+7 (000) 000-00-00");
     $('[name="dob"]').mask("00/00/0000");
 
+    $('.faq-item .faq-item-header').on('click', function () {
+        $(this).toggleClass('open');
+       $(this).siblings('.faq-item-body').slideToggle();
+    });
+
 });
+
 
 

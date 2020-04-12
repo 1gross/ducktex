@@ -1,0 +1,220 @@
+#additional{
+  padding: 30px 0;
+  @media screen and (max-width: $md-max){
+    padding: 20px 0;
+  }
+  h2{
+    font-size: 24px;
+    margin: 0 0 30px;
+    text-transform: inherit;
+    @media screen and (max-width: $md-max){
+      text-align: center;
+      margin: 0 0 20px;
+    }
+    @media screen and (max-width: $sm-max){
+        display: none;
+    }
+  }
+  .additional-block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    @media screen and (max-width: $sm-max){
+      flex-direction: column;
+      position: relative;
+      padding-top: 45px;
+    }
+    .additional-menu{
+      flex: 0 0 210px;
+      list-style: none;
+      padding: 0;
+      margin: 40px 0 0;
+      font-size: 18px;
+      position: relative;
+
+      @media screen and (max-width: $md-max){
+          font-size: 14px;
+        margin: 20px 0 0;
+        flex: 0 0 170px;
+      }
+      @media screen and (max-width: $sm-max){
+        width: calc(100% + 30px);
+        margin: 0 -15px;
+        padding-top: 45px;
+        background-color: #ECECEC;
+        max-height: 0;
+        overflow: hidden;
+        transition: .1s max-height;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        &::after{
+          content: '';
+          background-size: 11px;
+          background: url('../img/arrow-slider.svg') no-repeat 50%;
+          position: absolute;
+          width: 11px;
+          height: 19px;
+          top: 22px;
+          right: 20px;
+          transform: translateY(-50%) rotate(-90deg);
+        }
+        &.open{
+          max-height: 300px;
+          transition: .3s max-height;
+        }
+      }
+      li{
+        margin-bottom: 20px;
+        @media screen and (max-width: $md-max){
+          margin-bottom: 10px;
+        }
+        @media screen and (max-width: $sm-max){
+          margin-bottom: 0;
+            padding: 10px 15px;
+          a{
+            display: block;
+          }
+        }
+        &:last-child{
+          margin-bottom: 0;
+        }
+        &.active{
+          font-weight: bold;
+         @media screen and (max-width: $sm-max){
+           position: absolute;
+           top: 0;
+           left: 0;
+           margin: 0;
+           padding: 13px 15px;
+           background-color: white;
+           width: 100%;
+           cursor: pointer;
+           border-bottom: 1px solid #C4C4C4;
+           a{
+             pointer-events: none;
+             -moz-user-select: none;
+             -khtml-user-select: none;
+             user-select: none;
+           }
+         }
+        }
+        a{
+          text-decoration: none;
+        }
+      }
+    }
+    .additional-item{
+      flex: 1;
+      @media screen and (max-width: $sm-max){
+          width: 100%;
+      }
+      .additional-wrap{
+        background-color: #F6F6F6;
+        padding: 40px 35px;
+        @media screen and (max-width: $md-max){
+          padding: 20px;
+        }
+        @media screen and (max-width: $sm-max){
+          padding: 20px 0;
+          background-color: white;
+        }
+      }
+    }
+  }
+}
+.additional-faq{
+  .form-question{
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px -15px 0;
+    flex-wrap: wrap;
+    @media screen and (max-width: $sm-max){
+      flex-direction: column-reverse;
+    }
+    .left,.right{
+      flex: 0 0 calc(100% / 2 - 30px);
+      margin: 0 15px;
+    }
+    .right{
+      @media screen and (max-width: $sm-max){
+        margin-bottom: 20px;
+      }
+    }
+    .center{
+      text-align: center;
+    }
+    .form-item{
+      @media screen and (max-width: $sm-max){
+        input{
+          max-width: initial;
+        }
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    textarea{
+      height: 100%;
+    }
+  }
+  .question-block{
+    margin-bottom: 40px;
+  }
+  .faq-block{
+    .faq-item{
+      background-color: white;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border: 1px solid #414141;
+      &:last-child{
+        margin-bottom: 0;
+      }
+      .faq-item-header{
+        min-height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        cursor: pointer;
+        @media screen and (max-width: $md-max){
+            min-height: 60px;
+        }
+        &.open{
+          &::after{
+            background-color: darken($main-color, 10);
+            transform: rotate(-90deg) scale(-1, -1);
+          }
+        }
+        &::after{
+          content: '';
+          width: 31px;
+          height: 31px;
+          background: url('../img/arrow-pagination.svg') #22AAB8 no-repeat 50%;
+          border: 0;
+          border-radius: 5px;
+          color: white;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 30px;
+          transition: .3s background-color, .3s transform;
+          transform: rotate(-90deg);
+          flex-shrink: 0;
+          margin-left: 20px;
+          @media screen and (max-width: $md-max){
+            font-size: 18px;
+          }
+        }
+      }
+      .faq-item-body{
+        padding: 20px 20px 10px;
+        display: none;
+        border-top: 1px solid #414141;
+        p{
+          margin: 0 0 10px;
+        }
+      }
+    }
+  }
+}
