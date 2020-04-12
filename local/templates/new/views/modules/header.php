@@ -8,11 +8,11 @@ Loc::loadMessages(__FILE__);
 $arBasket = B24TechSiteHelper::getBasket();
 $arCompare = B24TechSiteHelper::getCompareList();
 ?>
-
 <header id="header">
     <div class="top-line">
         <div class="wrapper">
             <div class="top-line-block">
+                <a href="<?=SITE_DIR?>" class="logo-mob"><img src="/local/front/files/img/logo.png" alt=""></a>
                 <a href="tel:<?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/phone.php", [], ["SHOW_BORDER" => false,"MODE" => "text"]);?>"
                    class="phone"><?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/phone.php", [], ["MODE" => "text"]);?></a>
                 <nav class="menu">
@@ -45,18 +45,21 @@ $arCompare = B24TechSiteHelper::getCompareList();
                     <a href="<?=SITE_DIR?>compare/" class="compare"><span><?=count($arCompare)?></span></a>
                     <a href="<?=SITE_DIR?>basket/" class="basket"><span><?=$arBasket['count_items']?></span></a>
                     <div class="search">
-                        <button></button>
+                        <button class="search-btn"></button>
+                        <div class="search-input">
+                            <input type="text" placeholder="Поиск по сайту">
+                            <input type="submit" value="Найти">
+                        </div>
                     </div>
                 </div>
+                <button class="burger"></button>
             </div>
         </div>
     </div>
     <div class="nav-line">
         <div class="wrapper">
             <div class="nav-line-block">
-                <a href="<?=SITE_DIR?>" class="logo">
-                    <img src="<?=SITE_DIR?>local/front/files/img/logo.png" alt="">
-                </a>
+                <a href="<?=SITE_DIR?>" class="logo"><img src="/local/front/files/img/logo.png" alt=""></a>
                 <nav class="main-menu">
                     <?$APPLICATION->IncludeComponent(
                         "bitrix:menu",
@@ -81,4 +84,11 @@ $arCompare = B24TechSiteHelper::getCompareList();
             </div>
         </div>
     </div>
+    <?if ($APPLICATION->GetCurPage(false) != SITE_DIR) {?>
+        <?$APPLICATION->IncludeComponent(
+                'bitrix:breadcrumb',
+            '',
+                array()
+        )?>
+    <?}?>
 </header>

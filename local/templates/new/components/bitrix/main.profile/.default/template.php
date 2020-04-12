@@ -34,8 +34,8 @@ Loc::loadMessages(__FILE__);
             <div class="text"><?=$arResult['arUser']['UF_ADDRESS'] ?: Loc::getMessage('NOT_VALUE')?></div>
         </div>
         <div class="buttons-group">
-            <button class="btn outline"><?=Loc::getMessage('EDIT_BUTTON_TEXT')?></button>
-            <button class="btn simple"><?=Loc::getMessage('DELETE_BUTTON_TEXT')?></button>
+            <button class="btn outline modal-link" data-modal="#edit-personal-info"><?=Loc::getMessage('EDIT_BUTTON_TEXT')?></button>
+            <button class="btn simple modal-link" data-modal="#delete-profile"><?=Loc::getMessage('DELETE_BUTTON_TEXT')?></button>
         </div>
     </div>
 </div>

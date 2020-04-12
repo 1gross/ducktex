@@ -11,7 +11,7 @@ define('BX_SECURITY_SHOW_MESSAGE', true);
 define('XHR_REQUEST', true);
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
-
+header("Access-Control-Allow-Origin: *");
 CModule::IncludeModule('sale');
 
 if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
@@ -40,6 +40,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
             break;
         case 'update_basket':
 
+            $arResponse['result'] = true;
             break;
         case 'add_basket':
             $quantity = $_REQUEST['quantity'] ?: 0.1;

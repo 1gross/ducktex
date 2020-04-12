@@ -97,13 +97,12 @@ global $arrFilterProp;
 $arrFilterProp = array('PROPERTY_HIT_VALUE' => array('Акция'));
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.top", 
-	"slider-products",
+	"slider-products", 
 	array(
 		"COMPONENT_TEMPLATE" => "slider-products",
 		"IBLOCK_TYPE" => "aspro_mshop_catalog",
 		"IBLOCK_ID" => "13",
 		"FILTER_NAME" => "arrFilterProp",
-		//"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
 		"HIDE_NOT_AVAILABLE" => "N",
 		"BLOCK_TITLE" => "Скидки",
 		"HIDE_NOT_AVAILABLE_OFFERS" => "N",
@@ -118,8 +117,11 @@ $APPLICATION->IncludeComponent(
 		"ELEMENT_COUNT" => "9",
 		"LINE_ELEMENT_COUNT" => "3",
 		"PROPERTY_CODE" => array(
-			0 => "",
-			1 => "",
+			0 => "BRAND",
+			1 => "VES_ATTR_S",
+			2 => "CML2_ARTICLE",
+			3 => "CML2_MANUFACTURER",
+			4 => "",
 		),
 		"OFFERS_FIELD_CODE" => array(
 			0 => "",
@@ -158,7 +160,8 @@ $APPLICATION->IncludeComponent(
 		"OFFERS_CART_PROPERTIES" => array(
 		),
 		"DISPLAY_COMPARE" => "N",
-		"COMPATIBLE_MODE" => "Y"
+		"COMPATIBLE_MODE" => "Y",
+		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}"
 	),
 	false
 );?>

@@ -130,14 +130,14 @@ Loc::loadMessages(__FILE__);
                         </div>
                         <div class="quantity-block">
                             <?$measureID = $arResult['ITEM_MEASURE_RATIO_SELECTED']?>
-                            <button class="quant-btn quantity-arrow-minus"> - </button>
+                            <button class="quant-btn quantity-arrow-minus" data-action="basket_update"> - </button>
                             <input class="quantity-num"
                                    data-min="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-max="<?=$arResult['PRODUCT']['QUANTITY']?>"
                                    data-step="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-unit="<?=$arResult['ITEM_MEASURE']['TITLE']?>"
                                    type="text" value="" />
-                            <button class="quant-btn quantity-arrow-plus"> + </button>
+                            <button class="quant-btn quantity-arrow-plus" data-action="basket_update"> + </button>
                         </div>
                     </div>
                     <? $APPLICATION->IncludeComponent(
@@ -157,7 +157,7 @@ Loc::loadMessages(__FILE__);
                             <?=$arResult['BONUSEL']?>
                         </div>
                     <?}*/?>
-                    <button class="btn blue add-cart" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
+                    <button class="btn blue add-cart" data-action="add_basket" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
                     <?if ($arParams['PROPERTY_CODE']) {?>
                         <div class="props">
                             <?foreach ($arParams['PROPERTY_CODE'] as $CODE) {
