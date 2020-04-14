@@ -52,10 +52,12 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
             }
             break;
         case 'add_favorites':
+            $isAdd = false;
             if(!$USER->IsAuthorized()) {
                 $arElements = unserialize($APPLICATION->get_cookie('favorites'));
                 if(!in_array($_REQUEST['id'], $arElements)) {
                     $arElements[] = $_REQUEST['id'];
+                    $isAdd = true;
                 } else {
                     $key = array_search($_REQUEST['id'], $arElements);
                     unset($arElements[$key]);
@@ -67,6 +69,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                 $arElements = $arUser['UF_FAVORITES'] ?: array();
                 if(!in_array($_REQUEST['id'], $arElements)) {
                     $arElements[] = $_REQUEST['id'];
+                    $isAdd = true;
                 } else {
                     $key = array_search($_REQUEST['id'], $arElements);
                     unset($arElements[$key]);
@@ -74,7 +77,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                 $USER->Update($USER->GetID(), Array("UF_FAVORITES"=>$arElements));
             }
+            $arResponse['favorites_count'] = count($arElements);
             $arResponse['result'] = true;
+            $arResponse['is_add'] = $isAdd;
             break;
     }
     echo json_encode($arResponse);

@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("Страница не найдена");
         </div>
         <div class="buttons-group">
             <a href="<?=SITE_DIR?>" class="btn blue">на главную</a>
-            <a href="<?=$_SERVER['HTTP_REFERER']?>" class="btn outline big">вернуться назад</a>
+            <a href="<?=$_SERVER['HTTP_REFERER']?>" onclick="history.back()" class="btn outline big">вернуться назад</a>
         </div>
     </div>
 </div>
