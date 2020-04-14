@@ -11,7 +11,7 @@ if(is_array($arResult["QUESTIONS"])){
 	}
 }
 ?>
-    <h3>Обратная связь</h3>
+    <h3><?=$arResult["FORM_TITLE"]?></h3>
     <form action="/" class="form-feedback">
         <div class="left">
             <div class="form-item">
