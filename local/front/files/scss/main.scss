@@ -832,7 +832,54 @@ section{
     .hover{
       transition: .3s opacity;
       opacity: 1;
-      
+    }
+    .buttons-block{
+      button{
+        transition: .3s opacity;
+        opacity: 1;
+      }
+    }
+  }
+  .buttons-block{
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .favorites{
+      background: url('../img/like.svg') no-repeat 50% / 19px;
+      margin-right: 10px;
+      @media screen and (max-width: $md-max){
+          background-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+    .compare{
+      background: url('../img/compare.svg') no-repeat 50% / 18px;
+      @media screen and (max-width: $md-max){
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+    button{
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      transition: .1s opacity;
+      opacity: 0;
+      @media screen and (max-width: $md-max){
+          opacity: 1;
+      }
+      &.active{
+        background-color: rgba(34, 170, 184, 0.7);
+        &.favorites{
+          background-image: url('../img/like-w.svg');
+          opacity: 1;
+        }
+        &.compare{
+          background-image: url('../img/compare-w.svg');
+          opacity: 1;
+        }
+      }
     }
   }
   .hover{
@@ -853,26 +900,6 @@ section{
     transition: .1s opacity;
     @media screen and (max-width: $md-max){
         display: none;
-    }
-    .buttons-block{
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      .favorites{
-        background: url('../img/like.svg') no-repeat 50% / 19px;
-        width: 19px;
-        height: 17px;
-        margin-bottom: 8px;
-      }
-      .compare{
-        background: url('../img/compare.svg') no-repeat 50% / 18px;
-        width: 18px;
-        height: 16px;
-      }
     }
     .hover-item{
       margin-bottom: 10px;
@@ -924,6 +951,10 @@ section{
     .last{
       text-decoration: line-through;
     }
+  }
+  .product-compare{
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -1932,13 +1963,13 @@ section{
     padding-top: 55%;
     flex: 0 0 auto;
     width: 100%;
-    margin-bottom: 30px;
+    //margin-bottom: 30px;
   }
-  &::after{
-    content: 'нет фотографии';
-    font-weight: 300;
-    font-size: 14px;
-  }
+  //&::after{
+  //  content: 'нет фотографии';
+  //  font-weight: 300;
+  //  font-size: 14px;
+  //}
 }
 
 .page{
@@ -2038,3 +2069,7 @@ section{
 @import 'basket.scss';
 @import 'contacts.scss';
 @import 'additional.scss';
+@import 'news.scss';
+@import 'search.scss';
+@import 'catalog.scss';
+@import 'compare.scss';

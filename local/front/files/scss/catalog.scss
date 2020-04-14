@@ -1,0 +1,196 @@
+.catalog{
+  h1{
+    margin: 0 0 35px;
+  }
+  .catalog-block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: -25px;
+    &.with-description{
+      .catalog-item{
+        @media screen and (max-width: $md-max){
+          flex: 0 0 calc(100% - 50px);
+        }
+      }
+    }
+    .catalog-item{
+      flex: 0 0 calc(100% / 2 - 50px);
+      margin: 25px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      @media screen and (max-width: $sm-max){
+          flex: 0 0 calc(100% - 50px);
+      }
+      .catalog-item-image{
+        margin-right: 20px;
+        flex: 0 0 120px;
+        @media screen and (max-width: $md-max){
+            flex: 0 0 100px;
+        }
+        img{
+          width: 100%;
+        }
+      }
+      .catalog-item-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .catalog-item-link{
+          font-size: 16px;
+          margin-bottom: 10px;
+          line-height: 1.15;
+          &:hover{
+            color: $main-color;
+          }
+          &:last-child{
+            margin-bottom: 0;
+          }
+          &.main{
+            font-size: 20px;
+            font-weight: bold;
+          }
+        }
+        .description{
+          font-size: 12px;
+          p{
+            margin: 0 0 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.products{
+  h1{
+    margin: 0 0 35px;
+    @media screen and (max-width: $sm-max){
+        margin: 0 0 20px;
+    }
+  }
+  .products-block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    @media screen and (max-width: $sm-max){
+        flex-direction: column;
+    }
+    .filter-block{
+      flex: 0 0 250px;
+      padding-top: 40px;
+      padding-right: 30px;
+      @media screen and (max-width: $sm-max){
+          flex: 0 0 auto;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+      }
+      .filter-item{
+        border: 1px solid #C4C4C4;
+        margin-bottom: 30px;
+        @media screen and (max-width: $sm-max){
+          margin-bottom: 20px;
+        }
+        .filter-title{
+          font-weight: bold;
+          font-size: 18px;
+          padding: 15px;
+          background-color: #f6f6f6;
+          border-bottom: 1px solid #C4C4C4;
+        }
+        .filter-body{
+          padding: 15px;
+          .checkbox-box{
+            margin-bottom: 10px;
+            &:last-child{
+              margin-bottom: 0;
+            }
+          }
+          .filter-body-item{
+            background-color: white;
+            margin-bottom: 15px;
+            &:last-child{
+              margin-bottom: 0;
+            }
+            .header{
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0 15px;
+              margin: -15px;
+              cursor: pointer;
+              height: 30px;
+              background-color: #f6f6f6;
+              z-index: 5;
+              position: relative;
+              &.open, &:hover{
+                background-color: $main-color;
+                color: white;
+                &::after{
+                  background: url('../img/arrow-pagination.svg') no-repeat 50% / 7px;
+                }
+              }
+              &::after{
+                content: '';
+                width: 7px;
+                height: 16px;
+                background: url('../img/arrow-slider.svg') no-repeat 50% / 7px;
+                transform: rotate(-90deg);
+                flex-shrink: 0;
+              }
+
+            }
+            .body{
+              padding: 15px;
+              margin: 15px -15px -15px;
+              display: none;
+              ul{
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                li{
+                  margin-bottom: 10px;
+                  &.active{
+                    a{
+                      font-weight: bold;
+                    }
+                  }
+                  &:last-child{
+                    margin-bottom: 0;
+                  }
+                  a{
+                    text-decoration: none;
+                    &:hover{
+                      text-decoration: underline;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .products-list{
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin: -15px;
+      .product-card{
+        flex: 0 0 calc(100% / 4 - 30px);
+        margin: 15px;
+        @media screen and (max-width: $md-max){
+          flex: 0 0 calc(100% / 2 - 30px);
+        }
+        @media screen and (max-width: $sm-max){
+          flex: 0 0 calc(100% - 30px);
+        }
+      }
+    }
+  }
+}

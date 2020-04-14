@@ -1,0 +1,5 @@
+.news .news-block .news-item {
+  display: flex;
+  justify-content: flex-start; }
+  .news .news-block .news-item .image {
+    flex: 0 0 230px; }

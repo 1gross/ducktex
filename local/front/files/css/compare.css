@@ -1,0 +1,6 @@
+.compare .compare-block .compare-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start; }
+  .compare .compare-block .compare-list .product-card {
+    flex: 0 0 calc(100% / 3); }

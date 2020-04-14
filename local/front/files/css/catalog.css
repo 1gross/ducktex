@@ -1,0 +1,9 @@
+.catalog .catalog-block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: -25px; }
+  .catalog .catalog-block .catalog-item {
+    flex: 0 0 calc(100% / 2 - 50px);
+    margin: 25px; }
