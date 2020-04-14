@@ -3818,6 +3818,7 @@ section.with-sea .wrapper::before {
     font-weight: normal; }
     @media screen and (max-width: 767px) {
       .compare .compare-block .compare-name-list {
+        top: 387px;
         font-size: 14px;
         width: calc(100%/3 - 10px); } }
     .compare .compare-block .compare-name-list .compare-name-item {
