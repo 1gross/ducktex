@@ -49,7 +49,7 @@ $('.compare-list').each(function () {
             {
                 breakpoint: 1200,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             },
@@ -58,9 +58,6 @@ $('.compare-list').each(function () {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    arrows: false,
-                    dots: true,
-                    centerMode: true,
                 }
             }
         ]

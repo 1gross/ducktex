@@ -1,14 +1,28 @@
 .compare{
   h1{
     margin: 0 0 40px;
+    @media screen and (max-width: $md-max){
+        margin: 0 0 20px;
+    }
   }
   .compare-block{
     position: relative;
     padding-left: calc(100% / 4);
+    @media screen and (max-width: $md-max){
+      padding-left: calc(100% / 3);
+    }
+    @media screen and (max-width: $sm-max){
+      padding-top: 40px;
+    }
     .сontrol{
       position: absolute;
       left: 0;
       top: 115px;
+      @media screen and (max-width: $sm-max){
+        display: flex;
+        top: 0;
+        margin-left: calc(100% / 2);
+      }
     }
     .compare-list{
       display: flex;
@@ -18,18 +32,79 @@
       .product-card{
         margin: 0 15px;
         flex: 0 0 calc(100% / 3 - 30px);
+        @media screen and (max-width: $md-max){
+            flex: 0 0 calc(100% / 2 - 30px)
+        }
+        @media screen and (max-width: $sm-max){
+          flex: 0 0 calc(100% - 30px)
+        }
+        .title{
+          min-height: 42px;
+        }
         .product-compare{
           font-weight: 300;
           font-size: 16px;
-          margin-top: 55px;
+          margin-top: 30px;
+          @media screen and (max-width: $sm-max){
+            font-size: 14px;
+          }
           .product-compare-item{
             margin-bottom: 40px;
-            
+            @media screen and (max-width: $md-max){
+              margin-bottom: 20px;
+            }
             &:last-child{
               margin-bottom: 0;
             }
           }
         }
+        .compare-buttons{
+          margin-top: 40px;
+          .btn{
+            max-width: initial;
+            width: 100%;
+            font-size: 18px;
+            &:last-child{
+              margin-top: 20px;
+            }
+          }
+        }
+      }
+    }
+    .compare-name-list{
+      position: absolute;
+      left: 0;
+      top: 347px;
+      font-size: 16px;
+      font-weight: normal;
+      @media screen and (max-width: $sm-max){
+          font-size: 14px;
+        width: calc(100%/3 - 10px);
+      }
+      .compare-name-item{
+        margin-bottom: 40px;
+        @media screen and (max-width: $md-max){
+          margin-bottom: 20px;
+        }
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .clear-compare{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-size: 18px;
+      max-width: initial;
+      width: calc(100% / 4 - 30px);
+      @media screen and (max-width: $md-max){
+        width: calc(100% / 3 - 30px);
+      }
+      @media screen and (max-width: $sm-max){
+        width: calc(100% / 3 - 10px);
+        font-size: 14px;
+        line-height: 16px;
       }
     }
   }

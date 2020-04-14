@@ -3750,14 +3750,28 @@ section.with-sea .wrapper::before {
 
 .compare h1 {
   margin: 0 0 40px; }
+  @media screen and (max-width: 1200px) {
+    .compare h1 {
+      margin: 0 0 20px; } }
 
 .compare .compare-block {
   position: relative;
   padding-left: calc(100% / 4); }
+  @media screen and (max-width: 1200px) {
+    .compare .compare-block {
+      padding-left: calc(100% / 3); } }
+  @media screen and (max-width: 767px) {
+    .compare .compare-block {
+      padding-top: 40px; } }
   .compare .compare-block .сontrol {
     position: absolute;
     left: 0;
     top: 115px; }
+    @media screen and (max-width: 767px) {
+      .compare .compare-block .сontrol {
+        display: flex;
+        top: 0;
+        margin-left: calc(100% / 2); } }
   .compare .compare-block .compare-list {
     display: flex;
     justify-content: flex-start;
@@ -3766,11 +3780,65 @@ section.with-sea .wrapper::before {
     .compare .compare-block .compare-list .product-card {
       margin: 0 15px;
       flex: 0 0 calc(100% / 3 - 30px); }
+      @media screen and (max-width: 1200px) {
+        .compare .compare-block .compare-list .product-card {
+          flex: 0 0 calc(100% / 2 - 30px); } }
+      @media screen and (max-width: 767px) {
+        .compare .compare-block .compare-list .product-card {
+          flex: 0 0 calc(100% - 30px); } }
+      .compare .compare-block .compare-list .product-card .title {
+        min-height: 42px; }
       .compare .compare-block .compare-list .product-card .product-compare {
         font-weight: 300;
         font-size: 16px;
-        margin-top: 55px; }
+        margin-top: 30px; }
+        @media screen and (max-width: 767px) {
+          .compare .compare-block .compare-list .product-card .product-compare {
+            font-size: 14px; } }
         .compare .compare-block .compare-list .product-card .product-compare .product-compare-item {
           margin-bottom: 40px; }
+          @media screen and (max-width: 1200px) {
+            .compare .compare-block .compare-list .product-card .product-compare .product-compare-item {
+              margin-bottom: 20px; } }
           .compare .compare-block .compare-list .product-card .product-compare .product-compare-item:last-child {
             margin-bottom: 0; }
+      .compare .compare-block .compare-list .product-card .compare-buttons {
+        margin-top: 40px; }
+        .compare .compare-block .compare-list .product-card .compare-buttons .btn {
+          max-width: initial;
+          width: 100%;
+          font-size: 18px; }
+          .compare .compare-block .compare-list .product-card .compare-buttons .btn:last-child {
+            margin-top: 20px; }
+  .compare .compare-block .compare-name-list {
+    position: absolute;
+    left: 0;
+    top: 347px;
+    font-size: 16px;
+    font-weight: normal; }
+    @media screen and (max-width: 767px) {
+      .compare .compare-block .compare-name-list {
+        font-size: 14px;
+        width: calc(100%/3 - 10px); } }
+    .compare .compare-block .compare-name-list .compare-name-item {
+      margin-bottom: 40px; }
+      @media screen and (max-width: 1200px) {
+        .compare .compare-block .compare-name-list .compare-name-item {
+          margin-bottom: 20px; } }
+      .compare .compare-block .compare-name-list .compare-name-item:last-child {
+        margin-bottom: 0; }
+  .compare .compare-block .clear-compare {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 18px;
+    max-width: initial;
+    width: calc(100% / 4 - 30px); }
+    @media screen and (max-width: 1200px) {
+      .compare .compare-block .clear-compare {
+        width: calc(100% / 3 - 30px); } }
+    @media screen and (max-width: 767px) {
+      .compare .compare-block .clear-compare {
+        width: calc(100% / 3 - 10px);
+        font-size: 14px;
+        line-height: 16px; } }
