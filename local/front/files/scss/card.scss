@@ -494,10 +494,9 @@
         margin-right: 0;
       }
     }
-    .like{
-      background: url('../img/like.svg') no-repeat 50%;
-      width: 32px;
-      height: 30px;
+    .favorites{
+      background: url('../img/like.svg') no-repeat 50% / 30px;
+
       @media screen and (max-width: $sm-max){
           background-size: 19px;
         width: 19px;
@@ -505,32 +504,25 @@
       }
     }
     .compare{
-      &::before{
-        content: '';
-        background: url('../img/compare.svg') no-repeat 50%;
-        display: inline-block;
-        vertical-align: middle;
-        width: 37px;
-        height: 31px;
-        margin-right: 10px;
-        @media screen and (max-width: $sm-max){
-            background-size: 20px;
-          width: 20px;
-          height: 18px;
-          margin-right: 5px;
-        }
-      }
-      span{
-        display: inline-block;
+      background: url('../img/compare.svg') no-repeat 50% / 30px;
+      @media screen and (max-width: $sm-max){
+        background-size: 20px;
         width: 20px;
-        height: 20px;
-        font-size: 14px;
-        background-color: #E9E9E9;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 20px;
-        letter-spacing: 0;
-        color: #929292;
+        height: 18px;
+      }
+    }
+    button{
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      &.active{
+        background-color: $main-color;
+        &.favorites{
+          background-image: url('../img/like-w.svg');
+        }
+        &.compare{
+          background-image: url('../img/compare-w.svg');
+        }
       }
     }
   }

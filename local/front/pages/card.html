@@ -10,15 +10,95 @@
     <link rel="stylesheet" href="../files/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../files/slick/slick.css"/>
     <link rel="stylesheet" href="../files/css/main.css">
-    <link rel="import"  href="../header.html">
-    <link rel="import"  href="../footer.html">
 
     <link rel="stylesheet" href="../files/fancybox/jquery.fancybox.min.css">
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7586449d-5a86-43b5-8f8a-61552f466d81" type="text/javascript"></script>
 </head>
 <body>
-
+<header id="header">
+    <div class="top-line">
+        <div class="wrapper">
+            <div class="top-line-block">
+                <a href="/" class="logo-mob"><img src="../files/img/logo.png" alt=""></a>
+                <a href="tel:+79253414699" class="phone">+7-925-3414-699</a>
+                <nav class="menu">
+                    <ul>
+                        <li class="active">
+                            <a href="/">Главная</a>
+                        </li>
+                        <li>
+                            <a href="/">Доставка и оплата</a>
+                        </li>
+                        <li>
+                            <a href="/">Ткани оптом</a>
+                        </li>
+                        <li>
+                            <a href="/">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="user-buttons">
+                    <button class="login">Войти</button>
+                    <a href="/" class="compare"><span>0</span></a>
+                    <a href="/" class="basket"><span>0</span></a>
+                    <div class="search">
+                        <button class="search-btn"></button>
+                        <div class="search-input">
+                            <input type="text" placeholder="Поиск по сайту">
+                            <input type="submit" value="Найти">
+                        </div>
+                    </div>
+                </div>
+                <button class="burger"></button>
+            </div>
+        </div>
+    </div>
+    <div class="nav-line">
+        <div class="wrapper">
+            <div class="nav-line-block">
+                <a href="/" class="logo"><img src="../files/img/logo.png" alt=""></a>
+                <nav class="main-menu">
+                    <ul>
+                        <li>
+                            <a href="/">Весь каталог</a>
+                        </li>
+                        <li>
+                            <a href="/">Ткани</a>
+                        </li>
+                        <li>
+                            <a href="/">фурнитура</a>
+                        </li>
+                        <li>
+                            <a href="/">образцы</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumbs">
+        <div class="wrapper">
+            <div class="breadcrumbs-block">
+                <div class="item">
+                    <a href="/">Главная</a>
+                </div>
+                <div class="item">
+                    <a href="/">Каталог</a>
+                </div>
+                <div class="item">
+                    <a href="/">Ткани</a>
+                </div>
+                <div class="item">
+                    <a href="/">Замша</a>
+                </div>
+                <div class="item">
+                    <a href="/">Замша баклажан</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <main>
     <section id="card">
         <div class="wrapper">
@@ -29,8 +109,8 @@
                     </div>
                     <h1>Замша Баклажан</h1>
                     <div class="card-buttons">
-                        <a href="/" class="compare"><span>0</span></a>
-                        <button class="like"></button>
+                        <button class="compare" data-action="add_compare" data-id="3593"></button>
+                        <button class="favorites" data-action="add_favorites" data-id="3699"></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -96,7 +176,7 @@
                         <div class="bonus">
                             Ваш бонус за товар: <span>200 руб</span>
                         </div>
-                        <button class="btn blue add-cart">В КОРЗИНУ</button>
+                        <button class="btn blue add-cart" data-action="add_basket" data-id="4030">В КОРЗИНУ</button>
                         <div class="props">
                             <div class="props-item">
                                 <div class="name">Цвет:</div>
@@ -453,6 +533,58 @@
         </div>
     </section>
 </main>
+<footer id="footer">
+    <div class="wrapper">
+        <div class="footer-block">
+            <div class="item">
+                <div class="title">
+                    Компания
+                </div>
+                <ul>
+                    <li>
+                        <a href="/">о компании</a>
+                    </li>
+                    <li>
+                        <a href="/">новости</a>
+                    </li>
+                    <li>
+                        <a href="/">контакты</a>
+                    </li>
+                    <li>
+                        <a href="/">гарантия на товар</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="title">
+                    Информация
+                </div>
+                <ul>
+                    <li>
+                        <a href="/">о доставке и оплате</a>
+                    </li>
+                    <li>
+                        <a href="/">ответы на частые вопросы</a>
+                    </li>
+                    <li>
+                        <a href="/">ткани оптом</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="title">
+                    Контакты
+                </div>
+                <a href="tel:+79253414699" class="phone">+7-925-3414-699</a>
+                <a href="mailto:info@ducktex.ru" class="email">info@ducktex.ru</a>
+                <a href="https://instagram.com/ducktex.ru" class="instagram" target="_blank">ducktex.ru</a>
+            </div>
+        </div>
+        <div class="center studio">
+            Разработка сайта: <a href="https://eto-yasno.ru" target="_blank">ЭТО ЯСНО</a>
+        </div>
+    </div>
+</footer>
 
 <script
         src="https://code.jquery.com/jquery-1.12.4.min.js"
@@ -464,75 +596,7 @@
 <script type="text/javascript" src="../files/slick/slick.min.js"></script>
 <script type="text/javascript" src="../files/js/main.js"></script>
 
-<script>
-    function quantity() {
-        var quant = $('.quantity-block').find('.quantity-num');
-        var quantMinus = $('.quantity-block').find('.quantity-arrow-minus');
-        var quantPlus =  $('.quantity-block').find('.quantity-arrow-plus');
-        var min = parseFloat(quant.attr('data-min'));
-        var max = parseFloat(quant.attr('data-max'));
-        var step = parseFloat(quant.attr('data-step'));
-        var unit = quant.attr('data-unit');
 
-        quant.val(min + ' ' + unit);
-
-        quantMinus.on('click', function () {
-            if (parseFloat(quant.val().replace(unit, '')) > min) {
-                var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
-
-                if (parseInt(min) === min){
-                    quant.val(parseInt(tempMin) + ' ' + unit);
-                } else {
-                    quant.val(tempMin.toFixed(1) + ' ' + unit);
-                }
-            }
-        });
-        quantPlus.on('click',  function () {
-            if (parseFloat(quant.val().replace(unit, '')) < max) {
-                var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
-                if (parseInt(min) === min){
-                    quant.val(parseInt(tempMax) + ' ' + unit);
-                } else {
-                    quant.val(tempMax.toFixed(1) + ' ' + unit);
-                }
-
-            }
-        });
-
-    }
-    $(document).ready(function () {
-        quantity();
-
-        $('ul.tabs li').click(function(){
-            var tab_id = $(this).attr('data-tab');
-
-            $('ul.tabs li').removeClass('current');
-            $('.tab-content').removeClass('current');
-
-            $(this).addClass('current');
-            $("#"+tab_id).addClass('current');
-        });
-        $('button.tab-link').click(function(){
-            var tab_id = $(this).attr('data-tab');
-
-            $(this).toggleClass('current');
-            $("#"+tab_id).slideToggle();
-        });
-
-
-    });
-</script>
-
-
-
-<script>
-    //просто для вставки хидера и футера, на проде не нужно будет
-    var link = document.querySelector('link[rel=import]');
-    var header = link.import.querySelector('#header');
-    var footer = link.import.querySelector('#footer');
-    document.body.insertBefore(header.cloneNode(true), document.querySelector('main'));
-    document.body.appendChild(footer.cloneNode(true));
-</script>
 
 
 </body>

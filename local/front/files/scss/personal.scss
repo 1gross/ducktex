@@ -282,15 +282,8 @@
       font-weight: bold;
       font-size: 36px;
     }
-    .start{
+    .btn{
       margin-top: 20px;
-      font-weight: bold;
-      font-size: 24px;
-      color: $main-color;
-      display: inline-block;
-      &:hover{
-        text-decoration: underline;
-      }
     }
   }
   .order-item{
@@ -600,6 +593,7 @@
     }
     @media screen and (max-width: $sm-max){
       margin-top: 0;
+      font-weight: normal;
     }
   }
   .table-history{

@@ -64,6 +64,46 @@ $('.compare-list').each(function () {
     });
 });
 
+function quantity() {
+    jQuery('.quantity-block').each(function () {
+        var quant = $(this).find('.quantity-num');
+        var quantMinus = $(this).find('.quantity-arrow-minus');
+        var quantPlus =  $(this).find('.quantity-arrow-plus');
+        var min = parseFloat(quant.attr('data-min'));
+        var max = parseFloat(quant.attr('data-max'));
+        var step = parseFloat(quant.attr('data-step'));
+        var unit = quant.attr('data-unit');
+
+        console.log(step);
+
+        quant.val(min + ' ' + unit);
+
+        quantMinus.on('click', function () {
+            if (parseFloat(quant.val().replace(unit, '')) > min) {
+                var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
+
+                if (parseInt(min) === min){
+                    quant.val(parseInt(tempMin) + ' ' + unit);
+                } else {
+                    quant.val(tempMin.toFixed(1) + ' ' + unit);
+                }
+            }
+        });
+        quantPlus.on('click',  function () {
+            if (parseFloat(quant.val().replace(unit, '')) < max) {
+                var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
+                if (parseInt(min) === min){
+                    quant.val(parseInt(tempMax) + ' ' + unit);
+                } else {
+                    quant.val(tempMax.toFixed(1) + ' ' + unit);
+                }
+
+            }
+        });
+    });
+
+}
+
 $('.burger').on('click', function () {
     $('.mobile-menu').addClass('show');
 });
@@ -109,6 +149,24 @@ $('.slider-thumb').slick({
 });
 
 $(document).ready(function() {
+    quantity();
+
+    $('ul.tabs li').click(function(){
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul.tabs li').removeClass('current');
+        $('.tab-content').removeClass('current');
+
+        $(this).addClass('current');
+        $("#"+tab_id).addClass('current');
+    });
+    $('button.tab-link').click(function(){
+        var tab_id = $(this).attr('data-tab');
+
+        $(this).toggleClass('current');
+        $("#"+tab_id).slideToggle();
+    });
+
     if ($(window).width() <= 768) {
         $('meta[name=\'viewport\']').attr('content','width=375');
         $('.catalog-menu-block, .news-wrap').slick({
@@ -194,13 +252,72 @@ $(document).ready(function() {
         $(this).siblings('.body').slideToggle();
     });
 
-    $('.buttons-block .favorites').on('click', function () {
-       $(this).toggleClass('active');
+
+});
+
+
+
+$('.product-card button.compare, #card button.compare').on('click', function () {
+    var button = $(this);
+    var request = $.ajax({
+        url: 'http://ducktext.eto-yasno.ru/local/tools/ajax.php',
+        type: 'GET',
+        data: { action: $(this).attr('data-action'), id : $(this).attr('data-id')} ,
     });
-    $('.buttons-block .compare').on('click', function () {
-        $(this).toggleClass('active');
+    request.done(function( data ) {
+            var result = jQuery.parseJSON(data);
+            $('#header .compare span').text(result.compare_count);
+            if (result.is_add){
+                button.addClass('active');
+            } else {
+                button.removeClass('active');
+            }
+        });
+    request.fail(function( ) {
+            alert('Ошибка');
+        });
+});
+
+$('.product-card button.favorites, #card button.favorites').on('click', function () {
+    var button = $(this);
+    var request = $.ajax({
+        url: 'http://ducktext.eto-yasno.ru/local/tools/ajax.php',
+        type: 'GET',
+        data: { action: $(this).attr('data-action'), id : $(this).attr('data-id')} ,
+    });
+    request.done(function( data ) {
+        var result = jQuery.parseJSON(data);
+        if (result.is_add){
+            button.addClass('active');
+        } else {
+            button.removeClass('active');
+        }
+    });
+    request.fail(function( ) {
+        alert('Ошибка');
+    });
+});
+
+$('#card .add-cart').on('click', function () {
+    var button = $(this);
+    var request = $.ajax({
+        url: 'http://ducktext.eto-yasno.ru/local/tools/ajax.php',
+        type: 'GET',
+        data: { action: $(this).attr('data-action'), id : $(this).attr('data-id'), quantity : $('#card .quantity-block .quantity-num').val().replace(/[^\d.-]/g, '')} ,
     });
 
+    request.done(function( data ) {
+        var result = jQuery.parseJSON(data);
+        $('#header .basket span').text(result.basket.count_items);
+        button.text('ДОБАВЛЕНО');
+    });
+    request.fail(function( ) {
+        alert('Ошибка');
+    });
+});
+
+$('#basket .quantity-num').on('change', function () {
+    console.log(10);
 });
 
 

@@ -293,7 +293,7 @@
                                 </div>
                             </div>
                             <button class="btn blue">оформить заказ</button>
-                            <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
+                            <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c                             <a href="https://ducktex.ru/help/polzovatelskoe-soglashenie/" target="_blank">политикой конфиденциальности</a></div>
                         </div>
                     </div>
                 </div>
@@ -306,48 +306,13 @@
         src="https://code.jquery.com/jquery-1.12.4.min.js"
         integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="../files/js/map.js"></script>
+<script type="text/javascript" src="../files/js/jquery.mask.js"></script>
 <script type="text/javascript" src="../files/fancybox/jquery.fancybox.min.js"></script>
 <script type="text/javascript" src="../files/slick/slick.min.js"></script>
+<script type="text/javascript" src="../files/js/main.js"></script>
 
 <script>
-    function quantity() {
-        jQuery('.quantity-block').each(function () {
-            var quant = $(this).find('.quantity-num');
-            var quantMinus = $(this).find('.quantity-arrow-minus');
-            var quantPlus =  $(this).find('.quantity-arrow-plus');
-            var min = parseFloat(quant.attr('data-min'));
-            var max = parseFloat(quant.attr('data-max'));
-            var step = parseFloat(quant.attr('data-step'));
-            var unit = quant.attr('data-unit');
 
-            quant.val(min + ' ' + unit);
-
-            quantMinus.on('click', function () {
-                if (parseFloat(quant.val().replace(unit, '')) > min) {
-                    var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
-
-                    if (parseInt(min) === min){
-                        quant.val(parseInt(tempMin) + ' ' + unit);
-                    } else {
-                        quant.val(tempMin.toFixed(1) + ' ' + unit);
-                    }
-                }
-            });
-            quantPlus.on('click',  function () {
-                if (parseFloat(quant.val().replace(unit, '')) < max) {
-                    var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
-                    if (parseInt(min) === min){
-                        quant.val(parseInt(tempMax) + ' ' + unit);
-                    } else {
-                        quant.val(tempMax.toFixed(1) + ' ' + unit);
-                    }
-
-                }
-            });
-        });
-
-    }
     $(document).ready(function () {
         quantity();
         jQuery('.switch-entity').on('change', function () {
@@ -358,32 +323,6 @@
             }
         });
     });
-</script>
-
-<script>
-    $('.slider-big').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-thumb'
-    });
-    $('.slider-thumb').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.slider-big',
-        focusOnSelect: true
-    });
-</script>
-
-
-<script>
-    //просто для вставки хидера и футера, на проде не нужно будет
-    var link = document.querySelector('link[rel=import]');
-    var header = link.import.querySelector('#header');
-    var footer = link.import.querySelector('#footer');
-    document.body.insertBefore(header.cloneNode(true), document.querySelector('main'));
-    document.body.appendChild(footer.cloneNode(true));
 </script>
 
 
