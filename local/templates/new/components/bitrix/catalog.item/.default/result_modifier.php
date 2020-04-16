@@ -8,7 +8,6 @@ if (!isset($arResult['DISCOUNT'])) {
     $arDiscounts = CCatalogDiscount::GetDiscountByProduct($arResult['ID'], $USER->GetUserGroupArray(), "N", 1, SITE_ID);
     $arResult['DISCOUNT'] = $arDiscounts ?  current($arDiscounts) : false;
 }
-
 if (isset($arResult['ITEM_PRICES'][0])) {
     $arResult['PRICE_ITEM'] = $arResult['ITEM_PRICES'][0];
 }
