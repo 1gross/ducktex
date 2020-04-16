@@ -29,16 +29,6 @@
             <div class="additional-item">
                 <div class="additional-wrap additional-faq">
                     <h2><?=$APPLICATION->GetTitle(false)?></h2>
-                    <div>
-                        <?$APPLICATION->IncludeFile(
-                            $APPLICATION->GetCurPage() . '/description.php',
-                            array(),
-                            array(
-                                "SHOW_BORDER" => true,
-                                "MODE" => "html"
-                            )
-                        );?>
-                    </div>
                     <?=$arParams['CONTENT']?>
                 </div>
             </div>
