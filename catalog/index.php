@@ -13,7 +13,7 @@ $APPLICATION->IncludeComponent(
 		"SECTION_ID_VARIABLE" => "SECTION_ID",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
 		"PRODUCT_PROPS_VARIABLE" => "prop",
-		"SEF_MODE" => "N",
+		"SEF_MODE" => "Y",
 		"SEF_FOLDER" => "/catalog/",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_JUMP" => "N",
@@ -350,7 +350,7 @@ $APPLICATION->IncludeComponent(
 		"OFFER_ADD_PICT_PROP" => "MORE_PHOTO",
 		"DETAIL_ADD_DETAIL_TO_SLIDER" => "Y",
 		"SKU_DETAIL_ID" => "oid",
-		"USE_MAIN_ELEMENT_SECTION" => "N",
+		"USE_MAIN_ELEMENT_SECTION" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"SHOW_404" => "N",
@@ -481,9 +481,17 @@ $APPLICATION->IncludeComponent(
 		"TOP_SHOW_SLIDER" => "Y",
 		"TOP_SLIDER_INTERVAL" => "3000",
 		"TOP_SLIDER_PROGRESS" => "N",
+		"SEF_URL_TEMPLATES" => array(
+			"sections" => "",
+			"section" => "#SECTION_ID#/",
+			"element" => "#SECTION_ID#/#ELEMENT_ID#/",
+			"compare" => "compare.php?action=#ACTION_CODE#",
+			"smart_filter" => "#SECTION_ID#/filter/#SMART_FILTER_PATH#/apply/",
+		),
 		"VARIABLE_ALIASES" => array(
-			"ELEMENT_ID" => "ELEMENT_ID",
-			"SECTION_ID" => "SECTION_ID",
+			"compare" => array(
+				"ACTION_CODE" => "action",
+			),
 		)
 	),
 	false
