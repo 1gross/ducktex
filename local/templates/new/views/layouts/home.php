@@ -146,7 +146,7 @@ $APPLICATION->IncludeComponent(
 		"PRICE_CODE" => array(
 			0 => "BASE",
 		),
-		"USE_PRICE_COUNT" => "N",
+		"USE_PRICE_COUNT" => "Y",
 		"SHOW_PRICE_COUNT" => "1",
 		"PRICE_VAT_INCLUDE" => "Y",
 		"CONVERT_CURRENCY" => "N",
@@ -177,6 +177,7 @@ $APPLICATION->IncludeComponent(
         "IBLOCK_ID" => "13",
         "FILTER_NAME" => "arrFilterProp",
         "BLOCK_TITLE" => "Новинки",
+        "IS_NEW" => 'Y',
         //"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
         "HIDE_NOT_AVAILABLE" => "N",
         "HIDE_NOT_AVAILABLE_OFFERS" => "N",

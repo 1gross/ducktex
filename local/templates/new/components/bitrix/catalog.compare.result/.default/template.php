@@ -45,7 +45,7 @@
                     <div class="product-compare">
                         <?foreach ($arResult['SHOW_PROPERTIES'] as $PROP) {?>
                             <?$PROPERTY = $arItem['PROPERTIES'][$PROP['CODE']];?>
-                            <?if (isset($PROPERTY)) {?>
+                            <?if (isset($PROPERTY) /*&& !is_array($PROPERTY['VALUE'])*/) {?>
                                 <div class="product-compare-item">
                                     <?=$PROPERTY['VALUE'] ?: '-'?>
                                 </div>

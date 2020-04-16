@@ -8,7 +8,7 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/ymarket/index.php',
     'SORT' => 100,
   ),
-  19 => 
+  22 => 
   array (
     'CONDITION' => '#^/catalog/(.+?)/([^/]+?)/\\??(.*)#',
     'RULE' => 'SECTION_CODE_PATH=$1&ELEMENT_ID=$2&$3',
@@ -56,20 +56,20 @@ $arUrlRewrite=array (
     'PATH' => '/info/articles/index.php',
     'SORT' => 100,
   ),
-  7 => 
-  array (
-    'CONDITION' => '#^/company/news/#',
-    'RULE' => '',
-    'ID' => 'bitrix:news',
-    'PATH' => '/company/news/index.php',
-    'SORT' => 100,
-  ),
   8 => 
   array (
     'CONDITION' => '#^/info/article/#',
     'RULE' => '',
     'ID' => 'bitrix:news',
     'PATH' => '/info/article/index.php',
+    'SORT' => 100,
+  ),
+  7 => 
+  array (
+    'CONDITION' => '#^/company/news/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/company/news/index.php',
     'SORT' => 100,
   ),
   9 => 
