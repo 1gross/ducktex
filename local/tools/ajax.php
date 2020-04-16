@@ -19,6 +19,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
     $arResponse = array();
     switch ($_REQUEST['action']) {
+        case 'send_form'
+            $arResoinse = true;
+            break;
         case 'add_compare':
             $iblock_id = 13;
             $isAdd = true;
