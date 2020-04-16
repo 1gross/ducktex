@@ -40,7 +40,15 @@ class B24TechSiteHelper
 
     public static function getCompareList()
     {
-        return $_SESSION["CATALOG_COMPARE_LIST"][13]["ITEMS"];
+        $arCompareList = $_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"];
+        if (isset($arCompareList)) {
+            foreach ($arCompareList as $k => $arItem) {
+                if ($arItem['ACTIVE'] == 'N') {
+                    unset($arCompareList[$k]);
+                }
+            }
+        }
+        return $arCompareList;
     }
     public static function checkFavoritesById($id)
     {
