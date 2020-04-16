@@ -1,4 +1,6 @@
 <?
 $sSectionName = "Корзина";
-$arDirProperties = Array();
+$arDirProperties = Array(
+    'PAGE_LAYOUT' => 'column2'
+);
 ?>

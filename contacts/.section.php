@@ -1,4 +1,6 @@
 <?
 $sSectionName = "Контакты";
-$arDirProperties = Array();
+$arDirProperties = Array(
+    'PAGE_LAYOUT' => 'column2'
+);
 ?>

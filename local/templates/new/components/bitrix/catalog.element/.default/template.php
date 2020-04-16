@@ -12,8 +12,10 @@ Loc::loadMessages(__FILE__);
             <div class="card-header">
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
-                    <a href="/" class="compare"><span>0</span></a>
-                    <button class="like <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
+                    <a href="/" data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare">
+                        <span><?=count(B24TechSiteHelper::getCompareList())?></span>
+                    </a>
+                    <button data-action="add_favorites" data-id="<?=$arResult['ID']?>" class="like <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
                 </div>
             </div>
             <div class="card-body">
@@ -113,7 +115,7 @@ Loc::loadMessages(__FILE__);
                     <?}?>
                     <div class="price-block">
                         <div class="price">
-                            <?if ($arResult['ITEM_QUANTITY_RANGES']) {?>
+                            <?if (count($arResult['ITEM_QUANTITY_RANGES']) > 1) {?>
                                 <?foreach ($arResult['ITEM_PRICES'] as $CODE => $arPrice) {?>
                                     <div class="price-item"
                                          data-price-value="<?=$arPrice['PRICE']?>"
@@ -126,6 +128,13 @@ Loc::loadMessages(__FILE__);
                                         <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
                                     </div>
                                 <?}?>
+                            <?} else {?>
+                                <?$arPrice = array_shift($arResult['ITEM_PRICES'])?>
+                                <div class="price-item"
+                                     data-price-value="<?=$arPrice['PRICE']?>">
+                                    <?=$arPrice['PRINT_PRICE']?>
+                                    <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
+                                </div>
                             <?}?>
                         </div>
                         <div class="quantity-block">

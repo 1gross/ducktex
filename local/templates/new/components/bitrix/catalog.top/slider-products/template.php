@@ -17,13 +17,6 @@
             </div>
             <div class="slider">
                 <?foreach ($arResult['ITEMS'] as $arItem) {
-                   /* foreach ($arItem['PROPERTIES'] as $arProp) {
-                        echo '<div>';
-                        dump($arProp['NAME']);
-                        dump($arProp['PROPERTY_TYPE']);
-                        dump($arProp['VALUE']);
-                        echo '</div>';
-                    }*/
                     $this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_EDIT"));
                     $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BCS_ELEMENT_DELETE_CONFIRM')));
 
@@ -32,28 +25,31 @@
                         $arDiscount = current($arDiscounts);
                     }
                     ?>
-                    <a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="product-card" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-                        <div class="image" style="background-image: url('<?=$arItem['PREVIEW_PICTURE']['SRC']?>');"></div>
-                        <?if ($arDiscount['VALUE']) {?>
-                            <div class="badge">
-                                -<?=$arDiscount['VALUE']?>%
+                    <div class="product-card" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+                        <a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="product-card-front">
+                            <div class="image" style="background-image: url('<?=$arItem['PREVIEW_PICTURE']['SRC'] ?: '/local/front/files/img/product-bg.jpg'?>');">
+
                             </div>
-                        <?} else {?>
-                            <div class="badge">
-                                NEW
-                            </div>
-                        <?}?>
-                        <div class="price" data-ratio="<?=$arItem['CATALOG_MEASURE_RATIO']?>">
-                            <div class="new">от <?=$arItem['MIN_PRICE']['PRINT_VALUE_NOVAT']?> / <?=$arItem['CATALOG_MEASURE_NAME']?></div>
-                            <?if ($arItem['MIN_PRICE']['PRINT_VALUE_NOVAT'] > $arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']) {?>
-                                <div class="last"><?=$arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']?></div>
+                            <?if ($arDiscount['VALUE']) {?>
+                                <div class="badge">
+                                    -<?=$arDiscount['VALUE']?>%
+                                </div>
+                            <?} else {?>
+                                <div class="badge">
+                                    NEW
+                                </div>
                             <?}?>
-                        </div>
-                        <div class="hover">
-                            <div class="buttons-block">
-                                <button data-action="add_favorites" data-id="<?=$arItem['ID']?>" class="favorites"></button>
-                                <button data-action="add_compare" data-id="<?=$arItem['ID']?>" class="compare"></button>
+                            <div class="title">
+                                <?=$arItem['NAME']?>
                             </div>
+                            <div class="price" data-ratio="<?=$arItem['CATALOG_MEASURE_RATIO']?>">
+                                <div class="new">от <?=$arItem['MIN_PRICE']['PRINT_VALUE_NOVAT']?> / <?=$arItem['CATALOG_MEASURE_NAME']?></div>
+                                <?if ($arItem['MIN_PRICE']['PRINT_VALUE_NOVAT'] > $arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']) {?>
+                                    <div class="last"><?=$arItem['PRICES']['BASE']['PRINT_DISCOUNT_VALUE_NOVAT']?></div>
+                                <?}?>
+                            </div>
+                        </a>
+                        <div class="hover">
                             <?if ($arParams['PROPERTY_CODE']) {?>
                                 <?
                                 $i=0;
@@ -80,9 +76,13 @@
                                     <?}?>
                                 <?}?>
                             <?}?>
-                            <button class="btn outline">подробнее</button>
+                            <a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="btn outline">подробнее</a>
                         </div>
-                    </a>
+                        <div class="buttons-block">
+                            <button data-id="<?=$arItem['ID']?>" data-action="add_favorites" class="favorites"></button>
+                            <button data-id="<?=$arItem['ID']?>" data-action="add_compare" class="compare"></button>
+                        </div>
+                    </div>
                 <?}?>
             </div>
             <div class="center" style="display: none">

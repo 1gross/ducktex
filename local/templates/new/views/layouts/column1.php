@@ -2,4 +2,10 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
-echo $arParams['CONTENT'];
+?>
+<div class="page">
+    <div class="wrapper">
+        <h1><?=$APPLICATION->GetTitle(false)?></h1>
+        <div><?=$arParams['CONTENT']?></div>
+    </div>
+</div>
