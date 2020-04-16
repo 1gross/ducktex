@@ -135,7 +135,8 @@ h2 {
   border-radius: 5px;
   text-decoration: none;
   border: 0;
-  background-color: inherit; }
+  background-color: inherit;
+  cursor: pointer; }
   @media screen and (max-width: 1200px) {
     .btn {
       font-size: 16px;
@@ -202,7 +203,8 @@ h2 {
 .link {
   font-size: 18px;
   color: inherit;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
   .link:hover {
     text-decoration: underline; }
   .link::after {
@@ -819,6 +821,7 @@ section.with-sea .wrapper::before {
     align-items: center;
     color: #22AAB8; }
     .product-card .price .last {
+      color: #B0B0B0;
       text-decoration: line-through; }
   .product-card .product-compare {
     display: flex;
@@ -931,7 +934,7 @@ section.with-sea .wrapper::before {
     .subscribe .subscribe-block form .politic {
       color: #A5A5A5;
       margin-top: 20px;
-      font-size: 18px; }
+      font-size: 14px; }
       @media screen and (max-width: 1200px) {
         .subscribe .subscribe-block form .politic {
           font-size: 16px; } }
@@ -1054,6 +1057,7 @@ section.with-sea .wrapper::before {
         font-size: 18px;
         margin-bottom: 20px; }
       .news .news-block .news-wrap .news-item .info .date {
+        color: #E0E0E0;
         margin-top: auto; }
 
 .about h2 {
@@ -2137,40 +2141,30 @@ section.with-sea .wrapper::before {
       margin-right: 15px; }
       #card .card-buttons > *:last-child {
         margin-right: 0; }
-    #card .card-buttons .like {
-      background: url("../img/like.svg") no-repeat 50%;
-      width: 32px;
-      height: 30px; }
+    #card .card-buttons .favorites {
+      background: url("../img/like.svg") no-repeat 50%/30px; }
       @media screen and (max-width: 767px) {
-        #card .card-buttons .like {
+        #card .card-buttons .favorites {
           background-size: 19px;
           width: 19px;
           height: 19px; } }
-    #card .card-buttons .compare::before {
-      content: '';
-      background: url("../img/compare.svg") no-repeat 50%;
-      display: inline-block;
-      vertical-align: middle;
-      width: 37px;
-      height: 31px;
-      margin-right: 10px; }
+    #card .card-buttons .compare {
+      background: url("../img/compare.svg") no-repeat 50%/30px; }
       @media screen and (max-width: 767px) {
-        #card .card-buttons .compare::before {
+        #card .card-buttons .compare {
           background-size: 20px;
           width: 20px;
-          height: 18px;
-          margin-right: 5px; } }
-    #card .card-buttons .compare span {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      font-size: 14px;
-      background-color: #E9E9E9;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 20px;
-      letter-spacing: 0;
-      color: #929292; }
+          height: 18px; } }
+    #card .card-buttons button {
+      width: 40px;
+      height: 40px;
+      border-radius: 5px; }
+      #card .card-buttons button.active {
+        background-color: #22AAB8; }
+        #card .card-buttons button.active.favorites {
+          background-image: url("../img/like-w.svg"); }
+        #card .card-buttons button.active.compare {
+          background-image: url("../img/compare-w.svg"); }
 
 #personal {
   padding: 30px 0; }
@@ -2416,14 +2410,8 @@ section.with-sea .wrapper::before {
   .personal-orders .personal-order-clear-block .title {
     font-weight: bold;
     font-size: 36px; }
-  .personal-orders .personal-order-clear-block .start {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 24px;
-    color: #22AAB8;
-    display: inline-block; }
-    .personal-orders .personal-order-clear-block .start:hover {
-      text-decoration: underline; }
+  .personal-orders .personal-order-clear-block .btn {
+    margin-top: 20px; }
 
 .personal-orders .order-item {
   border-bottom: 1px solid #C4C4C4;
@@ -2694,7 +2682,8 @@ section.with-sea .wrapper::before {
       font-size: 14px; } }
   @media screen and (max-width: 767px) {
     .personal-history .history-count {
-      margin-top: 0; } }
+      margin-top: 0;
+      font-weight: normal; } }
 
 .personal-history .table-history {
   width: calc(100% + 70px);
@@ -3131,7 +3120,6 @@ section.with-sea .wrapper::before {
             margin-bottom: 0; }
 
 .order-complete {
-  background-color: #F6F6F6;
   padding: 70px 0; }
   @media screen and (max-width: 1200px) {
     .order-complete {
@@ -3283,6 +3271,8 @@ section.with-sea .wrapper::before {
       @media screen and (max-width: 767px) {
         .contacts .contacts-block .feedback .form-feedback .right {
           margin-bottom: 20px; } }
+      .contacts .contacts-block .feedback .form-feedback .politic {
+        margin-top: 10px; }
       .contacts .contacts-block .feedback .form-feedback .center {
         text-align: center; }
       @media screen and (max-width: 767px) {
@@ -3438,6 +3428,8 @@ section.with-sea .wrapper::before {
   @media screen and (max-width: 767px) {
     .additional-faq .form-question .right {
       margin-bottom: 20px; } }
+  .additional-faq .form-question .politic {
+    margin-top: 10px; }
   .additional-faq .form-question .center {
     text-align: center; }
   @media screen and (max-width: 767px) {
