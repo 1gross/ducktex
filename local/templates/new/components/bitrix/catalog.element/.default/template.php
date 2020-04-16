@@ -161,11 +161,6 @@ Loc::loadMessages(__FILE__);
                         )
                     );?>
                     <div class="bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
-                    <?/*if ($arResult['BONUSEL']) {?>
-                        <div class="bonus">
-                            <?=$arResult['BONUSEL']?>
-                        </div>
-                    <?}*/?>
                     <button class="btn blue add-cart" data-action="add_basket" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
                     <?if ($arParams['PROPERTY_CODE']) {?>
                         <div class="props">
