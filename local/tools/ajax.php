@@ -22,18 +22,25 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
         case 'send_form':
             $arResponse = true;
             break;
+        case 'clear_compare':
+            if(empty($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID])) {
+                $arResponse['result'] = false;
+            } else {
+                unset($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]);
+                $arResponse['result'] = true;
+            }
+            break;
         case 'add_compare':
-            $iblock_id = 13;
             $isAdd = true;
-            if(!empty($_SESSION["CATALOG_COMPARE_LIST"]) && !empty($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]) && array_key_exists($_REQUEST["id"], $_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"])){
-                unset($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"][$_REQUEST["id"]]);
+            if(!empty($_SESSION["CATALOG_COMPARE_LIST"]) && !empty($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]) && array_key_exists($_REQUEST["id"], $_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"])){
+                unset($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"][$_REQUEST["id"]]);
                 $isAdd = false;
             }
             else{
-                $_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"][$_REQUEST["id"]] = CIBlockElement::GetByID($_REQUEST["id"])->Fetch();
+                $_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"][$_REQUEST["id"]] = CIBlockElement::GetByID($_REQUEST["id"])->Fetch();
             }
             $arResponse['result'] = true;
-            $arResponse['compare_count'] = count($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"]);
+            $arResponse['compare_count'] = count($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"]);
             $arResponse['is_add'] = $isAdd;
             break;
         case 'remove_basket':
