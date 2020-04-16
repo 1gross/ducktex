@@ -62,7 +62,7 @@ $APPLICATION->IncludeComponent(
 		"URL_TEMPLATES_READ" => "",
 		"SHOW_LINK_TO_FORUM" => "Y",
 		"POST_FIRST_MESSAGE" => "N",
-		"USE_COMPARE" => "Y",
+		"USE_COMPARE" => "N",
 		"COMPARE_NAME" => "CATALOG_COMPARE_LIST",
 		"COMPARE_FIELD_CODE" => array(
 			0 => "NAME",
@@ -351,7 +351,7 @@ $APPLICATION->IncludeComponent(
 		"OFFER_ADD_PICT_PROP" => "MORE_PHOTO",
 		"DETAIL_ADD_DETAIL_TO_SLIDER" => "Y",
 		"SKU_DETAIL_ID" => "oid",
-		"USE_MAIN_ELEMENT_SECTION" => "Y",
+		"USE_MAIN_ELEMENT_SECTION" => "N",
 		"SET_LAST_MODIFIED" => "N",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"SHOW_404" => "N",
