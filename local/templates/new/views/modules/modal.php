@@ -8,13 +8,16 @@ use Bitrix\Main\Page\Asset;
 Asset::getInstance()->addJs('/local/front/files/js/jquery.mask.js')
 ?>
 
+<?if (strpos($APPLICATION->GetCurPage(), 'personal') !== false) {?>
 <div class="modal" id="edit-personal-info">
-    <div class="modal-block">
+    <form action="/local/tools/ajax.php" method="post" class="modal-block">
+        <input type="hidden" name="action" value="send_form">
+        <input type="hidden" name="id" value="profile_edit">
         <button class="close"></button>
         <div class="modal-title">Личная информация</div>
         <div class="modal-body">
             <form action="">
-                <input type="text" placeholder="ФИО">
+                <input type="text" name="FIO" placeholder="ФИО">
                 <input type="text" name="dob" placeholder="Дата рождения (дд/мм/г)">
                 <input type="tel" placeholder="Телефон">
                 <input type="text" placeholder="Instagram">
@@ -22,7 +25,7 @@ Asset::getInstance()->addJs('/local/front/files/js/jquery.mask.js')
                 <input type="submit" class="btn blue" value="сохранить">
             </form>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="modal" id="delete-profile">
@@ -38,3 +41,5 @@ Asset::getInstance()->addJs('/local/front/files/js/jquery.mask.js')
         </div>
     </div>
 </div>
+<?}?>
+<?$APPLICATION->IncludeComponent('bitrix:system.auth.form', '', array())?>

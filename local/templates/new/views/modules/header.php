@@ -44,13 +44,13 @@ $arCompare = B24TechSiteHelper::getCompareList();
                     <?}?>
                     <a href="<?=SITE_DIR?>compare/" class="compare"><span><?=count($arCompare)?></span></a>
                     <a href="<?=SITE_DIR?>basket/" class="basket"><span><?=$arBasket['count_items']?></span></a>
-                    <div class="search">
+                    <form action="<?=SITE_DIR?>search/" class="search">
                         <button class="search-btn"></button>
                         <div class="search-input">
                             <input type="text" placeholder="Поиск по сайту">
                             <input type="submit" value="Найти">
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <button class="burger"></button>
             </div>

@@ -2,6 +2,10 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
+use Bitrix\Main\UserPhoneAuthTable,
+    Bitrix\Main\Controller\PhoneAuth,
+    Bitrix\Main\Security\Sign\Signer;
+
 define('STOP_STATISTICS', true);
 define("NOT_CHECK_PERMISSIONS", true);
 define('NO_KEEP_STATISTIC', 'Y');
@@ -20,20 +24,99 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     $arResponse = array();
     switch ($_REQUEST['action']) {
         case 'send_form':
-            $arResponse = true;
+            switch ($_REQUEST['id']) {
+                case 'auth':
+                    if (isset($_REQUEST['data']['PHONE']) && strlen($_REQUEST['data']['PHONE']) > 0) {
+                        $ph = trim(UserPhoneAuthTable::normalizePhoneNumber($_REQUEST['data']['PHONE']));
+                        if (strlen($ph) == 11) {
+                            $rsUser = UserPhoneAuthTable::getList(
+                                array(
+                                    "filter" => array(
+                                        "?PHONE_NUMBER" => trim(UserPhoneAuthTable::normalizePhoneNumber($_REQUEST['data']['PHONE']))
+                                    )
+                                ));
+                            $arUser = $rsUser->fetch();
+                            if ($arUser['USER_ID']) {
+                                list($code, $phoneNumber) = CUser::GeneratePhoneCode($arUser['USER_ID']);
+                                $sms = new Bitrix\Main\Sms\Event(
+                                    'SMS_USER_CONFIRM_NUMBER',
+                                    [
+                                        "USER_PHONE" => $phoneNumber,
+                                        "CODE" => $code,
+                                    ]
+                                );
+                                $arResponse['code'] = $code;
+                                $result = true;
+                                //$result = $sms->send();
+                                //if ($result->isSuccess()) {
+                                if ($result) {
+                                    $arResponse['result'] = true;
+                                    $arResponse['send_sms'] = true;
+                                    $arResponse['sign_data'] = PhoneAuth::signData([
+                                        'phoneNumber' => $phoneNumber
+                                    ]);
+                                } else {
+                                    $arResponse['false'] = false;
+                                    $arResponse['send_sms'] = false;
+                                    $arResponse['message'] = $result->getErrors();
+
+                                }
+                            }
+                        } else {
+                            $arResponse['result'] = false;
+                            $arResponse['message']['PHONE'] = 'Не корректный номер телефона';
+                        }
+                    } else {
+                        $arResponse['result'] = false;
+                        $arResponse['message']['PHONE'] = 'Поле обязательно для заполнения';
+                    }
+                    break;
+                case 'auth_check_code':
+                    if (!isset($_REQUEST['data']['SIGN_DATA']) || empty($_REQUEST['data']['SIGN_DATA'])) {
+                        $params = PhoneAuth::extractData($_REQUEST['sign_data']);
+
+                        if (isset($_REQUEST['data']['CODE']) && count($_REQUEST['data']['CODE']) == 6) {
+                            $code = implode('', $_REQUEST['data']['CODE']);
+                            if (($userId = CUser::VerifyPhoneCode($params['phoneNumber'], $_REQUEST["code"]))) {
+                                $USER->Authorize($userId);
+                                $arResponse['result'] = true;
+
+                            } else {
+                                $arResponse['result'] = false;
+                                $arResponse['message']['CODE'] = 'Неверный код';
+                            }
+                        } else {
+                            $arResponse['result'] = false;
+                            $arResponse['message']['CODE'] = 'Не корректная длина кода';
+                        }
+                    } else {
+                        $arResponse['result'] = false;
+                        $arResponse['message']['system'] = 'Ошибка: Отсутствует подпись';
+                    }
+                    break;
+            }
+
+            $arResponse['result'] = true;
+            break;
+        case 'clear_compare':
+            if(empty($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID])) {
+                $arResponse['result'] = false;
+            } else {
+                unset($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]);
+                $arResponse['result'] = true;
+            }
             break;
         case 'add_compare':
-            $iblock_id = 13;
             $isAdd = true;
-            if(!empty($_SESSION["CATALOG_COMPARE_LIST"]) && !empty($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]) && array_key_exists($_REQUEST["id"], $_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"])){
-                unset($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"][$_REQUEST["id"]]);
+            if(!empty($_SESSION["CATALOG_COMPARE_LIST"]) && !empty($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]) && array_key_exists($_REQUEST["id"], $_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"])){
+                unset($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"][$_REQUEST["id"]]);
                 $isAdd = false;
             }
             else{
-                $_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"][$_REQUEST["id"]] = CIBlockElement::GetByID($_REQUEST["id"])->Fetch();
+                $_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"][$_REQUEST["id"]] = CIBlockElement::GetByID($_REQUEST["id"])->Fetch();
             }
             $arResponse['result'] = true;
-            $arResponse['compare_count'] = count($_SESSION["CATALOG_COMPARE_LIST"][$iblock_id]["ITEMS"]);
+            $arResponse['compare_count'] = count($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"]);
             $arResponse['is_add'] = $isAdd;
             break;
         case 'remove_basket':

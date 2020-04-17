@@ -1,6 +1,6 @@
 <?
 $sSectionName = "Сравнение товаров";
 $arDirProperties = Array(
-    'PAGE_LAYOUT' => 'column2'
+    'PAGE_LAYOUT' => 'compare'
 );
 ?>
