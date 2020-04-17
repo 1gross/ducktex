@@ -331,7 +331,11 @@
     .order-check{
       flex: 1;
       padding-left: 95px;
+      position: sticky;
+      top: 10px;
       @media screen and (max-width: $md-max){
+        position: relative;
+        top: initial;
         padding-left: 0;
       }
      .order-check-block{
@@ -367,6 +371,9 @@
            padding: 25px 30px;
            margin: 0 -30px;
            font-weight: bold;
+           @media screen and (max-width: $sm-max){
+             margin: 0 -15px;
+           }
          }
          .order-check-item{
            font-size: 18px;

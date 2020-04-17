@@ -40,6 +40,12 @@ body{
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  @media screen and (max-width: $md-max){
+      padding-top: 88px;
+  }
+  @media screen and (max-width: $sm-max){
+    padding-top: 65px;
+  }
   &.overflow{
     overflow: hidden;
   }
@@ -266,7 +272,13 @@ h2{
     border-bottom: 1px solid #C4C4C4;
     font-size: 18px;
     @media screen and (max-width: $md-max){
+      background-color: white;
+      z-index: 9;
         padding: 10px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
     }
     @media screen and (max-width: $sm-max){
       font-size: 14px;
