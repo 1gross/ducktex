@@ -44,6 +44,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; }
+  @media screen and (max-width: 1200px) {
+    body {
+      padding-top: 88px; } }
+  @media screen and (max-width: 767px) {
+    body {
+      padding-top: 65px; } }
   body.overflow {
     overflow: hidden; }
   body main {
@@ -247,7 +253,13 @@ h2 {
   font-size: 18px; }
   @media screen and (max-width: 1200px) {
     #header .top-line {
-      padding: 10px 0; } }
+      background-color: white;
+      z-index: 9;
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%; } }
   @media screen and (max-width: 767px) {
     #header .top-line {
       font-size: 14px; } }
@@ -3053,9 +3065,13 @@ section.with-sea .wrapper::before {
               text-decoration: underline; }
     #basket .order-block .order-check {
       flex: 1;
-      padding-left: 95px; }
+      padding-left: 95px;
+      position: sticky;
+      top: 10px; }
       @media screen and (max-width: 1200px) {
         #basket .order-block .order-check {
+          position: relative;
+          top: initial;
           padding-left: 0; } }
       #basket .order-block .order-check .order-check-block {
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -3089,6 +3105,9 @@ section.with-sea .wrapper::before {
             padding: 25px 30px;
             margin: 0 -30px;
             font-weight: bold; }
+            @media screen and (max-width: 767px) {
+              #basket .order-block .order-check .order-check-block .order-check-footer .order-check-gray {
+                margin: 0 -15px; } }
           #basket .order-block .order-check .order-check-block .order-check-footer .order-check-item {
             font-size: 18px; }
           #basket .order-block .order-check .order-check-block .order-check-footer button {
