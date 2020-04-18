@@ -22,5 +22,7 @@
 input.error {
     box-shadow: 1px 1px 5px inset rgba(255, 76, 76, 0.72);
 }
-
+.filter-item.asc {
+    color: #414141;
+}
 

@@ -16,18 +16,19 @@ use Bitrix\Main\ModuleManager;
 if (isset($_GET["method"])) {
     $arParams["ELEMENT_SORT_ORDER"] = $_GET['method'] == 'desc' ? 'desc' : 'asc';
 }
+$isDefault = !isset($_GET["sort"]) || $_GET["sort"] == 'shows' ? true : false;
 
 if (isset($_GET["sort"])) {
     switch ($_GET["sort"]) {
         case 'price':
-            $arParams["ELEMENT_SORT_FIELD"] = 'catalog_PRICE_1';
+            $arParams["ELEMENT_SORT_FIELD"] = 'SCALED_PRICE_1';
             break;
-        case 'created':
-            $arParams["ELEMENT_SORT_FIELD"] = 'property_IS_NEW';
-            $arParams["ELEMENT_SORT_ORDER"] = 'desc';
+        case 'name':
+            $arParams["ELEMENT_SORT_FIELD"] = 'name';
             break;
         default:
-            $arParams["ELEMENT_SORT_FIELD"] = $_GET["sort"];
+            $arParams["ELEMENT_SORT_FIELD"] = 'shows';
+            $isDefault = true;
     }
 }
 
@@ -140,13 +141,15 @@ if ($isFilter)
 
             <div class="products-wrap">
                 <div class="filter">
-                    <a href="<?=$APPLICATION->GetCurPageParam('sort=shows&method=desc', array('sort', 'method'))?>"
-                       class="filter-item <?=$_GET["sort"] == "shows" && isset($_GET["method"]) ? $_GET["method"] : ''?>"">По популярности</a>
+                    <?$method = $_GET["method"] == 'desc' ? 'asc' : 'desc'; ?>
+                    <?$methodDefault = $isDefault && !isset($_GET["method"]) ? 'desc' : ''?>
+                    <a href="<?=$APPLICATION->GetCurPageParam('sort=shows&method='.$method, array('sort', 'method'))?>"
+                       class="filter-item <?=$isDefault ? $methodDefault : ''?> <?=$_GET["sort"] == "shows" && isset($_GET["method"]) ? $_GET["method"] : ''?>"">По популярности</a>
 
-                    <a href="<?=$APPLICATION->GetCurPageParam('sort=name&method=desc', array('sort', 'method'))?>"
+                    <a href="<?=$APPLICATION->GetCurPageParam('sort=name&method='.$method, array('sort', 'method'))?>"
                        class="filter-item <?=$_GET["sort"] == "name" && isset($_GET["method"]) ? $_GET["method"] : ''?>"">По алфавиту</a>
 
-                    <a href="<?=$APPLICATION->GetCurPageParam('sort=price&method=desc', array('sort', 'method'))?>"
+                    <a href="<?=$APPLICATION->GetCurPageParam('sort=price&method='.$method, array('sort', 'method'))?>"
                        class="filter-item <?=$_GET["sort"] == "price" && isset($_GET["method"]) ? $_GET["method"] : ''?>">По цене</a>
                 </div>
                 <?$intSectionID = $APPLICATION->IncludeComponent(
