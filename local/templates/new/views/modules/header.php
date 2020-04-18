@@ -38,7 +38,7 @@ $arCompare = B24TechSiteHelper::getCompareList();
                 </nav>
                 <div class="user-buttons">
                     <?if (!$USER->IsAuthorized()) {?>
-                        <button class="login modal-link" data-modal="#sign"><?=Loc::getMessage('SIGN_IN')?></button>
+                        <button class="login modal-link js-init-action" data-action="show_modal" data-modal="#sign"><?=Loc::getMessage('SIGN_IN')?></button>
                     <?} else {?>
                         <a href="<?=SITE_DIR?>personal/" class="login"><?=Loc::getMessage('LK')?></a>
                     <?}?>

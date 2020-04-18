@@ -1,4 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+
 if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y")
 {
 	if($arResult["USER_VALS"]["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
@@ -48,6 +49,7 @@ if (!function_exists("cmpBySort"))
     <section id="basket">
         <div class="wrapper">
             <div id="order_form_div" class="order-checkout">
+                <?if ($arResult["BASKET_ITEMS"]) {?>
                 <div class="bx_order_make">
                     <?
                     if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
@@ -251,7 +253,6 @@ if (!function_exists("cmpBySort"))
                     ?>
                 </div>
             </div>
-
             <?if(CSaleLocation::isLocationProEnabled()):?>
 
                 <div style="display: none">
@@ -273,7 +274,10 @@ if (!function_exists("cmpBySort"))
                 </div>
 
             <?endif?>
-            </div>
+            <?} else {?>
+                <div class="block-message">Корзина  пуста. <br> Перейдите в <a href="/catalog/">каталог</a> и выберите нужные для заказа товары</div>
+            <?}?>
+        </div>
         </div>
     </section>
 </main>

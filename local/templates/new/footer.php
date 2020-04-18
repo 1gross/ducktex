@@ -24,8 +24,10 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <title><?$APPLICATION->ShowTitle()?></title>
     <?Asset::getInstance()->addCss('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic');?>
     <?Asset::getInstance()->addCss("/local/front/files/css/normalize.css");?>
-    <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
     <?Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
+    <?Asset::getInstance()->addCss($APPLICATION->GetTemplatePath('public/js/arcticmodal/jquery.arcticmodal-0.3.css'));?>
+    <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
+    <?Asset::getInstance()->addCss($APPLICATION->GetTemplatePath('public/css/custom.css'));?>
     <?$APPLICATION->ShowMeta("viewport");?>
     <?$APPLICATION->ShowMeta("HandheldFriendly");?>
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-capable", "yes");?>

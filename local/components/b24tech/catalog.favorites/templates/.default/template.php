@@ -80,7 +80,7 @@ Loc::loadMessages(__FILE__);
                     $component
                 );?>
                 <div class="center clear-all">
-                    <button class="btn blue"><?=Loc::getMessage('CLEAR_FAVORITES_BUTTON_TEXT')?></button>
+                    <button class="btn blue js-init-action" data-action="clear_favorites" data-refresh="true"><?=Loc::getMessage('CLEAR_FAVORITES_BUTTON_TEXT')?></button>
                 </div>
             <?} else {?>
                 <div class="info-message">

@@ -12,31 +12,32 @@ if(is_array($arResult["QUESTIONS"])){
 }
 ?>
     <h3><?=$arResult["FORM_TITLE"]?></h3>
+<?if($arResult["isFormErrors"] == "Y" || strlen($arResult["FORM_NOTE"])) {?>
+    <div class="form_result <?=($arResult["isFormErrors"] == "Y" ? 'error' : 'success')?>">
+        <?if($arResult["isFormErrors"] == "Y") {?>
+            <?=$arResult["FORM_ERRORS_TEXT"]?>
+        <? } else {?>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    if(arMShopOptions['COUNTERS']['USE_FORMS_GOALS'] !== 'NONE'){
+                        var eventdata = {goal: 'goal_webform_success' + (arMShopOptions['COUNTERS']['USE_FORMS_GOALS'] === 'COMMON' ? '' : '_<?=$arParams['WEB_FORM_ID']?>'), params: <?=CUtil::PhpToJSObject($arParams, false)?>, result: <?=CUtil::PhpToJSObject($arResult, false)?>};
+                        BX.onCustomEvent('onCounterGoals', [eventdata]);
+                    }
+                });
+            </script>
+            <?$successNoteFile = SITE_DIR."include/form/success_{$arResult["arForm"]["SID"]}.php";?>
+            <?if(file_exists($_SERVER["DOCUMENT_ROOT"].$successNoteFile)) {?>
+                <?$APPLICATION->IncludeFile($successNoteFile, array(), array("MODE" => "html", "NAME" => "Form success note"));?>
+            <? } else {?>
+                <?=GetMessage("FORM_SUCCESS");?>
+            <?}?>
+        <?}?>
+    </div>
+<?}?>
     <form action="<?=POST_FORM_ACTION_URI?>" method="post" enctype="multipart/form-data" class="form-feedback">
         <?=bitrix_sessid_post();?>
         <input type="hidden" name="WEB_FORM_ID" value="<?=$arResult['arForm']['ID']?>">
-        <?if($arResult["isFormErrors"] == "Y" || strlen($arResult["FORM_NOTE"])) {?>
-            <div class="form_result <?=($arResult["isFormErrors"] == "Y" ? 'error' : 'success')?>">
-                <?if($arResult["isFormErrors"] == "Y") {?>
-                    <?=$arResult["FORM_ERRORS_TEXT"]?>
-                <? } else {?>
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            if(arMShopOptions['COUNTERS']['USE_FORMS_GOALS'] !== 'NONE'){
-                                var eventdata = {goal: 'goal_webform_success' + (arMShopOptions['COUNTERS']['USE_FORMS_GOALS'] === 'COMMON' ? '' : '_<?=$arParams['WEB_FORM_ID']?>'), params: <?=CUtil::PhpToJSObject($arParams, false)?>, result: <?=CUtil::PhpToJSObject($arResult, false)?>};
-                                BX.onCustomEvent('onCounterGoals', [eventdata]);
-                            }
-                        });
-                    </script>
-                    <?$successNoteFile = SITE_DIR."include/form/success_{$arResult["arForm"]["SID"]}.php";?>
-                    <?if(file_exists($_SERVER["DOCUMENT_ROOT"].$successNoteFile)) {?>
-                        <?$APPLICATION->IncludeFile($successNoteFile, array(), array("MODE" => "html", "NAME" => "Form success note"));?>
-                    <? } else {?>
-                        <?=GetMessage("FORM_SUCCESS");?>
-                    <?}?>
-                <?}?>
-            </div>
-        <?}?>
+
         <?if(is_array($arResult["QUESTIONS"])) {?>
             <?if(!$bLeftAndRight) {?>
                 <?foreach($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {?>

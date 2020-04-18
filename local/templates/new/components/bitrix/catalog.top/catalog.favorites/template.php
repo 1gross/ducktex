@@ -13,8 +13,8 @@
         ?>
         <div class="product-card" >
             <div class="favorites-header">
-                <button data-id="<?=$arItem['ID']?>" data-action="add_basket" class="btn simple gray add-to-cart">в корзину</button>
-                <button class="favorites-delete"></button>
+                <button data-id="<?=$arItem['ID']?>" data-action="add_basket" class="btn simple gray add-to-cart js-init-action">в корзину</button>
+                <button  data-id="<?=$arItem['ID']?>" data-refresh="true" data-action="add_favorites" class="favorites-delete js-init-action"></button>
             </div>
             <div class="image" style="background-image: url('<?=$arItem['PICTURE']['SRC']?>');"></div>
             <?if ($arDiscount['VALUE']) {?>

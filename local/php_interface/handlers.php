@@ -2,15 +2,81 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
-use Bitrix\Main\PhoneNumber\Format,
-    Bitrix\Main\PhoneNumber\Parser;
+use Bitrix\Main\UserPhoneAuthTable;
 
-AddEventHandler("main", "OnBeforeUserAdd", 'checkUserPhone');
-AddEventHandler("main", "OnBeforeUserUpdate", 'checkUserPhone');
-function checkUserPhone(&$arFields)
+AddEventHandler("main", "OnProlog", 'authTempUser');
+function authTempUser()
 {
+    global $USER, $APPLICATION;
+
+    if (strpos($APPLICATION->GetCurPage(), 'basket') !== false) {
 
 
+    }
+}
+
+use Bitrix\Main;
+Main\EventManager::getInstance()->addEventHandler(
+    'sale',
+    'OnSaleOrderSaved',
+    'checkAndSetPropertyUser'
+);
+
+//в обработчике получаем сумму, с которой планируются некоторые действия в дальнейшем:
+
+function checkAndSetPropertyUser(Main\Event $event)
+{
+    global $USER;
+    $arUserProp = array();
+    $isTempUser = true;
+    $order = $event->getParameter("ENTITY");
+    $propertyCollection = $order->getPropertyCollection();
+    foreach ($propertyCollection as $obProp) {
+        $arProp = $obProp->getProperty();
+        if ($arProp['IS_EMAIL'] == 'Y') {
+            $arUserProp['EMAIL'] = $obProp->getValue();
+        }
+        if ($arProp['IS_PHONE'] == 'Y') {
+            $phone = checkPhone($obProp->getValue());
+            if (strpos($phone, '+') === false && strlen($phone) == 11) {
+                $phone = '+'.$phone;
+            }
+            $arUserProp['PHONE_NUMBER'] = $phone;
+            $arUserProp['LOGIN'] = $phone;
+        }
+        if ($arProp['CODE'] == 'IS_BONUS_SYSTEM') {
+            if ($obProp->getValue() == 'Y') {
+                $isTempUser = false;
+                $arUserProp['UF_TMP_USER'] = 'N';
+            }
+        }
+
+    }
+    $us = new CUser();
+    $us->Update($USER->GetID(), $arUserProp);
+
+    if ($isTempUser) {
+        $USER->Logout();
+    }
+}
+
+function checkPhone($phone) {
+    $count = strlen($phone);
+    switch ($count) {
+        case '10':
+            if ($phone[0] == '9') {
+                $phone = '+7' . $phone;
+            }
+            break;
+        case '11':
+            if ($phone[0] == '8') {
+                $phone = '+7' . substr($phone, 1);
+            } elseif ($phone[0] == '7') {
+                $phone = '+' . $phone;
+            }
+            break;
+    }
+    return $phone;
 }
 
 AddEventHandler("main", "OnLayoutRender", function () {

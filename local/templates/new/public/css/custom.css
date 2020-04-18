@@ -1,0 +1,26 @@
+.form-result.success {
+    color: #3ab777;
+    font-weight: bold;
+}
+.form-result.error {
+    color: #b74a45;
+    font-weight: bold;
+}
+.form-item.captcha-row .recaptcha{
+    display: none;
+}
+.modal.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    width:auto;
+    height:auto;
+}
+.modal.active .modal-block {
+    max-height: none;
+}
+input.error {
+    box-shadow: 1px 1px 5px inset rgba(255, 76, 76, 0.72);
+}
+
+
