@@ -2078,6 +2078,32 @@ section{
   }
 }
 
+.show-more{
+  color: $main-color;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  transition: .1s background-color;
+   &:hover{
+     transition: .3s background-color;
+     text-decoration: underline;
+     background-color: #f6f6f6;
+   }
+  &::before{
+    content: '';
+    background: url(../img/repeat.svg) #22AAB8 no-repeat 50%/19px;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+}
+
 
 
 @import 'card.scss';
