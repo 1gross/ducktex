@@ -8,6 +8,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/ymarket/index.php',
     'SORT' => 100,
   ),
+  22 => 
+  array (
+    'CONDITION' => '#^/catalog/(.+?)/([^/]+?)/\\??(.*)#',
+    'RULE' => 'SECTION_CODE_PATH=$1&ELEMENT_ID=$2&$3',
+    'ID' => 'bitrix:catalog.top',
+    'PATH' => '/local/templates/new/views/layouts/home.php',
+    'SORT' => 100,
+  ),
   3 => 
   array (
     'CONDITION' => '#^/personal/history-of-orders/#',

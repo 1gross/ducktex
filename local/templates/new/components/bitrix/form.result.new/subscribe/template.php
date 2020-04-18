@@ -9,8 +9,8 @@
             <form action="/">
                 <h2 class="title">Узнавайте первыми о скидках и акциях</h2>
                 <div class="form-group">
-                    <input class="email" type="email" placeholder="Ваш email">
-                    <input type="submit" class="btn blue" value="Подписаться">
+                    <input class="email" type="email" placeholder="Ваш email" name="email_subscribe">
+                    <input type="submit" class="btn blue js-init-action" data-action="send_form" data-id="subscribe" value="Подписаться" >
                 </div>
                 <div class="politic">Я согласен с условиями предоставления услуг и политикой конфиденциальности</div>
             </form>

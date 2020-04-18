@@ -68,8 +68,8 @@ Loc::loadMessages(__FILE__);
 </table>
 <div class="basket-footer">
     <div class="promocode">
-        <input type="text" placeholder="Введите код купона для скидки">
-        <input type="submit" value="применить" class="btn outline big">
+        <input type="text" placeholder="Введите код купона для скидки" name="coupon_code">
+        <button class="btn outline big js-init-action" data-action="send_form" data-id="set_coupon">применить</button>
     </div>
     <div class="bonus">
         Бонус за заказ: <span><?=$arParams['ALL_BONUS']?> руб</span>

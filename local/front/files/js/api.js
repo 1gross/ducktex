@@ -78,7 +78,23 @@ $(document).ready(function() {
               send = true;
               break;
           case 'send_form':
-              data.data = $this.closest('form').off().serialize();
+              switch (id) {
+                  case 'set_coupon':
+                      let coupon = $('[name="coupon_code"]').val();
+                      if (typeof coupon !== 'undefined') {
+                          data.coupon_code = coupon;
+                      }
+                      break;
+                  case 'subscribe':
+                      let email = $('[name="email_subscribe"]').val();
+                      if (typeof email !== 'undefined') {
+                          data.email = email;
+                      }
+                      break;
+                  default:
+                      data.data = $this.closest('form').off().serialize();
+              }
+
               send = true;
 
               break;
@@ -94,6 +110,12 @@ $(document).ready(function() {
                          case 'send_form':
                              //location.reload();
                              switch (id) {
+                                 case 'subscribe':
+                                     alert('Вы успрешно подписалиь, спасибо!');
+                                     break;
+                                 case 'set_coupon':
+                                     submitForm();
+                                     break;
                                  case 'auth':
                                      let verificationModal = $('#code'),
                                          verificationForm = verificationModal.find('form'),
@@ -172,7 +194,7 @@ $(document).ready(function() {
                      }
 
                      if (refresh === 'true') {
-                         location.reload();
+                         window.location.href = '/personal/';
                      }
                  } else {
                      switch (action) {
@@ -180,15 +202,15 @@ $(document).ready(function() {
                              if (typeof response.message !== 'undefined' && typeof response.message === 'object') {
                                  $.each(response.message, function (code, text) {
                                      let field = $('[name="'+code+'"]');
-                                         field.addClass('error-field');
+                                     field.addClass('error');
 
                                  });
                              }
+
                              break;
                     }
 
                  }
-
 
                  console.log(response);
              }

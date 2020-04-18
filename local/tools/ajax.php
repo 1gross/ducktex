@@ -55,33 +55,40 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             )
                         ));
                     $arUser = $rsUser->fetch();
-                    if ($arUser['USER_ID']) {
-                        list($code, $phoneNumber) = CUser::GeneratePhoneCode($arUser['USER_ID']);
-                        $sms = new Bitrix\Main\Sms\Event(
-                            'SMS_USER_CONFIRM_NUMBER',
-                            [
-                                "USER_PHONE" => $phoneNumber,
-                                "CODE" => $code,
-                            ]
-                        );
-                        $arResponse['code'] = $code;
-                        $result = true;
-                        //$result = $sms->send();
-                        //if ($result->isSuccess()) {
-                        if ($result) {
-                            $arResponse['result'] = true;
-                            $arResponse['phone'] = $phoneNumber;
-                            $arResponse['send_sms'] = true;
-                            $arResponse['sign_data'] = PhoneAuth::signData([
-                                'phoneNumber' => $phoneNumber
-                            ]);
-                        } else {
-                            $arResponse['false'] = false;
-                            $arResponse['send_sms'] = false;
-                            $arResponse['message'] = $result->getErrors();
-
-                        }
+                    $userID = $arUser['USER_ID'];
+                    if (!$userID) {
+                        $arResult = $USER->Register(checkPhone($arFields['PHONE_NUMBER']),
+                            "", "", "pass_" . $arFields['PHONE_NUMBER'],
+                            "pass_" . $arFields['PHONE_NUMBER'], '', SITE_ID,
+                            '', '', '', checkPhone($arFields['PHONE_NUMBER']));
+                        $arResponse['add_new_user'] = true;
+                        $userID = $arResult["ID"];
                     }
+                    list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
+                    $sms = new Bitrix\Main\Sms\Event(
+                        'SMS_USER_CONFIRM_NUMBER',
+                        [
+                            "USER_PHONE" => $phoneNumber,
+                            "CODE" => $code,
+                        ]
+                    );
+                    $arResponse['code'] = $code;
+                    $result = true;
+                    //$result = $sms->send();
+                    //if ($result->isSuccess()) {
+                    if ($result) {
+                        $arResponse['result'] = true;
+                        $arResponse['phone'] = $phoneNumber;
+                        $arResponse['send_sms'] = true;
+                        $arResponse['sign_data'] = PhoneAuth::signData([
+                            'phoneNumber' => $phoneNumber
+                        ]);
+                    } else {
+                        $arResponse['false'] = false;
+                        $arResponse['send_sms'] = false;
+                        $arResponse['message'] = $result->getErrors();
+                    }
+
                     break;
                 case 'auth_check_code':
 
@@ -118,6 +125,19 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         $arResponse['fields'] =  $arFields;
                         $arResponse['request'] =  $_REQUEST['data'];
                     }
+                    break;
+                case 'set_coupon':
+                    if (CCatalogDiscountCoupon::SetCoupon($_REQUEST['coupon_code'])) {
+                        CSaleBasket::UpdateBasketPrices(CSaleBasket::GetBasketUserID(), SITE_ID);
+                        $arResponse['result'] = true;
+                    } else {
+                        $arResponse['result'] = false;
+                        $arResponse['message']['coupon_code'] = 'Error';
+                    }
+
+                    break;
+                case 'subscribe':
+                    $arResponse['result'] = true;
                     break;
             }
 
