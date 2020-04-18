@@ -304,26 +304,26 @@ $APPLICATION->IncludeComponent(
 	),
 	false
 );?>
-<?$APPLICATION->IncludeComponent("bitrix:sender.subscribe",
-    "home",
-    array(
-	    "AJAX_MODE" => "N",
-		"AJAX_OPTION_ADDITIONAL" => "",
-		"AJAX_OPTION_HISTORY" => "N",
-		"AJAX_OPTION_JUMP" => "N",
-		"AJAX_OPTION_STYLE" => "N",
-		"CACHE_TIME" => "3600",
+<?$APPLICATION->IncludeComponent(
+	"bitrix:form.result.new", 
+	"subscribe", 
+	array(
+		"COMPONENT_TEMPLATE" => "subscribe",
+		"WEB_FORM_ID" => "4",
+		"IGNORE_CUSTOM_TEMPLATE" => "N",
+		"USE_EXTENDED_ERRORS" => "N",
+		"SEF_MODE" => "N",
 		"CACHE_TYPE" => "A",
-		"CONFIRMATION" => "Y",
-		"HIDE_MAILINGS" => "Y",
-		"SET_TITLE" => "N",
-		"SHOW_HIDDEN" => "N",
-		"USER_CONSENT" => "N",
-		"USER_CONSENT_ID" => "0",
-		"USER_CONSENT_IS_CHECKED" => "N",
-		"USER_CONSENT_IS_LOADED" => "N",
-		"USE_PERSONALIZATION" => "Y",
-		"COMPONENT_TEMPLATE" => ".default"
+		"CACHE_TIME" => "3600",
+		"LIST_URL" => "result_list.php",
+		"EDIT_URL" => "result_edit.php",
+		"SUCCESS_URL" => "",
+		"CHAIN_ITEM_TEXT" => "",
+		"CHAIN_ITEM_LINK" => "",
+		"VARIABLE_ALIASES" => array(
+			"WEB_FORM_ID" => "WEB_FORM_ID",
+			"RESULT_ID" => "RESULT_ID",
+		)
 	),
 	false
 );?>

@@ -13,6 +13,7 @@
 ?>
 
 <div class="compare-block">
+    <?if ($arResult['ITEMS']) {?>
     <div class="compare-name-list">
         <?if ($arResult['SHOW_PROPERTIES']) {?>
             <?foreach ($arResult['SHOW_PROPERTIES'] as $arItem) {?>
@@ -20,7 +21,7 @@
             <?}?>
         <?}?>
     </div>
-    <button data-action="clear_compare" class="js-init-action btn outline small clear-compare">очистить сравнение</button>
+    <button data-action="clear_compare" data-refresh="true" class="js-init-action btn outline small clear-compare">очистить сравнение</button>
     <div class="сontrol">
         <button class="arrow left"></button>
         <span class="count"></span>
@@ -60,5 +61,8 @@
         </div>
         <?}?>
     </div>
+    <?} else {?>
+        <p>Товаров в сравнении нет</p>
+    <?}?>
 </div>
 

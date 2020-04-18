@@ -19,7 +19,7 @@ Loc::loadMessages(__FILE__);
     </thead>
     <tbody>
     <?foreach ($arResult['GRID']["ROWS"] as $ROW) {?>
-        <tr data-product-id="<?=$ROW['ID']?>" data-price="<?=$ROW['FULL_PRICE']?>">
+        <tr>
             <td>
                 <?if ($ROW['PREVIEW_PICTURE'] || $ROW['DETAIL_PICTURE']) {?>
                     <?$img = $ROW['PREVIEW_PICTURE'] ?: $ROW['DETAIL_PICTURE']?>
@@ -37,16 +37,18 @@ Loc::loadMessages(__FILE__);
             </td>
             <td>
                 <?$ROW["MEASURE_RATIO"] = isset($ROW["MEASURE_RATIO"]) ? $ROW["MEASURE_RATIO"] : 1; ?>
-                <div class="quantity-block">
-                    <button class="quant-btn quantity-arrow-minus"> - </button>
+                <div class="quantity-block" data-page="basket">
+                    <button class="quant-btn quantity-arrow-minus js-init-action" data-action="update_basket" data-type="de" data-id="<?=$ROW['PRODUCT_ID']?>"> - </button>
                     <input class="quantity-num" disabled
+                           id="quantity-c"
+                           data-value="<?=$ROW['QUANTITY']?>"
                            data-min="<?=$ROW["MEASURE_RATIO"]?>"
                            data-max="<?=$ROW["AVAILABLE_QUANTITY"]?>"
                            data-step="<?=$ROW["MEASURE_RATIO"]?>"
                            data-unit="<?=$ROW['MEASURE_TEXT']?>"
                            type="text"
-                           value="<?=$ROW['QUANTITY']?>" />
-                    <button class="quant-btn quantity-arrow-plus"> + </button>
+                           value="<?=$ROW['QUANTITY']?> <?=$ROW['MEASURE_TEXT']?>" />
+                    <button class="quant-btn quantity-arrow-plus js-init-action" data-action="update_basket" data-type="in" data-id="<?=$ROW['PRODUCT_ID']?>"> + </button>
                 </div>
             </td>
             <td>
@@ -58,7 +60,7 @@ Loc::loadMessages(__FILE__);
                 </div>
             </td>
             <td>
-                <button class="product-delete"></button>
+                <button class="product-delete js-init-action" data-action="remove_basket" data-id="<?=$ROW['PRODUCT_ID']?>"></button>
             </td>
         </tr>
     <?}?>
@@ -66,8 +68,8 @@ Loc::loadMessages(__FILE__);
 </table>
 <div class="basket-footer">
     <div class="promocode">
-        <input type="text" placeholder="Введите код купона для скидки">
-        <input type="submit" value="применить" class="btn outline big">
+        <input type="text" placeholder="Введите код купона для скидки" name="coupon_code">
+        <button class="btn outline big js-init-action" data-action="send_form" data-id="set_coupon">применить</button>
     </div>
     <div class="bonus">
         Бонус за заказ: <span><?=$arParams['ALL_BONUS']?> руб</span>

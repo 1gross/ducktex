@@ -7,6 +7,7 @@ use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
 ?>
+<?if ($arResult['ITEMS']) {?>
 <section class="block sales slider-block">
     <div class="wrapper">
         <div class="sales-block">
@@ -21,28 +22,18 @@ Loc::loadMessages(__FILE__);
             <div class="slider">
                 <?foreach ($arResult['ITEMS'] as $arItem) {?>
                     <div class="product-card">
-                        <div class="image" style="background-image: url(<?=$arItem['PREVIEW_PICTURE']['SRC']?>);"></div>
-                        <?$arDiscounts = CCatalogDiscount::GetDiscountByProduct($arItem['ID'], $USER->GetUserGroupArray(), "N", 1, SITE_ID);
-                        if ($arDiscounts) {
-                            $arDiscount = current($arDiscounts);
-                        }?>
-                        <?if ($arDiscount['VALUE']) {?>
-                        <div class="badge">
-                            -<?=$arDiscount['VALUE']?>%
-                        </div>
-                        <?}?>
-                        <a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="title">
-                            <?=$arItem['NAME']?>
-                        </a>
-                        <div class="price">
-                            <div class="new"><?=$arItem['ITEM_PRICES'][0]['PRINT_PRICE']?><?=$arItem['ITEM_MEASURE']['TITLE'] ? ' / ' .$arItem['ITEM_MEASURE']['TITLE']. '.' : ''?></div>
-                            <?if (count($arItem['ITEM_PRICES']) > 1 || $arItem['ITEM_PRICES'][0]['DISCOUNT']) {?>
-                                <div class="last">990 руб.</div>
-                            <?}?>
-                        </div>
+                        <?$APPLICATION->IncludeComponent(
+                            'bitrix:catalog.item',
+                            '',
+                            array(
+                                'ITEM' => $arItem,
+                                'PROPERTY_CODE' => $arParams['PROPERTY_CODE']
+                            )
+                        )?>
                     </div>
                 <?}?>
             </div>
         </div>
     </div>
 </section>
+<?}?>

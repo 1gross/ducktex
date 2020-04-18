@@ -183,7 +183,7 @@ $APPLICATION->SetTitle("catalog-filter");
 		"USE_GIFTS_MAIN_PR_SECTION_LIST" => "Y",
 		"USE_GIFTS_SECTION" => "Y",
 		"USE_MAIN_ELEMENT_SECTION" => "N",
-		"USE_PRICE_COUNT" => "N",
+		"USE_PRICE_COUNT" => "Y",
 		"USE_PRODUCT_QUANTITY" => "N",
 		"USE_REVIEW" => "N",
 		"USE_SALE_BESTSELLERS" => "Y",

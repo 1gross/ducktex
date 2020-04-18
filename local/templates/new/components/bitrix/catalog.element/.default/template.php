@@ -5,6 +5,11 @@
 use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
+
+if ($_REQUEST['ajax_mode'] == 'Y') {
+    $APPLICATION->RestartBuffer();
+}
+
 ?>
 <section id="card">
     <div class="wrapper">
@@ -12,10 +17,10 @@ Loc::loadMessages(__FILE__);
             <div class="card-header">
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
-                    <a href="/" data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare">
+                    <a href="/" data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare js-init-action">
                         <span><?=count(B24TechSiteHelper::getCompareList())?></span>
                     </a>
-                    <button data-action="add_favorites" data-id="<?=$arResult['ID']?>" class="like <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
+                    <button data-action="add_favorites" data-id="<?=$arResult['ID']?>" class="like js-init-action <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
                 </div>
             </div>
             <div class="card-body">
@@ -137,16 +142,18 @@ Loc::loadMessages(__FILE__);
                                 </div>
                             <?}?>
                         </div>
-                        <div class="quantity-block">
+                        <div class="quantity-block" data-page="product">
                             <?$measureID = $arResult['ITEM_MEASURE_RATIO_SELECTED']?>
-                            <button class="quant-btn quantity-arrow-minus" data-action="basket_update"> - </button>
+                            <button class="quant-btn quantity-arrow-minus js-init-action" data-action="update_basket" data-type="de" data-id="<?=$arResult['ID']?>"> - </button>
                             <input class="quantity-num"
+                                   id="quantity-c"
+                                   data-value="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-min="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-max="<?=$arResult['PRODUCT']['QUANTITY']?>"
                                    data-step="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-unit="<?=$arResult['ITEM_MEASURE']['TITLE']?>"
-                                   type="text" value="" />
-                            <button class="quant-btn quantity-arrow-plus" data-action="basket_update"> + </button>
+                                   type="text" value="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?> <?=$arResult['ITEM_MEASURE']['TITLE']?>" />
+                            <button class="quant-btn quantity-arrow-plus js-init-action" data-action="update_basket" data-type="in" data-id="<?=$arResult['ID']?>"> + </button>
                         </div>
                     </div>
                     <? $APPLICATION->IncludeComponent(
@@ -161,7 +168,7 @@ Loc::loadMessages(__FILE__);
                         )
                     );?>
                     <div class="bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
-                    <button class="btn blue add-cart" data-action="add_basket" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
+                    <button class="btn blue add-cart js-init-action" data-action="add_basket" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
                     <?if ($arParams['PROPERTY_CODE']) {?>
                         <div class="props">
                             <?foreach ($arParams['PROPERTY_CODE'] as $CODE) {

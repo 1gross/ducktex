@@ -14,4 +14,4 @@ if ($arResult['arUser']['NAME']) {
 if ($arResult['arUser']['SECOND_NAME']) {
     $arName[] = $arResult['arUser']['SECOND_NAME'];
 }
-$arResult['arUser']['FULL_NAME'] = implode(' ', $arName);
+$arResult['arUser']['FULL_NAME'] = trim(implode(' ', $arName));

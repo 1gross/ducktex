@@ -69,6 +69,7 @@ if (!function_exists("PrintPropsForm"))
                                     <input type="checkbox"
                                            name="<?=$arProperties["FIELD_NAME"]?>"
                                            id="<?=$arProperties["FIELD_NAME"]?>"
+                                           value="<?=$arProperties["CHECKED"]?>"
                                            <?=$arProperties["CHECKED"]=="Y" ? " checked" : ''?>>
                                     <span class="checkmark"></span>
                                     <?=$arProperties["NAME"]?>
@@ -106,7 +107,7 @@ if (!function_exists("PrintPropsForm"))
                                     <textarea name="<?=$arProperties["FIELD_NAME"]?>"
                                               id="<?=$arProperties["FIELD_NAME"]?>"
                                               cols="<?=$arProperties["SIZE1"]?>"
-                                              rows="<?=$rows?>"></textarea>
+                                              rows="<?=$rows?>"><?=$arProperties["VALUE"]?></textarea>
                                 </div>
                                 <?
                                 break;

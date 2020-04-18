@@ -3,8 +3,7 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 use Bitrix\Main\UserPhoneAuthTable,
-    Bitrix\Main\Controller\PhoneAuth,
-    Bitrix\Main\Security\Sign\Signer;
+    Bitrix\Main\Controller\PhoneAuth;
 
 define('STOP_STATISTICS', true);
 define("NOT_CHECK_PERMISSIONS", true);
@@ -24,60 +23,81 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     $arResponse = array();
     switch ($_REQUEST['action']) {
         case 'send_form':
+            $isError = false;
+            if (isset($_REQUEST['data'])) {
+                $arFields = array();
+                $arDataTemp = explode('&', $_REQUEST['data']);
+                foreach ($arDataTemp as $arTemp) {
+                    $arTemp = urldecode($arTemp);
+                    list($code, $value) = explode('=', $arTemp);
+                    if ($code == 'PHONE_NUMBER') {
+                        $value = checkPhone(preg_replace('/[^0-9]/', '', $value));
+                        if (empty($value) || strlen($value) != 12) {
+                            $arResponse['message']['PHONE_NUMBER'] = 'Некорректный номер';
+                            $arResponse['result'] = false;
+                            $isError = true;
+                        }
+
+                    }
+                    if (strpos($code, 'CODE') !== false) {
+                        $arFields['CODE'][] = $value;
+                    } else {
+                        $arFields[$code] = $value;
+                    }
+                }
+            }
             switch ($_REQUEST['id']) {
                 case 'auth':
-                    if (isset($_REQUEST['data']['PHONE']) && strlen($_REQUEST['data']['PHONE']) > 0) {
-                        $ph = trim(UserPhoneAuthTable::normalizePhoneNumber($_REQUEST['data']['PHONE']));
-                        if (strlen($ph) == 11) {
-                            $rsUser = UserPhoneAuthTable::getList(
-                                array(
-                                    "filter" => array(
-                                        "?PHONE_NUMBER" => trim(UserPhoneAuthTable::normalizePhoneNumber($_REQUEST['data']['PHONE']))
-                                    )
-                                ));
-                            $arUser = $rsUser->fetch();
-                            if ($arUser['USER_ID']) {
-                                list($code, $phoneNumber) = CUser::GeneratePhoneCode($arUser['USER_ID']);
-                                $sms = new Bitrix\Main\Sms\Event(
-                                    'SMS_USER_CONFIRM_NUMBER',
-                                    [
-                                        "USER_PHONE" => $phoneNumber,
-                                        "CODE" => $code,
-                                    ]
-                                );
-                                $arResponse['code'] = $code;
-                                $result = true;
-                                //$result = $sms->send();
-                                //if ($result->isSuccess()) {
-                                if ($result) {
-                                    $arResponse['result'] = true;
-                                    $arResponse['send_sms'] = true;
-                                    $arResponse['sign_data'] = PhoneAuth::signData([
-                                        'phoneNumber' => $phoneNumber
-                                    ]);
-                                } else {
-                                    $arResponse['false'] = false;
-                                    $arResponse['send_sms'] = false;
-                                    $arResponse['message'] = $result->getErrors();
-
-                                }
-                            }
-                        } else {
-                            $arResponse['result'] = false;
-                            $arResponse['message']['PHONE'] = 'Не корректный номер телефона';
-                        }
-                    } else {
-                        $arResponse['result'] = false;
-                        $arResponse['message']['PHONE'] = 'Поле обязательно для заполнения';
+                    $rsUser = UserPhoneAuthTable::getList(
+                        array(
+                            "filter" => array(
+                                "?PHONE_NUMBER" => $arFields['PHONE_NUMBER']
+                            )
+                        ));
+                    $arUser = $rsUser->fetch();
+                    $userID = $arUser['USER_ID'];
+                    if (!$userID) {
+                        $arResult = $USER->Register(checkPhone($arFields['PHONE_NUMBER']),
+                            "", "", "pass_" . $arFields['PHONE_NUMBER'],
+                            "pass_" . $arFields['PHONE_NUMBER'], '', SITE_ID,
+                            '', '', '', checkPhone($arFields['PHONE_NUMBER']));
+                        $arResponse['add_new_user'] = true;
+                        $userID = $arResult["ID"];
                     }
+                    list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
+                    $sms = new Bitrix\Main\Sms\Event(
+                        'SMS_USER_CONFIRM_NUMBER',
+                        [
+                            "USER_PHONE" => $phoneNumber,
+                            "CODE" => $code,
+                        ]
+                    );
+                    $arResponse['code'] = $code;
+                    $result = true;
+                    //$result = $sms->send();
+                    //if ($result->isSuccess()) {
+                    if ($result) {
+                        $arResponse['result'] = true;
+                        $arResponse['phone'] = $phoneNumber;
+                        $arResponse['send_sms'] = true;
+                        $arResponse['sign_data'] = PhoneAuth::signData([
+                            'phoneNumber' => $phoneNumber
+                        ]);
+                    } else {
+                        $arResponse['false'] = false;
+                        $arResponse['send_sms'] = false;
+                        $arResponse['message'] = $result->getErrors();
+                    }
+
                     break;
                 case 'auth_check_code':
-                    if (!isset($_REQUEST['data']['SIGN_DATA']) || empty($_REQUEST['data']['SIGN_DATA'])) {
-                        $params = PhoneAuth::extractData($_REQUEST['sign_data']);
 
-                        if (isset($_REQUEST['data']['CODE']) && count($_REQUEST['data']['CODE']) == 6) {
-                            $code = implode('', $_REQUEST['data']['CODE']);
-                            if (($userId = CUser::VerifyPhoneCode($params['phoneNumber'], $_REQUEST["code"]))) {
+                    if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA'])) {
+                        $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
+                        $verificationCode = implode('', $arFields['CODE']);
+                        if (strlen($verificationCode) == 6) {
+                            $userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
+                            if ($userId) {
                                 $USER->Authorize($userId);
                                 $arResponse['result'] = true;
 
@@ -94,9 +114,33 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         $arResponse['message']['system'] = 'Ошибка: Отсутствует подпись';
                     }
                     break;
+                case 'profile_edit':
+                    $us = new CUser();
+                    $result = $us->Update($USER->GetID(), $arFields);
+                    if ($result) {
+                        $arResponse['result'] = true;
+                    } else {
+                        $arResponse['result'] = false;
+                        $arResponse['message'] = $us->LAST_ERROR;
+                        $arResponse['fields'] =  $arFields;
+                        $arResponse['request'] =  $_REQUEST['data'];
+                    }
+                    break;
+                case 'set_coupon':
+                    if (CCatalogDiscountCoupon::SetCoupon($_REQUEST['coupon_code'])) {
+                        CSaleBasket::UpdateBasketPrices(CSaleBasket::GetBasketUserID(), SITE_ID);
+                        $arResponse['result'] = true;
+                    } else {
+                        $arResponse['result'] = false;
+                        $arResponse['message']['coupon_code'] = 'Error';
+                    }
+
+                    break;
+                case 'subscribe':
+                    $arResponse['result'] = true;
+                    break;
             }
 
-            $arResponse['result'] = true;
             break;
         case 'clear_compare':
             if(empty($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID])) {
@@ -116,8 +160,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                 $_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"][$_REQUEST["id"]] = CIBlockElement::GetByID($_REQUEST["id"])->Fetch();
             }
             $arResponse['result'] = true;
-            $arResponse['compare_count'] = count($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"]);
-            $arResponse['is_add'] = $isAdd;
+            $arResponse['count'] = count($_SESSION["CATALOG_COMPARE_LIST"][IBLOCK_CATALOG_ID]["ITEMS"]);
+            $arResponse['isAdd'] = $isAdd;
             break;
         case 'remove_basket':
             $products = B24TechSiteHelper::getBasket();
@@ -125,7 +169,20 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
             $arResponse['result'] = CSaleBasket::Delete(intval($products['items'][$_REQUEST['id']]['ids']));
             break;
         case 'update_basket':
+            $products = B24TechSiteHelper::getBasket();
 
+            $arFields = array(
+                "QUANTITY" => $_REQUEST['quantity']
+            );
+            $result = CSaleBasket::Update(intval($products['items'][$_REQUEST['id']]['ids']), $arFields);
+            if ($result) {
+                $arResponse['result'] = true;
+            } else {
+                $arResponse['result'] = false;
+                if($ex = $APPLICATION->GetException()) {
+                    $arResponse['message'] = $ex->GetString();
+                }
+            }
             $arResponse['result'] = true;
             break;
         case 'add_basket':
@@ -163,9 +220,11 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                 $USER->Update($USER->GetID(), Array("UF_FAVORITES"=>$arElements));
             }
-            $arResponse['favorites_count'] = count($arElements);
+            $arResponse['count'] = count($arElements);
             $arResponse['result'] = true;
-            $arResponse['is_add'] = $isAdd;
+            $arResponse['isAdd'] = $isAdd;
+            break;
+        case 'clear_favorites':
             break;
     }
     echo json_encode($arResponse);

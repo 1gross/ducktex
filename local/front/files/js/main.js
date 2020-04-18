@@ -64,9 +64,10 @@ $('.compare-list').each(function () {
     });
 });
 
-function quantity() {
+/*function quantity() {
     jQuery('.quantity-block').each(function () {
         var quant = $(this).find('.quantity-num');
+        var quantValue = quant.val();
         var quantMinus = $(this).find('.quantity-arrow-minus');
         var quantPlus =  $(this).find('.quantity-arrow-plus');
         var min = parseFloat(quant.attr('data-min'));
@@ -74,11 +75,9 @@ function quantity() {
         var step = parseFloat(quant.attr('data-step'));
         var unit = quant.attr('data-unit');
 
-        console.log(step);
+        quant.val(quantValue + ' ' + unit);
 
-        quant.val(min + ' ' + unit);
-
-        quantMinus.on('click', function () {
+        $(document).on('click', '.quantity-arrow-minus', function () {
             if (parseFloat(quant.val().replace(unit, '')) > min) {
                 var tempMin = +parseFloat(quant.val().replace(unit, '')) - step;
 
@@ -89,7 +88,7 @@ function quantity() {
                 }
             }
         });
-        quantPlus.on('click',  function () {
+        $(document).on('click', '.quantity-arrow-plus', function () {
             if (parseFloat(quant.val().replace(unit, '')) < max) {
                 var tempMax = +parseFloat(quant.val().replace(unit, '')) + step;
                 if (parseInt(min) === min){
@@ -102,7 +101,7 @@ function quantity() {
         });
     });
 
-}
+}*/
 
 $('.burger').on('click', function () {
     $('.mobile-menu').addClass('show');
@@ -149,7 +148,7 @@ $('.slider-thumb').slick({
 });
 
 $(document).ready(function() {
-    quantity();
+    //quantity();
 
     $('ul.tabs li').click(function(){
         var tab_id = $(this).attr('data-tab');
@@ -220,7 +219,7 @@ $(document).ready(function() {
 
     });
 
-    $('.modal-link').on('click', function () {
+  /*  $('.modal-link').on('click', function () {
         $('.show').removeClass('show');
        $($(this).attr('data-modal')).addClass('show');
     });
@@ -239,7 +238,7 @@ $(document).ready(function() {
         $('.modal.show').removeClass('show');
         $('#sign').addClass('show');
     });
-
+*/
     $('[type="tel"]').mask("+7 (000) 000-00-00");
     $('[name="dob"]').mask("00/00/0000");
 

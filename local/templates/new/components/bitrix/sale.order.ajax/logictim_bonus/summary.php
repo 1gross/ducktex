@@ -17,7 +17,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
         </div>
         <?if (isset($arResult["DISCOUNT_PRICE"]) && $arResult["DISCOUNT_PRICE"] > 0) {?>
             <div class="order-check-item">
-                <div class="order-check-title custom_t1"></div>
+                <div class="order-check-title custom_t1">Скидка:</div>
                 <div class="order-check-sum custom_t2"><?=$arResult["DISCOUNT_PRICE_FORMATED"]?></div>
             </div>
         <?}?>
@@ -28,7 +28,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
         <?if ($_REQUEST['USE_BONUS'] == 'on' && $arResult["MAX_BONUS"] > 0) {?>
             <div class="order-check-item">
                 <div class="order-check-title">Оплачено бонусом:</div>
-                <div class="order-check-sum"><?=$arResult["MAX_BONUS"]?> руб.</div>
+                <div class="order-check-sum"><?=round($arResult["MAX_BONUS"], 2)?> руб.</div>
             </div>
         <?}?>
         <div class="order-check-footer">
@@ -57,7 +57,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
                 <?if ($arResult['ADD_BONUS'] > 0 && $_REQUEST['USE_BONUS'] != 'on') {?>
                     <div class="order-check-item">
                         <div class="order-check-title">БОНУС ЗА ЗАКАЗ:</div>
-                        <div class="order-check-sum"><?=$arResult["ADD_BONUS"]?> руб.</div>
+                        <div class="order-check-sum"><?=round($arResult["ADD_BONUS"], 2)?> руб.</div>
                     </div>
                 <?}?>
             </div>

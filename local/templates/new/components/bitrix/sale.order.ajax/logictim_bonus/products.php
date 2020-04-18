@@ -65,10 +65,10 @@ Loc::loadMessages(__FILE__);
         </tbody>
     </table>
     <div class="basket-footer">
-        <div class="promocode">
-            <input type="text" placeholder="Введите код купона для скидки">
-            <input type="submit" value="применить" class="btn outline big">
-        </div>
+        <form class="promocode">
+            <input type="text" placeholder="Введите код купона для скидки" name="CODE">
+            <input type="submit" value="применить" class="btn outline big js-init-action" data-action="send_form" data-id="set_coupon">
+        </form>
         <div class="bonus">
             Бонус за заказ: <span><?=$arParams['ALL_BONUS']?> руб</span>
         </div>

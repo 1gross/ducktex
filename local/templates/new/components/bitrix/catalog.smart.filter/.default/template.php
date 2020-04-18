@@ -1,4 +1,5 @@
-<div class="filter-block">
+
+
     <div class="filter-item">
         <div class="filter-title">Наши предложения</div>
         <div class="filter-body">
@@ -24,53 +25,7 @@
 
         </div>
     </div>
-    <div class="filter-item">
-        <div class="filter-title">Каталог</div>
-        <div class="filter-body">
-            <div class="filter-body-item">
-                <div class="header open">
-                    <div class="title">Ткани</div>
-                </div>
-                <div class="body" style="display: block;">
-                    <ul>
-                        <li class="active">
-                            <a href="/">Замша</a>
-                        </li>
-                        <li>
-                            <a href="/">Замша Замша Замша</a>
-                        </li>
-                        <li>
-                            <a href="/">Замша Замша</a>
-                        </li>
-                        <li>
-                            <a href="/">Замша</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="filter-body-item">
-                <div class="header">
-                    <div class="title">Ткани</div>
-                </div>
-                <div class="body">
-                    <ul>
-                        <li>
-                            <a href="/">Замша</a>
-                        </li>
-                        <li>
-                            <a href="/">Замша Замша Замша</a>
-                        </li>
-                        <li>
-                            <a href="/">Замша Замша</a>
-                        </li>
-                        <li>
-                            <a href="/">Замша</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-        </div>
-    </div>
     <button class="btn outline small">Сбросить</button>
-</div>
+    <br>
+    <br>
