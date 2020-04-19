@@ -131,6 +131,7 @@
                 color: white;
                 &::after{
                   background: url('../img/arrow-pagination.svg') no-repeat 50% / 7px;
+                  transform: rotate(-90deg) scale(-1,-1);
                 }
               }
               &::after{
