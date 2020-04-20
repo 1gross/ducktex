@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Контакты");
+\Bitrix\Main\Page\Asset::getInstance()->addJs('/local/front/files/js/map.js');
 ?>
     <div class="page contacts">
         <div class="wrapper">
