@@ -73,10 +73,10 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         ]
                     );
                     $arResponse['code'] = $code;
-                    //$result = true;
-                    $result = $sms->send();
-                    if ($result->isSuccess()) {
-                    //if ($result) {
+                    $result = true;
+                    //$result = $sms->send();
+                    //if ($result->isSuccess()) {
+                    if ($result) {
                         $arResponse['result'] = true;
                         $arResponse['phone'] = $phoneNumber;
                         $arResponse['send_sms'] = true;

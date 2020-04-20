@@ -49,7 +49,7 @@ if (!function_exists("cmpBySort"))
     <section id="basket">
         <div class="wrapper">
             <div id="order_form_div" class="order-checkout">
-                <?if ($arResult["BASKET_ITEMS"]) {?>
+                <?if ($arResult["BASKET_ITEMS"] && !isset($_REQUEST['ORDER_ID'])) {?>
                 <div class="bx_order_make">
                     <?
                     if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
