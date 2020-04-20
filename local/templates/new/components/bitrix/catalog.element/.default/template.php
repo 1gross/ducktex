@@ -17,10 +17,8 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
             <div class="card-header">
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
-                    <a href="/" data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare js-init-action">
-                        <span><?=count(B24TechSiteHelper::getCompareList())?></span>
-                    </a>
-                    <button data-action="add_favorites" data-id="<?=$arResult['ID']?>" class="like js-init-action <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
+                    <button data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare js-init-action"></button>
+                    <button data-action="add_favorites" data-id="<?=$arResult['ID']?>" class="favorites like js-init-action <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
                 </div>
             </div>
             <div class="card-body">
