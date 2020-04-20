@@ -123,7 +123,7 @@ $(document).ready(function() {
                                      verificationForm.prepend('<input type="hidden" name="SIGN_DATA" value="'+response.sign_data+'">');
                                      phoneDesc.text(response.phone);
                                      
-                                     verificationForm.find('.digit').on('keypress', function () {
+                                     verificationForm.find('.digit').on('keydown', function () {
                                          let verificationCode = '';
                                          verificationForm.find('.digit').each(function () {
                                              verificationCode += $(this).val();
