@@ -7,7 +7,7 @@ $APPLICATION->SetTitle("Контакты");
             <h1><?=$APPLICATION->GetTitle()?></h1>
         </div>
         <div id="address">
-            <?$APPLICATION->IncludeComponent(
+            <?/*$APPLICATION->IncludeComponent(
                 "bitrix:map.google.view",
                 "map",
                 array(
@@ -31,7 +31,7 @@ $APPLICATION->SetTitle("Контакты");
                     )
                 ),
                 false
-            );?>
+            );*/?>
         </div>
         <div class="wrapper">
             <div class="contacts-block">
