@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Контакты");
+\Bitrix\Main\Page\Asset::getInstance()->addJs('https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=7586449d-5a86-43b5-8f8a-61552f466d81');
 \Bitrix\Main\Page\Asset::getInstance()->addJs('/local/front/files/js/map.js');
 ?>
     <div class="page contacts">
