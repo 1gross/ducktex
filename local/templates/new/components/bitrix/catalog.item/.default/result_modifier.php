@@ -15,6 +15,6 @@ if (isset($arResult['ITEM_PRICES'][0])) {
 if ($arResult['PREVIEW_PICTURE'] || $arResult['DETAIL_PICTURE']) {
     $arResult['PICTURE'] = $arResult['PREVIEW_PICTURE']['SRC'] ?: $arResult['DETAIL_PICTURE']['SRC'];
 } else {
-    $arResult['PICTURE'] = NO_IMAGE;
+    $arResult['PICTURE'] = '';
 }
 

@@ -5,7 +5,7 @@
 ?>
 
     <a href="<?=$arResult['DETAIL_PAGE_URL']?>" class="product-card-front">
-        <div class="image" style="background-image: url('<?=$arResult['PICTURE']?>');">
+        <div class="image <?=empty($arResult['PICTURE']) ? 'no-image' : ''?>" style="background-image: url('<?=$arResult['PICTURE']?>');">
 
         </div>
         <?if ($arResult['DISCOUNT']) {?>
