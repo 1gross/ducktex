@@ -134,8 +134,3 @@ $sectionListParams = array(
     );
     unset($basketAction);
 } ?>
-<? $APPLICATION->IncludeComponent(
-    'bitrix:catalog.recommended.products',
-    '',
-    $arParams
-) ?>

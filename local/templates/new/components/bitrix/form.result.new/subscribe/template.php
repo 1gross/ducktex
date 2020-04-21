@@ -12,7 +12,7 @@
                     <input class="email" type="email" placeholder="Ваш email" name="email_subscribe">
                     <input type="submit" class="btn blue js-init-action" data-action="send_form" data-id="subscribe" value="Подписаться" >
                 </div>
-                <div class="politic">Я согласен с условиями предоставления услуг и <a href="<?=SITE_DIR?>/help/polzovatelskoe-soglashenie/" target="_blank">политикой конфиденциальности</a></div>
+                <div class="politic">Нажимая на кнопку вы даете согласие на обработку персональных данных и соглашаетесь с <a href="<?=SITE_DIR?>/help/polzovatelskoe-soglashenie/" target="_blank">политикой конфиденциальности</a></div>
             </form>
             <div class="image">
                 <img src="/local/front/files/img/subscribe-img.png" alt="">

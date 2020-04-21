@@ -108,6 +108,7 @@ $(document).ready(function() {
                  if (response.result === true) {
                      switch (action) {
                          case 'send_form':
+                             dataLayer.push({'event': 'formsend'});
                              //location.reload();
                              switch (id) {
                                  case 'subscribe':

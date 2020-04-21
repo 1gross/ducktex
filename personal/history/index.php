@@ -2,7 +2,7 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
-$APPLICATION->SetTitle("Мои бонусы");?>
+$APPLICATION->SetTitle("История операций");?>
 
 <?$APPLICATION->IncludeComponent(
 	"logictim:bonus.history", 

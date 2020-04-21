@@ -83,7 +83,7 @@ if ($isFilter)
 ?>
 <section class="page products">
     <div class="wrapper">
-        <h1><?=$APPLICATION->GetTitle(false)?></h1>
+        <h1><?=$APPLICATION->ShowTitle(false)?></h1>
         <div class="products-block">
             <div class="filter-block">
                 <?

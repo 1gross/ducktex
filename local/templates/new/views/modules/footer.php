@@ -2,8 +2,15 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
-use Bitrix\Main\Localization\Loc;
+
+use Bitrix\Main\IO\File,
+    Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
+
+if (file_exists($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php")) {
+    $phonePath = File::getFileContents($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php");
+    $phonePath = preg_replace('/[^0-9]/', '', $phonePath);
+}
 ?>
 <footer id="footer">
     <div class="wrapper">
@@ -54,7 +61,7 @@ Loc::loadMessages(__FILE__);
             </div>
             <div class="item">
                 <div class="title"><?=Loc::getMessage('MENU_TITLE_CONTACT')?></div>
-                <a href="tel:<?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/phone.php", [], ["SHOW_BORDER" => false,"MODE" => "text"]);?>"
+                <a href="tel:<?= $phonePath ?: ''?>"
                    class="phone"><?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/phone.php", [], ["MODE" => "text"]);?></a>
                 <a href="mailto:<?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/email.php", [], ["SHOW_BORDER" => false,"MODE" => "text"]);?>"
                    class="email"><?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/email.php", [], ["MODE" => "text"]);?></a>

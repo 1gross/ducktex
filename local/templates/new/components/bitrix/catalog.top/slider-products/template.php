@@ -37,9 +37,9 @@
                     </div>
                 <?}?>
             </div>
-            <div class="center" style="display: none">
-                <a href="<>/" class="btn blue">
-                    Смотреть все предложения (42)
+            <div class="center">
+                <a href="/catalog/" class="btn blue">
+                    Смотреть все предложения (<?= count($arResult['ITEMS'])?>)
                 </a>
             </div>
         </div>
