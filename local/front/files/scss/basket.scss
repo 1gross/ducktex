@@ -119,6 +119,10 @@
       text-transform: uppercase;
     }
     .product-price, .product-final-price{
+      width: 150px;
+      @media screen and (max-width: $md-max){
+          width: auto;
+      }
       @media screen and (max-width: $sm-max){
         display: flex;
         justify-content: flex-end;

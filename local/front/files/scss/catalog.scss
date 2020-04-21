@@ -113,14 +113,14 @@
             background-color: white;
             margin-bottom: 15px;
             &:last-child{
-              margin-bottom: 0;
+              margin-bottom: -15px;
             }
             .header{
               display: flex;
               justify-content: space-between;
               align-items: center;
               padding: 0 15px;
-              margin: -15px;
+              margin: -15px -15px 0;
               cursor: pointer;
               height: 30px;
               background-color: #f6f6f6;
@@ -146,7 +146,7 @@
             }
             .body{
               padding: 15px;
-              margin: 15px -15px -15px;
+
               display: none;
               ul{
                 margin: 0;
