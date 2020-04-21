@@ -77,8 +77,12 @@ if (!function_exists("PrintPropsForm"))
                                 <?
                                 break;
                             case 'TEXT':
+                                $type = 'text';
+                                if (strpos($arProperties['CODE'], 'PHONE') !== false) {
+                                    $type = 'tel';
+                                }
                                 ?>
-                                <input type="text"
+                                <input type="<?=$type?>"
                                        size="<?=$arProperties["SIZE1"]?>"
                                        value="<?=$arProperties["VALUE"]?>"
                                        name="<?=$arProperties["FIELD_NAME"]?>"

@@ -175,6 +175,19 @@ $(document).ready(function() {
                              countCompare.text(0);
                              break;
                          case 'update_basket':
+                             let elm = $this.closest('.quantity-block');
+                             let time = (new Date()).getTime();
+                             let delay = 1000; /* Количество мксек. для определения окончания печати */
+
+                             elm.attr({'data-time': time});
+                             setTimeout(function () {
+                                 let oldtime = parseFloat(elm.attr('data-time'));
+                                 if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
+                                     submitForm();
+                                     elm.removeAttr('data-time');
+                                 }
+                             }, delay);
+                             break;
                          case 'remove_basket':
                              submitForm();
                              break;
@@ -220,4 +233,8 @@ $(document).ready(function() {
       }
       return false;
    });
+});
+
+$('.js-init-fast__search').live('keyup', function (e) {
+
 });

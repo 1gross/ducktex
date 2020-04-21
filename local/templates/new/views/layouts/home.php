@@ -6,8 +6,8 @@
 <?global $sectionsFilter;
 $sectionsFilter = array('UF_ON_HOME' => '1');
 $APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list", 
-	"home", 
+	"bitrix:catalog.section.list",
+	"home",
 	array(
 		"COMPONENT_TEMPLATE" => "home",
 		"IBLOCK_TYPE" => "aspro_mshop_catalog",
@@ -161,7 +161,8 @@ $APPLICATION->IncludeComponent(
 		),
 		"DISPLAY_COMPARE" => "N",
 		"COMPATIBLE_MODE" => "Y",
-		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}"
+		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
+        "BTN_LINK" => "/catalog/stocks.php",
 	),
 	false
 );?>
@@ -232,7 +233,8 @@ $APPLICATION->IncludeComponent(
         "OFFERS_CART_PROPERTIES" => array(
         ),
         "DISPLAY_COMPARE" => "N",
-        "COMPATIBLE_MODE" => "Y"
+        "COMPATIBLE_MODE" => "Y",
+        "BTN_LINK" => "/catalog/news.php",
     ),
     false
 );?>

@@ -10,7 +10,7 @@ if ($arUser['UF_TMP_USER'] == 'Y') {
     }
 }
 
-if ($arResult['BASKET_ITEMS']) {
+/*if ($arResult['BASKET_ITEMS']) {
     if (!$USER->IsAuthorized()) {
         $login = 'tmp_'.rand(1000000000, 9999999999).'@email'.rand(10, 99).'.com';
         $arResult = $USER->Register($login, "", "", "pass_".$login, "pass_".$login, $login);
@@ -23,4 +23,4 @@ if ($arResult['BASKET_ITEMS']) {
             $USER->Authorize($arResult["ID"]);
         }
     }
-}
+}*/

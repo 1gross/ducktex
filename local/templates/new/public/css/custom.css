@@ -26,3 +26,30 @@ input.error {
     color: #414141;
 }
 
+.breadcrumbs .personal-block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.breadcrumbs .personal-block .item::after {
+    content: '/';
+    margin: 0 5px;
+}
+.breadcrumbs .personal-block .item {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+}
+.breadcrumbs .personal-block .item:last-child::after {
+    content: '';
+}
+.breadcrumbs .personal-block a {
+    color: black;
+    text-decoration: none;
+}
+.breadcrumbs .personal-block a:hover,
+.breadcrumbs .personal-block a:focus,
+.breadcrumbs .personal-block a:active {
+    text-decoration: underline;
+}
