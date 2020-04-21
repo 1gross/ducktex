@@ -10,6 +10,18 @@ Loc::loadMessages(__FILE__);
     <div class="personal-info">
         <h2><?=$APPLICATION->GetTitle()?></h2>
         <div class="personal-info-item">
+            <label class="radio-box">
+                <input type="radio" name="type" checked="checked">
+                <span class="checkmark"></span>
+                Физическое лицо
+            </label>
+            <label class="radio-box">
+                <input type="radio" name="type">
+                <span class="checkmark"></span>
+                Юридическое лицо
+            </label>
+        </div>
+        <div class="personal-info-item">
             <span class="title"><?=Loc::getMessage('PERSONAL_FULL_NAME_TITLE')?></span>
             <div class="text"><?=$arResult['arUser']['FULL_NAME'] ?: Loc::getMessage('NOT_VALUE')?></div>
         </div>

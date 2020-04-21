@@ -234,7 +234,3 @@ $(document).ready(function() {
       return false;
    });
 });
-
-$('.js-init-fast__search').live('keyup', function (e) {
-
-});

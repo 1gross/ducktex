@@ -82,7 +82,8 @@ if (!function_exists("PrintPropsForm"))
                                     $type = 'tel';
                                 }
                                 ?>
-                                <input type="<?=$type?>"
+                                <input class="<?=$arProperties['REQUIRED'] == 'Y' ? 'required' : ''?>"
+                                       type="<?=$type?>"
                                        size="<?=$arProperties["SIZE1"]?>"
                                        value="<?=$arProperties["VALUE"]?>"
                                        name="<?=$arProperties["FIELD_NAME"]?>"

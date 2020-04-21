@@ -444,3 +444,30 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 	}
 
 }
+
+$(window).load(function () {
+	checkRequiredOrderFields();
+	$('.required').eq(0).change();
+});
+
+function checkRequiredOrderFields() {
+	let order = $('.order-block'),
+		requiredInput = $('.required'),
+		orderSubmit = $('.order-submit');
+	if (order.length > 0) {
+		requiredInput.change(function () {
+			let isRequiredFill = true;
+			requiredInput.each(function () {
+				let value = $(this).val();
+				if (value.length === 0) {
+					isRequiredFill = false;
+				}
+			});
+			if (isRequiredFill) {
+				orderSubmit.removeAttr('disabled');
+			} else {
+				orderSubmit.attr('disabled', 'disabled');
+			}
+		});
+	}
+}

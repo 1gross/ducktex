@@ -61,7 +61,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
                     </div>
                 <?}?>
             </div>
-            <button class="btn blue"  onclick="submitForm('Y'); return false;" id="ORDER_CONFIRM_BUTTON" >оформить заказ</button>
+            <button class="btn blue order-submit"  onclick="submitForm('Y'); return false;" id="ORDER_CONFIRM_BUTTON" disabled>оформить заказ</button>
             <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c <a href="/help/polzovatelskoe-soglashenie/">политикой конфиденциальности</a></div>
         </div>
     </div>
