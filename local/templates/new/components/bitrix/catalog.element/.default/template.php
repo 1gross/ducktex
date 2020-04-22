@@ -174,33 +174,36 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                     <?if ($arParams['PROPERTY_CODE']) {?>
                         <div class="props">
                             <?foreach ($arParams['PROPERTY_CODE'] as $CODE) {
-                                $arProp = $arResult['PROPERTIES'][$CODE];
-                                $isPropShow = false;
-                                if (strlen($arProp['VALUE']) > 0) {
-                                    switch ($arProp['PROPERTY_TYPE']) {
+
+                                $arProperty = $arResult['PROPERTIES'][$CODE];
+
+                                if (!empty($arProperty['VALUE'])) {
+                                    switch ($arProperty['PROPERTY_TYPE']) {
                                         case 'E':
-                                            $arEl = CIBlockElement::GetByID($arProp['VALUE'])->Fetch();
+                                            $arEl = CIBlockElement::GetByID($arProperty['VALUE'])->Fetch();
                                             if ($arEl['NAME']) {
-                                                $arProp['VALUE'] = $arEl['NAME'];
-                                                $isPropShow = true;
+                                                $arProperty['VALUE'] = $arEl['NAME'];
                                             }
                                             break;
                                         case 'S':
-                                            if ($arProp['USER_TYPE']) {
-                                                $vl = GetPropertyForHlBlock($arProp['USER_TYPE_SETTINGS']['TABLE_NAME'], $arProp['VALUE']);
+                                            if ($arProperty['USER_TYPE']) {
+                                                $vl = GetPropertyForHlBlock($arProperty['USER_TYPE_SETTINGS']['TABLE_NAME'], $arProperty['VALUE']);
                                                 if ($vl['UF_NAME']) {
-                                                    $arProp['VALUE'] = $vl['UF_NAME'];
-                                                    $isPropShow = true;
+                                                    $arProperty['VALUE'] = $vl['UF_NAME'];
+                                                } else {
+                                                    $arProperty['VALUE'] = '';
                                                 }
                                             } else {
-                                                $isPropShow = true;
+                                                if (is_array($arProperty['VALUE'])) {
+                                                    $arProperty['VALUE'] = implode(', ', $arProperty['VALUE']);
+                                                }
                                             }
                                             break;
                                     }
-                                    if ($isPropShow) {?>
+                                    if ($arProperty['VALUE']) {?>
                                         <div class="props-item">
-                                            <div class="name"><?=$arProp['NAME']?>:</div>
-                                            <div class="value"><?=$arProp['VALUE']?></div>
+                                            <div class="name"><?=$arProperty['NAME']?>:</div>
+                                            <div class="value"><?=$arProperty['VALUE']?></div>
                                         </div>
                                     <?} ?>
                                 <?}?>

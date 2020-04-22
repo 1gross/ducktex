@@ -43,8 +43,11 @@ $APPLICATION->SetTitle("Каталог");?>
 		"DETAIL_PRODUCT_INFO_BLOCK_ORDER" => "sku,props",
 		"DETAIL_PRODUCT_PAY_BLOCK_ORDER" => "rating,price,priceRanges,quantityLimit,quantity,buttons",
 		"DETAIL_PROPERTY_CODE" => array(
-			0 => "",
-			1 => "",
+			0 => "COLOR_REF2",
+			1 => "WIDTH",
+			2 => "DENSITY",
+			3 => "COMPOSITION",
+			4 => "",
 		),
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DETAIL_SET_VIEWED_IN_COMPONENT" => "N",
