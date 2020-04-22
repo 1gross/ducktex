@@ -16,7 +16,7 @@ $APPLICATION->IncludeComponent(
 		"SECTION_CODE" => "",
 		"COUNT_ELEMENTS" => "N",
 		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
-		"TOP_DEPTH" => "1",
+		"TOP_DEPTH" => "9",
 		"SECTION_FIELDS" => array(
 			0 => "",
 			1 => "",
