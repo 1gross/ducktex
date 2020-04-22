@@ -166,7 +166,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             ),
                             array(
                                 "USER_ID" => $USER->GetID(),
-                                "PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'] ?: 1
+                                "PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID']
                             )
                         );
                         $arUserProfile = $db_sales->Fetch();
@@ -178,7 +178,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             $arFields = array(
                                 "NAME" => $arUserOrderProps['FIO'] ?: 'Профиль пользователя ID: '.$USER->GetID(),
                                 "USER_ID" => $USER->GetID(),
-                                "PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'] ?: 1
+                                "PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID']
                             );
                             $USER_PROPS_ID = CSaleOrderUserProps::Add($arFields);
                         }
@@ -189,7 +189,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                     array(),
                                     array(
                                         'USER_PROPS_ID' => $USER_PROPS_ID,
-                                        "PROP_PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'] ?: 1,
+                                        "PROP_PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'],
                                         'PROP_CODE' => $CODE
                                     ));
                                 $PROP = $rs->Fetch();
@@ -210,7 +210,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                     $rs = CSaleOrderUserPropsValue::GetList(
                                         array(),
                                         array(
-                                            "PROP_PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'] ?: 1,
+                                            "PROP_PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'],
                                             'PROP_CODE' => $CODE
                                         ));
                                     $PROP = $rs->Fetch();

@@ -39,10 +39,10 @@ foreach ($arTabs as $typeID => $arProfile) {
                 </label>
             </div>
         </div>
-        <?foreach ($arTabs as $typeID => $arProfile) {
-            $arProps = $arProfile['ITEMS'];
+        <?
+            $arProps = $arTabs[1]['ITEMS'];
             ?>
-            <div class="tabs_content <?=$typeID == 1 ? 'active' : ''?>" data-user-props-id="<?=$arProfile['ID']?>" data-type-id="<?=$typeID?>">
+            <div class="tabs_content active" data-type-id="1">
                 <div class="personal-info-item">
                     <span class="title"><?=Loc::getMessage('PERSONAL_FULL_NAME_TITLE')?></span>
                     <div class="text"><?=isset($arProps['FIO']['VALUE']) && strlen($arProps['FIO']['VALUE']) > 0 ? $arProps['FIO']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
@@ -68,7 +68,36 @@ foreach ($arTabs as $typeID => $arProfile) {
                     <div class="text"><?=isset($arProps['ADDRESS']['VALUE']) && strlen($arProps['ADDRESS']['VALUE']) > 0 ? $arProps['ADDRESS']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
                 </div>
             </div>
-        <?}?>
+        <?
+        unset($arProps);
+        $arProps = $arTabs[2]['ITEMS'];
+        ?>
+        <div class="tabs_content " data-type-id="2">
+            <div class="personal-info-item">
+                <span class="title">ИНН</span>
+                <div class="text"><?=isset($arProps['INN']['VALUE']) && strlen($arProps['INN']['VALUE']) > 0 ? $arProps['INN']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+            </div>
+            <div class="personal-info-item">
+                <span class="title">КПП</span>
+                <div class="text"><?=isset($arProps['KPP']['VALUE']) && strlen($arProps['KPP']['VALUE']) > 0 ? $arProps['KPP']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+            </div>
+            <div class="personal-info-item">
+                <span class="title">Контактное лицо</span>
+                <div class="text"><?=isset($arProps['CONTACT_PERSON']['VALUE']) && strlen($arProps['CONTACT_PERSON']['VALUE']) > 0 ? $arProps['CONTACT_PERSON']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+            </div>
+            <div class="personal-info-item">
+                <span class="title"><?=Loc::getMessage('PERSONAL_EMAIL_TITLE')?></span>
+                <div class="text"><?=isset($arProps['EMAIL']['VALUE']) && strlen($arProps['EMAIL']['VALUE']) > 0 ? $arProps['EMAIL']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+            </div>
+            <div class="personal-info-item">
+                <span class="title"><?=Loc::getMessage('PERSONAL_PHONE_TITLE')?></span>
+                <div class="text"><?=isset($arProps['PHONE']['VALUE']) && strlen($arProps['PHONE']['VALUE']) > 0 ? $arProps['PHONE']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+            </div>
+            <div class="personal-info-item">
+                <span class="title">Адрес</span>
+                <div class="text"><?=isset($arProps['ADDRESS']['VALUE']) && strlen($arProps['ADDRESS']['VALUE']) > 0 ? $arProps['ADDRESS']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+            </div>
+        </div>
         <div class="buttons-group">
             <button class="btn outline modal-link js-init-action" data-action="show_modal" data-modal="#edit-personal-info"><?=Loc::getMessage('EDIT_BUTTON_TEXT')?></button>
             <button class="btn simple modal-link js-init-action" data-action="show_modal" data-modal="#delete-profile"><?=Loc::getMessage('DELETE_BUTTON_TEXT')?></button>
@@ -141,14 +170,14 @@ foreach ($arTabs as $typeID => $arProfile) {
                     <input type="hidden" name="OLD_PHONE" value="<?=isset($arProps['PHONE']) ? $arProps['PHONE']['VALUE'] : ''?>">
 
                     <input type="text"
-                           value="<?=isset($arProps['FIO']) ? $arProps['FIO']['VALUE'] : ''?>"
-                           name="FIO"
-                           placeholder="ФИО">
+                           value="<?=isset($arProps['INN']) ? $arProps['INN']['VALUE'] : ''?>"
+                           name="INN"
+                           placeholder="ИНН">
 
                     <input type="text"
-                           value="<?=$arResult['arUser']['PERSONAL_BIRTHDAY'] ?: ''?>"
-                           name="PERSONAL_BIRTHDAY"
-                           placeholder="Дата рождения (дд/мм/г)">
+                           value="<?=isset($arProps['KPP']) ? $arProps['KPP']['VALUE'] : ''?>"
+                           name="KPP"
+                           placeholder="КПП">
 
                     <input type="tel"
                            value="<?=isset($arProps['PHONE']) ? $arProps['PHONE']['VALUE'] : ''?>"
@@ -161,14 +190,15 @@ foreach ($arTabs as $typeID => $arProfile) {
                            placeholder="Email">
 
                     <input type="text"
-                           value="<?=$arResult['arUser']['UF_INSTAGRAM'] ?: ''?>"
-                           name="UF_INSTAGRAM"
+                           value="<?=isset($arProps['CONTACT_PERSON']) ? $arProps['CONTACT_PERSON']['VALUE'] : ''?>"
+                           name="CONTACT_PERSON"
                            placeholder="Инстаграм">
 
                     <input type="text"
                            value="<?=isset($arProps['ADDRESS']) ? $arProps['ADDRESS']['VALUE'] : ''?>"
                            name="ADDRESS"
                            placeholder="Адрес">
+
 
                     <input type="submit" class="btn blue js-init-action" data-action="send_form" data-id="profile_edit" value="сохранить">
                 </form>
