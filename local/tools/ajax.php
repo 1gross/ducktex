@@ -76,7 +76,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     //$result = true;
                     $result = $sms->send();
                     if ($result->isSuccess()) {
-                    //if ($result) {
+                   // if ($result) {
                         $arResponse['result'] = true;
                         $arResponse['phone'] = $phoneNumber;
                         $arResponse['send_sms'] = true;
@@ -94,7 +94,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA'])) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
-                        $verificationCode = implode('', $arFields['CODE']);
+                        $verificationCode = $arFields['CODE'];
                         if (strlen($verificationCode) == 6) {
                             $userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
                             if ($userId) {

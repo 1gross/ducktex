@@ -11,7 +11,7 @@
             <?if ($arResult['SEARCH']) {
                 $arProducts = array();
                 foreach ($arResult['SEARCH'] as $arItem) {
-                    $arProducts[$arItem['ID']] = $arItem['ID'];
+                    $arProducts[$arItem['ITEM_ID']] = $arItem['ITEM_ID'];
                 }
                 ?>
                 <div class="search-header">

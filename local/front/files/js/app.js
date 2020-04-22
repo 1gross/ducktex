@@ -134,17 +134,37 @@ $(document).ready(function() {
                                      let verificationModal = $('#code'),
                                          verificationForm = verificationModal.find('form'),
                                          phoneDesc = verificationForm.find('.modal-desc__phone');
+
                                      verificationForm.prepend('<input type="hidden" name="SIGN_DATA" value="'+response.sign_data+'">');
                                      phoneDesc.text(response.phone);
-                                     
-                                     verificationForm.find('.digit').on('keyup', function () {
-                                         let verificationCode = '';
-                                         verificationForm.find('.digit').each(function () {
-                                             verificationCode += $(this).val();
 
-                                         });
-                                         console.log(verificationCode);
+                                     verificationForm.find('.digit').on('keyup', function () {
+                                         let errorBlock = verificationForm.find('.error');
+                                         if (errorBlock.length > 0) {
+                                             verificationForm.find('.digit').each(function () {
+                                                 if ($(this).attr('data-id') === '1') {
+                                                     $(this).focus();
+                                                 }
+                                                 $(this).val('');
+                                             });
+                                             errorBlock.removeClass('error');
+                                         }
+
+                                         let verificationCode = '',
+                                             value = $(this).val().replace(/[^\d]/g, '');
+
+                                         if (value.length > 0 && parseInt(value) > 0) {
+                                             verificationForm.find('.digit').each(function () {
+                                                 verificationCode += $(this).val();
+                                             });
+                                             if (verificationCode.length < 6) {
+                                                 $(this).next().focus();
+                                             }
+                                         }
+
                                          if (verificationCode.length === 6) {
+                                             verificationForm.find('[name="CODE"]').val(verificationCode);
+                                             verificationForm.addClass('loading');
                                              $.ajax({
                                                  url: url,
                                                  dataType: 'json',
@@ -154,17 +174,16 @@ $(document).ready(function() {
                                                      data: verificationForm.serialize(),
                                                  },
                                                  success: function (res) {
+                                                     verificationForm.removeClass('loading');
                                                      if (typeof res !== 'undefined') {
                                                          if (res.result === true) {
                                                              $.arcticmodal('close');
                                                              setTimeout(function () {
-                                                                 location.reload();
+                                                                 window.location.reload();
                                                              }, 300);
                                                          } else {
                                                              if (typeof res.message !== 'undefined') {
-                                                                 $.each(res.message, function (code, text) {
-                                                                     $('[name="'+code+'"]').addClass('error');
-                                                                 });
+                                                                 verificationForm.find('.sms-code').addClass('error');
                                                              }
                                                          }
                                                      }
@@ -173,7 +192,20 @@ $(document).ready(function() {
                                          }
                                      });
 
-                                     verificationModal.arcticmodal();
+                                     verificationModal.arcticmodal({
+                                         beforeOpen: function(data, modalFrom) {
+                                             let errorBlock = modalFrom.find('.error');
+                                             if (errorBlock.length > 0) {
+                                                 modalFrom.find('.digit').each(function () {
+                                                     if ($(this).attr('data-id') === '1') {
+                                                         $(this).focus();
+                                                     }
+                                                     $(this).val('');
+                                                 });
+                                                 errorBlock.removeClass('error');
+                                             }
+                                         }
+                                     });
                                      break;
                                  case 'profile_edit':
                                      $.arcticmodal('close');
@@ -228,7 +260,7 @@ $(document).ready(function() {
                      }
 
                      if (refresh === 'true') {
-                         window.location.href = '/personal/';
+                         window.location.reload();
                      }
                  } else {
                      switch (action) {
