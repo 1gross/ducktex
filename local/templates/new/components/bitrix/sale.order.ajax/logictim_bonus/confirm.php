@@ -1,5 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $APPLICATION->SetTitle('Спасибо за заказ!');
+$APPLICATION->AddChainItem('Спасибо за заказ!', $APPLICATION->GetCurPage(false),)
 
 ?>
     <section class="order-complete">
