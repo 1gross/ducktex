@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $APPLICATION->SetTitle('Спасибо за заказ!');
-dump($arResult["ORDER"]);
+
 ?>
     <section class="order-complete">
         <div class="wrapper">
