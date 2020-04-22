@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Поиск");
+$APPLICATION->AddChainItem('Поиск', '/search/')
 ?>
 
 <?$APPLICATION->IncludeComponent(
@@ -22,7 +23,7 @@ $APPLICATION->SetTitle("Поиск");
 		),
 		"SHOW_WHERE" => "N",
 		"SHOW_WHEN" => "N",
-		"PAGE_RESULT_COUNT" => "25",
+		"PAGE_RESULT_COUNT" => "999",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_JUMP" => "N",
 		"AJAX_OPTION_STYLE" => "N",

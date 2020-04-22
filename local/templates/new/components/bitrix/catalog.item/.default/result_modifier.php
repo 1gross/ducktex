@@ -17,4 +17,14 @@ if ($arResult['PREVIEW_PICTURE'] || $arResult['DETAIL_PICTURE']) {
 } else {
     $arResult['PICTURE'] = '';
 }
-
+if (is_array($arParams['PROPERTY_CODE']) && count($arParams['PROPERTY_CODE']) > 0) {
+    $arResult['SHOW_PROPERTIES'] = $arParams['PROPERTY_CODE'];
+} else {
+    $arResult['SHOW_PROPERTIES'] = array(
+        "CML2_ARTICLE",
+        "COLOR_REF2",
+        "WIDTH",
+        "DENSITY",
+        "COMPOSITION",
+    );
+}

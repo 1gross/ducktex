@@ -1,4 +1,6 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+$APPLICATION->SetTitle('Спасибо за заказ!');
+?>
     <section class="order-complete">
         <div class="wrapper">
             <h1>ЗАКАЗ СФОРМИРОВАН №<?=$arResult["ORDER"]["ACCOUNT_NUMBER"]?></h1>

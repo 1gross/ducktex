@@ -37,32 +37,43 @@
         </div>
     </a>
     <div class="hover">
-        <?if ($arParams['PROPERTY_CODE']) {?>
+
             <?
             $i=0;
-            foreach ($arParams['PROPERTY_CODE'] as $CODE) {?>
-                <?if (isset($arResult['PROPERTIES'][$CODE]) && strlen($arResult['PROPERTIES'][$CODE]['VALUE'] > 0) && $i < 3) {?>
-                    <?$arProp = $arResult['PROPERTIES'][$CODE];?>
-                    <div class="hover-item">
-                        <span class="hover-item-name"><?=$arProp['NAME']?>:</span>
-                        <?switch ($arProp['PROPERTY_TYPE']) {
-                            case 'S':
-                                ?>
-                                <span class="hover-item-value"><?=is_array($arProp['VALUE']) ? implode(', ', $arProp['VALUE']) : $arProp['VALUE']?></span>
-                                <?
-                                break;
-                            case 'E':
-                                $arProp['VALUE'] = CIBlockElement::GetByID($arProp['VALUE'])->Fetch()['NAME'];
-                                ?>
-                                <span class="hover-item-value"><?=is_array($arProp['VALUE']) ? implode(', ', $arProp['VALUE']) : $arProp['VALUE']?></span>
-                                <?
-                                break;
-                        } ?>
-                    </div>
-                    <?$i++;?>
+            foreach ($arResult['SHOW_PROPERTIES'] as $CODE) {?>
+                <?if (isset($arResult['PROPERTIES'][$CODE]) && !empty($arResult['PROPERTIES'][$CODE]['VALUE']) && $i < 3) {?>
+                    <?$arProperty = $arResult['PROPERTIES'][$CODE];?>
+                    <?if (!empty($arProperty['VALUE'])) {?>
+                        <div class="hover-item">
+                            <span class="hover-item-name"><?=$arProperty['NAME']?>:</span>
+                            <?switch ($arProperty['PROPERTY_TYPE']) {
+                                case 'S':
+                                    if ($arProperty['USER_TYPE']) {
+                                        $vl = GetPropertyForHlBlock($arProperty['USER_TYPE_SETTINGS']['TABLE_NAME'], $arProperty['VALUE']);
+                                        if ($vl['UF_NAME']) {
+                                            $arProperty['VALUE'] = $vl['UF_NAME'];
+                                        } else {
+                                            $arProperty['VALUE'] = '';
+                                        }
+                                    } else {
+                                        if (is_array($arProperty['VALUE'])) {
+                                            $arProperty['VALUE'] = implode(', ', $arProperty['VALUE']);
+                                        }
+                                    }
+                                    break;
+                                case 'E':
+                                    $arProperty['VALUE'] = CIBlockElement::GetByID($arProperty['VALUE'])->Fetch()['NAME'];
+                                    break;
+                            } ?>
+                            <?if ($arProperty['VALUE']) {?>
+                                <span class="hover-item-value"><?=$arProperty['VALUE']?></span>
+                            <?}?>
+                        </div>
+                        <?$i++;?>
+                    <?}?>
                 <?}?>
             <?}?>
-        <?}?>
+
         <a href="<?=$arResult['DETAIL_PAGE_URL']?>" class="btn outline">подробнее</a>
     </div>
     <div class="buttons-block">
