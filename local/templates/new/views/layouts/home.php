@@ -117,11 +117,11 @@ $APPLICATION->IncludeComponent(
 		"ELEMENT_COUNT" => "9",
 		"LINE_ELEMENT_COUNT" => "3",
 		"PROPERTY_CODE" => array(
-			0 => "BRAND",
-			1 => "VES_ATTR_S",
-			2 => "CML2_ARTICLE",
-			3 => "CML2_MANUFACTURER",
-			4 => "",
+			5 => "CML2_ARTICLE",
+            0 => "COLOR_REF2",
+            1 => "WIDTH",
+            3 => "DENSITY",
+            4 => "COMPOSITION",
 		),
 		"OFFERS_FIELD_CODE" => array(
 			0 => "",

@@ -66,12 +66,24 @@ Loc::loadMessages(__FILE__);
     </tbody>
 </table>
 <div class="basket-footer">
+    <?
+    $setCoupon = false;
+    if (isset($arResult['COUPON_LIST'][0]['DISCOUNT_NAME']) && $arResult['COUPON_LIST'][0]['JS_STATUS'] == 'APPLYED') {
+        $setCoupon = true;
+    }?>
     <div class="promocode">
-        <input type="text" placeholder="Введите код купона для скидки" name="coupon_code">
-        <button class="btn outline big js-init-action" data-action="send_form" data-id="set_coupon">применить</button>
+        <input type="text"
+               placeholder="Введите код купона для скидки"
+               name="coupon_code"
+            <?if ($setCoupon) {?>
+                disabled="disabled"
+                value='Купон "<?=$arResult['COUPON_LIST'][0]['COUPON']?>" применен'
+            <?}?>
+        >
+        <button class="btn outline big js-init-action" data-action="send_form" <?=$setCoupon ? 'disabled="disabled"' : ''?> data-id="set_coupon">применить</button>
     </div>
     <div class="bonus">
-        Бонус за заказ: <span><?=$arParams['ALL_BONUS']?> руб</span>
+        Бонус за заказ: <span><?=$arParams['ALL_BONUS'] ?: 0?> руб</span>
     </div>
     <div class="final-price">
         ИТОГО: <span><?=$arResult['allSum_FORMATED']?></span>
