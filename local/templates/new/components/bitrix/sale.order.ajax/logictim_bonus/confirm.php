@@ -1,5 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $APPLICATION->SetTitle('Спасибо за заказ!');
+dump($arResult["ORDER"]);
 ?>
     <section class="order-complete">
         <div class="wrapper">
@@ -22,9 +23,10 @@ $APPLICATION->SetTitle('Спасибо за заказ!');
                         <td>№<?=$arResult["ORDER"]["ACCOUNT_NUMBER"]?></td>
                         <td><?=explode(' ', $arResult["ORDER"]["DATE_INSERT"])[0]?></td>
                         <td><?=explode(' ', $arResult["ORDER"]["DATE_INSERT"])[1]?></td>
-                        <td>принят, ожидается оплата</td>
+                        <td><?=$arResult["ORDER"]['PAYED'] == 'Y' ? 'заказ оплачен' : 'принят, ожидается оплата'?></td>
+                        <?dump($arResult["PAY_SYSTEM"])?>
                         <?if (!empty($arResult["PAY_SYSTEM"])) {?>
-                            <td>Картой онлайн</td>
+                            <td><?=$arResult["PAY_SYSTEM"]['NAME']?></td>
                         <?}?>
                     </tr>
                     </tbody>
