@@ -251,6 +251,24 @@ $(document).ready(function() {
         $(this).siblings('.body').slideToggle();
     });
 
+    var tempHeight = {};
+    var productList = $('.product-compare');
+    productList.each(function () {
+        $(this).find('.product-compare-item').each(function (i) {
+            if (typeof tempHeight[i] === 'undefined' || $(this).innerHeight() > tempHeight[i]) {
+                tempHeight[i] = $(this).innerHeight();
+            }
+        });
+    });
+    productList.each(function () {
+        $(this).find('.product-compare-item').each(function (i) {
+            $(this).height(tempHeight[i]);
+        });
+    });
+    $('.compare-name-list .compare-name-item').each(function (i) {
+        $(this).height(tempHeight[i]);
+    });
+
 
 });
 

@@ -1139,7 +1139,8 @@ section.with-sea .wrapper::before {
       #footer .footer-block .item ul {
         list-style: none;
         margin: 0;
-        padding: 0; }
+        padding: 0;
+        white-space: nowrap; }
         #footer .footer-block .item ul li {
           margin-bottom: 20px; }
           #footer .footer-block .item ul li:last-child {
