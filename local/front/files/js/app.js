@@ -1,4 +1,16 @@
 $(document).ready(function() {
+    //filter
+    let filterApply = $('.js-init-filter_apply');
+
+    filterApply.on('click', function (e) {
+        e.preventDefault();
+        $(this).closest('form').append('<input type="hidden" name="set_filter" value="y">').submit();
+        return false;
+    });
+    //function detail product page
+    $('[data-fancybox="gallery"]').fancybox();
+
+    //function API
    let url = '/local/tools/ajax.php',
        countBasket = $('.basket span'),
        countCompare = $('.compare span');
@@ -35,6 +47,7 @@ $(document).ready(function() {
               if (typeof quantity !== 'undefined') {
                   data.quantity = quantity;
               }
+              $this.addClass('loader');
               send = true;
               break;
           case 'update_basket':
@@ -108,11 +121,11 @@ $(document).ready(function() {
                  if (response.result === true) {
                      switch (action) {
                          case 'send_form':
-                             dataLayer.push({'event': 'formsend'});
+                             //dataLayer.push({'event': 'formsend'});
                              //location.reload();
                              switch (id) {
                                  case 'subscribe':
-                                     alert('Вы успрешно подписалиь, спасибо!');
+                                     alert('Подписка произведена успешно, спасибо!');
                                      break;
                                  case 'set_coupon':
                                      submitForm();
@@ -162,6 +175,13 @@ $(document).ready(function() {
 
                                      verificationModal.arcticmodal();
                                      break;
+                                 case 'profile_edit':
+                                     $.arcticmodal('close');
+                                     setTimeout(function () {
+                                         location.reload();
+                                     }, 300);
+
+                                     break;
 
                              }
                              break;
@@ -169,7 +189,7 @@ $(document).ready(function() {
                              if (typeof response.basket !== 'undefined') {
                                  countBasket.text(response.basket.count_items);
                              }
-                             $this.text('В корзине');
+                             $this.removeClass('loader').text('В корзине');
                              break;
                          case 'clear_compare':
                              countCompare.text(0);
@@ -177,14 +197,13 @@ $(document).ready(function() {
                          case 'update_basket':
                              let elm = $this.closest('.quantity-block');
                              let time = (new Date()).getTime();
-                             let delay = 1000; /* Количество мксек. для определения окончания печати */
+                             let delay = 300; /* Количество мксек. для определения окончания печати */
 
                              elm.attr({'data-time': time});
                              setTimeout(function () {
                                  let oldtime = parseFloat(elm.attr('data-time'));
                                  if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
                                      submitForm();
-                                     elm.removeAttr('data-time');
                                  }
                              }, delay);
                              break;
@@ -214,12 +233,21 @@ $(document).ready(function() {
                  } else {
                      switch (action) {
                          case 'send_form':
-                             if (typeof response.message !== 'undefined' && typeof response.message === 'object') {
-                                 $.each(response.message, function (code, text) {
-                                     let field = $('[name="'+code+'"]');
-                                     field.addClass('error');
+                             switch (id) {
+                                 case 'profile_edit':
+                                     if (typeof response.message !== 'undefined' && response.message.length > 0) {
+                                         alert(response.message);
+                                     }
+                                     break;
+                                 default:
+                                     if (typeof response.message !== 'undefined' && typeof response.message === 'object') {
+                                         $.each(response.message, function (code, text) {
+                                             let field = $('[name="'+code+'"]');
+                                             field.addClass('error');
 
-                                 });
+                                         });
+                                     }
+                                     break;
                              }
 
                              break;

@@ -1,16 +1,18 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?$this->setFrameMode(true);?>
 <?if($arResult) {?>
-    <div class="filter-item">
+    <div class="filter-item" >
         <div class="filter-title">Каталог</div>
         <div class="filter-body">
-            <?foreach($arResult as $arItem) {?>
+            <?
+            $key = 1;
+            foreach($arResult as $arItem) {?>
                 <div class="filter-body-item">
-                    <div class="header <?=$arItem["SELECTED"] ? 'open' : ''?>">
+                    <div class="header <?=$arItem["SELECTED"] || ($key == 1 && $arParams['FIRST_ON_SELECTED'])? 'open' : ''?>">
                         <div class="title"><?=$arItem["TEXT"]?></div>
                     </div>
                     <?if($arItem["CHILD"]){?>
-                    <div class="body" <?=$arItem["SELECTED"] ? 'style="display: block;"' : ''?>>
+                    <div class="body" <?=$arItem["SELECTED"] || ($key == 1 && $arParams['FIRST_ON_SELECTED']) ? 'style="display: block;"' : ''?>>
                         <ul>
                             <?foreach($arItem["CHILD"] as $arChildItem){?>
                                 <li <?=$arChildItem["SELECTED"] ? 'class="active"' : ''?>>
@@ -21,6 +23,7 @@
                     </div>
                     <?}?>
                 </div>
+                <?$key++?>
             <?}?>
         </div>
     </div>

@@ -1,5 +1,7 @@
 <?php
 $MESS['USER_INFORMATION_TITLE'] = 'Личная информация';
+$MESS['PERSON_TYPE_1'] = 'Физическое лицо';
+$MESS['PERSON_TYPE_2'] = 'Юридическое лицо';
 $MESS['NOT_VALUE'] = 'Не указано';
 $MESS['PERSONAL_BIRTHDAY_TITLE'] = 'Дата рождения';
 $MESS['PERSONAL_FULL_NAME_TITLE'] = 'ФИО';

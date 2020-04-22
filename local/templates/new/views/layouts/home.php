@@ -162,7 +162,7 @@ $APPLICATION->IncludeComponent(
 		"DISPLAY_COMPARE" => "N",
 		"COMPATIBLE_MODE" => "Y",
 		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
-        "BTN_LINK" => "/catalog/stocks.php",
+        "BTN_LINK" => "/catalog/stocks/",
 	),
 	false
 );?>
@@ -234,7 +234,7 @@ $APPLICATION->IncludeComponent(
         ),
         "DISPLAY_COMPARE" => "N",
         "COMPATIBLE_MODE" => "Y",
-        "BTN_LINK" => "/catalog/news.php",
+        "BTN_LINK" => "/catalog/news/",
     ),
     false
 );?>

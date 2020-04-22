@@ -1,14 +1,39 @@
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetTitle("Скидки");
-$MSHOP_SMART_FILTER = array('PROPERTY_HIT_VALUE' => array('Акция')); ?>
+$APPLICATION->SetTitle("Наши новинки");
+?>
     <section class="page products">
         <div class="wrapper">
             <h1><?= $APPLICATION->ShowTitle(false) ?></h1>
             <div class="products-block">
-                <div class="products-wrap">
-                    <? $APPLICATION->IncludeComponent(
-                        "bitrix:catalog.section",
+                <div class="filter-block" style="padding-top:0px;">
+                    <?$APPLICATION->IncludeComponent(
+                        "bitrix:menu",
                         "catalog",
+                        array(
+                            "COMPONENT_TEMPLATE" => "catalog",
+                            "ROOT_MENU_TYPE" => "catalog",
+                            "MENU_CACHE_TYPE" => "N",
+                            "MENU_CACHE_TIME" => "3600",
+                            "MENU_CACHE_USE_GROUPS" => "Y",
+                            "FIRST_ON_SELECTED" => "Y",
+                            "MENU_CACHE_GET_VARS" => array(
+                            ),
+                            "MAX_LEVEL" => "2",
+                            "CHILD_MENU_TYPE" => "left",
+                            "USE_EXT" => "Y",
+                            "DELAY" => "N",
+                            "ALLOW_MULTI_SELECT" => "N"
+                        ),
+                        false
+                    );?>
+                </div>
+                <div class="products-wrap">
+                    <?
+                    global $arrFilterProp;
+                    $arrFilterProp = array('PROPERTY_HIT_VALUE' => ['Новинка']);
+                    $APPLICATION->IncludeComponent(
+                        "bitrix:catalog.top",
+                        "catalog.section",
                         array(
                             "IBLOCK_TYPE" => "aspro_mshop_catalog",
                             "IBLOCK_ID" => "13",
@@ -33,7 +58,7 @@ $MSHOP_SMART_FILTER = array('PROPERTY_HIT_VALUE' => array('Акция')); ?>
                             "SET_STATUS_404" => "Y",
                             "USE_ELEMENT_COUNTER" => "Y",
                             "USE_FILTER" => "Y",
-                            "FILTER_NAME" => "MSHOP_SMART_FILTER",
+                            "FILTER_NAME" => "arrFilterProp",
                             "FILTER_FIELD_CODE" => array(
                                 0 => "",
                                 1 => "",

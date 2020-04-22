@@ -37,11 +37,13 @@
                     </div>
                 <?}?>
             </div>
+            <?if ($arParams['BTN_LINK']) {?>
             <div class="center">
                 <a href="<?=$arParams['BTN_LINK']?>" class="btn blue">
                     Смотреть все предложения (<?= count($arResult['ITEMS'])?>)
                 </a>
             </div>
+            <?}?>
         </div>
     </div>
 </section>

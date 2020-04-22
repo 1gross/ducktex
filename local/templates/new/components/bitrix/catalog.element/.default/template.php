@@ -18,7 +18,11 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
                     <button data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare js-init-action"></button>
-                    <button data-action="add_favorites" data-id="<?=$arResult['ID']?>" class="favorites like js-init-action <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
+                    <?if ($USER->IsAuthorized()) {?>
+                        <button data-action="add_favorites"
+                                data-id="<?=$arResult['ID']?>"
+                                class="favorites like js-init-action <?=$arResult['IS_FAVORITES'] ? 'active' : ''?>"></button>
+                    <?}?>
                 </div>
             </div>
             <div class="card-body">
@@ -26,7 +30,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                     <?if (is_array($arResult['MORE_PHOTO']) && count($arResult['MORE_PHOTO']) > 0) {?>
                         <div class="slider-big">
                             <?foreach ($arResult['MORE_PHOTO'] as $arItem) {?>
-                                <a data-fancybox="gallery" href="<?=$arItem['SRC']?>">
+                                <a data-fancybox="gallery" class="js-init-image_open" href="<?=$arItem['SRC']?>">
                                     <img src="<?=$arItem['SRC']?>"
                                          alt="<?=$arItem['ALT']?>">
                                 </a>

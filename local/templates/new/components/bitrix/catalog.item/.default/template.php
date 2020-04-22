@@ -66,7 +66,9 @@
         <a href="<?=$arResult['DETAIL_PAGE_URL']?>" class="btn outline">подробнее</a>
     </div>
     <div class="buttons-block">
-        <button data-id="<?=$arResult['ID']?>" data-action="add_favorites" class="js-init-action favorites"></button>
+        <?if ($USER->IsAuthorized()) {?>
+            <button data-id="<?=$arResult['ID']?>" data-action="add_favorites" class="js-init-action favorites"></button>
+        <?}?>
         <button data-id="<?=$arResult['ID']?>" data-action="add_compare" class="js-init-action compare"></button>
     </div>
 

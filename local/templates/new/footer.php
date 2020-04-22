@@ -24,6 +24,7 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <title><?$APPLICATION->ShowTitle()?></title>
     <?Asset::getInstance()->addCss('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic');?>
     <?Asset::getInstance()->addCss("/local/front/files/css/normalize.css");?>
+    <?Asset::getInstance()->addCss("/local/front/files/fancybox/jquery.fancybox.min.css");?>
     <?Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
     <?Asset::getInstance()->addCss($APPLICATION->GetTemplatePath('public/js/arcticmodal/jquery.arcticmodal-0.3.css'));?>
     <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
@@ -34,21 +35,12 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-status-bar-style");?>
     <?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
     <?$APPLICATION->ShowHead();?>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-54ZPSNW');</script>
-    <!-- End Google Tag Manager -->
+
     <meta name="yandex-verification" content="d923aaa6c6e8d5a7" />
     <meta name="google-site-verification" content="dAnFTXc0P1IVla1P3WjOpwtNVK3gq84OjV0gQK3vXqc" />
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54ZPSNW"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
 
 <main>
     <?$APPLICATION->ShowPanel();?>

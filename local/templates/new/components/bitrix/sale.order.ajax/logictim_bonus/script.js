@@ -445,29 +445,82 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 
 }
 
-$(window).load(function () {
-	checkRequiredOrderFields();
-	$('.required').eq(0).change();
+$(document).on('change', 'input, textarea', function () {
+	checkRequiredOrderFields($(this));
 });
 
-function checkRequiredOrderFields() {
+function checkRequiredOrderFields(el) {
 	let order = $('.order-block'),
-		requiredInput = $('.required'),
-		orderSubmit = $('.order-submit');
+		orderSubmit = $('.order-submit'),
+		form = $('#ORDER_FORM'),
+		fieldName = el.attr('name');
+	if (form.attr('data-order') === 'y') {
+		form.removeAttr('data-order');
+		form.append('<input type="hidden" name="validate_field" value="y">');
+		return false;
+	}
 	if (order.length > 0) {
-		requiredInput.change(function () {
-			let isRequiredFill = true;
-			requiredInput.each(function () {
-				let value = $(this).val();
-				if (value.length === 0) {
-					isRequiredFill = false;
-				}
-			});
-			if (isRequiredFill) {
-				orderSubmit.removeAttr('disabled');
+		let errors = false;
+		$('.inp-field').each(function () {
+			let value = $(this).val(),
+				error = false,
+				type = $(this).attr('data-type'),
+				fName = $(this).attr('name'),
+				parent = $(this).parent(),
+				required = $(this).hasClass('required'),
+				bonusSum = $('.bonus-order-sum');
+
+			switch (type) {
+				case 'tel':
+					let phone = value.replace(/[^.\d]+/g,"");
+					if (phone.length !== 11 && required === true) {
+						error = true;
+					}
+					break;
+				case 'email':
+					let pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,6}\.)?[a-z]{2,6}$/i;
+					if (pattern.test(value) === false && required === true) {
+						error = true;
+					}
+					break;
+				case 'location':
+					if (value.length === 0 && required === true && String(fName).indexOf('PROP') >= 0) {
+						error = true;
+					}
+					break;
+				case 'checkbox':
+					let code = $(this).attr('data-code');
+
+					if (code === 'IS_BONUS_SYSTEM') {
+						if ($(this).is(':checked')) {
+							bonusSum.css('display', 'flex');
+						} else {
+							bonusSum.css('display', 'none');
+						}
+					}
+					break;
+				case 'textarea':
+					parent = parent.parent();
+					if (value.length <= 6 && required === true) {
+						error = true;
+					}
+					break;
+			}
+			if (error === true && required === true) {
+				errors = true;
+			}
+			if (error === true && fName === fieldName && type !== 'location') {
+				parent.addClass('error-field');
 			} else {
-				orderSubmit.attr('disabled', 'disabled');
+				if (parent.hasClass('error-field')) {
+					parent.removeClass('error-field');
+				}
 			}
 		});
+		if (errors !== true) {
+			orderSubmit.removeAttr('disabled');
+		} else {
+			orderSubmit.attr('disabled', 'disabled');
+		}
 	}
 }
