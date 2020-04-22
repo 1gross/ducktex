@@ -11,7 +11,7 @@ ob_start();
 if (count($arResult) > 1) {?>
     <div class="breadcrumbs">
         <div class="wrapper">
-            <div class="breadcrumbs-block">
+            <div class="breadcrumbs-block breadcrumbs-block">
                 <?foreach ($arResult as $arItem) {?>
                     <div class="item">
                         <?if (strlen($arItem['LINK']) > 0) {?>

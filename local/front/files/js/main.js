@@ -32,6 +32,7 @@ $('.slider').each(function () {
         ]
     });
 });
+
 $('.compare-list').each(function () {
     var status = $(this).prev().find('.count');
     $(this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){

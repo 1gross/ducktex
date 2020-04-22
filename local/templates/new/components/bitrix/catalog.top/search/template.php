@@ -16,4 +16,5 @@
         )?>
     </div>
     <?}?>
+    <?=$arResult['NAV_STRING']?>
 </div>

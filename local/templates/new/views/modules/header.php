@@ -2,8 +2,14 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
-use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Localization\Loc,
+    Bitrix\Main\IO\File;
 Loc::loadMessages(__FILE__);
+
+if (file_exists($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php")) {
+    $phonePath = File::getFileContents($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php");
+    $phonePath = preg_replace('/[^0-9]/', '', $phonePath);
+}
 
 $arBasket = B24TechSiteHelper::getBasket();
 $arCompare = B24TechSiteHelper::getCompareList();
@@ -13,7 +19,7 @@ $arCompare = B24TechSiteHelper::getCompareList();
         <div class="wrapper">
             <div class="top-line-block">
                 <a href="<?=SITE_DIR?>" class="logo-mob"><img src="/local/front/files/img/logo.png" alt=""></a>
-                <a href="tel:<?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/phone.php", [], ["SHOW_BORDER" => false,"MODE" => "text"]);?>"
+                <a href="tel:<?= $phonePath ?: '' ?>"
                    class="phone"><?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/phone.php", [], ["MODE" => "text"]);?></a>
                 <nav class="menu">
                     <?$APPLICATION->IncludeComponent(

@@ -95,7 +95,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA'])) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
                         $verificationCode = implode('', $arFields['CODE']);
-                        if (strlen($verificationCode) == 6) {
+
+                        if (strlen(trim($verificationCode)) == 6) {
                             $userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
                             if ($userId) {
                                 $USER->Authorize($userId);
@@ -115,8 +116,119 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     }
                     break;
                 case 'profile_edit':
-                    $us = new CUser();
-                    $result = $us->Update($USER->GetID(), $arFields);
+                    $arUserProps = array();
+                    $arUserOrderProps = array();
+                    foreach ($arFields as $CODE => $PROP) {
+                        switch ($CODE) {
+                            case 'PERSONAL_BIRTHDAY':
+                            case 'UF_INSTAGRAM':
+                                $arUserProps[$CODE] = $PROP;
+                                break;
+                            case 'FIO':
+                                $arTmp = explode(' ', $PROP);
+                                if (isset($arTmp[0])) {
+                                    $arUserProps['LAST_NAME'] = $arTmp[0];
+                                }
+                                if (isset($arTmp[1])) {
+                                    $arUserProps['NAME'] = $arTmp[1];
+                                }
+                                if (isset($arTmp[2])) {
+                                    $arUserProps['SECOND_NAME'] = $arTmp[2];
+                                }
+                                $arUserOrderProps[$CODE] = $PROP;
+                                break;
+                            case 'PHONE':
+                                if ($arFields['OLD_PHONE'] != $PROP) {
+                                    $arUserProps['PHONE_NUMBER'] = $PROP;
+                                    $arUserOrderProps[$CODE] = $PROP;
+                                }
+                                break;
+                            case 'EMAIL':
+                                $arUserOrderProps[$CODE] = $PROP;
+                                $arUserProps[$CODE] = $PROP;
+                                break;
+                            case 'ADDRESS':
+                                $arUserOrderProps[$CODE] = $PROP;
+                                break;
+                            case 'PERSON_TYPE_ID':
+                                //$arUserOrderProps[$CODE] = $PROP;
+                                break;
+                        }
+                    }
+
+                    if (count($arUserProps) > 0) {
+                        $us = new CUser();
+                        $result = $us->Update($USER->GetID(), $arUserProps);
+                    }
+                    if (count($arUserOrderProps) > 0) {
+                        $db_sales = CSaleOrderUserProps::GetList(
+                            array(
+                                'ID' => 'DESC'
+                            ),
+                            array(
+                                "USER_ID" => $USER->GetID(),
+                                "PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID']
+                            )
+                        );
+                        $arUserProfile = $db_sales->Fetch();
+
+
+                        if ($arUserProfile['ID']) {
+                            $USER_PROPS_ID = $arUserProfile['ID'];
+                        } else {
+                            $arFields = array(
+                                "NAME" => $arUserOrderProps['FIO'] ?: 'Профиль пользователя ID: '.$USER->GetID(),
+                                "USER_ID" => $USER->GetID(),
+                                "PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID']
+                            );
+                            $USER_PROPS_ID = CSaleOrderUserProps::Add($arFields);
+                        }
+
+                        if ($USER_PROPS_ID) {
+                            foreach ($arUserOrderProps as $CODE => $VALUE) {
+                                $rs = CSaleOrderUserPropsValue::GetList(
+                                    array(),
+                                    array(
+                                        'USER_PROPS_ID' => $USER_PROPS_ID,
+                                        "PROP_PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'],
+                                        'PROP_CODE' => $CODE
+                                    ));
+                                $PROP = $rs->Fetch();
+
+                                if ($PROP['ID'] > 0) {
+                                    if ($PROP['VALUE'] != $VALUE) {
+                                        $arFieldsProps = array(
+                                            "USER_PROPS_ID" => $USER_PROPS_ID,
+                                            "ORDER_PROPS_ID" => $PROP['ORDER_PROPS_ID'],
+                                            "NAME" => $PROP['NAME'],
+                                            "VALUE" => $VALUE
+                                        );
+
+                                        CSaleOrderUserPropsValue::Update($PROP['ID'], $arFieldsProps);
+                                    }
+
+                                } else {
+                                    $rs = CSaleOrderUserPropsValue::GetList(
+                                        array(),
+                                        array(
+                                            "PROP_PERSON_TYPE_ID" => $arFields['PERSON_TYPE_ID'],
+                                            'PROP_CODE' => $CODE
+                                        ));
+                                    $PROP = $rs->Fetch();
+
+                                    $arFieldsProps = array(
+                                        "USER_PROPS_ID" => $USER_PROPS_ID,
+                                        "ORDER_PROPS_ID" => $PROP['ORDER_PROPS_ID'],
+                                        "NAME" => $PROP['NAME'],
+                                        "VALUE" => $VALUE
+                                    );
+                                    CSaleOrderUserPropsValue::Add($arFieldsProps);
+                                }
+
+                            }
+                        }
+                    }
+
                     if ($result) {
                         $arResponse['result'] = true;
                     } else {

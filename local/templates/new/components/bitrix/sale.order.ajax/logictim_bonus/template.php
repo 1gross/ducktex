@@ -44,12 +44,13 @@ if (!function_exists("cmpBySort"))
             return 0;
     }
 }
+
 ?>
 <main>
     <section id="basket">
         <div class="wrapper">
             <div id="order_form_div" class="order-checkout">
-                <?if ($arResult["BASKET_ITEMS"] && !isset($_REQUEST['ORDER_ID'])) {?>
+                <?if ($arResult["BASKET_ITEMS"] || isset($_REQUEST['ORDER_ID'])) {?>
                 <div class="bx_order_make">
                     <?
                     if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
@@ -169,7 +170,7 @@ if (!function_exists("cmpBySort"))
                             </script>
                             <?if($_POST["is_ajax_post"] != "Y")
                         {
-                            ?><form action="<?=$APPLICATION->GetCurPage();?>" method="POST" name="ORDER_FORM" id="ORDER_FORM" enctype="multipart/form-data">
+                            ?><form <?=!isset($_REQUEST['validate_field']) ? 'data-order="y"' : ''?>action="<?=$APPLICATION->GetCurPage();?>" method="POST" name="ORDER_FORM" id="ORDER_FORM" enctype="multipart/form-data">
                             <?=bitrix_sessid_post()?>
                             <div id="order_form_content">
                                 <?

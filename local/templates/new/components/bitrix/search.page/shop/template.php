@@ -11,7 +11,7 @@
             <?if ($arResult['SEARCH']) {
                 $arProducts = array();
                 foreach ($arResult['SEARCH'] as $arItem) {
-                    $arProducts[$arItem['ID']] = $arItem['ID'];
+                    $arProducts[$arItem['ITEM_ID']] = $arItem['ITEM_ID'];
                 }
                 ?>
                 <div class="search-header">
@@ -22,7 +22,9 @@
                     </div>
                 </div>
                 <?
-                $GLOBALS['arrSearchFilter'] = array('ID' => array_keys($arProducts));
+                global $arrSearchFilter;
+                $arrSearchFilter = array('ID' => array_keys($arProducts));
+
                 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.top", 
 	"search", 
@@ -42,7 +44,7 @@
 		"OFFERS_SORT_ORDER" => "asc",
 		"OFFERS_SORT_FIELD2" => "id",
 		"OFFERS_SORT_ORDER2" => "desc",
-		"ELEMENT_COUNT" => "9",
+		"ELEMENT_COUNT" => "20",
 		"LINE_ELEMENT_COUNT" => "3",
 		"PROPERTY_CODE" => array(
 			0 => "",
@@ -60,6 +62,7 @@
 		"SECTION_URL" => "",
 		"DETAIL_URL" => "",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
+		"USE_FILTER" => 'Y',
 		"SEF_MODE" => "N",
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",

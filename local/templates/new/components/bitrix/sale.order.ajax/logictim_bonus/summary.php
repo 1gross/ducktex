@@ -26,14 +26,14 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
             <div class="order-check-sum custom_t2"><?=$deliveryPrice?></div>
         </div>
         <?if ($_REQUEST['USE_BONUS'] == 'on' && $arResult["MAX_BONUS"] > 0) {?>
-            <div class="order-check-item">
+            <div class="order-check-item bonus-order-sum">
                 <div class="order-check-title">Оплачено бонусом:</div>
                 <div class="order-check-sum"><?=round($arResult["MAX_BONUS"], 2)?> руб.</div>
             </div>
         <?}?>
         <div class="order-check-footer">
             <?if ($arResult["MAX_BONUS"] > 0) {?>
-                <div class="order-check-item">
+                <div class="order-check-item bonus-order-sum">
                     <div class="order-check-title">Бонусы:</div>
                     <div class="order-check-sum">
                         <div class="switch-box">
@@ -50,18 +50,19 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
                 </div>
             <?}?>
             <div class="order-check-gray">
-                <div class="order-check-item">
-                    <div class="order-check-title">ИТОГО:</div>
-                    <div class="order-check-sum"><?=$_REQUEST['USE_BONUS'] == 'on' && $arResult["MAX_BONUS"] > 0 ? $arResult["ORDER_TOTAL_PRICE"] - $arResult["MAX_BONUS"] : $arResult["ORDER_TOTAL_PRICE"]?> руб.</div>
-                </div>
                 <?if ($arResult['ADD_BONUS'] > 0 && $_REQUEST['USE_BONUS'] != 'on') {?>
-                    <div class="order-check-item">
+                    <div class="order-check-item bonus-order-sum">
                         <div class="order-check-title">БОНУС ЗА ЗАКАЗ:</div>
                         <div class="order-check-sum"><?=round($arResult["ADD_BONUS"], 2)?> руб.</div>
                     </div>
                 <?}?>
+                <div class="order-check-item">
+                    <div class="order-check-title">ИТОГО:</div>
+                    <div class="order-check-sum"><?=$_REQUEST['USE_BONUS'] == 'on' && $arResult["MAX_BONUS"] > 0 ? $arResult["ORDER_TOTAL_PRICE"] - $arResult["MAX_BONUS"] : $arResult["ORDER_TOTAL_PRICE"]?> руб.</div>
+                </div>
+
             </div>
-            <button class="btn blue"  onclick="submitForm('Y'); return false;" id="ORDER_CONFIRM_BUTTON" >оформить заказ</button>
+            <button class="btn blue order-submit"  onclick="submitForm('Y'); return false;" id="ORDER_CONFIRM_BUTTON" disabled>оформить заказ</button>
             <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c <a href="/help/polzovatelskoe-soglashenie/">политикой конфиденциальности</a></div>
         </div>
     </div>

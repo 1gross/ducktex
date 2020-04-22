@@ -61,7 +61,6 @@ $APPLICATION->SetTitle("Сравнение товаров");
 			16 => "ASSOCIATED",
 			17 => "CML2_MANUFACTURER",
 			18 => "rating",
-			19 => "CML2_TRAITS",
 			20 => "CML2_TAXES",
 			21 => "vote_sum",
 			22 => "FORUM_TOPIC_ID",

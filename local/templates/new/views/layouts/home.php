@@ -6,8 +6,8 @@
 <?global $sectionsFilter;
 $sectionsFilter = array('UF_ON_HOME' => '1');
 $APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list", 
-	"home", 
+	"bitrix:catalog.section.list",
+	"home",
 	array(
 		"COMPONENT_TEMPLATE" => "home",
 		"IBLOCK_TYPE" => "aspro_mshop_catalog",
@@ -16,7 +16,7 @@ $APPLICATION->IncludeComponent(
 		"SECTION_CODE" => "",
 		"COUNT_ELEMENTS" => "N",
 		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
-		"TOP_DEPTH" => "1",
+		"TOP_DEPTH" => "9",
 		"SECTION_FIELDS" => array(
 			0 => "",
 			1 => "",
@@ -117,11 +117,11 @@ $APPLICATION->IncludeComponent(
 		"ELEMENT_COUNT" => "9",
 		"LINE_ELEMENT_COUNT" => "3",
 		"PROPERTY_CODE" => array(
-			0 => "BRAND",
-			1 => "VES_ATTR_S",
-			2 => "CML2_ARTICLE",
-			3 => "CML2_MANUFACTURER",
-			4 => "",
+			5 => "CML2_ARTICLE",
+            0 => "COLOR_REF2",
+            1 => "WIDTH",
+            3 => "DENSITY",
+            4 => "COMPOSITION",
 		),
 		"OFFERS_FIELD_CODE" => array(
 			0 => "",
@@ -161,7 +161,8 @@ $APPLICATION->IncludeComponent(
 		),
 		"DISPLAY_COMPARE" => "N",
 		"COMPATIBLE_MODE" => "Y",
-		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}"
+		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
+        "BTN_LINK" => "/catalog/stocks/",
 	),
 	false
 );?>
@@ -232,7 +233,8 @@ $APPLICATION->IncludeComponent(
         "OFFERS_CART_PROPERTIES" => array(
         ),
         "DISPLAY_COMPARE" => "N",
-        "COMPATIBLE_MODE" => "Y"
+        "COMPATIBLE_MODE" => "Y",
+        "BTN_LINK" => "/catalog/news/",
     ),
     false
 );?>

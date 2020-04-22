@@ -47,8 +47,23 @@
                         <?foreach ($arResult['SHOW_PROPERTIES'] as $PROP) {?>
                             <?$PROPERTY = $arItem['PROPERTIES'][$PROP['CODE']];?>
                             <?if (isset($PROPERTY) /*&& !is_array($PROPERTY['VALUE'])*/) {?>
-                                <div class="product-compare-item">
-                                    <?=$PROPERTY['VALUE'] ?: '-'?>
+                                <div class="product-compare-item" data-id="<?=$PROP['CODE']?>">
+                                    <? if (is_array($PROPERTY['VALUE'])) { ?>
+                                        <?=implode(', ', $PROPERTY['VALUE'])?>
+                                    <?} else {?>
+                                        <? if (!empty($PROPERTY['VALUE'])) {
+                                            switch ($PROPERTY['VALUE']) {
+                                                case 'Y':
+                                                    echo 'Да';
+                                                    break;
+                                                case 'N':
+                                                    echo 'Нет';
+                                                    break;
+                                                default:
+                                                    echo $PROPERTY['VALUE'];
+                                            }
+                                        }?>
+                                    <?}?>
                                 </div>
                             <?}?>
                         <?}?>

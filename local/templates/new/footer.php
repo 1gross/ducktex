@@ -24,6 +24,7 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <title><?$APPLICATION->ShowTitle()?></title>
     <?Asset::getInstance()->addCss('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic');?>
     <?Asset::getInstance()->addCss("/local/front/files/css/normalize.css");?>
+    <?Asset::getInstance()->addCss("/local/front/files/fancybox/jquery.fancybox.min.css");?>
     <?Asset::getInstance()->addCss("/local/front/files/slick/slick.css");?>
     <?Asset::getInstance()->addCss($APPLICATION->GetTemplatePath('public/js/arcticmodal/jquery.arcticmodal-0.3.css'));?>
     <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
@@ -34,8 +35,13 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-status-bar-style");?>
     <?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
     <?$APPLICATION->ShowHead();?>
+
+    <meta name="yandex-verification" content="d923aaa6c6e8d5a7" />
+    <meta name="google-site-verification" content="dAnFTXc0P1IVla1P3WjOpwtNVK3gq84OjV0gQK3vXqc" />
 </head>
 <body>
+
+
 <main>
     <?$APPLICATION->ShowPanel();?>
     <?

@@ -1,4 +1,16 @@
 $(document).ready(function() {
+    //filter
+    let filterApply = $('.js-init-filter_apply');
+
+    filterApply.on('click', function (e) {
+        e.preventDefault();
+        $(this).closest('form').append('<input type="hidden" name="set_filter" value="y">').submit();
+        return false;
+    });
+    //function detail product page
+    $('[data-fancybox="gallery"]').fancybox();
+
+    //function API
    let url = '/local/tools/ajax.php',
        countBasket = $('.basket span'),
        countCompare = $('.compare span');
@@ -35,6 +47,7 @@ $(document).ready(function() {
               if (typeof quantity !== 'undefined') {
                   data.quantity = quantity;
               }
+              $this.addClass('loader');
               send = true;
               break;
           case 'update_basket':
@@ -108,10 +121,11 @@ $(document).ready(function() {
                  if (response.result === true) {
                      switch (action) {
                          case 'send_form':
+                             //dataLayer.push({'event': 'formsend'});
                              //location.reload();
                              switch (id) {
                                  case 'subscribe':
-                                     alert('Вы успрешно подписалиь, спасибо!');
+                                     alert('Подписка произведена успешно, спасибо!');
                                      break;
                                  case 'set_coupon':
                                      submitForm();
@@ -120,17 +134,37 @@ $(document).ready(function() {
                                      let verificationModal = $('#code'),
                                          verificationForm = verificationModal.find('form'),
                                          phoneDesc = verificationForm.find('.modal-desc__phone');
+
                                      verificationForm.prepend('<input type="hidden" name="SIGN_DATA" value="'+response.sign_data+'">');
                                      phoneDesc.text(response.phone);
-                                     
-                                     verificationForm.find('.digit').on('keyup', function () {
-                                         let verificationCode = '';
-                                         verificationForm.find('.digit').each(function () {
-                                             verificationCode += $(this).val();
 
-                                         });
-                                         console.log(verificationCode);
+                                     verificationForm.find('.digit').on('keyup', function () {
+                                         let errorBlock = verificationForm.find('.error');
+                                         if (errorBlock.length > 0) {
+                                             verificationForm.find('.digit').each(function () {
+                                                 if ($(this).attr('data-id') === '1') {
+                                                     $(this).focus();
+                                                 }
+                                                 $(this).val('');
+                                             });
+                                             errorBlock.removeClass('error');
+                                         }
+
+                                         let verificationCode = '',
+                                             value = $(this).val().replace(/[^\d]/g, '');
+
+                                         if (value.length > 0 && parseInt(value) > 0) {
+                                             verificationForm.find('.digit').each(function () {
+                                                 verificationCode += $(this).val();
+                                             });
+                                             if (verificationCode.length < 6) {
+                                                 $(this).next().focus();
+                                             }
+                                         }
+
                                          if (verificationCode.length === 6) {
+                                             verificationForm.find('[name="CODE"]').val(verificationCode);
+                                             verificationForm.addClass('loading');
                                              $.ajax({
                                                  url: url,
                                                  dataType: 'json',
@@ -140,17 +174,16 @@ $(document).ready(function() {
                                                      data: verificationForm.serialize(),
                                                  },
                                                  success: function (res) {
+                                                     verificationForm.removeClass('loading');
                                                      if (typeof res !== 'undefined') {
                                                          if (res.result === true) {
                                                              $.arcticmodal('close');
                                                              setTimeout(function () {
-                                                                 location.reload();
+                                                                 window.location.reload();
                                                              }, 300);
                                                          } else {
                                                              if (typeof res.message !== 'undefined') {
-                                                                 $.each(res.message, function (code, text) {
-                                                                     $('[name="'+code+'"]').addClass('error');
-                                                                 });
+                                                                 verificationForm.find('.sms-code').addClass('error');
                                                              }
                                                          }
                                                      }
@@ -159,7 +192,27 @@ $(document).ready(function() {
                                          }
                                      });
 
-                                     verificationModal.arcticmodal();
+                                     verificationModal.arcticmodal({
+                                         beforeOpen: function(data, modalFrom) {
+                                             let errorBlock = modalFrom.find('.error');
+                                             if (errorBlock.length > 0) {
+                                                 modalFrom.find('.digit').each(function () {
+                                                     if ($(this).attr('data-id') === '1') {
+                                                         $(this).focus();
+                                                     }
+                                                     $(this).val('');
+                                                 });
+                                                 errorBlock.removeClass('error');
+                                             }
+                                         }
+                                     });
+                                     break;
+                                 case 'profile_edit':
+                                     $.arcticmodal('close');
+                                     setTimeout(function () {
+                                         location.reload();
+                                     }, 300);
+
                                      break;
 
                              }
@@ -168,12 +221,24 @@ $(document).ready(function() {
                              if (typeof response.basket !== 'undefined') {
                                  countBasket.text(response.basket.count_items);
                              }
-                             $this.text('В корзине');
+                             $this.removeClass('loader').text('В корзине');
                              break;
                          case 'clear_compare':
                              countCompare.text(0);
                              break;
                          case 'update_basket':
+                             let elm = $this.closest('.quantity-block');
+                             let time = (new Date()).getTime();
+                             let delay = 300; /* Количество мксек. для определения окончания печати */
+
+                             elm.attr({'data-time': time});
+                             setTimeout(function () {
+                                 let oldtime = parseFloat(elm.attr('data-time'));
+                                 if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
+                                     submitForm();
+                                 }
+                             }, delay);
+                             break;
                          case 'remove_basket':
                              submitForm();
                              break;
@@ -195,17 +260,26 @@ $(document).ready(function() {
                      }
 
                      if (refresh === 'true') {
-                         window.location.href = '/personal/';
+                         window.location.reload();
                      }
                  } else {
                      switch (action) {
                          case 'send_form':
-                             if (typeof response.message !== 'undefined' && typeof response.message === 'object') {
-                                 $.each(response.message, function (code, text) {
-                                     let field = $('[name="'+code+'"]');
-                                     field.addClass('error');
+                             switch (id) {
+                                 case 'profile_edit':
+                                     if (typeof response.message !== 'undefined' && response.message.length > 0) {
+                                         alert(response.message);
+                                     }
+                                     break;
+                                 default:
+                                     if (typeof response.message !== 'undefined' && typeof response.message === 'object') {
+                                         $.each(response.message, function (code, text) {
+                                             let field = $('[name="'+code+'"]');
+                                             field.addClass('error');
 
-                                 });
+                                         });
+                                     }
+                                     break;
                              }
 
                              break;

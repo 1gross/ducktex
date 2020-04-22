@@ -55,6 +55,8 @@ if (!function_exists("PrintPropsForm"))
 	function PrintPropsForm($arSource = array(), $locationTemplate = ".default")
 	{
 		if (!empty($arSource)) {
+            global $USER;
+            $arUser = CUser::GetByID($USER->GetID())->Fetch();
 		    foreach ($arSource as $arProperties) {
 
 					if($arProperties["CODE"] == 'LOGICTIM_ADD_BONUS' || $arProperties["CODE"] == 'LOGICTIM_PAYMENT_BONUS') {
@@ -65,20 +67,41 @@ if (!function_exists("PrintPropsForm"))
                             case 'CHECKBOX':
                                 ?>
                                 <label for="<?=$arProperties["FIELD_NAME"]?><?=$arProperties['REQUIRED'] == 'Y' ? '*' : ''?>"
-                                       class="checkbox-box">
+                                       class="inp-field checkbox-box">
                                     <input type="checkbox"
+                                           data-type="checkbox"
                                            name="<?=$arProperties["FIELD_NAME"]?>"
+                                           <?if ($arUser['UF_TMP_USER'] != 'Y' && $arProperties['CODE'] == 'IS_BONUS_SYSTEM') {?>
+                                               disabled="disabled"
+                                               checked="checked"
+                                           <?} else {?>
+                                                <?=$arProperties["CHECKED"]=="Y" ? " checked" : ''?>
+                                            <?}?>
+                                           data-code="<?=$arProperties['CODE']?>"
                                            id="<?=$arProperties["FIELD_NAME"]?>"
-                                           value="<?=$arProperties["CHECKED"]?>"
-                                           <?=$arProperties["CHECKED"]=="Y" ? " checked" : ''?>>
+                                           value="<?=$arProperties["CHECKED"]?>">
+
                                     <span class="checkmark"></span>
                                     <?=$arProperties["NAME"]?>
                                 </label>
                                 <?
                                 break;
                             case 'TEXT':
+                                $type = 'text';
+                                $dataType = 'default';
+                                if (strpos($arProperties['CODE'], 'PHONE') !== false) {
+                                    $type = 'tel';
+                                    $dataType = 'tel';
+                                } elseif (strpos($arProperties['CODE'], 'EMAIL') !== false) {
+                                    $type = 'email';
+                                    $dataType = 'email';
+                                } elseif (strpos($arProperties['CODE'], 'LOCATION') !== false) {
+                                    $dataType = 'location';
+                                }
                                 ?>
-                                <input type="text"
+                                <input class="inp-field <?=$arProperties['REQUIRED'] == 'Y' ? 'required' : ''?>"
+                                       type="<?=$type?>"
+                                       data-type="<?=$dataType?>"
                                        size="<?=$arProperties["SIZE1"]?>"
                                        value="<?=$arProperties["VALUE"]?>"
                                        name="<?=$arProperties["FIELD_NAME"]?>"
@@ -91,6 +114,7 @@ if (!function_exists("PrintPropsForm"))
                                 <?foreach($arProperties["VARIANTS"] as $arVariants) { ?>
                                     <label for="<?= $arProperties["FIELD_NAME"] ?>_<?= $arVariants["VALUE"] ?>" class="radio-box">
                                         <input type="radio"
+                                               class="inp-field"
                                                name="<?=$arProperties["FIELD_NAME"]?>"
                                                id=<?= $arProperties["FIELD_NAME"] ?>_<?= $arVariants["VALUE"] ?>
                                                <?=$arVariants["CHECKED"] == "Y" ? 'checked="checked"' :''?>
@@ -107,6 +131,8 @@ if (!function_exists("PrintPropsForm"))
                                     <textarea name="<?=$arProperties["FIELD_NAME"]?>"
                                               id="<?=$arProperties["FIELD_NAME"]?>"
                                               cols="<?=$arProperties["SIZE1"]?>"
+                                              class="inp-field <?=$arProperties['REQUIRED'] == 'Y' ? 'required' : ''?>"
+                                              data-type="textarea"
                                               rows="<?=$rows?>"><?=$arProperties["VALUE"]?></textarea>
                                 </div>
                                 <?
@@ -146,7 +172,7 @@ if (!function_exists("PrintPropsForm"))
                                 ),
                                     array(
                                         "ID" => $value,
-                                        "CODE" => "",
+                                        "CODE" => "location",
                                         "SHOW_DEFAULT_LOCATIONS" => "Y",
                                         "JS_CALLBACK" => "submitFormProxy",
                                         "JS_CONTROL_DEFERRED_INIT" => intval($arProperties["ID"]),

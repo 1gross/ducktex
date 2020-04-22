@@ -17,18 +17,19 @@
 <div style="display: none">
     <div class="modal active" id="code">
         <form action="/local/tools/ajax.php" class="modal-block">
+            <input type="hidden" name="CODE" value="">
             <button class="arcticmodal-close close"></button>
             <div class="modal-title">Введите код</div>
             <div class="modal-desc bold">Мы отправили код на номер <span class="modal-desc__phone"></span></div>
             <button class="arcticmodal-close back">Изменить</button>
             <div class="modal-body">
                 <div class="sms-code">
-                    <input type="text" name="CODE[]" class="digit" maxlength="1" />
-                    <input type="text" name="CODE[]" class="digit" maxlength="1" />
-                    <input type="text" name="CODE[]" class="digit" maxlength="1" />
-                    <input type="text" name="CODE[]" class="digit" maxlength="1" />
-                    <input type="text" name="CODE[]" class="digit" maxlength="1" />
-                    <input type="text" name="CODE[]" class="digit" maxlength="1" />
+                    <input type="text" data-id="1" class="digit" maxlength="1" />
+                    <input type="text" data-id="2" class="digit" maxlength="1" />
+                    <input type="text" data-id="3" class="digit" maxlength="1" />
+                    <input type="text" data-id="4" class="digit" maxlength="1" />
+                    <input type="text" data-id="5" class="digit" maxlength="1" />
+                    <input type="text" data-id="6" class="digit" maxlength="1" />
                 </div>
             </div>
         </form>
