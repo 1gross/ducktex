@@ -12,7 +12,6 @@ $db_sales_2 = CSaleOrderUserProps::GetList(array('ID' => 'DESC'), array("USER_ID
 $arTabs[1] = $db_sales->Fetch();
 $arTabs[2] = $db_sales_2->Fetch();
 
-
 foreach ($arTabs as $typeID => $arProfile) {
     $db_propVals = CSaleOrderUserPropsValue::GetList(array(), Array(
         "USER_PROPS_ID" => $arProfile['ID'],
@@ -53,7 +52,7 @@ foreach ($arTabs as $typeID => $arProfile) {
                 </div>
                 <div class="personal-info-item">
                     <span class="title"><?=Loc::getMessage('PERSONAL_PHONE_TITLE')?></span>
-                    <div class="text"><?=isset($arProps['PHONE']['VALUE']) && strlen($arProps['PHONE']['VALUE']) > 0 ? $arProps['PHONE']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+                    <div class="text"><?=isset($arResult['arUser']['PHONE_NUMBER']) && strlen($arResult['arUser']['PHONE_NUMBER']) > 0 ? $arResult['arUser']['PHONE_NUMBER'] : Loc::getMessage('NOT_VALUE')?></div>
                 </div>
                 <div class="personal-info-item">
                     <span class="title"><?=Loc::getMessage('PERSONAL_INSTAGRAM_TITLE')?></span>
@@ -91,7 +90,7 @@ foreach ($arTabs as $typeID => $arProfile) {
             </div>
             <div class="personal-info-item">
                 <span class="title"><?=Loc::getMessage('PERSONAL_PHONE_TITLE')?></span>
-                <div class="text"><?=isset($arProps['PHONE']['VALUE']) && strlen($arProps['PHONE']['VALUE']) > 0 ? $arProps['PHONE']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
+                <div class="text"><?=isset($arResult['arUser']['PHONE_NUMBER']) && strlen($arResult['arUser']['PHONE_NUMBER']) > 0 ? $arResult['arUser']['PHONE_NUMBER'] : Loc::getMessage('NOT_VALUE')?></div>
             </div>
             <div class="personal-info-item">
                 <span class="title">Адрес</span>
