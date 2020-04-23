@@ -1782,6 +1782,12 @@ section.with-sea .wrapper::before {
     vertical-align: middle;
     margin-right: 5px; }
 
+.error {
+  font-weight: bold;
+  font-size: 14px;
+  color: #c12f2f;
+  margin-top: 20px; }
+
 #card {
   padding: 40px 0; }
   @media screen and (max-width: 1200px) {
