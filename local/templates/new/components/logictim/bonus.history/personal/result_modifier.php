@@ -13,7 +13,10 @@ $rs = CSaleOrder::GetList(
 );
 $userOrdersSum = 0;
 while ($ar = $rs->Fetch()) {
-    $userOrdersSum += $ar['PRICE'];
+    if ($ar['PAYED'] == 'Y') {
+        $userOrdersSum += $ar['PRICE'];
+    }
+
 }
 $arResult['SUM_ORDER_PRICE'] = $userOrdersSum;
 
