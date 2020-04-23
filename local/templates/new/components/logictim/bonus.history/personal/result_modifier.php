@@ -26,10 +26,20 @@ while ($arProfile = $res->Fetch()) {
     if ($arProfile['type'] == 'order') {
         $arConditions = unserialize($arProfile['conditions']);
         $arProfileConditions = unserialize($arProfile['profile_conditions']);
+        $ordersBonusType = '';
+        $ordersBonus = '';
+        $ordersSum = '';
+
+        foreach ($arProfileConditions['children'] as $profileCondition) {
+            if (isset($profileCondition['values']['ordersSum'])) {
+                if (!empty($profileCondition['values']['ordersSum'])) {
+                    $ordersSum = $profileCondition['values']['ordersSum'];
+                }
+            }
+        }
 
         $ordersBonusType = $arConditions['children'][0]['values']['bonus_type'];
         $ordersBonus = $arConditions['children'][0]['values']['bonus'];
-        $ordersSum = $arProfileConditions['children'][0]['values']['ordersSum'];
 
         if ($ordersBonusType == 'percent') {
             if ($arResult['PAID_SUM_MIN'] == 0 || $ordersSum < $arResult['PAID_SUM_MIN']) {
