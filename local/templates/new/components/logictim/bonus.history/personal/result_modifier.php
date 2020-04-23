@@ -13,8 +13,12 @@ $rs = CSaleOrder::GetList(
 );
 $userOrdersSum = 0;
 while ($ar = $rs->Fetch()) {
-    $userOrdersSum += $ar['PRICE'];
+    if ($ar['PAYED'] == 'Y') {
+        $userOrdersSum += $ar['PRICE'];
+    }
+
 }
+
 $arResult['SUM_ORDER_PRICE'] = $userOrdersSum;
 
 global $DB;
@@ -26,10 +30,18 @@ while ($arProfile = $res->Fetch()) {
     if ($arProfile['type'] == 'order') {
         $arConditions = unserialize($arProfile['conditions']);
         $arProfileConditions = unserialize($arProfile['profile_conditions']);
+        $ordersSum = 0;
+
+        foreach ($arProfileConditions['children'] as $profileCondition) {
+            if (isset($profileCondition['values']['ordersSum'])) {
+                if (!empty($profileCondition['values']['ordersSum'])) {
+                    $ordersSum = $profileCondition['values']['ordersSum'];
+                }
+            }
+        }
 
         $ordersBonusType = $arConditions['children'][0]['values']['bonus_type'];
         $ordersBonus = $arConditions['children'][0]['values']['bonus'];
-        $ordersSum = $arProfileConditions['children'][0]['values']['ordersSum'];
 
         if ($ordersBonusType == 'percent') {
             if ($arResult['PAID_SUM_MIN'] == 0 || $ordersSum < $arResult['PAID_SUM_MIN']) {
@@ -44,16 +56,13 @@ while ($arProfile = $res->Fetch()) {
                 'SUM' => $ordersSum,
                 'ACTIVE' => $active
             );
-
-            $arResult['PAID_STATUS_CURRENT'] = $active == 'Y' ? $arProfile['id'] : false;
-            if ($arResult['PAID_STATUS_CURRENT'] !== false) {
-                if ($arResult['PAID_STATUS'][$arResult['PAID_STATUS_CURRENT']]['SUM'] < $arResult['PAID_STATUS'][$arProfile['id']]['SUM']) {
-                    $arResult['PAID_STATUS_CURRENT'] = $arProfile['id'];
-                }
+            if ($active == 'Y') {
+                $arResult['PAID_STATUS_CURRENT'] = $arProfile['id'];
             }
         }
     }
 }
+
 if (isset($arResult['PAID_STATUS'][$arResult['PAID_STATUS_CURRENT']]['ACTIVE'])) {
     $arResult['PAID_STATUS'][$arResult['PAID_STATUS_CURRENT']]['ACTIVE'] = 'Y';
 }

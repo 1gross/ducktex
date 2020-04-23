@@ -1,5 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $APPLICATION->SetTitle('Спасибо за заказ!');
+$APPLICATION->AddChainItem('Спасибо за заказ!', $APPLICATION->GetCurPage(false));
 
 ?>
     <section class="order-complete">
@@ -24,7 +25,6 @@ $APPLICATION->SetTitle('Спасибо за заказ!');
                         <td><?=explode(' ', $arResult["ORDER"]["DATE_INSERT"])[0]?></td>
                         <td><?=explode(' ', $arResult["ORDER"]["DATE_INSERT"])[1]?></td>
                         <td><?=$arResult["ORDER"]['PAYED'] == 'Y' ? 'заказ оплачен' : 'принят, ожидается оплата'?></td>
-                        <?dump($arResult["PAY_SYSTEM"])?>
                         <?if (!empty($arResult["PAY_SYSTEM"])) {?>
                             <td><?=$arResult["PAY_SYSTEM"]['NAME']?></td>
                         <?}?>

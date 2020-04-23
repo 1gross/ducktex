@@ -83,7 +83,7 @@ Loc::loadMessages(__FILE__);
         <button class="btn outline big js-init-action" data-action="send_form" <?=$setCoupon ? 'disabled="disabled"' : ''?> data-id="set_coupon">применить</button>
     </div>
     <div class="bonus">
-        Бонус за заказ: <span><?=$arParams['ALL_BONUS'] ?: 0?> руб</span>
+        Бонус за заказ: <span><?=$arParams['ALL_BONUS'] ? round($arParams['ALL_BONUS'], 2) : 0?> руб</span>
     </div>
     <div class="final-price">
         ИТОГО: <span><?=$arResult['allSum_FORMATED']?></span>

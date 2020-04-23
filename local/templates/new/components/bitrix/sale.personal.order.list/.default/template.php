@@ -33,7 +33,7 @@ Loc::loadMessages(__FILE__);
                                         <?=$arItem['CAN_BUY'] != 'Y' ? 'disabled' : ''?>
                                         data-action="add_basket"
                                         data-id="<?=$arItem['PRODUCT_ID']?>"><?=$arItem['CAN_BUY'] != 'Y' ? 'Не доступен' : Loc::getMessage('REORDER')?></button>
-                            </div
+                            </div>
                         <?}?>
                     <?} else {?>
                         <div class="info-message">
