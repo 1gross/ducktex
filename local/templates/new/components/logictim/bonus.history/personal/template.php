@@ -3,7 +3,6 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 use Bitrix\Main\Localization\Loc;
-
 Loc::loadMessages(__FILE__);
 ?>
 <div class="personal-wrap personal-bonus">
@@ -16,11 +15,11 @@ Loc::loadMessages(__FILE__);
         <div class="status">
         <?if (isset($arResult['PAID_STATUS'][$arResult['PAID_STATUS_CURRENT']])) {?>
             <?=Loc::getMessage('CURRENT_STATUS')?>: <span><?=$arResult['PAID_STATUS'][$arResult['PAID_STATUS_CURRENT']]['NAME']?></span>, мы начисляем <span><?=$arResult['PAID_STATUS'][$arResult['PAID_STATUS_CURRENT']]['PERCENT']?>%</span> бонусов за каждый заказ
-        <?}/* else { ?>
-                <?if ($arResult['PAID_SUM_MIN_ID'] > 0) {?>
-                    До статуса <?=$arResult['PAID_STATUS'][$arResult['PAID_SUM_MIN_ID']]['NAME']?>, осталось заказать на сумму <?=$arResult['PAID_SUM_MIN'] - $arResult['SUM_ORDER_PRICE']?> руб.
-                <?}?>
-        <?}*/?>
+        <?} else { ?>
+            <? if ($arResult['PAID_SUM_MIN_ID'] > 0) { ?>
+                До статуса <?= $arResult['PAID_STATUS'][$arResult['PAID_SUM_MIN_ID']]['NAME'] ?>, осталось заказать на сумму <?= $arResult['PAID_SUM_MIN'] - $arResult['SUM_ORDER_PRICE'] ?> руб.
+            <? } ?>
+        <?}?>
         </div>
     </div>
     <div class="bonus-line">
