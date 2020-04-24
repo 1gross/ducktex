@@ -1,4 +1,42 @@
 $(document).ready(function() {
+    let url = '/local/tools/ajax.php';
+    $('#quantity-c').mask("0000 м", {'translation': {'м': {pattern: /м/}, '0': {pattern: /[0-9\.]/}}});
+        $(document).on('keyup', '#quantity-c', function () {
+            let id = $(this).next().attr('data-id');
+            let elm = $(this);
+            let time = (new Date()).getTime();
+            let delay = 1000; /* Количество мксек. для определения окончания печати */
+            if (parseFloat(elm.val()) >= parseFloat(elm.attr('data-max'))) {
+                elm.val(elm.attr('data-max'));
+                elm.attr('data-value', parseFloat(elm.val()));
+            }
+            elm.attr({'data-time': time});
+            setTimeout(function () {
+                let oldtime = parseFloat(elm.attr('data-time'));
+                if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
+                    elm.attr('data-value', parseFloat(elm.val()));
+                    elm.val(parseFloat(elm.val()) + ' ' + elm.attr('data-unit'));
+                    let value = parseFloat(elm.attr('data-value')).toFixed(1);
+                    if ($('.basket-table').length > 0) {
+                        $.ajax({
+                            url: url,
+                            dataType: 'json',
+                            data: {
+                                id: id,
+                                action: 'update_basket',
+                                quantity: value,
+                            },
+                            success: function (response) {
+                                if (response.result === true) {
+                                    submitForm();
+                                }
+                            }
+                        });
+                    }
+                }
+            }, delay);
+        });
+
     //filter
     let filterApply = $('.js-init-filter_apply');
 
@@ -11,8 +49,7 @@ $(document).ready(function() {
     $('[data-fancybox="gallery"]').fancybox();
 
     //function API
-   let url = '/local/tools/ajax.php',
-       countBasket = $('.basket span'),
+   let countBasket = $('.basket span'),
        countCompare = $('.compare span');
 
     $(document).on('change', 'input', function (e) {
@@ -80,7 +117,8 @@ $(document).ready(function() {
               }
               let currentValue = value.toFixed(1);
               quantityInput
-                  .attr('value', currentValue+' '+valueMeasure)
+                  //.attr('value', currentValue+' '+valueMeasure)
+                  .val(currentValue+' '+valueMeasure)
                   .attr('data-value', currentValue);
               data.quantity = currentValue;
               break;

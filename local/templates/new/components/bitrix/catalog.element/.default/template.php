@@ -154,7 +154,6 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                    data-max="<?=$arResult['PRODUCT']['QUANTITY']?>"
                                    data-step="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-unit="<?=$arResult['ITEM_MEASURE']['TITLE']?>"
-                                   disabled="disabled"
                                    type="text" value="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?> <?=$arResult['ITEM_MEASURE']['TITLE']?>" />
                             <button class="quant-btn quantity-arrow-plus js-init-action" data-action="update_basket" data-type="in" data-id="<?=$arResult['ID']?>"> + </button>
                         </div>

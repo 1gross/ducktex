@@ -38,7 +38,7 @@ Loc::loadMessages(__FILE__);
                 <?$ROW["MEASURE_RATIO"] = isset($ROW["MEASURE_RATIO"]) ? $ROW["MEASURE_RATIO"] : 1; ?>
                 <div class="quantity-block" data-page="basket">
                     <button class="quant-btn quantity-arrow-minus js-init-action" data-action="update_basket" data-type="de" data-id="<?=$ROW['PRODUCT_ID']?>"> - </button>
-                    <input class="quantity-num" disabled
+                    <input class="quantity-num"
                            id="quantity-c"
                            data-value="<?=$ROW['QUANTITY']?>"
                            data-min="<?=$ROW["MEASURE_RATIO"]?>"
