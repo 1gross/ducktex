@@ -183,7 +183,7 @@ $(document).ready(function() {
                                                              }, 300);
                                                          } else {
                                                              if (typeof res.message !== 'undefined') {
-                                                                 verificationForm.find('.sms-code').addClass('error');
+                                                                 verificationForm.find('.modal-body').after('<div class="error">' + res.message.CODE + '</div>');
                                                              }
                                                          }
                                                      }
