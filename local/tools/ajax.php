@@ -17,6 +17,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_be
 header("Access-Control-Allow-Origin: *");
 CModule::IncludeModule('sale');
 
+$smsTestMode = false;
+
 if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     global $USER, $APPLICATION;
 
@@ -73,12 +75,18 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         ]
                     );
                     $arResponse['code'] = $code;
-                    //$result = true;
-                    $result = $sms->send();
-                    if ($result->isSuccess()) {
-                    //if ($result) {
+
+                    if ($smsTestMode) {
+                        $res = true;
+                    } else {
+                        $result = $sms->send();
+                        $res = $result->isSuccess();
+                    }
+
+                    if ($res) {
                         $arResponse['result'] = true;
                         $arResponse['phone'] = $phoneNumber;
+                        $arResponse['user_id'] = $userID;
                         $arResponse['send_sms'] = true;
                         $arResponse['sign_data'] = PhoneAuth::signData([
                             'phoneNumber' => $phoneNumber
@@ -113,6 +121,48 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     } else {
                         $arResponse['result'] = false;
                         $arResponse['message']['system'] = 'Ошибка: Отсутствует подпись';
+                    }
+                    break;
+                case 'resend_code':
+                    if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA']) && isset($arFields['USER_ID']) && !empty($arFields['USER_ID']) ) {
+                        $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
+
+                        if (strlen(trim($params['phoneNumber'])) > 0) {
+
+                            list($code, $phoneNumber) = CUser::GeneratePhoneCode($arFields['USER_ID']);
+                            $sms = new Bitrix\Main\Sms\Event(
+                                'SMS_USER_CONFIRM_NUMBER',
+                                [
+                                    "USER_PHONE" => $phoneNumber,
+                                    "CODE" => $code,
+                                ]
+                            );
+
+                            if ($smsTestMode) {
+                                $res = true;
+                            } else {
+                                $result = $sms->send();
+                                $res = $result->isSuccess();
+                            }
+
+                            $arResponse['code'] = $code;
+
+                            if ($res) {
+                                $arResponse['result'] = true;
+                                $arResponse['user_id'] = $arFields['USER_ID'];
+                                $arResponse['send_sms'] = true;
+                                $arResponse['sign_data'] = PhoneAuth::signData([
+                                    'phoneNumber' => $phoneNumber
+                                ]);
+                            } else {
+                                $arResponse['false'] = false;
+                                $arResponse['send_sms'] = false;
+                                $arResponse['message'] = $result->getErrors();
+                            }
+
+                        }
+                    } else {
+                        $arResponse['false'] = false;
                     }
                     break;
                 case 'profile_edit':
