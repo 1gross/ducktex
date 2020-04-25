@@ -140,7 +140,11 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                 <div class="price-item"
                                      data-price-value="<?=$arPrice['PRICE']?>">
                                     <?=$arPrice['PRINT_PRICE']?>
-                                    <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
+                                    <?if ($arPrice['PRINT_PRICE']) {?>
+                                        <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
+                                    <?} else {?>
+                                        Цена отсутствует
+                                    <?}?>
                                 </div>
                             <?}?>
                         </div>
