@@ -3030,6 +3030,8 @@ section.with-sea .wrapper::before {
         padding: 10px 0 30px; } }
     @media screen and (max-width: 767px) {
       #basket .basket-footer {
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: flex-start;
         padding: 10px 0;
         border-bottom: 0; } }
