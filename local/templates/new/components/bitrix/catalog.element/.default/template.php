@@ -140,7 +140,11 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                 <div class="price-item"
                                      data-price-value="<?=$arPrice['PRICE']?>">
                                     <?=$arPrice['PRINT_PRICE']?>
-                                    <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
+                                    <?if ($arPrice['PRINT_PRICE']) {?>
+                                        <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
+                                    <?} else {?>
+                                        Цена отсутствует
+                                    <?}?>
                                 </div>
                             <?}?>
                         </div>
@@ -154,7 +158,6 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                    data-max="<?=$arResult['PRODUCT']['QUANTITY']?>"
                                    data-step="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?>"
                                    data-unit="<?=$arResult['ITEM_MEASURE']['TITLE']?>"
-                                   disabled="disabled"
                                    type="text" value="<?=$arResult['ITEM_MEASURE_RATIOS'][$measureID]['RATIO']?> <?=$arResult['ITEM_MEASURE']['TITLE']?>" />
                             <button class="quant-btn quantity-arrow-plus js-init-action" data-action="update_basket" data-type="in" data-id="<?=$arResult['ID']?>"> + </button>
                         </div>
@@ -166,10 +169,11 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                             "COMPONENT_TEMPLATE" => ".default",
                             "COMPOSITE_FRAME_MODE" => "A",
                             "COMPOSITE_FRAME_TYPE" => "AUTO",
-                            "AJAX" => "N",
+                            "AJAX" => "Y",
                             "ITEMS" => array("ITEMS"=>$arResult)
                         )
                     );?>
+
                     <div class="bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
                     <button class="btn blue add-cart js-init-action" data-action="add_basket" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
                     <?if ($arParams['PROPERTY_CODE']) {?>
@@ -200,11 +204,21 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                                 }
                                             }
                                             break;
+                                        case 'L':
+                                            switch ($arProperty['VALUE']) {
+                                                case 'Y':
+                                                    $arProperty['VALUE'] = 'Есть';
+                                                    break;
+                                                case 'N':
+                                                    $arProperty['VALUE'] = 'Нет';
+                                                    break;
+                                            }
+                                            break;
                                     }
                                     if ($arProperty['VALUE']) {?>
                                         <div class="props-item">
                                             <div class="name"><?=$arProperty['NAME']?>:</div>
-                                            <div class="value"><?=$arProperty['VALUE']?></div>
+                                            <div class="value"><?=is_array($arProperty['VALUE']) ? implode(', ', $arProperty['VALUE']) : $arProperty['VALUE']?></div>
                                         </div>
                                     <?} ?>
                                 <?}?>

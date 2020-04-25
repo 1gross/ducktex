@@ -26,7 +26,12 @@
                 <?$isMinPrice = isset($arResult['MIN_PRICE']['VALUE']) && ($arResult['MIN_PRICE']['VALUE'] < $arResult['PRICE_ITEM']['PRICE']); ?>
                 <?=$isMinPrice ? 'от ' : ''?>
                 <?=$isMinPrice ? $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] : $arResult['PRICE_ITEM']['PRINT_PRICE']?>
-                <?=$arResult['CATALOG_MEASURE_NAME'] ? ' / ' . $arResult['CATALOG_MEASURE_NAME'] : ''?>
+                <?$price = $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] ?: $arResult['PRICE_ITEM']['PRINT_PRICE']?>
+                <?if ($price) {?>
+                    <?=$arResult['CATALOG_MEASURE_NAME'] ? ' / ' . $arResult['CATALOG_MEASURE_NAME'] : ''?>
+                <? } else {?>
+                    Цена отсутствует
+                <?}?>
             </div>
             <?if (isset($arResult['DISCOUNT']) && $arResult['DISCOUNT']['VALUE'] > 0) {
 
@@ -64,9 +69,19 @@
                                 case 'E':
                                     $arProperty['VALUE'] = CIBlockElement::GetByID($arProperty['VALUE'])->Fetch()['NAME'];
                                     break;
+                                case 'L':
+                                    switch ($arProperty['VALUE']) {
+                                        case 'Y':
+                                            $arProperty['VALUE'] = 'Есть';
+                                            break;
+                                        case 'N':
+                                            $arProperty['VALUE'] = 'Нет';
+                                            break;
+                                    }
+                                    break;
                             } ?>
                             <?if ($arProperty['VALUE']) {?>
-                                <span class="hover-item-value"><?=$arProperty['VALUE']?></span>
+                                <span class="hover-item-value"><?=is_array($arProperty['VALUE']) ? implode(', ', $arProperty['VALUE']) : $arProperty['VALUE']?></span>
                             <?}?>
                         </div>
                         <?$i++;?>

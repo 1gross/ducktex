@@ -44,10 +44,9 @@ Loc::loadMessages(__FILE__);
             </div>
         <?}?>
     <? } else {?>
-
             <div class="personal-order-clear-block">
                 <div class="title">У вас пока нет заказов</div>
-                <a href="<?=SITE_DIR?>catalog/" class="start">начать покупки</a>
+                <a href="<?=SITE_DIR?>catalog/" class="btn outline">начать покупки</a>
             </div>
     <?}?>
 </div>
