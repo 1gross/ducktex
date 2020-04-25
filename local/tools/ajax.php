@@ -17,7 +17,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_be
 header("Access-Control-Allow-Origin: *");
 CModule::IncludeModule('sale');
 
-$smsTestMode = false;
+$smsTestMode = true;
 
 if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     global $USER, $APPLICATION;
@@ -67,6 +67,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         $userID = $arResult["ID"];
                     }
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
+                    $us = new CUser();
+                    $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($userID))));
                     $sms = new Bitrix\Main\Sms\Event(
                         'SMS_USER_CONFIRM_NUMBER',
                         [
@@ -100,16 +102,23 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     break;
                 case 'auth_check_code':
 
+
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA'])) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
                         $verificationCode = implode('', $arFields['CODE']);
 
                         if (strlen(trim($verificationCode)) == 6) {
-                            $userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
-                            if ($userId) {
-                                $USER->Authorize($userId);
-                                $arResponse['result'] = true;
+                            $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
 
+                            if ($arUser['UF_HASHKEY'] == md5($verificationCode.$arFields['USER_ID'])) {
+                                $us = new CUser();
+                                $rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
+
+                                //$userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
+                                if ($arFields['USER_ID']) {
+                                    $USER->Authorize($arFields['USER_ID']);
+                                    $arResponse['result'] = true;
+                                }
                             } else {
                                 $arResponse['result'] = false;
                                 $arResponse['message']['CODE'] = 'Неверный код';
@@ -130,6 +139,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         if (strlen(trim($params['phoneNumber'])) > 0) {
 
                             list($code, $phoneNumber) = CUser::GeneratePhoneCode($arFields['USER_ID']);
+                            $us = new CUser();
+                            $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($arFields['USER_ID']))));
+
                             $sms = new Bitrix\Main\Sms\Event(
                                 'SMS_USER_CONFIRM_NUMBER',
                                 [

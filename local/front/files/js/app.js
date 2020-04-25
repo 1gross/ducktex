@@ -1,11 +1,13 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
-    //$('#quantity-c').mask("0000 м", {'translation': {'м': {pattern: /м/}, '0': {pattern: /[0-9\.]/}}});
         $(document).on('keyup', '#quantity-c', function () {
-            let id = $(this).next().attr('data-id');
-            let elm = $(this);
-            let time = (new Date()).getTime();
-            let delay = 1000; /* Количество мксек. для определения окончания печати */
+            let id = $(this).next().attr('data-id'),
+                elm = $(this),
+                time = (new Date()).getTime(),
+                urlPage = location.href,
+                delay = urlPage.indexOf('basket') >= 0 ? 1500 : 50, /* Количество мксек. для определения окончания печати */
+                step = $(this).attr('data-step');
+
             if (parseFloat(elm.val()) >= parseFloat(elm.attr('data-max'))) {
                 elm.val(elm.attr('data-max'));
                 elm.attr('data-value', parseFloat(elm.val()));
@@ -14,8 +16,13 @@ $(document).ready(function() {
             setTimeout(function () {
                 let oldtime = parseFloat(elm.attr('data-time'));
                 if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
-                    elm.attr('data-value', parseFloat(elm.val()));
-                    elm.val(parseFloat(elm.val()) + ' ' + elm.attr('data-unit'));
+                    if (step.indexOf('.') >= 0) {
+                        elm.attr('data-value', parseFloat(elm.val()));
+                        elm.val(parseFloat(elm.val()) + ' ' + elm.attr('data-unit'));
+                    } else {
+                        elm.attr('data-value', Math.round(parseFloat(elm.val())));
+                        elm.val(Math.round(parseFloat(elm.val())) + ' ' + elm.attr('data-unit'));
+                    }
                     let value = parseFloat(elm.attr('data-value')).toFixed(1);
                     if ($('.basket-table').length > 0) {
                         $.ajax({
@@ -223,7 +230,7 @@ $(document).ready(function() {
                                            let verificationCode = '',
                                                value = $(this).val().replace(/[^\d]/g, '');
 
-                                           if (value.length > 0 && parseInt(value) > 0) {
+                                           if (value.length > 0 && parseInt(value) >= 0) {
                                                verificationForm.find('.digit').each(function () {
                                                    verificationCode += $(this).val();
                                                });
@@ -340,6 +347,8 @@ $(document).ready(function() {
                                        }
                                        break;
                                }
+                               break;
+                           case '':
 
                                break;
                        }
