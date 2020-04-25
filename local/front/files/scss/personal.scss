@@ -297,6 +297,9 @@
     .title{
       font-weight: bold;
       font-size: 36px;
+      @media screen and (max-width: $sm-max){
+          font-size: 24px;
+      }
     }
     .btn{
       margin-top: 20px;

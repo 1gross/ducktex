@@ -2482,6 +2482,9 @@ section.with-sea .wrapper::before {
   .personal-orders .personal-order-clear-block .title {
     font-weight: bold;
     font-size: 36px; }
+    @media screen and (max-width: 767px) {
+      .personal-orders .personal-order-clear-block .title {
+        font-size: 24px; } }
   .personal-orders .personal-order-clear-block .btn {
     margin-top: 20px; }
 
