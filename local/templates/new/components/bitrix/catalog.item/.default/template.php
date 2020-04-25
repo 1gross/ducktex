@@ -25,9 +25,10 @@
             <div class="new">
                 <?$isMinPrice = isset($arResult['MIN_PRICE']['VALUE']) && ($arResult['MIN_PRICE']['VALUE'] < $arResult['PRICE_ITEM']['PRICE']); ?>
                 <?=$isMinPrice ? 'от ' : ''?>
-                <?$price = $isMinPrice ? $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] : $arResult['PRICE_ITEM']['PRINT_PRICE']?>
+                <?=$isMinPrice ? $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] : $arResult['PRICE_ITEM']['PRINT_PRICE']?>
+                <?$price = $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] ?: $arResult['PRICE_ITEM']['PRINT_PRICE']?>
                 <?if ($price) {?>
-                <?=$arResult['CATALOG_MEASURE_NAME'] ? ' / ' . $arResult['CATALOG_MEASURE_NAME'] : ''?>
+                    <?=$arResult['CATALOG_MEASURE_NAME'] ? ' / ' . $arResult['CATALOG_MEASURE_NAME'] : ''?>
                 <? } else {?>
                     Цена отсутствует
                 <?}?>
