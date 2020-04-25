@@ -1,3 +1,18 @@
+.modal-message.error-info {
+    color: #b74a45;
+}
+.modal-message {
+    margin-top: 15px;
+    text-align: left;
+}
+.modal-message .resend-link {
+    text-decoration: underline;
+}
+.modal-message .resend-link:hover,
+.modal-message .resend-link:focus,
+.modal-message .resend-link:active {
+    text-decoration: none;
+}
 .form-result.success {
     color: #3ab777;
     font-weight: bold;
@@ -30,6 +45,7 @@
 .sms-code.error input {
     border: 1px solid #b73124 !important;
     color:#b73124 !important;
+    box-shadow: 0 1px 5px 0 #b7312466;
 }
 .error-field input {
     border-bottom: 1px solid #b73124 !important;
@@ -163,4 +179,7 @@
 @keyframes opacityout2 {
     0% { opacity: 1;}
     100% { opacity: 0; }
+}
+.modal .modal-block .modal-body .btn {
+    max-width: 100%;
 }

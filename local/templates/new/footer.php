@@ -29,12 +29,12 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <?Asset::getInstance()->addCss($APPLICATION->GetTemplatePath('public/js/arcticmodal/jquery.arcticmodal-0.3.css'));?>
     <?Asset::getInstance()->addCss("/local/front/files/css/main.css");?>
     <?Asset::getInstance()->addCss($APPLICATION->GetTemplatePath('public/css/custom.css'));?>
-    <?$APPLICATION->ShowMeta("viewport");?>
     <?$APPLICATION->ShowMeta("HandheldFriendly");?>
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-capable", "yes");?>
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-status-bar-style");?>
     <?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
     <?$APPLICATION->ShowHead();?>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
     <meta name="yandex-verification" content="d923aaa6c6e8d5a7" />
     <meta name="google-site-verification" content="dAnFTXc0P1IVla1P3WjOpwtNVK3gq84OjV0gQK3vXqc" />

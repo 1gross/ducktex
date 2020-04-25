@@ -165,10 +165,11 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                             "COMPONENT_TEMPLATE" => ".default",
                             "COMPOSITE_FRAME_MODE" => "A",
                             "COMPOSITE_FRAME_TYPE" => "AUTO",
-                            "AJAX" => "N",
+                            "AJAX" => "Y",
                             "ITEMS" => array("ITEMS"=>$arResult)
                         )
                     );?>
+
                     <div class="bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
                     <button class="btn blue add-cart js-init-action" data-action="add_basket" data-id="<?=$arResult['ID']?>"><?=$arResult['MESS_BTN_ADD_TO_BASKET'] ?: Loc::getMessage('ADD_TO_CARD')?></button>
                     <?if ($arParams['PROPERTY_CODE']) {?>
@@ -199,11 +200,21 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                                 }
                                             }
                                             break;
+                                        case 'L':
+                                            switch ($arProperty['VALUE']) {
+                                                case 'Y':
+                                                    $arProperty['VALUE'] = 'Есть';
+                                                    break;
+                                                case 'N':
+                                                    $arProperty['VALUE'] = 'Нет';
+                                                    break;
+                                            }
+                                            break;
                                     }
                                     if ($arProperty['VALUE']) {?>
                                         <div class="props-item">
                                             <div class="name"><?=$arProperty['NAME']?>:</div>
-                                            <div class="value"><?=$arProperty['VALUE']?></div>
+                                            <div class="value"><?=is_array($arProperty['VALUE']) ? implode(', ', $arProperty['VALUE']) : $arProperty['VALUE']?></div>
                                         </div>
                                     <?} ?>
                                 <?}?>

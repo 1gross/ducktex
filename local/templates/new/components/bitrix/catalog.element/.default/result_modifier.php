@@ -23,25 +23,3 @@ if (is_array($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
     }
 }
 $arResult['MORE_PHOTO'] = $arPhoto;
-/*
-$arColors = array();
-$ID = 1;
-
-$hldata = Bitrix\Highloadblock\HighloadBlockTable::getById($ID)->fetch();
-$hlentity = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($hldata);
-$hlDataClass = $hldata["NAME"] . "Table";
-
-$result = $hlDataClass::getList(array(
-    "select" => array("ID", "UF_NAME", "UF_XML_ID", "UF_FILE"), // Поля для выборки
-    "order" => array("UF_SORT" => "ASC"),
-    "filter" => array(),
-));
-
-while ($res = $result->fetch()) {
-    if ($res['UF_FILE'] > 0) {
-        $res['UF_FILE'] = CFile::GetPath($res['UF_FILE']);
-    }
-    $arColors[$res['ID']] = $res;
-}
-
-$arResult['COLORS'] = $arColors;*/
