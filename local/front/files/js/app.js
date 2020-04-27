@@ -1,48 +1,52 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
-        $(document).on('keyup', '#quantity-c', function () {
-            let id = $(this).next().attr('data-id'),
-                elm = $(this),
-                time = (new Date()).getTime(),
-                urlPage = location.href,
-                delay = urlPage.indexOf('basket') >= 0 ? 1500 : 50, /* Количество мксек. для определения окончания печати */
-                step = $(this).attr('data-step');
 
-            if (parseFloat(elm.val()) >= parseFloat(elm.attr('data-max'))) {
-                elm.val(elm.attr('data-max'));
-                elm.attr('data-value', parseFloat(elm.val()));
-            }
-            elm.attr({'data-time': time});
-            setTimeout(function () {
-                let oldtime = parseFloat(elm.attr('data-time'));
-                if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
-                    if (step.indexOf('.') >= 0) {
-                        elm.attr('data-value', parseFloat(elm.val()));
-                        elm.val(parseFloat(elm.val()) + ' ' + elm.attr('data-unit'));
-                    } else {
-                        elm.attr('data-value', Math.round(parseFloat(elm.val())));
-                        elm.val(Math.round(parseFloat(elm.val())) + ' ' + elm.attr('data-unit'));
-                    }
-                    let value = parseFloat(elm.attr('data-value')).toFixed(1);
-                    if ($('.basket-table').length > 0) {
-                        $.ajax({
-                            url: url,
-                            dataType: 'json',
-                            data: {
-                                id: id,
-                                action: 'update_basket',
-                                quantity: value,
-                            },
-                            success: function (response) {
-                                if (response.result === true) {
-                                    submitForm();
-                                }
-                            }
-                        });
-                    }
+    $('#header .search-btn').on('click', function () {
+        $('#header .search').toggleClass('open');
+    });
+    $(document).on('keyup', '#quantity-c', function () {
+        let id = $(this).next().attr('data-id'),
+            elm = $(this),
+            time = (new Date()).getTime(),
+            urlPage = location.href,
+            delay = urlPage.indexOf('basket') >= 0 ? 1500 : 50, /* Количество мксек. для определения окончания печати */
+            step = $(this).attr('data-step');
+
+        if (parseFloat(elm.val()) >= parseFloat(elm.attr('data-max'))) {
+            elm.val(elm.attr('data-max'));
+            elm.attr('data-value', parseFloat(elm.val()));
+        }
+        elm.attr({'data-time': time});
+        setTimeout(function () {
+            let oldtime = parseFloat(elm.attr('data-time'));
+            if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
+                if (step.indexOf('.') >= 0) {
+                    elm.attr('data-value', parseFloat(elm.val()));
+                    elm.val(parseFloat(elm.val()) + ' ' + elm.attr('data-unit'));
+                } else {
+                    elm.attr('data-value', Math.round(parseFloat(elm.val())));
+                    elm.val(Math.round(parseFloat(elm.val())) + ' ' + elm.attr('data-unit'));
                 }
-            }, delay);
-        });
+                let value = parseFloat(elm.attr('data-value')).toFixed(1);
+                if ($('.basket-table').length > 0) {
+                    $.ajax({
+                        url: url,
+                        dataType: 'json',
+                        data: {
+                            id: id,
+                            action: 'update_basket',
+                            quantity: value,
+                        },
+                        success: function (response) {
+                            if (response.result === true) {
+                                submitForm();
+                            }
+                        }
+                    });
+                }
+            }
+        }, delay);
+    });
 
     //filter
     let filterApply = $('.js-init-filter_apply');
@@ -92,12 +96,15 @@ $(document).ready(function() {
                    beforeOpen: function (data, modal) {
                        let phoneInput = modal.find('[name="PHONE_NUMBER"]');
 
-                       phoneInput.on('change', function () {
-                           checkPhoneInput($(this));
-                       });
-                       phoneInput.on('keyup', function () {
-                           checkPhoneInput($(this));
-                       });
+                       if (phoneInput.length > 0) {
+                           phoneInput.on('change', function () {
+                               checkPhoneInput($(this));
+                           });
+                           phoneInput.on('keyup', function () {
+                               checkPhoneInput($(this));
+                           });
+                       }
+
                        function checkPhoneInput(el) {
                            let btn = el.closest('form').find('.btn'),
                                value = el.val();

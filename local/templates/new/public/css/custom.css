@@ -1,3 +1,17 @@
+.mobile-menu {
+    visibility: visible;
+    width:auto;
+    height:auto;
+    clip: unset;
+}
+.mobile-menu .mobile-menu-block {
+    transform: none;
+}
+@media screen and (max-width: 767px) {
+    .mobile-menu .mobile-menu-block {
+        overflow: visible;
+    }
+}
 .modal-message.error-info {
     color: #b74a45;
 }

@@ -8,7 +8,7 @@ Loc::loadMessages(__FILE__);
 
 if (file_exists($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php")) {
     $phonePath = File::getFileContents($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php");
-    $phonePath = preg_replace('/[^0-9]/', '', $phonePath);
+    $phoneValue = '+' . preg_replace('/[^0-9]/', '', $phonePath);
 }
 
 $arBasket = B24TechSiteHelper::getBasket();
@@ -58,7 +58,7 @@ $arCompare = B24TechSiteHelper::getCompareList();
                         </div>
                     </form>
                 </div>
-                <button class="burger"></button>
+                <button class="burger js-init-action" data-action="show_modal" data-modal="#mobile-menu"></button>
             </div>
         </div>
     </div>
