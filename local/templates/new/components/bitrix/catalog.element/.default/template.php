@@ -142,6 +142,9 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                     <?=$arPrice['PRINT_PRICE']?>
                                     <?if ($arPrice['PRINT_PRICE']) {?>
                                         <?=$arResult['ITEM_MEASURE']['TITLE'] ? ' / ' . $arResult['ITEM_MEASURE']['TITLE'] : ''?>
+                                        <?if ($arResult['PRICES']['BASE']['DISCOUNT_DIFF'] > 0) {?>
+                                            <span class="old-price"><?=$arResult['PRICES']['BASE']['PRINT_VALUE_VAT']?> / <?=$arResult['ITEM_MEASURE']['TITLE']?></span>
+                                        <?}?>
                                     <?} else {?>
                                         Цена отсутствует
                                     <?}?>

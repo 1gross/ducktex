@@ -197,3 +197,14 @@
 .modal .modal-block .modal-body .btn {
     max-width: 100%;
 }
+.old-price {
+    color: #B0B0B0;
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 18px;
+}
+@media screen and (max-width: 767px) {
+    .wrapper {
+        max-width: 100%;
+    }
+}

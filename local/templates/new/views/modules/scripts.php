@@ -19,7 +19,7 @@ Asset::getInstance()->addJs('/local/front/files/js/main.js');
 Asset::getInstance()->addJs('/local/front/files/js/app.js');
 
 ?>
-<?/*
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -31,4 +31,3 @@ Asset::getInstance()->addJs('/local/front/files/js/app.js');
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54ZPSNW"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-*/?>

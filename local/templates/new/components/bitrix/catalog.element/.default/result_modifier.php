@@ -5,6 +5,7 @@
 
 $arResult['IS_FAVORITES'] = B24TechSiteHelper::checkFavoritesById($arResult['ID']);
 
+
 $arPhoto = array();
 if ($arResult['DETAIL_PICTURE']['SRC']) {
     $arPhoto[] = array(
