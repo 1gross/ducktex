@@ -112,7 +112,7 @@ $(document).ready(function () {
         $("#" + tab_id).slideToggle();
     });
 
-    if ($(window).width() <= 768) {
+  /*  if ($(window).width() <= 768) {
         $('meta[name=\'viewport\']').attr('content', 'width=375');
         $('.catalog-menu-block, .news-wrap').slick({
             slidesToShow: 1,
@@ -137,7 +137,7 @@ $(document).ready(function () {
 
         });
 
-    }
+    }*/
 
     $(".sms-code input").keypress(function (e) {
         if (e.which != 8 && (e.which < 48 || e.which > 57)) {
