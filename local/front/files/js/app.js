@@ -1,7 +1,6 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
 
-
     $(document).on('click', '.js-init-filter_show', function () {
         $(this).removeClass('js-init-filter_show').addClass('js-init-filter_hide').text('Скрыть фильтр');
         $('.bx_filter_section').fadeIn();
@@ -15,56 +14,46 @@ $(document).ready(function() {
     });
 
     $(document).on('focus', '#quantity-c', function () {
-       let value = parseFloat($(this).attr('data-value'));
-       $(this).val(value);
-    });
-
-    $(document).on('blur', '#quantity-c', function () {
         let value = parseFloat($(this).attr('data-value'));
         $(this).val(value);
     });
-   /* $(document).on('keyup', '#quantity-c', function () {
-        let id = $(this).next().attr('data-id'),
-            elm = $(this),
-            time = (new Date()).getTime(),
-            urlPage = location.href,
-            delay = urlPage.indexOf('basket') >= 0 ? 1500 : 50, // Количество мксек. для определения окончания печати
-            step = $(this).attr('data-step');
 
-        if (parseFloat(elm.val()) >= parseFloat(elm.attr('data-max'))) {
-            elm.val(elm.attr('data-max'));
-            elm.attr('data-value', parseFloat(elm.val()));
+    $(document).on('blur', '#quantity-c', function () {
+        let elm = $(this);
+        if (elm.attr('data-step').indexOf('.') >= 0) {
+            elm.attr('data-value', parseFloat(elm.val()).toFixed(1));
+        } else {
+            elm.attr('data-value', Math.round(parseFloat(elm.val())));
         }
-        elm.attr({'data-time': time});
-        setTimeout(function () {
-            let oldtime = parseFloat(elm.attr('data-time'));
-            if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
-                if (step.indexOf('.') >= 0) {
-                    elm.attr('data-value', parseFloat(elm.val()));
-                } else {
-                    elm.attr('data-value', Math.round(parseFloat(elm.val())));
+        if (parseFloat(elm.attr('data-value')) > parseFloat(elm.attr('data-max'))) {
+            elm.attr('data-value', parseFloat(elm.attr('data-max')));
+        }
+        if (parseFloat(elm.attr('data-value')) < parseFloat(elm.attr('data-min'))) {
+            elm.attr('data-value', parseFloat(elm.attr('data-min')));
+        }
+        if (elm.attr('data-value') === 'NaN') {
+            elm.attr('data-value', parseFloat(elm.attr('data-min')));
+        }
+        elm.val(elm.attr('data-value') + ' ' + elm.attr('data-unit'));
+        if ($('.basket-table').length > 0) {
+            let id = elm.next().attr('data-id');
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                data: {
+                    id: id,
+                    action: 'update_basket',
+                    quantity: elm.attr('data-value'),
+                },
+                success: function (response) {
+                    if (response.result === true) {
+                        submitForm();
+                    }
                 }
-                let value = parseFloat(elm.attr('data-value')).toFixed(1);
-                if ($('.basket-table').length > 0) {
-                    $.ajax({
-                        url: url,
-                        dataType: 'json',
-                        data: {
-                            id: id,
-                            action: 'update_basket',
-                            quantity: value,
-                        },
-                        success: function (response) {
-                            if (response.result === true) {
-                                submitForm();
-                            }
-                        }
-                    });
-                }
-            }
-        }, delay);
+            });
+        }
     });
-*/
+
     //filter
     let filterApply = $('.js-init-filter_apply');
 
@@ -171,7 +160,7 @@ $(document).ready(function() {
                }
                let currentValue = value.toFixed(1);
                quantityInput
-               //.attr('value', currentValue+' '+valueMeasure)
+                   .val(currentValue+' '+valueMeasure)
                    .attr('data-value', currentValue);
                data.quantity = currentValue;
                break;
