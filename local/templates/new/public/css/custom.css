@@ -10,6 +10,7 @@
 @media screen and (max-width: 767px) {
     .mobile-menu .mobile-menu-block {
         overflow: visible;
+        max-width: 315px;
     }
 }
 .modal-message.error-info {

@@ -17,7 +17,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_be
 header("Access-Control-Allow-Origin: *");
 CModule::IncludeModule('sale');
 
-$smsTestMode = true;
+$smsTestMode = false;
 
 if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     global $USER, $APPLICATION;
