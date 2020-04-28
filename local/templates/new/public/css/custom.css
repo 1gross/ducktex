@@ -1,7 +1,7 @@
 .mobile-menu {
     visibility: visible;
     width:auto;
-    height:auto;
+    min-height: 100vh;
     clip: unset;
 }
 .mobile-menu .mobile-menu-block {
@@ -228,5 +228,8 @@
     }
     .pluses.desktop {
         display:none;
+    }
+    .modal .modal-block .modal-body .sms-code input {
+        margin-right: 5px;
     }
 }

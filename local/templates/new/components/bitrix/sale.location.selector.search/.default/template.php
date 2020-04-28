@@ -44,11 +44,11 @@ if ($arParams["UI_FILTER"])
 		<div class="<?=$dropDownBlock?> bx-ui-sls-input-block">
 
 			<span class="dropdown-icon"></span>
-			<input type="text" autocomplete="off" data-type="location" name="<?=$arParams['INPUT_NAME']?>" value="<?=$arResult['VALUE']?>" class="inp-field dropdown-field required" placeholder="<?=Loc::getMessage('SALE_SLS_INPUT_SOME')?> ..." />
+			<input type="text" autocomplete="off" data-type="location" name="<?=$arParams['INPUT_NAME']?>" value="<?=$arResult['VALUE']?>" class="inp-field dropdown-field required" placeholder="Введите название города или населенного пункт" />
 
 			<div class="dropdown-fade2white"></div>
 			<div class="bx-ui-sls-loader"></div>
-			<div class="bx-ui-sls-clear" title="<?=Loc::getMessage('SALE_SLS_CLEAR_SELECTION')?>"></div>
+			<div class="bx-ui-sls-clear" title="Введите название города или населенного пункт"></div>
 			<div class="bx-ui-sls-pane"></div>
 
 		</div>

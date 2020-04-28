@@ -311,7 +311,17 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                     break;
                 case 'subscribe':
-                    $arResponse['result'] = true;
+                    if (check_email($_REQUEST['email'])) {
+                        $list = array();
+                        foreach (\Bitrix\Sender\Subscription::getMailingList(array('IS_PUBLIC' => 'Y')) as $l) {
+                            $list[] = $l['ID'];
+                        }
+                        \Bitrix\Sender\Subscription::add($_REQUEST['email'], $list, SITE_ID);
+                        $arResponse['result'] = true;
+                    } else {
+                        $arResponse['message'] = 'Некорректный email';
+                        $arResponse['result'] = false;
+                    }
                     break;
             }
 

@@ -23,6 +23,8 @@ $(document).ready(function() {
         let value = parseFloat($(this).attr('data-value'));
         $(this).val(value);
     });
+
+
    /* $(document).on('keyup', '#quantity-c', function () {
         let id = $(this).next().attr('data-id'),
             elm = $(this),
@@ -358,6 +360,11 @@ $(document).ready(function() {
                                            codeBlock.addClass('error');
                                            $this.attr('disabled', 'disabled');
 
+                                       }
+                                       break;
+                                   case 'subscribe':
+                                       if (typeof response.message !== 'undefined') {
+                                           alert(response.message);
                                        }
                                        break;
                                    default:
