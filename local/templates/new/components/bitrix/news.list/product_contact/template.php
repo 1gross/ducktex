@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="address">
+
     <?if ($arResult['ITEMS'][0]['PROPERTIES']['HOME_BLOCK_TITLE']['VALUE']) {?>
     <h2 class="title"><?=$arResult['ITEMS'][0]['PROPERTIES']['HOME_BLOCK_TITLE']['VALUE']?></h2>
     <?}?>
@@ -14,4 +14,4 @@
     <?if ($arResult['ITEMS'][0]['PROPERTIES']['SCHEDULE']['VALUE']) {?>
         <div class="work-times"><?=htmlspecialchars_decode($arResult['ITEMS'][0]['PROPERTIES']['SCHEDULE']['VALUE']['TEXT'])?></div>
     <?}?>
-</div>
+

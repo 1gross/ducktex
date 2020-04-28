@@ -4,12 +4,22 @@ $(document).ready(function() {
     $('#header .search-btn').on('click', function () {
         $('#header .search').toggleClass('open');
     });
-    $(document).on('keyup', '#quantity-c', function () {
+
+    $(document).on('focus', '#quantity-c', function () {
+       let value = parseFloat($(this).attr('data-value'));
+       $(this).val(value);
+    });
+
+    $(document).on('blur', '#quantity-c', function () {
+        let value = parseFloat($(this).attr('data-value'));
+        $(this).val(value);
+    });
+   /* $(document).on('keyup', '#quantity-c', function () {
         let id = $(this).next().attr('data-id'),
             elm = $(this),
             time = (new Date()).getTime(),
             urlPage = location.href,
-            delay = urlPage.indexOf('basket') >= 0 ? 1500 : 50, /* Количество мксек. для определения окончания печати */
+            delay = urlPage.indexOf('basket') >= 0 ? 1500 : 50, // Количество мксек. для определения окончания печати
             step = $(this).attr('data-step');
 
         if (parseFloat(elm.val()) >= parseFloat(elm.attr('data-max'))) {
@@ -22,10 +32,8 @@ $(document).ready(function() {
             if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('data-time') !== 'undefined') {
                 if (step.indexOf('.') >= 0) {
                     elm.attr('data-value', parseFloat(elm.val()));
-                    elm.val(parseFloat(elm.val()) + ' ' + elm.attr('data-unit'));
                 } else {
                     elm.attr('data-value', Math.round(parseFloat(elm.val())));
-                    elm.val(Math.round(parseFloat(elm.val())) + ' ' + elm.attr('data-unit'));
                 }
                 let value = parseFloat(elm.attr('data-value')).toFixed(1);
                 if ($('.basket-table').length > 0) {
@@ -47,7 +55,7 @@ $(document).ready(function() {
             }
         }, delay);
     });
-
+*/
     //filter
     let filterApply = $('.js-init-filter_apply');
 
@@ -155,7 +163,6 @@ $(document).ready(function() {
                let currentValue = value.toFixed(1);
                quantityInput
                //.attr('value', currentValue+' '+valueMeasure)
-                   .val(currentValue+' '+valueMeasure)
                    .attr('data-value', currentValue);
                data.quantity = currentValue;
                break;

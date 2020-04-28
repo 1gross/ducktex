@@ -204,8 +204,19 @@
     font-weight: 400;
     font-size: 18px;
 }
+
+.pluses.mobile {
+    display: none;
+}
 @media screen and (max-width: 767px) {
     .wrapper {
         max-width: 100%;
+    }
+    .pluses.mobile {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    .pluses.desktop {
+        display:none;
     }
 }
