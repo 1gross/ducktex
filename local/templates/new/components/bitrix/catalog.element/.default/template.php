@@ -291,10 +291,12 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                 <li class="tab-link" data-tab="tab-4"><?=Loc::getMessage('SHOWROOM_TAB')?></li>
             </ul>
             <?if ($arResult['DETAIL_TEXT']) {?>
+                <button class="tab-link current" data-tab="tab-1"><?=Loc::getMessage('DETAIL_TEXT_TAB')?></button>
                 <div id="tab-1" class="tab-content current">
                     <?=$arResult['DETAIL_TEXT']?>
                 </div>
             <?}?>
+            <button class="tab-link <?=empty($arResult['DETAIL_TEXT']) ? 'current' : ''?>" data-tab="tab-2"><?=Loc::getMessage('DELIVERY_TAB')?></button>
             <div id="tab-2" class="tab-content <?=empty($arResult['DETAIL_TEXT']) ? 'current' : ''?>">
                 <?$APPLICATION->IncludeFile(
                     SITE_TEMPLATE_PATH . "/include/product_tab_delivery.php",
@@ -305,6 +307,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                     )
                 );?>
             </div>
+            <button class="tab-link" data-tab="tab-3"><?=Loc::getMessage('REFUND_TAB')?></button>
             <div id="tab-3" class="tab-content">
                 <?$APPLICATION->IncludeFile(
                     SITE_TEMPLATE_PATH . "/include/product_tab_refund.php",
@@ -315,6 +318,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                     )
                 );?>
             </div>
+            <button class="tab-link" data-tab="tab-4"><?=Loc::getMessage('SHOWROOM_TAB')?></button>
             <div id="tab-4" class="tab-content">
                 <?
                 global $arrFilter;

@@ -33,7 +33,9 @@
                     Цена отсутствует
                 <?}?>
             </div>
-            <?if (isset($arResult['DISCOUNT']) && $arResult['DISCOUNT']['VALUE'] > 0) {?>
+            <?if (isset($arResult['PRICES']['BASE']['DISCOUNT_DIFF']) && $arResult['PRICES']['BASE']['DISCOUNT_DIFF'] > 0) {?>
+                <div class="last"><?=$arResult['PRICES']['BASE']['PRINT_VALUE_VAT']?></div>
+            <?} elseif (isset($arResult['DISCOUNT']) && $arResult['DISCOUNT']['VALUE'] > 0) {?>
                 <?$price = $arResult['MIN_PRICE']['VALUE'] ?: $arResult['PRICE_ITEM']['PRICE']?>
                 <div class="last"><?=round(($price/(100 - $arResult['DISCOUNT']['VALUE'])) * 100, 2)?> руб.</div>
             <?}?>
