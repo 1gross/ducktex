@@ -120,6 +120,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                             <?=Loc::getMessage('ARTNUMBER_NAME')?>: <span><?=$arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']?></span>
                         </div>
                     <?}?>
+                    <h1 class="title-mob"><?=$arResult['NAME']?></h1>
                     <div class="price-block">
                         <div class="price">
                             <?if (count($arResult['ITEM_QUANTITY_RANGES']) > 1) {?>
