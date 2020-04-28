@@ -1,5 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-$this->setFrameMode(true);
+$this->setFrameMode(true);?>
+<button class="bx_filter_section-btn btn blue small js-init-filter_show">Показать фильтр</button>
+<?
 if($arResult["ITEMS"]){?>
 	<div class="bx_filter bx_filter_vertical">
 		<div class="bx_filter_section">

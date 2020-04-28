@@ -1,6 +1,15 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
 
+
+    $(document).on('click', '.js-init-filter_show', function () {
+        $(this).removeClass('js-init-filter_show').addClass('js-init-filter_hide').text('Скрыть фильтр');
+        $('.bx_filter_section').fadeIn();
+    });
+    $(document).on('click', '.js-init-filter_hide', function () {
+        $(this).removeClass('js-init-filter_hide').addClass('js-init-filter_show').text('Показать фильтр');
+        $('.bx_filter_section').fadeOut();
+    });
     $('#header .search-btn').on('click', function () {
         $('#header .search').toggleClass('open');
     });

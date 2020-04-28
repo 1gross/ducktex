@@ -208,7 +208,17 @@
 .pluses.mobile {
     display: none;
 }
+.bx_filter_section-btn {
+    display: none;
+}
 @media screen and (max-width: 767px) {
+    .bx_filter_section-btn {
+        display: block;
+        margin-bottom: 20px;
+    }
+    .bx_filter_section {
+        display: none;
+    }
     .wrapper {
         max-width: 100%;
     }
