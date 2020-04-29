@@ -211,11 +211,16 @@
 .bx_filter_section-btn {
     display: none;
 }
+.catalog-menu-block_btn {
+    display: none;
+}
 @media screen and (max-width: 767px) {
+    .catalog-menu-block_btn,
     .bx_filter_section-btn {
         display: block;
         margin-bottom: 20px;
     }
+    .catalog-menu-block_block,
     .bx_filter_section {
         display: none;
     }

@@ -1,7 +1,9 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?$this->setFrameMode(true);?>
 <?if($arResult) {?>
-    <div class="filter-item" >
+    <button class="catalog-menu-block_btn btn blue small js-init-catalog_show">Показать разделы</button>
+    <div class="filter-item catalog-menu-block_block">
+
         <div class="filter-title">Каталог</div>
         <div class="filter-body">
             <?

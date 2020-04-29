@@ -1,6 +1,14 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
 
+    $(document).on('click', '.js-init-catalog_show', function () {
+        $(this).removeClass('js-init-catalog_show').addClass('js-init-catalog_hide').text('Скрыть разделы');
+        $('.catalog-menu-block_block').fadeIn();
+    });
+    $(document).on('click', '.js-init-catalog_hide', function () {
+        $(this).removeClass('js-init-catalog_hide').addClass('js-init-catalog_show').text('Показать разделы');
+        $('.catalog-menu-block_block').fadeOut();
+    });
     $(document).on('click', '.js-init-filter_show', function () {
         $(this).removeClass('js-init-filter_show').addClass('js-init-filter_hide').text('Скрыть фильтр');
         $('.bx_filter_section').fadeIn();
