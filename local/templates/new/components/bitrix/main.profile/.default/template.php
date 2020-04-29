@@ -99,7 +99,7 @@ foreach ($arTabs as $typeID => $arProfile) {
         </div>
         <div class="buttons-group">
             <button class="btn outline modal-link js-init-action" data-action="show_modal" data-modal="#edit-personal-info"><?=Loc::getMessage('EDIT_BUTTON_TEXT')?></button>
-            <button class="btn simple modal-link js-init-action" data-action="show_modal" data-modal="#delete-profile"><?=Loc::getMessage('DELETE_BUTTON_TEXT')?></button>
+            <button class="btn simple modal-link js-init-action" style="display:none;" data-action="show_modal" data-modal="#delete-profile"><?=Loc::getMessage('DELETE_BUTTON_TEXT')?></button>
         </div>
     </div>
 </div>
