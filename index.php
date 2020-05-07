@@ -5,7 +5,6 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("keywords", "Дактекс, Дакатекс, Dakteks, daktex, dukteks, duckteks, дуктекс");
 $APPLICATION->SetTitle("Магазин тканей ducktex.ru");
-$USER->Authorize(1);
 ?>
     <p>
         DUCK TEX - оптово-розничная компания по продаже тканей и трикотажа.<br>
