@@ -6,6 +6,7 @@
 
 <section class="block-overlay">
     <h2><?=$APPLICATION->GetTitle()?></h2>
+    <?if ($arResult['ORDERS']) {?>
     <div class="order-list">
         <table class="order-list__table">
             <thead>
@@ -41,7 +42,14 @@
             </tbody>
         </table>
     </div>
+    <?} else {?>
+        <div class="personal-order-clear-block">
+            <div class="title">У вас пока нет заказов</div>
+            <a href="<?=SITE_DIR?>catalog/" class="btn outline">начать покупки</a>
+        </div>
+    <?}?>
 </section>
+<?if ($arResult['ORDERS']) {?>
 <div style="display:none;">
     <?foreach ($arResult['ORDERS'] as $arOrder) {
         $arOrder['ORDER']['STATUS'] = $arResult['INFO']['STATUS'][$arOrder['ORDER']['STATUS_ID']]['NAME'];?>
@@ -115,3 +123,4 @@
     <?}?>
 </div>
 <?=$arResult['NAV_STRING']?>
+<?}?>
