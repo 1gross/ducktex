@@ -7,7 +7,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 /** @var array $arParams */
 /** @var array $arResult */
 
-$APPLICATION->AddChainItem($arResult['NAME'], $arResult['SECTION_PAGE_URL']);
 
 $arDefaultParams = array(
 	'TYPE_SKU' => 'Y',

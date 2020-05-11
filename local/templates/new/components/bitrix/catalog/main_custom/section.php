@@ -81,9 +81,22 @@ if ($isFilter)
 		$arCurSection = array();
 }
 ?>
-<section class="page products">
+<section class="page products catalog">
     <div class="wrapper">
         <h1><?=$APPLICATION->GetTitle()?></h1>
+        <?/*$APPLICATION->IncludeComponent(
+                'bitrix:catalog.section.list',
+                'sub_catalog',
+                array(
+                    "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+                    "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+                    "SECTION_ID" => $arCurSection['ID'],
+                    "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+                    "CACHE_TIME" => $arParams["CACHE_TIME"],
+                    "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+                    "ADD_SECTIONS_CHAIN" => "N"
+                )
+        )*/?>
         <div class="products-block">
             <div class="filter-block">
                 <?
@@ -268,7 +281,7 @@ if ($isFilter)
                         'BRAND_PROPERTY' => (isset($arParams['BRAND_PROPERTY']) ? $arParams['BRAND_PROPERTY'] : ''),
 
                         'TEMPLATE_THEME' => (isset($arParams['TEMPLATE_THEME']) ? $arParams['TEMPLATE_THEME'] : ''),
-                        "ADD_SECTIONS_CHAIN" => "N",
+                        "ADD_SECTIONS_CHAIN" => "Y",
                         'ADD_TO_BASKET_ACTION' => $basketAction,
                         'SHOW_CLOSE_POPUP' => isset($arParams['COMMON_SHOW_CLOSE_POPUP']) ? $arParams['COMMON_SHOW_CLOSE_POPUP'] : '',
                         'COMPARE_PATH' => $arResult['FOLDER'].$arResult['URL_TEMPLATES']['compare'],

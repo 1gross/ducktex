@@ -378,6 +378,13 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                 $arResponse['basket'] = B24TechSiteHelper::getBasket();
             }
             break;
+        case 'add_products_basket':
+            foreach ($_REQUEST['products'] as $product) {
+                Add2BasketByProductID($product['id'], $product['quantity'], array(), array());
+            }
+            $arResponse['result'] = true;
+            $arResponse['basket'] = B24TechSiteHelper::getBasket();
+            break;
         case 'add_favorites':
             $isAdd = false;
             if(!$USER->IsAuthorized()) {

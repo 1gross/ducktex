@@ -89,10 +89,7 @@ if (!function_exists("PrintPropsForm"))
                             case 'TEXT':
                                 $type = 'text';
                                 $dataType = 'default';
-                                if (strpos($arProperties['CODE'], 'PHONE') !== false) {
-                                    $type = 'tel';
-                                    $dataType = 'tel';
-                                } elseif (strpos($arProperties['CODE'], 'EMAIL') !== false) {
+                                if (strpos($arProperties['CODE'], 'EMAIL') !== false) {
                                     $type = 'email';
                                     $dataType = 'email';
                                 } elseif (strpos($arProperties['CODE'], 'LOCATION') !== false) {

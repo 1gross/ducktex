@@ -5,6 +5,11 @@
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Личный кабинет");
+
+if (!$USER->IsAuthorized()) {
+	dump(13432);
+	LocalRedirect('/');
+}
 ?>
 
 <?$APPLICATION->IncludeComponent(

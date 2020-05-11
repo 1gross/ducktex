@@ -22,12 +22,20 @@ $(document).ready(function() {
     });
 
     $(document).on('focus', '#quantity-c', function () {
+        console.log(1);
         let value = parseFloat($(this).attr('data-value'));
         $(this).val(value);
     });
 
     $(document).on('blur', '#quantity-c', function () {
-        let elm = $(this);
+        let elm = $(this),
+            val = elm.val();
+
+        if (elm.val().indexOf(',') >= 0) {
+            let value = String(val).replace(',', '.');
+            elm.attr('data-value', value);
+            elm.val(value);
+        }
         if (elm.attr('data-step').indexOf('.') >= 0) {
             elm.attr('data-value', parseFloat(elm.val()).toFixed(1));
         } else {

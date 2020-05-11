@@ -128,7 +128,7 @@
 </script>
 
 <input type="hidden" name="BUYER_STORE" id="BUYER_STORE" value="<?=$arResult["BUYER_STORE"]?>">
-<div class="order-info-name">3. Выберите способ получения</div>
+<div class="order-info-name">3. Выберите способ доставки</div>
 <div class="order-info-item">
     <?foreach ($arResult["DELIVERY"] as $delivery_id => $arDelivery){
         if ($arDelivery["ISNEEDEXTRAINFO"] == "Y") {

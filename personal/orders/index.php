@@ -7,7 +7,7 @@ $_REQUEST['filter_history'] = 'Y';
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:sale.personal.order.list", 
-	".default", 
+	"new",
 	array(
 		"COMPONENT_TEMPLATE" => ".default",
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -20,7 +20,7 @@ $_REQUEST['filter_history'] = 'Y';
 		"PATH_TO_PAYMENT" => "payment.php",
 		"PATH_TO_BASKET" => "",
 		"PATH_TO_CATALOG" => "/catalog/",
-		"ORDERS_PER_PAGE" => "4",
+		"ORDERS_PER_PAGE" => "10",
 		"ID" => $ID,
 		"DISALLOW_CANCEL" => "N",
 		"SET_TITLE" => "Y",

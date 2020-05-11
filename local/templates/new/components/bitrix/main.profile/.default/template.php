@@ -59,6 +59,14 @@ foreach ($arTabs as $typeID => $arProfile) {
                     <div class="text"><?=$arResult['arUser']['UF_INSTAGRAM'] ?: Loc::getMessage('NOT_VALUE')?></div>
                 </div>
                 <div class="personal-info-item">
+                    <span class="title">Вконтакте</span>
+                    <div class="text"><?=$arResult['arUser']['UF_VK'] ?: Loc::getMessage('NOT_VALUE')?></div>
+                </div>
+                <div class="personal-info-item">
+                    <span class="title">Facebook</span>
+                    <div class="text"><?=$arResult['arUser']['UF_FB'] ?: Loc::getMessage('NOT_VALUE')?></div>
+                </div>
+                <div class="personal-info-item">
                     <span class="title"><?=Loc::getMessage('PERSONAL_EMAIL_TITLE')?></span>
                     <div class="text"><?=isset($arProps['EMAIL']['VALUE']) && strlen($arProps['EMAIL']['VALUE']) > 0 ? $arProps['EMAIL']['VALUE'] : Loc::getMessage('NOT_VALUE')?></div>
                 </div>
@@ -152,6 +160,16 @@ foreach ($arTabs as $typeID => $arProfile) {
                            value="<?=$arResult['arUser']['UF_INSTAGRAM'] ?: ''?>"
                            name="UF_INSTAGRAM"
                            placeholder="Инстаграм">
+
+                    <input type="text"
+                           value="<?=$arResult['arUser']['UF_VK'] ?: ''?>"
+                           name="UF_VK"
+                           placeholder="Вконтакте">
+
+                    <input type="text"
+                           value="<?=$arResult['arUser']['UF_FB'] ?: ''?>"
+                           name="UF_FB"
+                           placeholder="Facebook">
 
                     <input type="text"
                            value="<?=isset($arProps['ADDRESS']) ? $arProps['ADDRESS']['VALUE'] : ''?>"

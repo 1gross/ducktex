@@ -34,14 +34,21 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-status-bar-style");?>
     <?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
     <?$APPLICATION->ShowHead();?>
+    <link rel="apple-touch-icon" sizes="57x57" href="/include/favicon_ducktex_57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/include/favicon_ducktex_72.png">
+
+    <meta property="og:title" content="<?=$APPLICATION->GetTitle()?>">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://ducktex.ru/include/logo-ducktex.png">
+    <meta property="og:url" content="https://ducktex.ru/<?=$APPLICATION->GetCurPage()?>">
+    <meta property="og:description" content="<?$APPLICATION->ShowProperty('description')?>">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <meta name="yandex-verification" content="d923aaa6c6e8d5a7" />
     <meta name="google-site-verification" content="dAnFTXc0P1IVla1P3WjOpwtNVK3gq84OjV0gQK3vXqc" />
 </head>
 <body>
-
-
 <main>
     <?$APPLICATION->ShowPanel();?>
     <?

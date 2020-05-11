@@ -1,3 +1,4 @@
+
 <div style="display:none;">
     <div class="modal active" id="sign">
         <form action="/local/tools/ajax.php" class="modal-block">
