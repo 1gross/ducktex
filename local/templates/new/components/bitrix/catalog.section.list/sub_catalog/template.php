@@ -10,7 +10,7 @@
         <div class="catalog-item">
             <div class="catalog-item-image">
                 <a href="<?=$arItem['SECTION_PAGE_URL']?>">
-                    <img src="<?=$arItem['PICTURE']['SRC'] ?: '/local/front/files/img/catalog'.$i.'.jpg'?>" alt="<?=$arItem['NAME']?>">
+                    <img src="<?=$arItem['PICTURE']['SRC'] ?: '/local/front/files/img/no_image_sub_catalog.jpg'?>" alt="<?=$arItem['NAME']?>">
                 </a>
             </div>
             <div class="catalog-item-list">
