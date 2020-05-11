@@ -84,7 +84,7 @@ if ($isFilter)
 <section class="page products catalog">
     <div class="wrapper">
         <h1><?=$APPLICATION->GetTitle()?></h1>
-        <?/*$APPLICATION->IncludeComponent(
+        <?$APPLICATION->IncludeComponent(
                 'bitrix:catalog.section.list',
                 'sub_catalog',
                 array(
@@ -96,7 +96,7 @@ if ($isFilter)
                     "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
                     "ADD_SECTIONS_CHAIN" => "N"
                 )
-        )*/?>
+        )?>
         <div class="products-block">
             <div class="filter-block">
                 <?

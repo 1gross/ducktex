@@ -1,11 +1,15 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $APPLICATION->SetTitle('Спасибо за заказ!');
 $APPLICATION->AddChainItem('Спасибо за заказ!', $APPLICATION->GetCurPage(false));
-
 ?>
     <section class="order-complete">
         <div class="wrapper">
             <h1>ЗАКАЗ СФОРМИРОВАН №<?=$arResult["ORDER"]["ACCOUNT_NUMBER"]?></h1>
+            <?if ($arResult['ORDER']['PERSON_TYPE_ID'] == 2) {?>
+            <p>
+                Спасибо за заказ, мы в течение 2-х часов сформируем счет и вшлем вам его на элекстронную почту
+            </p>
+            <?}?>
             <div class="order-complete-block">
                 <table class="order-complete-table">
                     <thead>
@@ -69,7 +73,7 @@ if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
                 if (!$payment->isInner())
                 {
                     $context = \Bitrix\Main\Application::getInstance()->getContext();
-                    $service->initiatePay($payment, $context->getRequest());
+                    //$service->initiatePay($payment, $context->getRequest());
                     break;
                 }
             }
