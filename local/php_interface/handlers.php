@@ -67,7 +67,7 @@ function checkAndSetPropertyUser(Main\Event $event)
     $us->Update($USER->GetID(), $arUserProp);
 
     if ($isTempUser) {
-        $USER->Logout();
+       // $USER->Logout();
     }
 }
 
