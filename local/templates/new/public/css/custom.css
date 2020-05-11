@@ -115,7 +115,9 @@
     height: 30px;
     animation: spin 2s linear infinite;
 }
-
+.search-btn {
+    cursor:pointer;
+}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -257,4 +259,54 @@
     .modal .modal-block .modal-body .sms-code input {
         margin-right: 5px;
     }
+}
+header .search-input {
+    position: relative;
+    z-index: 99;
+}
+.search_result {
+    position: absolute;
+    width: calc(100% - 160px);
+    background: #fff;
+    box-shadow: 0 7px 10px #ccc;
+    padding: 20px 25px;
+    z-index: 9999;
+}
+.result_item {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+.result_item a {
+    padding-right: 10px;
+    cursor: pointer;
+}
+.result_item a:hover,
+.result_item a:focus,
+.result_item a:active {
+    text-decoration: none;
+}
+.search_result .search__btn {
+    display:flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+.search_result .search__btn .btn {
+    width: 290px;
+    line-height: 1;
+    font-size: 16px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result__img {
+    display: flex;
+    width:55px;
+    height: 55px;
+    background-size: contain;
+    margin-right: 15px;
 }

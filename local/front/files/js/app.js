@@ -1,6 +1,60 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
 
+    $('#product_search').on('keyup', function (e) {
+        elm = $(this);
+        value = $(this).val();
+        time = (new Date()).getTime();
+        delay = 1000; /* Количество мксек. для определения окончания печати */
+
+        elm.attr({'keyup': time});
+        elm.off('keydown');
+        elm.off('keypress');
+        elm.on('keydown', function (e) {
+            $(this).attr({'keyup': time});
+        });
+        elm.on('keypress', function (e) {
+            $(this).attr({'keyup': time});
+        });
+
+        if ($(this).val().length >= 3) {
+            setTimeout(function () {
+                oldtime = parseFloat(elm.attr('keyup'));
+                if (oldtime <= (new Date()).getTime() - delay & oldtime > 0 & elm.attr('keyup') != '' & typeof elm.attr('keyup') !== 'undefined') {
+                    getResult(value);
+                    elm.removeAttr('keyup');
+                }
+            }, delay);
+        }
+    });
+
+    function getResult(value) {
+        $.ajax({
+            url: '/local/tools/search.php',
+            data: {
+                q: value
+            },
+            method: 'get',
+            dataType: 'json',
+            success: function (response) {
+                let searchInput = $('#product_search'),
+                    searchBlock = searchInput.parent();
+
+
+                if (typeof response !== 'undefined') {
+                    searchBlock.append('<div class="search_result"></div>');
+                    $.each(response, function (i, product) {
+                        searchBlock.find('.search_result').append('<div class="result_item">' +
+                            '<div class="result__img" style="background-image:url('+product['PICTURE']+')"></div>' +
+                            '<a href="'+product['DETAIL_PAGE_URL']+'">'+product['NAME']+'</a>' +
+                            '<span>'+product['PRICES']['PRINT_PRICE']+'</span></div>');
+                    });
+                    searchBlock.find('.search_result').append('<div class="search__btn"><a class="btn blue" href="/search/?q='+value+'">Посмотреть все результаты</a></div>');
+                }
+            }
+        });
+    }
+
     $(document).on('click', '.js-init-catalog_show', function () {
         $(this).removeClass('js-init-catalog_show').addClass('js-init-catalog_hide').text('Скрыть разделы');
         $('.catalog-menu-block_block').fadeIn();
