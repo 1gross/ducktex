@@ -44,7 +44,8 @@
     </div>
     <?} else {?>
         <div class="personal-order-clear-block">
-            <div class="title">У вас пока нет заказов</div>
+            <p class="title">У вас пока нет заказов</p>
+            <br>
             <a href="<?=SITE_DIR?>catalog/" class="btn outline">начать покупки</a>
         </div>
     <?}?>
