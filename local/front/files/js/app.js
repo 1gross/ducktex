@@ -40,7 +40,10 @@ $(document).ready(function() {
                 let searchInput = $('#product_search'),
                     searchBlock = searchInput.parent();
 
-
+                if ($('.search_result').length > 0) {
+                    $('.search_result').remove();
+                }
+                
                 if (typeof response !== 'undefined') {
                     searchBlock.append('<div class="search_result"></div>');
                     $.each(response, function (i, product) {
