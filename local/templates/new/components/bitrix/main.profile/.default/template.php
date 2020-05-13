@@ -165,6 +165,7 @@ foreach ($arTabs as $typeID => $arProfile) {
                            value="<?=$arResult['arUser']['UF_VK'] ?: ''?>"
                            name="UF_VK"
                            placeholder="Вконтакте">
+                           placeholder="Вконтакте">
 
                     <input type="text"
                            value="<?=$arResult['arUser']['UF_FB'] ?: ''?>"
@@ -174,7 +175,7 @@ foreach ($arTabs as $typeID => $arProfile) {
                     <input type="text"
                            value="<?=isset($arProps['ADDRESS']) ? $arProps['ADDRESS']['VALUE'] : ''?>"
                            name="ADDRESS"
-                           placeholder="Адрес">
+                           placeholder="Предпочтительный адрес доставки">
 
                     <input type="submit" class="btn blue js-init-action" data-action="send_form" data-id="profile_edit" value="сохранить">
                 </form>

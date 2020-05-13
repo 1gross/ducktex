@@ -35,7 +35,7 @@ $arCompare = B24TechSiteHelper::getCompareList();
                 <form action="<?=SITE_DIR?>search/" class="search">
                     <div class="search-btn"></div>
                     <div class="search-input">
-                        <input type="text" name="q" placeholder="Поиск по сайту">
+                        <input type="text" class="product_search--inp-mobile" name="q" placeholder="Поиск по сайту">
                         <input type="submit" value="Найти">
                     </div>
                 </form>

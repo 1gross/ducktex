@@ -1,7 +1,7 @@
 $(document).ready(function() {
     let url = '/local/tools/ajax.php';
 
-    $('#product_search').on('keyup', function (e) {
+    $('.product_search--inp').on('keyup', function (e) {
         elm = $(this);
         value = $(this).val();
         time = (new Date()).getTime();
@@ -37,13 +37,13 @@ $(document).ready(function() {
             method: 'get',
             dataType: 'json',
             success: function (response) {
-                let searchInput = $('#product_search'),
+                let searchInput = $('.product_search--inp'),
                     searchBlock = searchInput.parent();
 
                 if ($('.search_result').length > 0) {
                     $('.search_result').remove();
                 }
-                
+
                 if (typeof response !== 'undefined') {
                     searchBlock.append('<div class="search_result"></div>');
                     $.each(response, function (i, product) {

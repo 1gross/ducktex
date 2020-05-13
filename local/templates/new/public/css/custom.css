@@ -9,7 +9,7 @@
 }
 @media screen and (max-width: 767px) {
     .mobile-menu .mobile-menu-block {
-        overflow: visible;
+        overflow-y: scroll;
         max-width: 315px;
     }
 }
@@ -309,4 +309,5 @@ header .search-input {
     height: 55px;
     background-size: contain;
     margin-right: 15px;
+    background-repeat: no-repeat;
 }
