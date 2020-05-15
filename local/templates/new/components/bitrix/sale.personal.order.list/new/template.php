@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="basket-cell price">
                                     <div class="cell-title">Стоимость</div>
-                                    <div class="cell-value"><?=$arProduct['BASE_PRICE'] ? round($arProduct['BASE_PRICE'] * $arProduct['QUANTITY'],2)  . ' руб. / ' .$arProduct['MEASURE_NAME'] : ''?></div>
+                                    <div class="cell-value"><?=$arProduct['PRICE'] ? round($arProduct['PRICE'],2) . ' руб. / ' .$arProduct['MEASURE_NAME'] : ''?></div>
                                 </div>
                                 <div class="basket-cell quantity">
                                     <div class="cell-title">Кол-во</div>
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="basket-cell sum">
                                     <div class="cell-title">Итого</div>
-                                    <div class="cell-value"><?=$arProduct['PRICE'] ? round($arProduct['PRICE'],2) . ' руб. / ' .$arProduct['MEASURE_NAME'] : ''?></div>
+                                    <div class="cell-value"><?=$arProduct['BASE_PRICE'] ? round($arProduct['BASE_PRICE'] * $arProduct['QUANTITY'],2)  . ' руб. / ' .$arProduct['MEASURE_NAME'] : ''?></div>
                                 </div>
                             </div>
                         <?}?>
