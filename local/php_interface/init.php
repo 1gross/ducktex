@@ -14,3 +14,6 @@ require_once __DIR__ . "/classes/B24TechSiteHelper.php";
 
 require_once __DIR__ . "/handlers.php";
 require_once __DIR__ . "/functions.php";
+
+require_once __DIR__ . "/1c_functions.php";
+
