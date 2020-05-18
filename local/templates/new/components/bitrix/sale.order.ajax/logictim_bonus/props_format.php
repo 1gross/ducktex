@@ -188,7 +188,7 @@ if (!function_exists("PrintPropsForm"))
                                 ?>
                             <div class="title"><?=$arProperties['NAME']?><?=$arProperties['REQUIRED'] == 'Y' ? '*' : ''?></div>
                             <div class="form-item">
-                                <select class="inp-field" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" size="<?=$arProperties["SIZE1"]?>">
+                                <select class="select-field" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" size="<?=$arProperties["SIZE1"]?>">
                                     <?foreach($arProperties["VARIANTS"] as $arVariants) {?>
                                         <option value="<?=$arVariants["VALUE"]?>"<?=$arVariants["SELECTED"] == "Y" ? " selected" : ''?>><?=$arVariants["NAME"]?></option>
                                     <?}?>
