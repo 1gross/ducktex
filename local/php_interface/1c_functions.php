@@ -105,13 +105,15 @@ function OnSuccessCatalogImport1CHandler()
         }
     }
 }
+
 AddEventHandler("catalog", "OnGetOptimalPrice", "MyGetOptimalPrice");
 function MyGetOptimalPrice($intProductID, $quantity, $arUserGroups = array(), $renewal = "N", $arPrices = array(), $siteID = false, $arDiscountCoupons = false) {
-    if ($GLOBALS['USER']->GetID() <= 0) return false;
+    //if ($GLOBALS['USER']->GetID() <= 0) return false;
     CModule::IncludeModule('sale');
     CModule::IncludeModule('catalog');
     $arOptPrices = CCatalogProduct::GetByIDEx($intProductID);
     $price = $arOptPrices['PRICES'][1]['PRICE'];
+    //if (!$price) return false;
     $price_type_id = 1;
     if ($quantity >= 5 && $quantity < 10) {
         if (isset($arOptPrices['PRICES'][5])) {
@@ -141,6 +143,7 @@ function MyGetOptimalPrice($intProductID, $quantity, $arUserGroups = array(), $r
     );
     return $arPrices;
 }
+
 
 if (file_exists($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/mcart.extramail/classes/general/include_part.php")) {
     require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/mcart.extramail/classes/general/include_part.php");
