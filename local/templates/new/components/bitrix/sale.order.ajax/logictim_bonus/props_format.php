@@ -186,11 +186,14 @@ if (!function_exists("PrintPropsForm"))
                                 break;
                             case 'SELECT':
                                 ?>
-                                <select name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" size="<?=$arProperties["SIZE1"]?>">
+                            <div class="title"><?=$arProperties['NAME']?><?=$arProperties['REQUIRED'] == 'Y' ? '*' : ''?></div>
+                            <div class="form-item">
+                                <select class="inp-field" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" size="<?=$arProperties["SIZE1"]?>">
                                     <?foreach($arProperties["VARIANTS"] as $arVariants) {?>
                                         <option value="<?=$arVariants["VALUE"]?>"<?=$arVariants["SELECTED"] == "Y" ? " selected" : ''?>><?=$arVariants["NAME"]?></option>
                                     <?}?>
                                 </select>
+                            </div>
                                 <?
                                 break;
                             case 'MULTISELECT':

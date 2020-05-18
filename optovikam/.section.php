@@ -1,6 +1,6 @@
 <?
 $sSectionName = "Оптовикам";
 $arDirProperties = Array(
-    
+
 );
 ?>
