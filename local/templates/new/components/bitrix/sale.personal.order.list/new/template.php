@@ -67,13 +67,23 @@
                 </div>
             </div>
             <?foreach ($arOrder['PROPS']['groups'] as $groupId => $group) {?>
-                <div class="group-field">
+                <div class="group-field" style="text-align:left">
                     <div class="group-field__title"><?=$group['NAME']?></div>
                     <?foreach ($arOrder['PROPS']['properties'] as $property) {?>
-                        <?if ($groupId == $property['PROPS_GROUP_ID'] && strlen($property['VALUE'][0]) > 0) {?>
+                        <?if ($groupId == $property['PROPS_GROUP_ID'] && strlen($property['VALUE'][0]) > 0) {
+                            switch ($property['TYPE']) {
+                                case 'Y/N':
+                                    $value = $property['VALUE'][0] == 'Y' ? 'Да' : 'Нет';
+                                    break;
+                                case 'ENUM':
+                                    $value = $property['OPTIONS'][$property['VALUE'][0]] ?: '';
+                                    break;
+                                default:
+                                    $value = $property['VALUE'][0];
+                            } ?>
                             <div class="group-field__item">
                                 <div class="group-field__cell group-field__item-name"><?=$property['NAME']?></div>
-                                <div class="group-field__cell group-field__item-value"><?=$property['VALUE'][0]?></div>
+                                <div class="group-field__cell group-field__item-value"><?=$value?></div>
                             </div>
                         <?}?>
                     <?}?>
