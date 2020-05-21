@@ -29,9 +29,13 @@ Loc::loadMessages(__FILE__);
             <td>
                 <div class="product-price">
                     <?if (floatval($ROW['DISCOUNT_PRICE']) > 0) {?>
-                        <div class="last"><?=$ROW['FULL_PRICE'] - $ROW['DISCOUNT_PRICE']?> руб. / <?=$ROW['MEASURE_TEXT']?></div>
+                        <div class="last"><?=$ROW['FULL_PRICE_FORMATED']?> / <?=$ROW['MEASURE_TEXT']?></div>
                     <?}?>
-                    <div class="new"><?=$ROW['FULL_PRICE_FORMATED']?> / <?=$ROW['MEASURE_TEXT']?></div>
+                    <?if (floatval($ROW['DISCOUNT_PRICE']) > 0) {?>
+                        <div class="new"><?=$ROW['FULL_PRICE_FORMATED']?> / <?=$ROW['MEASURE_TEXT']?></div>
+                    <?} else {?>
+                        <div class="new"><?=$ROW['FULL_PRICE'] - $ROW['DISCOUNT_PRICE']?> руб. / <?=$ROW['MEASURE_TEXT']?></div>
+                    <?}?>
                 </div>
             </td>
             <td>
