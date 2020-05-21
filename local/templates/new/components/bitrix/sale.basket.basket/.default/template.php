@@ -53,9 +53,13 @@ Loc::loadMessages(__FILE__);
             <td>
                 <div class="product-final-price">
                     <?if (floatval($ROW['DISCOUNT_PRICE_PERCENT']) > 0) {?>
-                        <div class="last"><?=$ROW['SUM_VALUE'] - $ROW['SUM_DISCOUNT_PRICE']?> руб. / <?=$ROW['MEASURE_TEXT']?></div>
+                        <div class="last"><?=$ROW['SUM_FULL_PRICE_FORMATED']?></div>
                     <?}?>
-                    <div class="new"><?=$ROW['SUM_FULL_PRICE_FORMATED']?></div>
+                    <?if (floatval($ROW['DISCOUNT_PRICE_PERCENT']) > 0) {?>
+                        <div class="new"><?=$ROW['SUM_VALUE'] - $ROW['SUM_DISCOUNT_PRICE']?> руб. / <?=$ROW['MEASURE_TEXT']?></div>
+                    <?} else {?>
+                        <div class="new"><?=$ROW['SUM_FULL_PRICE_FORMATED']?></div>
+                    <?}?>
                 </div>
             </td>
             <td>
