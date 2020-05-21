@@ -9,21 +9,21 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Ткани", 
-		"/news/", 
+		"/catalog/tkani/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Фурнитура", 
-		"/products/", 
+		"/catalog/furnitura/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Образцы", 
-		"/services/", 
+		"/catalog/obraztsy_i_bloknoty/",
 		Array(), 
 		Array(), 
 		"" 
