@@ -20,13 +20,6 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
-	),
-	Array(
-		"Образцы", 
-		"/catalog/obraztsy_i_bloknoty/",
-		Array(), 
-		Array(), 
-		"" 
 	)
 );
 ?>
