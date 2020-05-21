@@ -32,7 +32,7 @@ Loc::loadMessages(__FILE__);
                         <div class="last"><?=$ROW['FULL_PRICE_FORMATED']?> / <?=$ROW['MEASURE_TEXT']?></div>
                     <?}?>
                     <?if (floatval($ROW['DISCOUNT_PRICE']) > 0) {?>
-                        <div class="new"><?=$ROW['FULL_PRICE'] - $ROW['DISCOUNT_PRICE']?> руб. / <?=$ROW['MEASURE_TEXT']?></div>
+                        <div class="new"><?=number_format($ROW['FULL_PRICE'] - $ROW['DISCOUNT_PRICE'], 2, ',', ' ')?> руб. / <?=$ROW['MEASURE_TEXT']?></div>
                     <?} else {?>
                         <div class="new"><?=$ROW['FULL_PRICE_FORMATED']?> / <?=$ROW['MEASURE_TEXT']?></div>
                     <?}?>
