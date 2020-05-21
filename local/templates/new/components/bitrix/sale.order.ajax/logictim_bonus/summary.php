@@ -13,7 +13,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
         <div class="title">ВАШ ЗАКАЗ</div>
         <div class="order-check-item">
             <div class="order-check-title custom_t1 itog">Сумма заказа:</div>
-            <div class="order-check-sum custom_t2 price"><?=$arResult['ORDER']['ORDER_TOTAL_PRICE_FORMATED']?></div>
+            <div class="order-check-sum custom_t2 price"><?=$arResult['ORDER_TOTAL_PRICE_FORMATED']?></div>
         </div>
         <?if (isset($arResult["DISCOUNT_PRICE"]) && $arResult["DISCOUNT_PRICE"] > 0) {?>
             <div class="order-check-item">
