@@ -100,7 +100,7 @@ if (!function_exists("PrintPropsForm"))
                                        type="<?=$type?>"
                                        data-type="<?=$dataType?>"
                                        size="<?=$arProperties["SIZE1"]?>"
-                                       value="<?=$arProperties["VALUE"]?>"
+                                       value="<?=strpos($arProperties["VALUE"], 'tmp_') !== false ? '' : $arProperties["VALUE"]?>"
                                        name="<?=$arProperties["FIELD_NAME"]?>"
                                        placeholder="<?=$arProperties["NAME"]?><?=$arProperties['REQUIRED'] == 'Y' ? '*' : ''?>"
                                        id="<?=$arProperties["FIELD_NAME"]?>">

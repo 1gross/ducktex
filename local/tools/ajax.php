@@ -69,6 +69,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
                     $us = new CUser();
                     $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($userID))));
+                    
                     $sms = new Bitrix\Main\Sms\Event(
                         'SMS_USER_CONFIRM_NUMBER',
                         [

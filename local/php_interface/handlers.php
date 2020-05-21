@@ -10,7 +10,9 @@ function authTempUser()
     global $USER, $APPLICATION;
 
     if (strpos($APPLICATION->GetCurPage(), 'basket') !== false) {
+
         $basket = B24TechSiteHelper::getBasket();
+
         if (!$USER->IsAuthorized() && $basket['count_items'] > 0) {
             $login = 'tmp_'.rand(1000000000, 9999999999).'@email'.rand(10, 99).'.com';
             $arResult = $USER->Register($login, "", "", "pass_".$login, "pass_".$login, $login);
