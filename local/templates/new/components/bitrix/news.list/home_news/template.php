@@ -6,6 +6,7 @@ use Bitrix\Main\Localization\Loc;
 
 Loc::loadMessages(__FILE__);
 ?>
+<?if ($arResult['ITEMS']) {?>
 <section class="block news">
     <div class="wrapper">
         <div class="news-block">
@@ -31,3 +32,4 @@ Loc::loadMessages(__FILE__);
         </div>
     </div>
 </section>
+<?}?>

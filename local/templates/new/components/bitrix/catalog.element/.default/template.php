@@ -125,7 +125,16 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                     <h1 class="title-mob"><?=$arResult['NAME']?></h1>
                     <div class="price-block">
                         <div class="price">
-                            <?if (count($arResult['ITEM_QUANTITY_RANGES']) > 1) {?>
+							<div class="price-item">
+                               до 4.9м - <?=$arResult['PRICE_MATRIX']['MATRIX'][1]['ZERO-INF']['PRICE'];?> руб / м
+                            </div>
+							<div class="price-item">
+                               от 5м - <?=$arResult['PRICE_MATRIX']['MATRIX'][5]['ZERO-INF']['PRICE'];?> руб / м
+                            </div>
+							<div class="price-item">
+								от 10м - <?=$arResult['PRICE_MATRIX']['MATRIX'][4]['ZERO-INF']['PRICE'];?> руб / м
+                            </div>
+							<?/*if (count($arResult['ITEM_QUANTITY_RANGES']) > 1) {?>
                                 <?foreach ($arResult['ITEM_PRICES'] as $CODE => $arPrice) {?>
                                     <div class="price-item"
                                          data-price-value="<?=$arPrice['PRICE']?>"
@@ -152,7 +161,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                                         Цена отсутствует
                                     <?}?>
                                 </div>
-                            <?}?>
+							<?}*/?>
                         </div>
                         <div class="quantity-block" data-page="product">
                             <?$measureID = $arResult['ITEM_MEASURE_RATIO_SELECTED']?>

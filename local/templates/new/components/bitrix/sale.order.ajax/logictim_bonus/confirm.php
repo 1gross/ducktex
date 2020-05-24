@@ -6,9 +6,9 @@ $APPLICATION->AddChainItem('Спасибо за заказ!', $APPLICATION->GetC
         <div class="wrapper">
             <h1>ЗАКАЗ СФОРМИРОВАН №<?=$arResult["ORDER"]["ACCOUNT_NUMBER"]?></h1>
             <?if ($arResult['ORDER']['PERSON_TYPE_ID'] == 2) {?>
-            <p>
-                Спасибо за заказ, мы в течение 2-х часов сформируем счет и вшлем вам его на элекстронную почту
-            </p>
+                <p>
+                    Спасибо за заказ, мы в течение 2-х часов сформируем счет и вшлем вам его на элекстронную почту
+                </p>
             <?}?>
             <div class="order-complete-block">
                 <table class="order-complete-table">
@@ -53,9 +53,13 @@ if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
     {
         ?>
         <script language="JavaScript">
-            window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))?>&PAYMENT_ID=<?=$arResult['ORDER']["PAYMENT_ID"]?>');
+            window.location ='<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))?>&PAYMENT_ID=<?=$arResult["ORDER"]["PAYMENT_ID"]?>';
+
         </script>
         <?
+        /*
+         *  // window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))?>&PAYMENT_ID=<?=$arResult['ORDER']["PAYMENT_ID"]?>');
+         */
     }
     else
     {
