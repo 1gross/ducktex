@@ -261,7 +261,6 @@ $(document).ready(function() {
                        }
                        break;
                    case 'auth_check_code':
-                       console.log(form);
                        data.data = form.off().serialize();
                        break;
                    default:

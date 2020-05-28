@@ -1,14 +1,16 @@
 
 <div style="display:none;">
-    <div class="modal active" id="sign">
+    <div class="modal active" id="<?=$arParams['MODAL_ID'] ?: 'sign'?>">
         <form action="/local/tools/ajax.php" class="modal-block">
-            <button class="arcticmodal-close close"></button>
+            <?if ($arParams['CLOSE_BUTTON'] !== false) {?>
+                <button class="arcticmodal-close close"></button>
+            <?}?>
             <div class="modal-title">Вход или регистрация</div>
-            <div class="modal-desc">Введите Ваш номер телефона</div>
+            <div class="modal-desc"><?=$arParams['DESCRIPTION'] ? htmlspecialchars_decode($arParams['DESCRIPTION']) : 'Введите Ваш номер телефона'?></div>
             <div class="modal-body">
                 <form action="/">
                     <input type="tel" name="PHONE_NUMBER" placeholder="+7 (___) ___-__-__" required="">
-                    <button type="submit" disabled="disabled" class="btn blue js-init-action" data-action="send_form" data-id="auth">Получить код</button>
+                    <button type="submit" disabled="disabled" class="btn blue js-init-action" data-action="send_form" data-modal-type="<?=$arParams['MODAL_ID'] ?: 'sign'?>" data-id="auth">Получить код</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
                 </form>
             </div>

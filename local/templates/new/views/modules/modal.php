@@ -19,6 +19,10 @@ $arCompare = B24TechSiteHelper::getCompareList();
 
 
 <?$APPLICATION->IncludeComponent('bitrix:system.auth.form', '', array())?>
+<?$APPLICATION->IncludeComponent('bitrix:system.auth.form', '', array(
+        'DESCRIPTION' => 'Чтобы мы корректно отобразили ваши предыдущие заказы и учли баллы на бонусный счет <strong>введите ваш номер телефона</strong>',
+    'MODAL_ID' => 'sign_basket'
+))?>
 
 <div style="display: none">
     <div class="mobile-menu" id="mobile-menu">

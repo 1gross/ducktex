@@ -107,6 +107,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA'])) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
                         $verificationCode = implode('', $arFields['CODE']);
+                        $basketItems = B24TechSiteHelper::getBasket();
 
                         if (strlen(trim($verificationCode)) == 6) {
                             $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
@@ -118,6 +119,21 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 //$userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
                                 if ($arFields['USER_ID']) {
                                     $USER->Authorize($arFields['USER_ID']);
+
+                                    if ($basketItems['items']) {
+                                        $products = B24TechSiteHelper::getBasket();
+
+                                        if ($products['items']) {
+                                            foreach ($products['items'] as $product) {
+                                                CSaleBasket::Delete(intval($products['items'][$_REQUEST['id']]['ids']));
+                                            }
+                                        }
+
+                                        foreach ($basketItems['items'] as $basketItem) {
+                                            Add2BasketByProductID($basketItem['id'], $basketItem['quantity'], array(), array());
+                                        }
+
+                                    }
                                     $arResponse['result'] = true;
                                 }
                             } else {

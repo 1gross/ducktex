@@ -4,7 +4,7 @@
  */
 use Bitrix\Main\UserPhoneAuthTable;
 
-AddEventHandler("main", "OnProlog", 'authTempUser');
+//AddEventHandler("main", "OnProlog", 'authTempUser');
 function authTempUser()
 {
     global $USER, $APPLICATION;

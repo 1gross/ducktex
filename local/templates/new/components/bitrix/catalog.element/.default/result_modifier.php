@@ -12,6 +12,9 @@ if ($arResult['DETAIL_PICTURE']['SRC']) {
         'SRC' => $arResult['DETAIL_PICTURE']['SRC'],
         'ALT' => $arResult['DETAIL_PICTURE']['ALT']
     );
+    $this->SetViewTarget('og:image');
+    echo $arResult['DETAIL_PICTURE']['SRC'];
+    $this->EndViewTarget();
 }
 if (is_array($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
     foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $id) {

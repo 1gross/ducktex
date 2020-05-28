@@ -39,8 +39,10 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
 
     <meta property="og:title" content="<?=$APPLICATION->GetTitle()?>">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="https://ducktex.ru/include/logo-ducktex.png">
-    <meta property="og:url" content="https://ducktex.ru/<?=$APPLICATION->GetCurPage()?>">
+
+    <?if ($APPLICATION->GetViewContent('og:image')) {?>
+        <meta property="og:image" content="<?=$APPLICATION->GetViewContent('og:image')?>">
+    <?}?>
     <meta property="og:description" content="<?$APPLICATION->ShowProperty('description')?>">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
