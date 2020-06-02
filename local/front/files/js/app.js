@@ -486,8 +486,9 @@ function timerCalc(refresh = false) {
                 time = timer.text().split(':');
 
             if (typeof time !== 'undefined' && typeof time[1] !== 'undefined' && time[1].length > 0) {
-                let seconds = parseInt(time[1]);
+                let seconds = parseInt(time[2]);
 
+                console.log(seconds);
                 if (seconds > 0) {
                     seconds -= 1;
                     if (seconds < 10) {
