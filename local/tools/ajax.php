@@ -77,13 +77,21 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             "CODE" => $code,
                         ]
                     );
-                    $arResponse['code'] = $code;
+
+                    if ($smsTestMode) {
+                        $arResponse['code'] = $code;
+                    }
+
 
                     if ($smsTestMode) {
                         $res = true;
                     } else {
                         $result = $sms->send();
                         $res = $result->isSuccess();
+                    }
+
+                    if ($arFields['REDIRECT_URL']) {
+                        $arResponse['redirect_url'] = $arFields['REDIRECT_URL'];
                     }
 
                     if ($res) {
@@ -118,6 +126,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                                 //$userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
                                 if ($arFields['USER_ID']) {
+                                    if ($arFields['REDIRECT_URL']) {
+                                        $arResponse['redirect_url'] = $arFields['REDIRECT_URL'];
+                                    }
                                     $USER->Authorize($arFields['USER_ID']);
 
                                     if ($basketItems['items']) {

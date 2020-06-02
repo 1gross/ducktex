@@ -10,6 +10,9 @@
             <div class="modal-body">
                 <form action="/">
                     <input type="tel" name="PHONE_NUMBER" placeholder="+7 (___) ___-__-__" required="">
+                    <?if ($arParams['MODAL_ID'] == 'sign_basket') {?>
+                        <input type="hidden" name="REDIRECT_URL" value="/basket/">
+                    <?}?>
                     <button type="submit" disabled="disabled" class="btn blue js-init-action" data-action="send_form" data-modal-type="<?=$arParams['MODAL_ID'] ?: 'sign'?>" data-id="auth">Получить код</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
                 </form>

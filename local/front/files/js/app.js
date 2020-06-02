@@ -306,6 +306,10 @@ $(document).ready(function() {
 
                                        verificationForm.prepend('<input type="hidden" name="SIGN_DATA" value="'+response.sign_data+'">');
                                        verificationForm.prepend('<input type="hidden" name="USER_ID" value="'+response.user_id+'">');
+
+                                       if (response.redirect_url) {
+                                           verificationForm.prepend('<input type="hidden" name="REDIRECT_URL" value="'+response.redirect_url+'">');
+                                       }
                                        phoneDesc.text(response.phone);
 
                                        $(document).on('keyup', '.digit', function () {
@@ -341,7 +345,12 @@ $(document).ready(function() {
                                    case 'auth_check_code':
                                        setTimeout(function () {
                                            $.arcticmodal('close');
-                                           location.reload();
+                                           if (typeof response.redirect_url !== 'undefined') {
+                                               document.location.href = response.redirect_url;
+                                           } else {
+                                               location.reload();
+                                           }
+
                                        }, 50);
                                        break;
                                    case 'profile_edit':

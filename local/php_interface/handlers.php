@@ -64,13 +64,29 @@ function checkAndSetPropertyUser(Main\Event $event)
             }
         }
 
+        if ($arProp['CODE'] == 'FIO') {
+            $arVal = explode(' ', $obProp->getValue());
+
+            if (isset($arVal[0])) {
+                $arUserProp['LAST_NAME'] = $arVal[0];
+            }
+            if (isset($arVal[1])) {
+                $arUserProp['NAME'] = $arVal[1];
+            }
+            if (isset($arVal[2])) {
+                $arUserProp['SECOND_NAME'] = $arVal[2];
+            }
+        }
+
     }
+
     $us = new CUser();
     $us->Update($USER->GetID(), $arUserProp);
 
     if ($isTempUser) {
        // $USER->Logout();
     }
+
 }
 
 function checkPhone($phone) {
