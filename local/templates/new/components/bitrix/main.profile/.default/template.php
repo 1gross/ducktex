@@ -165,7 +165,6 @@ foreach ($arTabs as $typeID => $arProfile) {
                            value="<?=$arResult['arUser']['UF_VK'] ?: ''?>"
                            name="UF_VK"
                            placeholder="Вконтакте">
-                           placeholder="Вконтакте">
 
                     <input type="text"
                            value="<?=$arResult['arUser']['UF_FB'] ?: ''?>"
