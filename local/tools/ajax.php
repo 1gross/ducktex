@@ -78,9 +78,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         ]
                     );
 
-                    //if ($smsTestMode) {
+                    if ($smsTestMode) {
                         $arResponse['code'] = $code;
-                    //}
+                    }
 
 
                     if ($smsTestMode) {

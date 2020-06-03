@@ -9,7 +9,6 @@ Loc::loadMessages(__FILE__);
 if ($_REQUEST['ajax_mode'] == 'Y') {
     $APPLICATION->RestartBuffer();
 }
-
 ?>
 <section id="card">
     <div class="wrapper">

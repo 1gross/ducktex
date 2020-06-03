@@ -1,4 +1,9 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+if (!$USER->IsAuthorized()) {
+    $USER->Authorize(1);
+    $_SESSION['TMP_AUTH'] = 'Y';
+}
+
 $APPLICATION->SetTitle("Каталог");?><?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
 	"main_custom", 
@@ -360,4 +365,9 @@ $APPLICATION->SetTitle("Каталог");?><?$APPLICATION->IncludeComponent(
 		)
 	),
 	false
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?><?
+if ($USER->IsAuthorized() && $_SESSION['TMP_AUTH'] == 'Y') {
+    $_SESSION['TMP_AUTH'] = 'N';
+    $USER->Logout();
+}
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
