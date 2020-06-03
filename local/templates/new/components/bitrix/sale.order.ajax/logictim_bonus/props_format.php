@@ -96,13 +96,15 @@ if (!function_exists("PrintPropsForm"))
                                     $dataType = 'location';
                                 }
 
-                                if (strpos($arProperties["VALUE"], 'tmp_')) {
+                                $value = $arProperties["VALUE"];
+
+                                if (strpos($arProperties["VALUE"], 'tmp_') !== false) {
                                     $value = '';
-                                } elseif(strpos($arProperties["VALUE"], '<') || strpos($arProperties["VALUE"], '>')) {
-                                    $value = '';
-                                } else {
-                                    $value = $arProperties["VALUE"];
                                 }
+                                if(strpos(strtolower($arProperties["VALUE"]), 'без имени') !== false) {
+                                    $value = '';
+                                }
+
                                 ?>
                                 <input class="inp-field <?=$arProperties['REQUIRED'] == 'Y' ? 'required' : ''?>"
                                        type="<?=$type?>"

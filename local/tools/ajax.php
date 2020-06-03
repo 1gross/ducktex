@@ -68,7 +68,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     }
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
                     $us = new CUser();
-                    $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($userID))));
+                    $rs = $us->Update($userID, array('UF_HASHKEY' => md5(intval($code))));
 
                     $sms = new Bitrix\Main\Sms\Event(
                         'SMS_USER_CONFIRM_NUMBER',
@@ -120,33 +120,33 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         if (strlen(trim($verificationCode)) == 6) {
                             $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
 
-                            if ($arUser['UF_HASHKEY'] == md5(strval($verificationCode).strval($arFields['USER_ID']))) {
-                                $us = new CUser();
-                                $rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
+                            if ($arUser['UF_HASHKEY'] == md5(intval($verificationCode))) {
+                               // $us = new CUser();
+                                //$rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
 
                                 //$userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
-                                if ($arFields['USER_ID']) {
-                                    if ($arFields['REDIRECT_URL']) {
-                                        $arResponse['redirect_url'] = $arFields['REDIRECT_URL'];
-                                    }
-                                    $USER->Authorize($arFields['USER_ID']);
 
-                                    if ($basketItems['items']) {
-                                        $products = B24TechSiteHelper::getBasket();
-
-                                        if ($products['items']) {
-                                            foreach ($products['items'] as $product) {
-                                                CSaleBasket::Delete(intval($products['items'][$_REQUEST['id']]['ids']));
-                                            }
-                                        }
-
-                                        foreach ($basketItems['items'] as $basketItem) {
-                                            Add2BasketByProductID($basketItem['id'], $basketItem['quantity'], array(), array());
-                                        }
-
-                                    }
-                                    $arResponse['result'] = true;
+                                if ($arFields['REDIRECT_URL']) {
+                                    $arResponse['redirect_url'] = $arFields['REDIRECT_URL'];
                                 }
+                                $USER->Authorize($arFields['USER_ID']);
+
+                                if ($basketItems['items']) {
+                                    $products = B24TechSiteHelper::getBasket();
+
+                                    if ($products['items']) {
+                                        foreach ($products['items'] as $product) {
+                                            CSaleBasket::Delete(intval($products['items'][$_REQUEST['id']]['ids']));
+                                        }
+                                    }
+
+                                    foreach ($basketItems['items'] as $basketItem) {
+                                        Add2BasketByProductID($basketItem['id'], $basketItem['quantity'], array(), array());
+                                    }
+
+                                }
+                                $arResponse['result'] = true;
+
                             } else {
                                 $arResponse['result'] = false;
                                 $arResponse['message']['CODE'] = 'Неверный код';
