@@ -71,6 +71,18 @@
                     <div class="group-field__title"><?=$group['NAME']?></div>
                     <?foreach ($arOrder['PROPS']['properties'] as $property) {?>
                         <?if ($groupId == $property['PROPS_GROUP_ID'] && strlen($property['VALUE'][0]) > 0) {
+
+                            if ($property['CODE'] == 'IPOLSDEK_CNTDTARIF') {
+                                $show = false;
+                                foreach ($arOrder['SHIPMENT'] as $shipment) {
+                                    if (strpos(strtolower($shipment['NAME']), 'сдэк') !== false) {
+                                        $show = true;
+                                    }
+                                }
+                                if ($show == false) {
+                                    continue;
+                                }
+                            }
                             switch ($property['TYPE']) {
                                 case 'Y/N':
                                     $value = $property['VALUE'][0] == 'Y' ? 'Да' : 'Нет';
