@@ -185,7 +185,7 @@ $(document).ready(function () {
           $('#sign').addClass('show');
       });
   */
-    $('[type="tel"], .phone-input').mask("+7 (000) 000-00-00");
+    $('[type="tel"], .phone-input').mask("+0 (000) 000-00-00");
     $('[name="dob"]').mask("00/00/0000");
 
     $('.faq-item .faq-item-header').on('click', function () {

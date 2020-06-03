@@ -9,7 +9,7 @@
             <div class="modal-desc"><?=$arParams['DESCRIPTION'] ? htmlspecialchars_decode($arParams['DESCRIPTION']) : 'Введите Ваш номер телефона'?></div>
             <div class="modal-body">
                 <form action="/">
-                    <input type="tel" name="PHONE_NUMBER" placeholder="+7 (___) ___-__-__" required="">
+                    <input type="tel" name="PHONE_NUMBER" placeholder="+_ (___) ___-__-__" required="">
                     <?if ($arParams['MODAL_ID'] == 'sign_basket') {?>
                         <input type="hidden" name="REDIRECT_URL" value="/basket/">
                     <?}?>

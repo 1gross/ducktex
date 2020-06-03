@@ -2,6 +2,8 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
+
+//dump($arResult);
 ?>
 
     <a href="<?=$arResult['DETAIL_PAGE_URL']?>" class="product-card-front">
@@ -23,7 +25,7 @@
         </div>
         <div class="price" data-ratio="<?=$arResult['CATALOG_MEASURE_RATIO']?>">
             <div class="new">
-                <?$isMinPrice = isset($arResult['MIN_PRICE']['VALUE']) && ($arResult['MIN_PRICE']['VALUE'] < $arResult['PRICE_ITEM']['PRICE']); ?>
+                <?$isMinPrice = isset($arResult['MIN_PRICE']['VALUE']); ?>
                 <?=$isMinPrice ? 'от ' : ''?>
                 <?=$isMinPrice ? $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] : $arResult['PRICE_ITEM']['PRINT_PRICE']?>
                 <?$price = $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] ?: $arResult['PRICE_ITEM']['PRINT_PRICE']?>

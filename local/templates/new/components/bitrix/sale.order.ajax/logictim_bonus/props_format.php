@@ -95,12 +95,20 @@ if (!function_exists("PrintPropsForm"))
                                 } elseif (strpos($arProperties['CODE'], 'LOCATION') !== false) {
                                     $dataType = 'location';
                                 }
+
+                                if (strpos($arProperties["VALUE"], 'tmp_')) {
+                                    $value = '';
+                                } elseif(strpos($arProperties["VALUE"], '<') || strpos($arProperties["VALUE"], '>')) {
+                                    $value = '';
+                                } else {
+                                    $value = $arProperties["VALUE"];
+                                }
                                 ?>
                                 <input class="inp-field <?=$arProperties['REQUIRED'] == 'Y' ? 'required' : ''?>"
                                        type="<?=$type?>"
                                        data-type="<?=$dataType?>"
                                        size="<?=$arProperties["SIZE1"]?>"
-                                       value="<?=strpos($arProperties["VALUE"], 'tmp_') !== false ? '' : $arProperties["VALUE"]?>"
+                                       value="<?=$value?>"
                                        name="<?=$arProperties["FIELD_NAME"]?>"
                                        placeholder="<?=$arProperties["NAME"]?><?=$arProperties['REQUIRED'] == 'Y' ? '*' : ''?>"
                                        id="<?=$arProperties["FIELD_NAME"]?>">

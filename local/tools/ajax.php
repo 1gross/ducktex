@@ -69,7 +69,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
                     $us = new CUser();
                     $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($userID))));
-                    
+
                     $sms = new Bitrix\Main\Sms\Event(
                         'SMS_USER_CONFIRM_NUMBER',
                         [
@@ -78,9 +78,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         ]
                     );
 
-                    if ($smsTestMode) {
+                    //if ($smsTestMode) {
                         $arResponse['code'] = $code;
-                    }
+                    //}
 
 
                     if ($smsTestMode) {
@@ -120,7 +120,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         if (strlen(trim($verificationCode)) == 6) {
                             $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
 
-                            if ($arUser['UF_HASHKEY'] == md5($verificationCode.$arFields['USER_ID'])) {
+                            if ($arUser['UF_HASHKEY'] == md5(strval($verificationCode).strval($arFields['USER_ID']))) {
                                 $us = new CUser();
                                 $rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
 

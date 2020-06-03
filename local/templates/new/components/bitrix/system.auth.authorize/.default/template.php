@@ -7,7 +7,7 @@
             <div class="modal-desc">Введите Ваш номер телефона</div>
             <div class="modal-body">
                 <form action="/">
-                    <input type="tel" name="PHONE_NUMBER" placeholder="+7 (___) ___-__-__" required="">
+                    <input type="tel" name="PHONE_NUMBER" placeholder="+_ (___) ___-__-__" required="">
                     <button type="submit" disabled="disabled" class="btn blue js-init-action" data-action="send_form" data-id="auth">Получить код</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
                 </form>

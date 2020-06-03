@@ -18,6 +18,9 @@ if($arResult["ITEMS"]){?>
 					if(isset($arItem["PRICE"])):
 						if ($arItem["VALUES"]["MAX"]["VALUE"] - $arItem["VALUES"]["MIN"]["VALUE"] <= 0)
 							continue;
+
+						if ($arItem['CODE'] != 'BASE')
+						    continue;
 						?>
 						<div class="bx_filter_parameters_box active">
 							<span class="bx_filter_container_modef"></span>
