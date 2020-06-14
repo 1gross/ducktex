@@ -3,7 +3,14 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 use Bitrix\Main\Localization\Loc,
-    Bitrix\Main\IO\File;
+    Bitrix\Main\IO\File,
+    Bitrix\Main\Page\Asset;
+
+Asset::getInstance()->addJs('/local/front/files/js/lib/jquery.inputmask.bundle.js');
+Asset::getInstance()->addJs('/local/front/files/js/lib/inputmask.multi/js/jquery.inputmask-multi.min.js');
+Asset::getInstance()->addJs('/local/front/files/js/phone_mask.js');
+Asset::getInstance()->addCss('/local/front/files/css/flags.css');
+
 Loc::loadMessages(__FILE__);
 
 if (file_exists($_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/include/phone.php")) {
@@ -49,11 +56,11 @@ $arCompare = B24TechSiteHelper::getCompareList();
                         <a href="<?=SITE_DIR?>personal/" class="login"><?=Loc::getMessage('LK')?></a>
                     <?}?>
                     <a href="<?=SITE_DIR?>compare/" class="compare"><span><?=count($arCompare)?></span></a>
-                    <?if (!$USER->IsAuthorized()) {?>
-                        <button class="basket js-init-action" data-action="show_modal" data-modal="#sign_basket"><span><?=$arBasket['count_items']?></span></button>
-                    <?} else {?>
+                    <?//if (!$USER->IsAuthorized()) {?>
+                        <!--<button class="basket js-init-action" data-action="show_modal" data-modal="#sign_basket"><span><?/*=$arBasket['count_items']*/?></span></button>-->
+                    <?//} else {?>
                         <a href="<?=SITE_DIR?>basket/" class="basket"><span><?=$arBasket['count_items']?></span></a>
-                    <?}?>
+                    <?//}?>
                     <form action="<?=SITE_DIR?>search/" class="search">
                         <div class="search-btn"></div>
                         <div class="search-input">

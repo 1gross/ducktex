@@ -98,9 +98,9 @@ $(document).ready(function() {
         } else {
             elm.attr('data-value', Math.round(parseFloat(elm.val())));
         }
-        if (parseFloat(elm.attr('data-value')) > parseFloat(elm.attr('data-max'))) {
+        /*if (parseFloat(elm.attr('data-value')) > parseFloat(elm.attr('data-max'))) {
             elm.attr('data-value', parseFloat(elm.attr('data-max')));
-        }
+        }*/
         if (parseFloat(elm.attr('data-value')) < parseFloat(elm.attr('data-min'))) {
             elm.attr('data-value', parseFloat(elm.attr('data-min')));
         }

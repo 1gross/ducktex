@@ -10,6 +10,9 @@
             <div class="modal-body">
                 <form action="/">
                     <input type="tel" name="PHONE_NUMBER" placeholder="+_ (___) ___-__-__" required="">
+                    <div class="modal-flag__wrap">
+                        <div class="modal-flag"></div>
+                    </div>
                     <?if ($arParams['MODAL_ID'] == 'sign_basket') {?>
                         <input type="hidden" name="REDIRECT_URL" value="/basket/">
                     <?}?>

@@ -87,7 +87,11 @@ input[type='text'], input[type='email'], input[type='tel'] {
     input[type='text'], input[type='email'], input[type='tel'] {
       height: 40px;
       line-height: 40px;
-      font-size: 14px; } }
+      font-size: 14px; }
+    input[name='coupon_code'] {
+      font-size: 11px;
+    }
+  }
 
 textarea {
   resize: none;
@@ -3929,3 +3933,14 @@ section.with-sea .wrapper::before {
         width: calc(100% / 3 - 10px);
         font-size: 14px;
         line-height: 16px; } }
+
+.modal-flag__wrap {
+  position: relative;
+}
+.modal-flag {
+  position: absolute;
+  right: 0;
+  top: -22px;
+  width: 34px;
+  height: 34px;
+}

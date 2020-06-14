@@ -8,6 +8,9 @@
             <div class="modal-body">
                 <form action="/">
                     <input type="tel" name="PHONE_NUMBER" placeholder="+_ (___) ___-__-__" required="">
+                    <div class="modal-flag__wrap">
+                        <div class="modal-flag"></div>
+                    </div>
                     <button type="submit" disabled="disabled" class="btn blue js-init-action" data-action="send_form" data-id="auth">Получить код</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
                 </form>

@@ -15,6 +15,11 @@ if ($arResult['DETAIL_PICTURE']['SRC']) {
     $this->SetViewTarget('og:image');
     echo $arResult['DETAIL_PICTURE']['SRC'];
     $this->EndViewTarget();
+} else {
+    $arPhoto[] = array(
+        'SRC' => '/local/front/files/img/no-image.png',
+        'ALT' => 'Это новая позиция, скоро мы добавим фото'
+    );
 }
 if (is_array($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
     foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $id) {

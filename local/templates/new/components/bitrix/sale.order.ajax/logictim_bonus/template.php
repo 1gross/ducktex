@@ -262,6 +262,7 @@ if (!function_exists("cmpBySort"))
                         "bitrix:sale.location.selector.steps",
                         ".default",
                         array(
+                            'FILTER_BY_SITE' => 'N'
                         ),
                         false
                     );?>
@@ -269,6 +270,7 @@ if (!function_exists("cmpBySort"))
                         "bitrix:sale.location.selector.search",
                         ".default",
                         array(
+                                'FILTER_BY_SITE' => 'N'
                         ),
                         false
                     );?>

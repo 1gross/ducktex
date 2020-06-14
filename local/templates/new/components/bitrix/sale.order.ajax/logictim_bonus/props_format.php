@@ -101,7 +101,7 @@ if (!function_exists("PrintPropsForm"))
                                 if (strpos($arProperties["VALUE"], 'tmp_') !== false) {
                                     $value = '';
                                 }
-                                if(strpos(strtolower($arProperties["VALUE"]), 'без имени') !== false) {
+                                if(strpos(strtolower($arProperties["VALUE"]), 'ез имени') !== false) {
                                     $value = '';
                                 }
 
