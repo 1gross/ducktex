@@ -3,7 +3,6 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 $arResult = $arParams['ITEM'];
-
 if (!isset($arResult['DISCOUNT'])) {
     $arDiscounts = CCatalogDiscount::GetDiscountByProduct($arResult['ID'], $USER->GetUserGroupArray(), "N", 1, SITE_ID);
     $arResult['DISCOUNT'] = $arDiscounts ?  current($arDiscounts) : false;

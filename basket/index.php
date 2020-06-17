@@ -10,7 +10,7 @@ $APPLICATION->SetTitle("Корзина");
 		"ADDITIONAL_PICT_PROP_14" => "-",
 		"ADDITIONAL_PICT_PROP_24" => "-",
 		"ALLOW_APPEND_ORDER" => "Y",
-		"ALLOW_AUTO_REGISTER" => "N",
+		"ALLOW_AUTO_REGISTER" => "Y",
 		"ALLOW_NEW_PROFILE" => "N",
 		"ALLOW_USER_PROFILES" => "N",
 		"BASKET_IMAGES_SCALING" => "adaptive",

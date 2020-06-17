@@ -174,8 +174,19 @@ $(document).ready(function() {
                $(modal_id).arcticmodal({
                    beforeOpen: function (data, modal) {
                        let phoneInput = modal.find('[name="PHONE_NUMBER"]');
+                       let btn = phoneInput.closest('form').find('.btn');
+                       btn.attr('disabled', 'disabled');
 
-                       if (phoneInput.length > 0) {
+                       let phoneNumber = $('input[data-code="PHONE"]');
+
+                       if (phoneNumber.length > 0 && phoneNumber.val().length > 10) {
+                           phoneInput.val(phoneNumber.val());
+                           btn.removeAttr('disabled');
+                           btn.click();
+                       }
+
+
+                       /*if (phoneInput.length > 0) {
                            phoneInput.on('change', function () {
                                checkPhoneInput($(this));
                            });
@@ -192,7 +203,7 @@ $(document).ready(function() {
                            } else {
                                btn.attr('disabled', 'disabled');
                            }
-                       }
+                       }*/
                    }
                });
                break;
@@ -345,12 +356,21 @@ $(document).ready(function() {
                                    case 'auth_check_code':
                                        setTimeout(function () {
                                            $.arcticmodal('close');
-                                           if (typeof response.redirect_url !== 'undefined') {
-                                               document.location.href = response.redirect_url;
-                                           } else {
-                                               location.reload();
-                                           }
+                                           if (response.redirect_url.indexOf('basket') >= 0) {
+                                               submitForm('Y');
 
+                                               //request to Google Analitic
+                                               gtag('event', 'order-sms', {
+                                                   'event_category' : 'sms',
+                                                   'event_label' : 'ok'
+                                               });
+                                           } else {
+                                               if (typeof response.redirect_url !== 'undefined') {
+                                                   document.location.href = response.redirect_url;
+                                               } else {
+                                                   location.reload();
+                                               }
+                                           }
                                        }, 50);
                                        break;
                                    case 'profile_edit':
@@ -427,6 +447,12 @@ $(document).ready(function() {
                                            });
                                            codeBlock.addClass('error');
                                            $this.attr('disabled', 'disabled');
+
+                                           //request to Google Analitic
+                                           gtag('event', 'order-sms', {
+                                               'event_category' : 'sms',
+                                               'event_label' : 'error'
+                                           });
 
                                        }
                                        break;

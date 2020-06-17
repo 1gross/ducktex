@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    let maskLength = 20;
     var maskList = $.masksSort($.masksLoad("/local/front/files/js/lib/inputmask.multi/data/phone-codes.json"), ['#'], /[0-9]|#/, "mask");
     var maskOpts = {
         inputmask: {
@@ -21,6 +22,7 @@ $(document).ready(function () {
                 var hint = maskObj.cc;
                 let flag = 'flag-' + hint;
                 $('.modal-flag').attr('class', 'modal-flag').addClass(flag);
+                maskLength = maskObj.mask.replace(/[^\d#]/g, '').length;
             } else {
                 $('.modal-flag').attr('class', 'modal-flag');
             }
@@ -29,4 +31,13 @@ $(document).ready(function () {
     };
 
     $('input[type="tel"]').inputmasks(maskOpts);
+    $('input[type="tel"]').on('keyup', function () {
+        if ($(this).val().length === maskLength) {
+            $(this).closest('.modal-body').find('button').removeAttr('disabled');
+        } else {
+            $(this).closest('.modal-body').find('button').attr('disabled', 'disabled');
+        }
+    });
+
+    $('input[data-code="PHONE"]').inputmasks(maskOpts);
 });

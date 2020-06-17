@@ -109,6 +109,7 @@ if (!function_exists("PrintPropsForm"))
                                 <input class="inp-field <?=$arProperties['REQUIRED'] == 'Y' ? 'required' : ''?>"
                                        type="<?=$type?>"
                                        data-type="<?=$dataType?>"
+                                       data-code="<?=$arProperties['CODE']?>"
                                        size="<?=$arProperties["SIZE1"]?>"
                                        value="<?=$value?>"
                                        name="<?=$arProperties["FIELD_NAME"]?>"

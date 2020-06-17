@@ -125,7 +125,8 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                     <div class="price-block">
                         <div class="price">
 							<div class="price-item">
-                               до 4.9м - <?=$arResult['PRICE_MATRIX']['MATRIX'][1]['ZERO-INF']['PRICE'];?> руб / м
+                                <?=$arResult['PRICE_MATRIX']['MATRIX'][5]['ZERO-INF']['PRICE'] || $arResult['PRICE_MATRIX']['MATRIX'][4]['ZERO-INF']['PRICE'] ? 'до 4.9м - ' : ''?>
+                                <?=$arResult['PRICE_MATRIX']['MATRIX'][1]['ZERO-INF']['PRICE'];?> руб / м
                             </div>
                             <?if ($arResult['PRICE_MATRIX']['MATRIX'][5]['ZERO-INF']['PRICE']) {?>
                                 <div class="price-item">

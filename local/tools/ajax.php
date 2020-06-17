@@ -110,8 +110,6 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                     break;
                 case 'auth_check_code':
-
-
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA'])) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
                         $verificationCode = implode('', $arFields['CODE']);
@@ -180,12 +178,11 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                             if ($smsTestMode) {
                                 $res = true;
+                                $arResponse['code'] = $code;
                             } else {
                                 $result = $sms->send();
                                 $res = $result->isSuccess();
                             }
-
-                            $arResponse['code'] = $code;
 
                             if ($res) {
                                 $arResponse['result'] = true;

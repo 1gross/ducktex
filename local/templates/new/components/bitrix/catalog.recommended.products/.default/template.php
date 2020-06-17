@@ -4,7 +4,7 @@
  */
 ?>
 
-<?if ($arResult['ITEMS']) {?>
+<?if ($arParams['RECOMENDED']) {?>
 <section class="block sales slider-block">
     <div class="wrapper">
         <div class="sales-block">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="slider">
-                <?foreach ($arResult['ITEMS'] as $arItem) {?>
+                <?foreach ($arParams['RECOMENDED'] as $arItem) {?>
                     <div class="product-card" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
                         <?$APPLICATION->IncludeComponent(
                             'bitrix:catalog.item',
