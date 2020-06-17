@@ -31,6 +31,11 @@
             <div class="modal-title">Введите код</div>
             <div class="modal-desc bold">Мы отправили код на номер <span class="modal-desc__phone"></span></div>
             <button class="arcticmodal-close back">Изменить</button>
+            <?if ($APPLICATION->GetCurPage() == '/basket/' && !$USER->IsAuthorized()) {?>
+                <div class="modal-desc">
+                    Это нужно для того чтобы мы корректно отобразили ваши предыдущие заказы и учли баллы на бонусный счет
+                </div>
+            <?}?>
             <div class="modal-body">
                 <div class="sms-code">
                     <input type="text" data-id="1" class="digit" maxlength="1" />
