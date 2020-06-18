@@ -327,7 +327,7 @@ h2 {
       @media screen and (max-width: 1200px) {
         #header .top-line .top-line-block .user-buttons {
           margin-left: auto;
-          margin-right: 20px; } }
+          margin-right: 10px; } }
       #header .top-line .top-line-block .user-buttons > * {
         margin-right: 30px; }
         #header .top-line .top-line-block .user-buttons > *:last-child {
@@ -336,7 +336,9 @@ h2 {
         color: #A5A5A5; }
         @media screen and (max-width: 1200px) {
           #header .top-line .top-line-block .user-buttons .login {
-            display: none; } }
+            order: 5;
+            margin-right: 0;
+            font-size: 0; } }
         #header .top-line .top-line-block .user-buttons .login::before {
           content: '';
           background: url("../img/login.svg") no-repeat 50%;
@@ -345,6 +347,11 @@ h2 {
           width: 31px;
           height: 31px;
           margin-right: 10px; }
+      @media screen and (max-width: 1200px) {
+        #header .top-line .top-line-block .user-buttons .login::before {
+          width: 25px;
+          height: 25px;
+          background-size: contain; } }
         #header .top-line .top-line-block .user-buttons .login:hover {
           text-decoration: underline; }
       @media screen and (max-width: 1200px) {
@@ -377,7 +384,7 @@ h2 {
         margin-right: 64px;}
         @media screen and (max-width: 1200px) {
           #header .top-line .top-line-block .user-buttons .basket {
-            margin-right: 29px; } }
+            margin-right: 49px; } }
         @media screen and (max-width: 767px) {
           #header .top-line .top-line-block .user-buttons .basket {
             background-size: 28px; } }
@@ -1487,9 +1494,7 @@ section.with-sea .wrapper::before {
           color: #22AAB8;
           transition: .1s background-color, .1s color; }
           .mobile-menu .mobile-menu-block .user-buttons .search .search-input input[type="submit"]:hover {
-            transition: .3s background-color, .3s color;
-            background-color: #b1b1b1;
-            color: white; }
+             }
     .mobile-menu .mobile-menu-block .menu, .mobile-menu .mobile-menu-block .main-menu {
       border-bottom: 1px solid #C4C4C4;
       padding-bottom: 20px;

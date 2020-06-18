@@ -3,9 +3,6 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 
-ini_set('session.gc_maxlifetime', 172800);
-ini_set('session.cookie_lifetime', 172800);
-
 /*
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
