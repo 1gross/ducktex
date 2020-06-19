@@ -22,4 +22,28 @@ if($arResult["REQUEST"]["~TAGS"])
 		}
 	}
 }
+
+if (isset($_REQUEST['q'])) {
+    global $arrSearchFilter;
+    $arrSearchFilter = array('?NAME' => $_REQUEST['q']);
+}
+
+if (isset($_GET["method"])) {
+    $arParams["ELEMENT_SORT_ORDER"] = $_GET['method'] == 'desc' ? 'desc' : 'asc';
+}
+$isDefault = !isset($_GET["sort"]) || $_GET["sort"] == 'shows' ? true : false;
+
+if (isset($_GET["sort"])) {
+    switch ($_GET["sort"]) {
+        case 'price':
+            $arParams["ELEMENT_SORT_FIELD"] = 'SCALED_PRICE_1';
+            break;
+        case 'name':
+            $arParams["ELEMENT_SORT_FIELD"] = 'name';
+            break;
+        default:
+            $arParams["ELEMENT_SORT_FIELD"] = 'shows';
+            $isDefault = true;
+    }
+}
 ?>

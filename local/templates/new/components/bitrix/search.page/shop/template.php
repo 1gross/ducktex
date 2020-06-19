@@ -8,23 +8,14 @@
             <input type="submit" class="btn blue small" value="Найти">
         </form>
         <div class="search-block">
-            <?if ($arResult['SEARCH']) {
+            <?//if ($arResult['SEARCH']) {
                 $arProducts = array();
                 foreach ($arResult['SEARCH'] as $arItem) {
                     $arProducts[$arItem['ITEM_ID']] = $arItem['ITEM_ID'];
                 }
                 ?>
-                <div class="search-header">
-                    <div class="filter">
-                        <a href="/" class="filter-item">По популярности</a>
-                        <a href="/" class="filter-item desc">По алфавиту</a>
-                        <a href="/" class="filter-item">По цене</a>
-                    </div>
-                </div>
-                <?
-                global $arrSearchFilter;
-                $arrSearchFilter = array('ID' => array_keys($arProducts));
 
+                <?
                 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.top", 
 	"search", 
@@ -33,11 +24,11 @@
 		"IBLOCK_ID" => "13",
 		"COMPONENT_TEMPLATE" => "search",
 		"IBLOCK_TYPE" => "aspro_mshop_catalog",
-		"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
+		//"CUSTOM_FILTER" => "{\"CLASS_ID\":\"CondGroup\",\"DATA\":{\"All\":\"AND\",\"True\":\"True\"},\"CHILDREN\":[]}",
 		"HIDE_NOT_AVAILABLE" => "N",
 		"HIDE_NOT_AVAILABLE_OFFERS" => "N",
-		"ELEMENT_SORT_FIELD" => "sort",
-		"ELEMENT_SORT_ORDER" => "asc",
+		"ELEMENT_SORT_FIELD" => $arParams["ELEMENT_SORT_FIELD"],
+		"ELEMENT_SORT_ORDER" => $arParams["ELEMENT_SORT_ORDER"],
 		"ELEMENT_SORT_FIELD2" => "id",
 		"ELEMENT_SORT_ORDER2" => "desc",
 		"OFFERS_SORT_FIELD" => "sort",
@@ -91,9 +82,6 @@
 	),
 	false
 );?>
-            <?} elseif ((isset($_REQUEST['q']) && strlen($_REQUEST['q']) > 0) || $arResult['ERROR_TEXT']) {?>
-                <div class="block-message"><?=$arResult['ERROR_TEXT'] ?: 'К сожалению ничего не найдено'?></div>
-            <?}?>
         </div>
     </div>
 </div>
