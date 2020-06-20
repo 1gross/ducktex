@@ -129,7 +129,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 }
                                 $USER->Authorize($arFields['USER_ID']);
 
-                                if ($basketItems['items']) {
+                                /*if ($basketItems['items']) {
                                     $products = B24TechSiteHelper::getBasket();
 
                                     if ($products['items']) {
@@ -141,8 +141,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                     foreach ($basketItems['items'] as $basketItem) {
                                         Add2BasketByProductID($basketItem['id'], $basketItem['quantity'], array(), array());
                                     }
-
-                                }
+                                }*/
                                 $arResponse['result'] = true;
 
                             } else {
