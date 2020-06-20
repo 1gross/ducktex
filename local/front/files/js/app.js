@@ -357,7 +357,8 @@ $(document).ready(function() {
                                        setTimeout(function () {
                                            $.arcticmodal('close');
                                            if (response.redirect_url.indexOf('basket') >= 0) {
-                                               submitForm('Y');
+                                               $('button[id="ORDER_CONFIRM_BUTTON"]').click();
+                                               //submitForm('Y');
 
                                                //request to Google Analitic
                                                gtag('event', 'order-sms', {
