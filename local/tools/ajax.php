@@ -127,6 +127,16 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 if ($arFields['REDIRECT_URL']) {
                                     $arResponse['redirect_url'] = $arFields['REDIRECT_URL'];
                                 }
+
+                                CModule::IncludeModule('sale');
+                                $user = new CSaleUser();
+                                $arFUser = $user->GetList(array('USER_ID' => $arFields['USER_ID']));
+
+                                if ($arFUser) {
+                                    $basket = new CSaleBasket();
+                                    $result = $basket->DeleteAll($arFUser['ID'], False);
+                                }
+
                                 $USER->Authorize($arFields['USER_ID']);
 
                                 /*if ($basketItems['items']) {
