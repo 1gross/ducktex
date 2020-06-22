@@ -354,18 +354,14 @@ $(document).ready(function() {
                                    case 'auth_check_code':
                                        setTimeout(function () {
                                            $.arcticmodal('close');
+
+                                           //request to Google Analitic
+                                           gtag('event', 'ok-sms');
                                            if ('redirect_url' in response && response.redirect_url.indexOf('basket') >= 0) {
                                                $('button[id="ORDER_CONFIRM_BUTTON"]').click();
                                                //submitForm('Y');
-
-                                               //request to Google Analitic
-                                               gtag('event', 'ok-sms');
                                            } else {
-                                               if (typeof response.redirect_url !== 'undefined') {
-                                                   document.location.href = response.redirect_url;
-                                               } else {
-                                                   location.reload();
-                                               }
+                                               location.reload();
                                            }
                                        }, 50);
                                        break;
