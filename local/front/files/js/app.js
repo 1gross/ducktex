@@ -234,11 +234,9 @@ $(document).ready(function() {
                        }
                        break;
                    case 'in':
-                       if (value < valueMax) {
-                           value += valueStep;
-                           if (quantityTypePage === 'basket') {
-                               send = true;
-                           }
+                       value += valueStep;
+                       if (quantityTypePage === 'basket') {
+                           send = true;
                        }
                        break;
                }

@@ -26,7 +26,8 @@
                 '',
                 array(
                     'ITEM' => $arItem,
-                    'PROPERTY_CODE' => $arParams['PROPERTY_CODE']
+                    'PROPERTY_CODE' => $arParams['PROPERTY_CODE'],
+                    'IS_NEW' => $arParams['IS_NEW'] ?: 'N'
                 )
             )?>
         </div>

@@ -61,12 +61,8 @@
 		"CACHE_FILTER" => "N",
 		"ACTION_VARIABLE" => "action",
 		"PRODUCT_ID_VARIABLE" => "id",
-		"PRICE_CODE" => array(
-			0 => "BASE",
-		),
 		"USE_PRICE_COUNT" => "Y",
 		"SHOW_PRICE_COUNT" => "1",
-		"PRICE_VAT_INCLUDE" => "Y",
 		"CONVERT_CURRENCY" => "N",
 		"BASKET_URL" => "/personal/basket.php",
 		"USE_PRODUCT_QUANTITY" => "N",
@@ -78,7 +74,14 @@
 		"OFFERS_CART_PROPERTIES" => array(
 		),
 		"DISPLAY_COMPARE" => "N",
-		"COMPATIBLE_MODE" => "Y"
+		"COMPATIBLE_MODE" => "Y",
+        "PRICE_CODE" => array(
+            0 => "BASE",
+            1 => "10M",
+            2 => "5M",
+        ),
+        "PRICE_VAT_INCLUDE" => "Y",
+        "PRICE_VAT_SHOW_VALUE" => "N",
 	),
 	false
 );?>
