@@ -2,7 +2,9 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
+use Bitrix\Main\Localization\Loc;
 
+Loc::loadMessages(__FILE__);
 ?>
 
     <a href="<?=$arResult['DETAIL_PAGE_URL']?>" class="product-card-front">
@@ -32,7 +34,8 @@
                     <?=$arResult['CATALOG_MEASURE_NAME'] ? ' / ' . $arResult['CATALOG_MEASURE_NAME'] : ''?>
                 <? } else {?>
                     Цена отсутствует
-                <?}?>
+                <?}?><button class="add-cart js-init-action" data-action="add_basket" data-id="<?=$arResult['ID']?>" style="font-size:14px;"><img src="/include/img/cart.png" height=15px ></button>
+ 
             </div>
             <?if (isset($arResult['PRICES']['BASE']['DISCOUNT_DIFF']) && $arResult['PRICES']['BASE']['DISCOUNT_DIFF'] > 0) {?>
                 <div class="last"><?=$arResult['PRICES']['BASE']['PRINT_VALUE_VAT']?></div>
@@ -96,6 +99,6 @@
         <?if ($USER->IsAuthorized()) {?>
             <button data-id="<?=$arResult['ID']?>" data-action="add_favorites" class="js-init-action favorites"></button>
         <?}?>
-        <button data-id="<?=$arResult['ID']?>" data-action="add_compare" class="js-init-action compare"></button>
+        <!--<button data-id="<?=$arResult['ID']?>" data-action="add_compare" class="js-init-action compare"></button>-->
     </div>
 
