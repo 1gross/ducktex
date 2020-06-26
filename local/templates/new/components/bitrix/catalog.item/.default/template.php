@@ -99,6 +99,6 @@ Loc::loadMessages(__FILE__);
         <?if ($USER->IsAuthorized()) {?>
             <button data-id="<?=$arResult['ID']?>" data-action="add_favorites" class="js-init-action favorites"></button>
         <?}?>
-        <button data-id="<?=$arResult['ID']?>" data-action="add_compare" class="js-init-action compare"></button>
+        <!--<button data-id="<?=$arResult['ID']?>" data-action="add_compare" class="js-init-action compare"></button>-->
     </div>
 
