@@ -2,7 +2,9 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
+use Bitrix\Main\Localization\Loc;
 
+Loc::loadMessages(__FILE__);
 ?>
 
     <a href="<?=$arResult['DETAIL_PAGE_URL']?>" class="product-card-front">
