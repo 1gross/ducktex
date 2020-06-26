@@ -144,7 +144,7 @@ foreach ($arTabs as $typeID => $arProfile) {
                     <input type="text"
                            value="<?=$arResult['arUser']['PERSONAL_BIRTHDAY'] ?: ''?>"
                            name="PERSONAL_BIRTHDAY"
-                           placeholder="Дата рождения (дд/мм/г)">
+                           placeholder="Дата рождения (дд.мм.г)">
 
                     <input type="tel"
                            value="<?=isset($arProps['PHONE']) ? $arProps['PHONE']['VALUE'] : ''?>"
