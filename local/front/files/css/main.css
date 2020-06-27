@@ -3967,3 +3967,6 @@ section.with-sea .wrapper::before {
   width: 34px;
   height: 34px;
 }
+.modal button.btn {
+  max-width: 450px;
+}

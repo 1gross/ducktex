@@ -356,7 +356,7 @@ $(document).ready(function() {
                                            $.arcticmodal('close');
 
                                            //request to Google Analitic
-                                           gtag('event', 'ok-sms');
+                                           dataLayer.push({'event': 'sms-ok'});
                                            if ('redirect_url' in response && response.redirect_url.indexOf('basket') >= 0) {
                                                $('button[id="ORDER_CONFIRM_BUTTON"]').click();
                                                //submitForm('Y');
@@ -441,7 +441,7 @@ $(document).ready(function() {
                                            $this.attr('disabled', 'disabled');
 
                                            //request to Google Analitic
-                                           gtag('event', 'error-sms');
+                                           dataLayer.push({'event': 'sms-error'});
 
                                        }
                                        break;
