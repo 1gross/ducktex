@@ -141,7 +141,8 @@ foreach ($arTabs as $typeID => $arProfile) {
                            name="FIO"
                            placeholder="ФИО">
 
-                    <input type="text"
+                    <input class="mask-date"
+						   type="text"
                            value="<?=$arResult['arUser']['PERSONAL_BIRTHDAY'] ?: ''?>"
                            name="PERSONAL_BIRTHDAY"
                            placeholder="Дата рождения (дд.мм.г)">

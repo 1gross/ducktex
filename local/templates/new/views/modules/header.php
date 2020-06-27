@@ -103,9 +103,15 @@ $arCompare = B24TechSiteHelper::getCompareList();
     </div>
     <?if ($APPLICATION->GetCurPage(false) != SITE_DIR) {?>
         <?$APPLICATION->IncludeComponent(
-                'bitrix:breadcrumb',
-            '',
-                array()
-        )?>
+	"bitrix:breadcrumb", 
+	".default", 
+	array(
+		"COMPONENT_TEMPLATE" => ".default",
+		"START_FROM" => "0",
+		"PATH" => "",
+		"SITE_ID" => "lu"
+	),
+	false
+);?>
     <?}?>
 </header>

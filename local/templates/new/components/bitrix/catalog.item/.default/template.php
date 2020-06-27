@@ -26,6 +26,7 @@ Loc::loadMessages(__FILE__);
         </div>
         <div class="price" data-ratio="<?=$arResult['CATALOG_MEASURE_RATIO']?>">
             <div class="new">
+			
                 <?$isMinPrice = isset($arResult['MIN_PRICE']['VALUE']) && count($arResult['PRICE_MATRIX']['MATRIX']) > 1?>
                 <?=$isMinPrice ? 'от ' : ''?>
                 <?=$isMinPrice ? $arResult['MIN_PRICE']['PRINT_DISCOUNT_VALUE'] : $arResult['PRICE_ITEM']['PRINT_PRICE']?>
@@ -43,6 +44,7 @@ Loc::loadMessages(__FILE__);
                 <?$price = $arResult['MIN_PRICE']['VALUE'] ?: $arResult['PRICE_ITEM']['PRICE']?>
                 <div class="last"><?=round(($price/(100 - $arResult['DISCOUNT']['VALUE'])) * 100, 2)?> руб.</div>
             <?}?>
+			
         </div>
     </a>
     <div class="hover">
