@@ -1,5 +1,5 @@
 <?Bitrix\Main\Page\Frame::getInstance()->startDynamicWithID("header-compare-block");?>
-<?$APPLICATION->IncludeComponent(
+<?/*$APPLICATION->IncludeComponent(
 	"bitrix:catalog.compare.list",
 	"compare_top",
 	Array(
@@ -14,5 +14,5 @@
 		"NAME" => "CATALOG_COMPARE_LIST",
 		"AJAX_OPTION_ADDITIONAL" => ""
 	)
-);?>
+);*/?>
 <?Bitrix\Main\Page\Frame::getInstance()->finishDynamicWithID("header-compare-block", "");?>

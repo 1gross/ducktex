@@ -7,9 +7,9 @@ $_REQUEST['filter_history'] = 'Y';
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:sale.personal.order.list", 
-	"new",
+	"new", 
 	array(
-		"COMPONENT_TEMPLATE" => ".default",
+		"COMPONENT_TEMPLATE" => "new",
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "3600",
@@ -35,7 +35,7 @@ $_REQUEST['filter_history'] = 'Y';
 			0 => "0",
 		),
 		"REFRESH_PRICES" => "N",
-		"DEFAULT_SORT" => "ACCOUNT_NUMBER"
+		"DEFAULT_SORT" => "DATE_INSERT"
 	),
 	false
 );?>

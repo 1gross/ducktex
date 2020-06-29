@@ -55,12 +55,12 @@ $arCompare = B24TechSiteHelper::getCompareList();
                     <?} else {?>
                         <a href="<?=SITE_DIR?>personal/" class="login"><?=Loc::getMessage('LK')?></a>
                     <?}?>
-                    <a href="<?=SITE_DIR?>compare/" class="compare"><span><?=count($arCompare)?></span></a>
-                    <?//if (!$USER->IsAuthorized()) {?>
-                        <!--<button class="basket js-init-action" data-action="show_modal" data-modal="#sign_basket"><span><?/*=$arBasket['count_items']*/?></span></button>-->
-                    <?//} else {?>
+                       <!-- <a href="<?=SITE_DIR?>compare/" class="compare"><span><?=count($arCompare)?></span></a>-->
+                    <?if (!$USER->IsAuthorized()) {?>
+                        <button class="basket js-init-action" data-action="show_modal" data-modal="#sign_basket"><span><?=$arBasket['count_items']?></span></button>
+                    <?} else {?>
                         <a href="<?=SITE_DIR?>basket/" class="basket"><span><?=$arBasket['count_items']?></span></a>
-                    <?//}?>
+                    <?}?>
                     <form action="<?=SITE_DIR?>search/" class="search">
                         <div class="search-btn"></div>
                         <div class="search-input">
@@ -103,9 +103,15 @@ $arCompare = B24TechSiteHelper::getCompareList();
     </div>
     <?if ($APPLICATION->GetCurPage(false) != SITE_DIR) {?>
         <?$APPLICATION->IncludeComponent(
-                'bitrix:breadcrumb',
-            '',
-                array()
-        )?>
+	"bitrix:breadcrumb", 
+	".default", 
+	array(
+		"COMPONENT_TEMPLATE" => ".default",
+		"START_FROM" => "0",
+		"PATH" => "",
+		"SITE_ID" => "lu"
+	),
+	false
+);?>
     <?}?>
 </header>

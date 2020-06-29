@@ -9,10 +9,10 @@ $APPLICATION->SetTitle("Каталог");?><?$APPLICATION->IncludeComponent(
 	"main_custom", 
 	array(
 		"ACTION_VARIABLE" => "action",
-		"ADD_ELEMENT_CHAIN" => "Y",
+		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_PICT_PROP" => "-",
 		"ADD_PROPERTIES_TO_BASKET" => "Y",
-		"ADD_SECTIONS_CHAIN" => "N",
+		"ADD_SECTIONS_CHAIN" => "Y",
 		"AJAX_FILTER_CATALOG" => "N",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
@@ -224,6 +224,7 @@ $APPLICATION->SetTitle("Каталог");?><?$APPLICATION->IncludeComponent(
 		"MESS_PRICE_RANGES_TITLE" => "Цены",
 		"MESS_PROPERTIES_TAB" => "Характеристики",
 		"OFFERS_CART_PROPERTIES" => array(
+			0 => "PLOTNOST",
 		),
 		"OFFERS_SORT_FIELD" => "sort",
 		"OFFERS_SORT_FIELD2" => "id",
@@ -240,7 +241,7 @@ $APPLICATION->SetTitle("Каталог");?><?$APPLICATION->IncludeComponent(
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "20",
-		"PARTIAL_PRODUCT_PROPERTIES" => "N",
+		"PARTIAL_PRODUCT_PROPERTIES" => "Y",
 		"PRICE_CODE" => array(
 			0 => "BASE",
 			1 => "10M",
@@ -250,6 +251,7 @@ $APPLICATION->SetTitle("Каталог");?><?$APPLICATION->IncludeComponent(
 		"PRICE_VAT_SHOW_VALUE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
 		"PRODUCT_PROPERTIES" => array(
+			0 => "IN_STOCK",
 		),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
