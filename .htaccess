@@ -11,7 +11,7 @@ ErrorDocument 404 /404.php
   Options +FollowSymLinks
   RewriteEngine On
   RewriteCond %{SERVER_PORT} !^443$
-  RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+ # RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
   
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_URI} !(.*)/$
