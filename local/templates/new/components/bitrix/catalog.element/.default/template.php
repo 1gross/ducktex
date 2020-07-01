@@ -16,7 +16,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
             <div class="card-header">
                 <h1><?=$arResult['NAME']?></h1>
                 <div class="card-buttons">
-                    <button data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare js-init-action"></button>
+                   <!-- <button data-action="add_compare" data-id="<?=$arResult['ID']?>" class="compare js-init-action"></button>-->
                     <?if ($USER->IsAuthorized()) {?>
                         <button data-action="add_favorites"
                                 data-id="<?=$arResult['ID']?>"

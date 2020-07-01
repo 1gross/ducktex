@@ -17,7 +17,7 @@ if (count($arResult) > 1) {?>
                         <?if (strlen($arItem['LINK']) > 0) {?>
                             <a href="<?=$arItem['LINK']?>"><?=$arItem['TITLE']?></a>
                         <?} else {?>
-                            <span><?=$arItem['TITLE']?></span>
+                           <!-- <span><?=$arItem['TITLE']?></span>-->
                         <?}?>
                     </div>
                 <?}?>
