@@ -293,8 +293,10 @@ $(document).ready(function() {
                    if (response.result === true) {
                        switch (action) {
                            case 'send_form':
+                               if (id !== 'auth' && id !== 'resend_code') {
+                                   dataLayer.push({'event': 'formsend'});
+                               }
 
-                               dataLayer.push({'event': 'formsend'});
                                //location.reload();
                                switch (id) {
                                    case 'subscribe':
