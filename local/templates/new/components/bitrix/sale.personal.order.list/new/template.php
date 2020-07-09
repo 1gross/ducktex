@@ -53,7 +53,17 @@
 <?if ($arResult['ORDERS']) {?>
 <div style="display:none;">
     <?foreach ($arResult['ORDERS'] as $arOrder) {
-        $arOrder['ORDER']['STATUS'] = $arResult['INFO']['STATUS'][$arOrder['ORDER']['STATUS_ID']]['NAME'];?>
+        $arOrder['ORDER']['STATUS'] = $arResult['INFO']['STATUS'][$arOrder['ORDER']['STATUS_ID']]['NAME'];
+        if ($arOrder['ORDER']['STATUS_ID'] == 'P') {
+            if ($arOrder['ORDER']['PAYED'] == 'N') {
+                $arOrder['ORDER']['STATUS'] = 'Обработан, не оплачен';
+            }
+        }
+        if ($arOrder['ORDER']['CANCELED'] == 'Y') {
+            $arOrder['ORDER']['STATUS'] = 'Отменен';
+        }
+
+        ?>
         <div class="order_<?=$arOrder['ORDER']['ID']?>">
             <div class="group-field">
                 <div class="group-field__title">Заказ</div>
