@@ -54,16 +54,15 @@
 <div style="display:none;">
     <?foreach ($arResult['ORDERS'] as $arOrder) {
         $arOrder['ORDER']['STATUS'] = $arResult['INFO']['STATUS'][$arOrder['ORDER']['STATUS_ID']]['NAME'];
-        switch ($arOrder['ORDER']['STATUS_ID']) {
-            case 'P':
-                if ($arOrder['ORDER']['PAYED'] == 'N') {
-                    $arOrder['ORDER']['STATUS'] = 'Обработан / Не оплачен';
-                }
-                break;
+        if ($arOrder['ORDER']['STATUS_ID'] == 'P') {
+            if ($arOrder['ORDER']['PAYED'] == 'N') {
+                $arOrder['ORDER']['STATUS'] = 'Обработан, не оплачен';
+            }
         }
         if ($arOrder['ORDER']['CANCELED'] == 'Y') {
             $arOrder['ORDER']['STATUS'] = 'Отменен';
         }
+
         ?>
         <div class="order_<?=$arOrder['ORDER']['ID']?>">
             <div class="group-field">
