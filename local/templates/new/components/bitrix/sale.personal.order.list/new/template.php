@@ -29,6 +29,14 @@
                     ];
                 }
                 $arOrder['ORDER']['STATUS'] = $arResult['INFO']['STATUS'][$arOrder['ORDER']['STATUS_ID']]['NAME'];
+                if ($arOrder['ORDER']['STATUS_ID'] == 'P') {
+                    if ($arOrder['ORDER']['PAYED'] == 'N') {
+                        $arOrder['ORDER']['STATUS'] = 'Обработан, не оплачен';
+                    }
+                }
+                if ($arOrder['ORDER']['CANCELED'] == 'Y') {
+                    $arOrder['ORDER']['STATUS'] = 'Отменен';
+                }
                 ?>
                 <tr data-id="<?=$arOrder['ORDER']['ID']?>">
                     <td><span class="js-init-order__show btn-link__underline">№<?=$arOrder['ORDER']['ID']?></span></td>
