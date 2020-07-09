@@ -458,7 +458,7 @@ if (isset($recommended)) {
 }
 
 $rsProduct = CIBlockElement::GetList([],
-    ['IBLOCK_ID' => $arParams['IBLOCK_ID'], 'ID' => $elementId], false, false,
+    ['IBLOCK_ID' => 13, 'ID' => $elementId, 'CHECK_PERMISSIONS' => 'N'], false, false,
     ['ID', 'IBLOCK_ID', 'PROPERTY_ASSOCIATED']);
 
 $props = [];
@@ -472,9 +472,9 @@ while ($prod = $rsProduct->GetNextElement()) {
     }
 }
 
-
 ?>
 <?
+
 if (!empty($props)) {
     global $arrFilter;
     $GLOBALS['arrFilter']['ID'] = $props;

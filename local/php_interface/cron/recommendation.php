@@ -22,7 +22,7 @@ if (file_exists($pathFile)) {
     foreach ($arRows as $row) {
         $arRow = explode(';', $row);
         if (strlen($arRow[1]) > 0) {
-            $arProductXML[$arRow[0]]['ITEMS'][$arRow[1]] = $arRow[1];
+            $arProductXML[$arRow[0]]['ITEMS'][trim($arRow[1])] = trim($arRow[1]);
 
             $arListCodeXML[$arRow[0]] = '';
             $arListCodeXML[$arRow[1]] = '';
@@ -39,7 +39,9 @@ if (file_exists($pathFile)) {
         );
         while ($arProduct = $rsProducts->Fetch()) {
             $arProducts[$arProduct['XML_ID']] = $arProduct;
-        }
+			
+		}
+		
 
         foreach ($arProductXML as $xmlCode => $arItem) {
             if (isset($arProducts[$xmlCode])) {
