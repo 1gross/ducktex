@@ -2,6 +2,8 @@
 /**
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
+
+use Bitrix\Main;
 use Bitrix\Main\UserPhoneAuthTable;
 
 //AddEventHandler("main", "OnProlog", 'authTempUser');
@@ -28,7 +30,8 @@ function authTempUser()
     }
 }
 
-use Bitrix\Main;
+
+
 Main\EventManager::getInstance()->addEventHandler(
     'sale',
     'OnSaleOrderSaved',
