@@ -73,9 +73,12 @@ function NumPluralForm($number, $titles, $appendNumber = false)
             && $number % 100 < 20) ? 2 : $cases[ min($number
             % 10, 5) ] ];
 }
-function dump($var)
+function dump($var, $die = false)
 {
     echo '<pre>';
     var_dump($var);
     echo '</pre>';
+    if ($die) {
+        die();
+    }
 }

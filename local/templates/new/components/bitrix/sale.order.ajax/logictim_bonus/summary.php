@@ -8,6 +8,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
     $deliveryPrice = 'Не указано';
 }
 ?>
+<?$APPLICATION->ShowViewContent('bonus_pay')?>
 <div class="order-check">
     <div class="order-check-block">
         <div class="title">ВАШ ЗАКАЗ</div>
@@ -30,6 +31,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
                 <div class="order-check-title">Оплачено бонусом:</div>
                 <div class="order-check-sum"><?=round($arResult["MAX_BONUS"], 2)?> руб.</div>
             </div>
+            <input type="hidden" value="<?=round($arResult["MAX_BONUS"], 2)?>" name="ORDER_PROP_<?=$arResult["ORDER_PROP_PAYMENT_BONUS_ID"]?>" id="ORDER_PROP_<?=$arResult["ORDER_PROP_PAYMENT_BONUS_ID"]?>">
         <?}?>
         <div class="order-check-footer">
             <?if ($arResult["MAX_BONUS"] > 0) {?>
