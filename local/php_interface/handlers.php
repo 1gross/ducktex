@@ -58,7 +58,9 @@ function checkAndSetPropertyUser(Main\Event $event)
                 $phone = '+'.$phone;
             }
             $arUserProp['PHONE_NUMBER'] = $phone;
-            $arUserProp['LOGIN'] = $phone;
+            if (!$USER->IsAdmin()) {
+                $arUserProp['LOGIN'] = $phone;
+            }
         }
         if ($arProp['CODE'] == 'IS_BONUS_SYSTEM') {
             if ($obProp->getValue() == 'Y') {
