@@ -26,7 +26,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
             <div class="order-check-title custom_t1"><?=GetMessage("SOA_TEMPL_SUM_DELIVERY")?></div>
             <div class="order-check-sum custom_t2"><?=$deliveryPrice?></div>
         </div>
-        <?if ($_REQUEST['USE_BONUS'] == 'on' && $arResult["MAX_BONUS"] > 0) {?>
+        <?if ($_REQUEST['USE_BONUS'] == 'on' && $arResult["MAX_BONUS"] > 0 && $USER->IsAuthorized()) {?>
             <div class="order-check-item bonus-order-sum">
                 <div class="order-check-title">Оплачено бонусом:</div>
                 <div class="order-check-sum"><?=round($arResult["MAX_BONUS"], 2)?> руб.</div>
@@ -34,7 +34,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
             <input type="hidden" value="<?=round($arResult["MAX_BONUS"], 2)?>" name="ORDER_PROP_<?=$arResult["ORDER_PROP_PAYMENT_BONUS_ID"]?>" id="ORDER_PROP_<?=$arResult["ORDER_PROP_PAYMENT_BONUS_ID"]?>">
         <?}?>
         <div class="order-check-footer">
-            <?if ($arResult["MAX_BONUS"] > 0) {?>
+            <?if ($arResult["MAX_BONUS"] > 0  && $USER->IsAuthorized()) {?>
                 <div class="order-check-item bonus-order-sum">
                     <div class="order-check-title">Бонусы:</div>
                     <div class="order-check-sum">
@@ -52,7 +52,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
                 </div>
             <?}?>
             <div class="order-check-gray">
-                <?if ($arResult['ADD_BONUS'] > 0 && $_REQUEST['USE_BONUS'] != 'on') {?>
+                <?if ($arResult['ADD_BONUS'] > 0 && $_REQUEST['USE_BONUS'] != 'on' && $USER->IsAuthorized()) {?>
                     <div class="order-check-item bonus-order-sum">
                         <div class="order-check-title">БОНУС ЗА ЗАКАЗ:</div>
                         <div class="order-check-sum"><?=round($arResult["ADD_BONUS"], 2)?> руб.</div>
