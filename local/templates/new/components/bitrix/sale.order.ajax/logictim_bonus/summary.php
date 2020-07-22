@@ -8,7 +8,7 @@ if ($arResult["DELIVERY"][2]['CHECKED'] == 'Y') {
     $deliveryPrice = 'Не указано';
 }
 ?>
-<?$APPLICATION->ShowViewContent('bonus_pay')?>
+<?//$APPLICATION->ShowViewContent('bonus_pay')?>
 <div class="order-check">
     <div class="order-check-block">
         <div class="title">ВАШ ЗАКАЗ</div>
