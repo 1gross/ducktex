@@ -50,6 +50,10 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
             }
             switch ($_REQUEST['id']) {
                 case 'auth':
+                    $phone = UserPhoneAuthTable::normalizePhoneNumber($arFields['PHONE_NUMBER']);
+                    if (strpos($phone, '+') === false) {
+                        $phone = '+'.$phone;
+                    }
                     $rsUser = UserPhoneAuthTable::getList(
                         array(
                             "filter" => array(
@@ -60,12 +64,13 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     $userID = $arUser['USER_ID'];
                     if (!$userID) {
                         $arResult = $USER->Register(checkPhone($arFields['PHONE_NUMBER']),
-                            "", "", "pass_" . $arFields['PHONE_NUMBER'],
-                            "pass_" . $arFields['PHONE_NUMBER'], '', SITE_ID,
-                            '', '', '', checkPhone($arFields['PHONE_NUMBER']));
+                            "", "", md5("pass_" . $arFields['PHONE_NUMBER']),
+                            md5("pass_" . $arFields['PHONE_NUMBER']), '', SITE_ID,
+                            '', '', '', $phone);
                         $arResponse['add_new_user'] = true;
                         $userID = $arResult["ID"];
                     }
+
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
                     $us = new CUser();
                     $rs = $us->Update($userID, array('UF_HASHKEY' => md5(intval($code))));
