@@ -1,1 +1,0 @@
-ducktex.ru
