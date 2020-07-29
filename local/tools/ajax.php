@@ -274,7 +274,21 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         switch ($CODE) {
                             case 'PERSONAL_BIRTHDAY':
                             case 'UF_INSTAGRAM':
+                            case 'UF_FB':
+                            case 'UF_VK':
                                 $arUserProps[$CODE] = $PROP;
+                                break;
+                            case 'NEW_PASS':
+                                if (strlen($PROP) >= 8 && $PROP == $arFields['CONFIRM_PASS']) {
+                                    global $USER;
+                                    $user = new CUser;
+                                    $user->Update($USER->GetID(), [
+                                        "PASSWORD"          => $PROP,
+                                        "CONFIRM_PASSWORD"  => $arFields['CONFIRM_PASS']
+                                    ]);
+                                    //$user = new CUser();
+                                    //$result = $user->Update($USER->GetID(), $arUserProps);
+                                }
                                 break;
                             case 'FIO':
                                 $arTmp = explode(' ', $PROP);
@@ -291,8 +305,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 break;
                             case 'PHONE':
                                 if ($arFields['OLD_PHONE'] != $PROP) {
-                                    $arUserProps['PHONE_NUMBER'] = $PROP;
-                                    $arUserOrderProps[$CODE] = $PROP;
+                                    $ph = checkPhone($PROP);
+                                    $arUserProps['PHONE_NUMBER'] = $ph;
+                                    $arUserOrderProps[$CODE] = $ph;
                                 }
                                 break;
                             case 'EMAIL':

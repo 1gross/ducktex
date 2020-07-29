@@ -257,7 +257,33 @@ $(document).ready(function() {
                if ($this.hasClass('btn')) {
                    $this.addClass('loader');
                }
+               send = true;
                switch (id) {
+                   case 'profile_edit':
+                       let newPass = $('[name="NEW_PASS"]').val(),
+                           confirmPass = $('[name="CONFIRM_PASS"]').val();
+
+                       if (newPass) {
+                           if (newPass.length < 8) {
+                               $('[name="CONFIRM_PASS"]').addClass('error');
+                               $('[name="NEW_PASS"]').addClass('error');
+                               alert('Пароль не может быть меньше 8-ми символов!');
+                               send = false;
+                           } else {
+                               if (newPass !== confirmPass) {
+                                   $('[name="CONFIRM_PASS"]').addClass('error');
+                                   $('[name="NEW_PASS"]').addClass('error');
+                                   alert('Введенные пароли не совпадают!');
+                                   send = false;
+                               }
+                           }
+                       }
+                       if (send) {
+                           $this.addClass('loader');
+                           data.data = form.off().serialize();
+                       }
+
+                       break;
                    case 'auth_pass':
                        $('.error').each(function () {
                           $(this).removeClass('error');
@@ -285,7 +311,7 @@ $(document).ready(function() {
                        data.data = form.off().serialize();
                }
 
-               send = true;
+
 
                break;
        }
