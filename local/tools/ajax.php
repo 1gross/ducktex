@@ -17,7 +17,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_be
 header("Access-Control-Allow-Origin: *");
 CModule::IncludeModule('sale');
 
-$smsTestMode = false;
+$smsTestMode = true;
 
 if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     global $USER, $APPLICATION;
@@ -49,6 +49,43 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                 }
             }
             switch ($_REQUEST['id']) {
+                case 'auth_pass':
+                    $isError = false;
+                    if (!isset($arFields['EMAIL']) || empty($arFields['EMAIL'])) {
+                        $arResponse['message']['EMAIL'] = 'Поле "E-mail" обязательно для заполнения';
+                        $isError = true;
+                    }
+                    if (!isset($arFields['PASS']) || empty($arFields['PASS'])) {
+                        $arResponse['message']['PASS'] = 'Поле "Пароль" обязательно для заполнения';
+                        $isError = true;
+                    }
+
+                    if ($isError) {
+                        $arResponse['result'] = false;
+                    } else {
+                        $arUser = CUser::GetList($by, $order, [
+                            'LOGIN' => $arFields['EMAIL']
+                        ], [])->Fetch();
+
+                        if ($arUser['ID']) {
+                            $salt = substr($arUser['PASSWORD'], 0, (strlen($arUser['PASSWORD']) - 32));
+                            $realPassword = substr($arUser['PASSWORD'], -32);
+                            $password = md5($salt.$arFields['PASS']);
+
+                            if ($password == $realPassword) {
+                                $USER->Authorize($arUser['ID']);
+                                $arResponse['result'] = true;
+                            } else {
+                                $arResponse['message']['MAIN'] = 'Неверный email или пароль!';
+                                $arResponse['result'] = false;
+                            }
+                        } else {
+                            $arResponse['message']['MAIN'] = 'Неверный email или пароль!';
+                            $arResponse['result'] = false;
+                        }
+                    }
+
+                    break;
                 case 'auth':
                     $phone = UserPhoneAuthTable::normalizePhoneNumber($arFields['PHONE_NUMBER']);
                     if (strpos($phone, '+') === false) {
@@ -61,13 +98,15 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             )
                         ));
                     $arUser = $rsUser->fetch();
+                    $isNewUser = false;
                     $userID = $arUser['USER_ID'];
                     if (!$userID) {
+                        $pass = substr(md5("pass_" . $arFields['PHONE_NUMBER'] . rand(0, 99)), 0, 8);
                         $arResult = $USER->Register(checkPhone($arFields['PHONE_NUMBER']),
-                            "", "", md5("pass_" . $arFields['PHONE_NUMBER']),
-                            md5("pass_" . $arFields['PHONE_NUMBER']), '', SITE_ID,
+                            "", "", $pass, $pass, '', SITE_ID,
                             '', '', '', $phone);
                         $arResponse['add_new_user'] = true;
+                        $isNewUser = true;
                         $userID = $arResult["ID"];
                     }
 
@@ -82,9 +121,21 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             "CODE" => $code,
                         ]
                     );
+                    if ($isNewUser) {
+                        $sms = new Bitrix\Main\Sms\Event(
+                            'SMS_USER_CONFIRM_NUMBER',
+                            [
+                                "USER_PHONE" => $phoneNumber,
+                                "CODE" => 'Вы успешно зарегистрированы на сайте https://ducktex.ru  Ваши данные для входа: Логин '.$phoneNumber.' Пароль '.$pass,
+                            ]
+                        );
+                    }
 
                     if ($smsTestMode) {
                         $arResponse['code'] = $code;
+                        if ($isNewUser) {
+                            $arResponse['pass'] = $pass;
+                        }
                     }
 
 

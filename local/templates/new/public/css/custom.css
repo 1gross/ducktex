@@ -50,6 +50,19 @@
 .modal.active .modal-block {
     max-height: none;
 }
+.modal-error {
+    display:none;
+}
+.modal-error.error {
+    display: flex;
+    justify-content: center;
+    font-weight: normal;
+}
+.modal-body input.error {
+    border-bottom: 1px solid #e35757!important;
+    color: #e35757!important;
+    margin-top: 0;
+}
 .error-field .title {
     color: #fb1600 !important;
 }
@@ -117,6 +130,35 @@
 }
 .search-btn {
     cursor:pointer;
+}
+.modal .modal-block .modal-body input[type="password"] {
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 0;
+    max-width: initial;
+    margin-bottom: 20px;
+}
+input[type="password"] {
+    font-weight: 300;
+    font-size: 18px;
+    height: 80px;
+    line-height: 80px;
+    width: 100%;
+    max-width: 330px;
+    border: 1px solid #414141;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: transparent;
+}
+.btn.btn-link__strong {
+    font-weight: bold;
+    color: #22aab8;
+    font-size: 16px;
 }
 @keyframes spin {
     0% { transform: rotate(0deg); }
