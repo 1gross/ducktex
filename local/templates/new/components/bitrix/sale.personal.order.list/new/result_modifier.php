@@ -16,9 +16,6 @@ foreach ($arResult['ORDERS'] as $k => $arOrder)
     $propertyCollection = $order->getPropertyCollection();
     $arProps = $propertyCollection->getArray();
 
-
-    //
-
     $arPayments = [];
     $paymentCollection = $order->getPaymentCollection();
 
@@ -78,6 +75,21 @@ foreach ($arResult['ORDERS'] as $k => $arOrder)
                 'PROPS_GROUP_ID' => 2
             ];
         }
+    }
+
+    if (!isset($arProps['groups'][2])) {
+        $arProps['groups'][2] = [
+            'ID' => 2,
+            'NAME' => 'Данные для доставки',
+        ];
+    }
+    //Другое
+    if (isset($arProps['groups'][0])) {
+        unset($arProps['groups'][0]);
+    }
+    //Бонусная система
+    if (isset($arProps['groups'][6])) {
+        unset($arProps['groups'][6]);
     }
 
     $arResult['ORDERS'][$k]['PROPS'] = $arProps;

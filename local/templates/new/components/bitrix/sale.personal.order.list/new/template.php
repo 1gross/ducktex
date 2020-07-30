@@ -85,7 +85,7 @@
                     <div class="group-field__cell group-field__item-name">Текущий статус:</div>
                     <div class="group-field__cell group-field__item-value">
                         <?=$arOrder['ORDER']['STATUS']?>
-                        <?if ($arOrder['ORDER']['PAYED'] == 'N') {?>
+                        <?if ($arOrder['ORDER']['PAYED'] == 'N' && $arOrder['ORDER']['PERSON_TYPE_ID'] != 2) {?>
                             <div class="group-field__paysystems-btn">
                                 <?foreach ($arOrder['PAYMENTS'] as $arPayment) {?>
                                     <a href="<?=SITE_DIR?>order/payment/?ORDER_ID=<?=$arOrder['ORDER']['ID']?>&PAYMENT_ID=<?=$arPayment['ID']?>"

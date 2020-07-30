@@ -126,7 +126,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             'SMS_USER_CONFIRM_NUMBER',
                             [
                                 "USER_PHONE" => $phoneNumber,
-                                "CODE" => 'Вы успешно зарегистрированы на сайте https://ducktex.ru  Ваши данные для входа: Логин '.$phoneNumber.' Пароль '.$pass,
+                                "CODE" => 'Пароль для входа на сайт ducktex.ru: '.$pass,
                             ]
                         );
                     }
@@ -286,8 +286,26 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                         "PASSWORD"          => $PROP,
                                         "CONFIRM_PASSWORD"  => $arFields['CONFIRM_PASS']
                                     ]);
-                                    //$user = new CUser();
-                                    //$result = $user->Update($USER->GetID(), $arUserProps);
+
+                                    $arUserFields = UserPhoneAuthTable::getList(
+                                        [
+                                            "filter" => [
+                                                "USER_ID" => $USER->GetID()
+                                            ]
+                                        ]
+                                    )->fetch();
+
+                                    if ($arUserFields['PHONE_NUMBER']) {
+                                        $smsEv = new Bitrix\Main\Sms\Event(
+                                            'SMS_USER_CONFIRM_NUMBER',
+                                            [
+                                                "USER_PHONE" => $arUserFields['PHONE_NUMBER'],
+                                                "CODE" => 'Новый пароль для входа ducktex.ru: '.$pass,
+                                            ]
+                                        );
+                                        $smsEv->send();
+                                    }
+
                                 }
                                 break;
                             case 'FIO':
