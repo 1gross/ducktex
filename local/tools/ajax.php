@@ -122,13 +122,14 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         ]
                     );
                     if ($isNewUser) {
-                        $sms = new Bitrix\Main\Sms\Event(
+                        $smsP = new Bitrix\Main\Sms\Event(
                             'SMS_USER_CONFIRM_NUMBER',
                             [
                                 "USER_PHONE" => $phoneNumber,
                                 "CODE" => 'Пароль для входа на сайт ducktex.ru: '.$pass,
                             ]
                         );
+                        $smsP->send();
                     }
 
                     if ($smsTestMode) {
