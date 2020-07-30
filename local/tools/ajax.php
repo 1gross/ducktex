@@ -129,13 +129,16 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 "CODE" => 'Пароль для входа на сайт ducktex.ru: '.$pass,
                             ]
                         );
-                        $smsP->send();
                     }
 
                     if ($smsTestMode) {
                         $arResponse['code'] = $code;
                         if ($isNewUser) {
                             $arResponse['pass'] = $pass;
+                        }
+                    } else {
+                        if ($isNewUser) {
+                            $smsP->send();
                         }
                     }
 
