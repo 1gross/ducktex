@@ -40,6 +40,9 @@
                     <button type="submit" class="btn blue js-init-action" data-action="send_form" data-modal-type="<?=$arParams['MODAL_ID'] ?: 'sign'?>" data-id="auth_pass">Войти</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
                 </form>
+                <div class="modal-footer">
+                    <a class="btn btn-link btn-link__strong arcticmodal-close">Вернуться на главный экран</a>
+                </div>
             </div>
         </form>
     </div>
