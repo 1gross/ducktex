@@ -118,7 +118,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         'SMS_USER_CONFIRM_NUMBER',
                         [
                             "USER_PHONE" => $phoneNumber,
-                            "CODE" => $code,
+                            "CODE" => 'Код подтверждения: ' . $code,
                         ]
                     );
                     if ($isNewUser) {
@@ -126,7 +126,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             'SMS_USER_CONFIRM_NUMBER',
                             [
                                 "USER_PHONE" => $phoneNumber,
-                                "CODE" => 'Пароль для входа на сайт ducktex.ru: '.$pass,
+                                "CODE" => 'Пароль для входа на сайт ducktex.ru: ' . $pass,
                             ]
                         );
                         if ($smsTestMode == false) {
@@ -245,7 +245,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 'SMS_USER_CONFIRM_NUMBER',
                                 [
                                     "USER_PHONE" => $arUserAuth['PHONE_NUMBER'],
-                                    "CODE" => $arUserFields['UF_HASHKEY'],
+                                    "CODE" => 'Код подтверждения: '.$arUserFields['UF_HASHKEY'],
                                 ]
                             );
 
