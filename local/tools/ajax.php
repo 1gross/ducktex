@@ -197,7 +197,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 }
 
                                 $USER->Authorize($arFields['USER_ID']);
-
+                                $usr = new CUser();
+                                $usr->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
                                 /*if ($basketItems['items']) {
                                     $products = B24TechSiteHelper::getBasket();
 
