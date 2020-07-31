@@ -121,6 +121,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             "CODE" => 'Код подтверждения: ' . $code,
                         ]
                     );
+                    $sms->setSite('s1');
                     if ($isNewUser) {
                         $smsP = new Bitrix\Main\Sms\Event(
                             'SMS_USER_CONFIRM_NUMBER',
@@ -129,6 +130,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 "CODE" => 'Пароль для входа на сайт ducktex.ru: ' . $pass,
                             ]
                         );
+                        $smsP->setSite('s1');
                         if ($smsTestMode == false) {
                             $smsP->send();
                         }
@@ -248,6 +250,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                     "CODE" => 'Код подтверждения: '.$arUserFields['UF_HASHKEY'],
                                 ]
                             );
+                            $sms->setSite('s1');
 
                             if ($smsTestMode) {
                                 $res = true;
