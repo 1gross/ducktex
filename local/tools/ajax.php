@@ -112,7 +112,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
                     $us = new CUser();
-                    $rs = $us->Update($userID, array('UF_HASHKEY' => md5(intval($code))));
+                    $rs = $us->Update($userID, array('UF_HASHKEY' => $code));
 
                     $sms = new Bitrix\Main\Sms\Event(
                         'SMS_USER_CONFIRM_NUMBER',
@@ -129,16 +129,15 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 "CODE" => 'Пароль для входа на сайт ducktex.ru: '.$pass,
                             ]
                         );
+                        if ($smsTestMode == false) {
+                            $smsP->send();
+                        }
                     }
 
                     if ($smsTestMode) {
                         $arResponse['code'] = $code;
                         if ($isNewUser) {
                             $arResponse['pass'] = $pass;
-                        }
-                    } else {
-                        if ($isNewUser) {
-                            $smsP->send();
                         }
                     }
 
@@ -178,7 +177,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         if (strlen(trim($verificationCode)) == 6) {
                             $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
 
-                            if ($arUser['UF_HASHKEY'] == md5(intval($verificationCode))) {
+                            if ($arUser['UF_HASHKEY'] == $verificationCode) {
                                // $us = new CUser();
                                 //$rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
 
@@ -231,17 +230,21 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA']) && isset($arFields['USER_ID']) && !empty($arFields['USER_ID']) ) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
 
-                        if (strlen(trim($params['phoneNumber'])) > 0) {
-
-                            list($code, $phoneNumber) = CUser::GeneratePhoneCode($arFields['USER_ID']);
-                            $us = new CUser();
-                            $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($arFields['USER_ID']))));
+                        if (strlen(trim($params['phoneNumber'])) > 0)
+                        {
+                            $arUserFields = CUser::GetList($by, $order, ['ID' => $arFields['USER_ID']], ['SELECT' => ['UF_HASHKEY']])->Fetch();
+                            $arUserAuth = UserPhoneAuthTable::getList(
+                                array(
+                                    "filter" => array(
+                                        "USER_ID" => $arFields['USER_ID']
+                                    )
+                                ))->fetch();
 
                             $sms = new Bitrix\Main\Sms\Event(
                                 'SMS_USER_CONFIRM_NUMBER',
                                 [
-                                    "USER_PHONE" => $phoneNumber,
-                                    "CODE" => $code,
+                                    "USER_PHONE" => $arUserAuth['PHONE_NUMBER'],
+                                    "CODE" => $arUserFields['UF_HASHKEY'],
                                 ]
                             );
 
