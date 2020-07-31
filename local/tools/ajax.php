@@ -111,6 +111,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     }
 
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
+
                     $us = new CUser();
                     $rs = $us->Update($userID, array('UF_HASHKEY' => $code));
 
@@ -311,7 +312,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                             'SMS_USER_CONFIRM_NUMBER',
                                             [
                                                 "USER_PHONE" => $arUserFields['PHONE_NUMBER'],
-                                                "CODE" => 'Новый пароль для входа ducktex.ru: '.$pass,
+                                                "CODE" => 'Новый пароль для входа ducktex.ru: '.$arFields['CONFIRM_PASS'],
                                             ]
                                         );
                                         $smsEv->send();
