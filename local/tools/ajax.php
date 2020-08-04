@@ -178,11 +178,11 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         $basketItems = B24TechSiteHelper::getBasket();
 
                         if (strlen(trim($verificationCode)) == 6) {
-                            $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
+                            $arUser = CUser::GetList($by, $order, ['ID' => $arFields['USER_ID']], ['SELECT' => ['UF_HASHKEY']])->Fetch();
 
                             if ($arUser['UF_HASHKEY'] == $verificationCode) {
-                               // $us = new CUser();
-                                //$rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
+                                $us = new CUser();
+                                $rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
 
                                 //$userId = CUser::VerifyPhoneCode($params['phoneNumber'], $verificationCode);
 
