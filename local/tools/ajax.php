@@ -76,11 +76,11 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 $USER->Authorize($arUser['ID']);
                                 $arResponse['result'] = true;
                             } else {
-                                $arResponse['message']['MAIN'] = 'Неверный email или пароль!';
+                                $arResponse['message']['MAIN'] = 'Неверный телефон или пароль!';
                                 $arResponse['result'] = false;
                             }
                         } else {
-                            $arResponse['message']['MAIN'] = 'Неверный email или пароль!';
+                            $arResponse['message']['MAIN'] = 'Неверный телефон или пароль!';
                             $arResponse['result'] = false;
                         }
                     }
