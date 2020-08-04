@@ -206,6 +206,7 @@ $(document).ready(function() {
                        }*/
                    }
                });
+
                break;
            case 'add_basket':
                if (typeof quantity !== 'undefined') {
@@ -256,7 +257,40 @@ $(document).ready(function() {
                if ($this.hasClass('btn')) {
                    $this.addClass('loader');
                }
+               send = true;
                switch (id) {
+                   case 'profile_edit':
+                       let newPass = $('[name="NEW_PASS"]').val(),
+                           confirmPass = $('[name="CONFIRM_PASS"]').val();
+
+                       if (newPass) {
+                           if (newPass.length < 8) {
+                               $('[name="CONFIRM_PASS"]').addClass('error');
+                               $('[name="NEW_PASS"]').addClass('error');
+                               alert('Пароль не может быть меньше 8-ми символов!');
+                               send = false;
+                           } else {
+                               if (newPass !== confirmPass) {
+                                   $('[name="CONFIRM_PASS"]').addClass('error');
+                                   $('[name="NEW_PASS"]').addClass('error');
+                                   alert('Введенные пароли не совпадают!');
+                                   send = false;
+                               }
+                           }
+                       }
+                       if (send) {
+                           $this.addClass('loader');
+                           data.data = form.off().serialize();
+                       }
+
+                       break;
+                   case 'auth_pass':
+                       $('.error').each(function () {
+                          $(this).removeClass('error');
+                       });
+                       data.data = form.off().serialize();
+                       send = true;
+                       break;
                    case 'set_coupon':
                        let coupon = $('[name="coupon_code"]').val();
                        if (typeof coupon !== 'undefined') {
@@ -277,7 +311,7 @@ $(document).ready(function() {
                        data.data = form.off().serialize();
                }
 
-               send = true;
+
 
                break;
        }
@@ -293,12 +327,15 @@ $(document).ready(function() {
                    if (response.result === true) {
                        switch (action) {
                            case 'send_form':
-                               if (id !== 'auth' && id !== 'resend_code') {
+                               if (id !== 'auth' && id !== 'auth_pass' && id !== 'resend_code') {
                                    dataLayer.push({'event': 'formsend'});
                                }
 
                                //location.reload();
                                switch (id) {
+                                   case 'auth_pass':
+                                       location.reload();
+                                       break;
                                    case 'subscribe':
                                        alert('Подписка произведена успешно, спасибо!');
                                        break;
@@ -426,6 +463,20 @@ $(document).ready(function() {
                        switch (action) {
                            case 'send_form':
                                switch (id) {
+                                   case 'auth_pass':
+                                       if (typeof response.message !== 'undefined' && typeof response.message === 'object') {
+                                           $.each(response.message, function (code, text) {
+                                               if (code === 'MAIN') {
+                                                   $('.modal-error').addClass('error').html(text);
+                                               } else {
+                                                   let field = $('[name="'+code+'"]');
+                                                   field.addClass('error');
+                                               }
+
+
+                                           });
+                                       }
+                                       break;
                                    case 'profile_edit':
                                        if (typeof response.message !== 'undefined' && response.message.length > 0) {
                                            alert(response.message);
@@ -475,6 +526,7 @@ $(document).ready(function() {
        return false;
    }
 });
+
 function checkErrorAuthCode(form, clear = false) {
     let errorBlock = form.find('.error'),
         errorMessage = form.find('.error-info');

@@ -49,6 +49,43 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                 }
             }
             switch ($_REQUEST['id']) {
+                case 'auth_pass':
+                    $isError = false;
+                    if (!isset($arFields['EMAIL']) || empty($arFields['EMAIL'])) {
+                        $arResponse['message']['EMAIL'] = 'Поле "E-mail" обязательно для заполнения';
+                        $isError = true;
+                    }
+                    if (!isset($arFields['PASS']) || empty($arFields['PASS'])) {
+                        $arResponse['message']['PASS'] = 'Поле "Пароль" обязательно для заполнения';
+                        $isError = true;
+                    }
+
+                    if ($isError) {
+                        $arResponse['result'] = false;
+                    } else {
+                        $arUser = CUser::GetList($by, $order, [
+                            'LOGIN' => $arFields['EMAIL']
+                        ], [])->Fetch();
+
+                        if ($arUser['ID']) {
+                            $salt = substr($arUser['PASSWORD'], 0, (strlen($arUser['PASSWORD']) - 32));
+                            $realPassword = substr($arUser['PASSWORD'], -32);
+                            $password = md5($salt.$arFields['PASS']);
+
+                            if ($password == $realPassword) {
+                                $USER->Authorize($arUser['ID']);
+                                $arResponse['result'] = true;
+                            } else {
+                                $arResponse['message']['MAIN'] = 'Неверный email или пароль!';
+                                $arResponse['result'] = false;
+                            }
+                        } else {
+                            $arResponse['message']['MAIN'] = 'Неверный email или пароль!';
+                            $arResponse['result'] = false;
+                        }
+                    }
+
+                    break;
                 case 'auth':
                     $phone = UserPhoneAuthTable::normalizePhoneNumber($arFields['PHONE_NUMBER']);
                     if (strpos($phone, '+') === false) {
@@ -61,30 +98,50 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             )
                         ));
                     $arUser = $rsUser->fetch();
+                    $isNewUser = false;
                     $userID = $arUser['USER_ID'];
                     if (!$userID) {
+                        $pass = substr(md5("pass_" . $arFields['PHONE_NUMBER'] . rand(0, 99)), 0, 8);
                         $arResult = $USER->Register(checkPhone($arFields['PHONE_NUMBER']),
-                            "", "", md5("pass_" . $arFields['PHONE_NUMBER']),
-                            md5("pass_" . $arFields['PHONE_NUMBER']), '', SITE_ID,
+                            "", "", $pass, $pass, '', SITE_ID,
                             '', '', '', $phone);
                         $arResponse['add_new_user'] = true;
+                        $isNewUser = true;
                         $userID = $arResult["ID"];
                     }
 
                     list($code, $phoneNumber) = CUser::GeneratePhoneCode($userID);
+
                     $us = new CUser();
-                    $rs = $us->Update($userID, array('UF_HASHKEY' => md5(intval($code))));
+                    $rs = $us->Update($userID, array('UF_HASHKEY' => $code));
 
                     $sms = new Bitrix\Main\Sms\Event(
                         'SMS_USER_CONFIRM_NUMBER',
                         [
                             "USER_PHONE" => $phoneNumber,
-                            "CODE" => $code,
+                            "CODE" => 'Код подтверждения: ' . $code,
                         ]
                     );
+                    $sms->setSite('s1');
+                    if ($isNewUser) {
+                        $smsP = new Bitrix\Main\Sms\Event(
+                            'SMS_USER_CONFIRM_NUMBER',
+                            [
+                                "USER_PHONE" => $phoneNumber,
+                                "CODE" => 'Пароль для входа на сайт ducktex.ru: ' . $pass,
+                            ]
+                        );
+                        $smsP->setSite('s1');
+                        if ($smsTestMode == false) {
+                            $smsP->send();
+                        }
+                    }
 
                     if ($smsTestMode) {
                         $arResponse['code'] = $code;
+                        if ($isNewUser) {
+                            $arResponse['pass'] = $pass;
+                        }
                     }
 
 
@@ -123,7 +180,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         if (strlen(trim($verificationCode)) == 6) {
                             $arUser = CUser::GetByID($arFields['USER_ID'])->Fetch();
 
-                            if ($arUser['UF_HASHKEY'] == md5(intval($verificationCode))) {
+                            if ($arUser['UF_HASHKEY'] == $verificationCode) {
                                // $us = new CUser();
                                 //$rs = $us->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
 
@@ -143,7 +200,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 }
 
                                 $USER->Authorize($arFields['USER_ID']);
-
+                                $usr = new CUser();
+                                $usr->Update($arFields['USER_ID'], array('UF_HASHKEY' => ''));
                                 /*if ($basketItems['items']) {
                                     $products = B24TechSiteHelper::getBasket();
 
@@ -176,19 +234,24 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     if (isset($arFields['SIGN_DATA']) && !empty($arFields['SIGN_DATA']) && isset($arFields['USER_ID']) && !empty($arFields['USER_ID']) ) {
                         $params = PhoneAuth::extractData($arFields['SIGN_DATA']);
 
-                        if (strlen(trim($params['phoneNumber'])) > 0) {
-
-                            list($code, $phoneNumber) = CUser::GeneratePhoneCode($arFields['USER_ID']);
-                            $us = new CUser();
-                            $rs = $us->Update($userID, array('UF_HASHKEY' => md5(strval($code).strval($arFields['USER_ID']))));
+                        if (strlen(trim($params['phoneNumber'])) > 0)
+                        {
+                            $arUserFields = CUser::GetList($by, $order, ['ID' => $arFields['USER_ID']], ['SELECT' => ['UF_HASHKEY']])->Fetch();
+                            $arUserAuth = UserPhoneAuthTable::getList(
+                                array(
+                                    "filter" => array(
+                                        "USER_ID" => $arFields['USER_ID']
+                                    )
+                                ))->fetch();
 
                             $sms = new Bitrix\Main\Sms\Event(
                                 'SMS_USER_CONFIRM_NUMBER',
                                 [
-                                    "USER_PHONE" => $phoneNumber,
-                                    "CODE" => $code,
+                                    "USER_PHONE" => $arUserAuth['PHONE_NUMBER'],
+                                    "CODE" => 'Код подтверждения: '.$arUserFields['UF_HASHKEY'],
                                 ]
                             );
+                            $sms->setSite('s1');
 
                             if ($smsTestMode) {
                                 $res = true;
@@ -223,7 +286,39 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                         switch ($CODE) {
                             case 'PERSONAL_BIRTHDAY':
                             case 'UF_INSTAGRAM':
+                            case 'UF_FB':
+                            case 'UF_VK':
                                 $arUserProps[$CODE] = $PROP;
+                                break;
+                            case 'NEW_PASS':
+                                if (strlen($PROP) >= 8 && $PROP == $arFields['CONFIRM_PASS']) {
+                                    global $USER;
+                                    $user = new CUser;
+                                    $user->Update($USER->GetID(), [
+                                        "PASSWORD"          => $PROP,
+                                        "CONFIRM_PASSWORD"  => $arFields['CONFIRM_PASS']
+                                    ]);
+
+                                    $arUserFields = UserPhoneAuthTable::getList(
+                                        [
+                                            "filter" => [
+                                                "USER_ID" => $USER->GetID()
+                                            ]
+                                        ]
+                                    )->fetch();
+
+                                    if ($arUserFields['PHONE_NUMBER']) {
+                                        $smsEv = new Bitrix\Main\Sms\Event(
+                                            'SMS_USER_CONFIRM_NUMBER',
+                                            [
+                                                "USER_PHONE" => $arUserFields['PHONE_NUMBER'],
+                                                "CODE" => 'Новый пароль для входа ducktex.ru: '.$arFields['CONFIRM_PASS'],
+                                            ]
+                                        );
+                                        $smsEv->send();
+                                    }
+
+                                }
                                 break;
                             case 'FIO':
                                 $arTmp = explode(' ', $PROP);
@@ -240,8 +335,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 break;
                             case 'PHONE':
                                 if ($arFields['OLD_PHONE'] != $PROP) {
-                                    $arUserProps['PHONE_NUMBER'] = $PROP;
-                                    $arUserOrderProps[$CODE] = $PROP;
+                                    $ph = checkPhone($PROP);
+                                    $arUserProps['PHONE_NUMBER'] = $ph;
+                                    $arUserOrderProps[$CODE] = $ph;
                                 }
                                 break;
                             case 'EMAIL':

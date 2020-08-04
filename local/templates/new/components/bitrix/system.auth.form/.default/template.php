@@ -19,6 +19,30 @@
                     <button type="submit" disabled="disabled" class="btn blue js-init-action" data-action="send_form" data-modal-type="<?=$arParams['MODAL_ID'] ?: 'sign'?>" data-id="auth">Получить код</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
                 </form>
+                <div class="modal-footer">
+                    <a class="btn btn-link btn-link__strong js-init-action" data-id="auth_pass" data-action="show_modal" data-modal="#auth_pass">Войти с помощью пароля</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div style="display: none;">
+    <div class="modal active" id="auth_pass">
+        <form action="/local/tools/ajax.php" class="modal-block">
+            <button class="arcticmodal-close close"></button>
+            <div class="modal-title">Войдите с помощью пароля</div>
+            <div class="modal-desc">Только для зарегистрированных пользователей</div>
+            <div class="modal-error error"></div>
+            <div class="modal-body">
+                <form action="/">
+                    <input type="text" name="EMAIL" placeholder="Введите ваш email или телефон начиная с +" required="">
+                    <input type="password" name="PASS" placeholder="Пароль" required="">
+                    <button type="submit" class="btn blue js-init-action" data-action="send_form" data-modal-type="<?=$arParams['MODAL_ID'] ?: 'sign'?>" data-id="auth_pass">Войти</button>
+                    <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
+                </form>
+                <div class="modal-footer">
+                    <a class="btn btn-link btn-link__strong arcticmodal-close">Вернуться на главный экран</a>
+                </div>
             </div>
         </form>
     </div>
@@ -54,6 +78,10 @@
                 </div>
                 <div class="modal-message timer">Запросить новый код можно через <span>0:59</span></div>
             </div>
+            <div class="modal-footer">
+                <a class="btn btn-link btn-link__strong js-init-action" data-id="auth_pass" data-action="show_modal" data-modal="#auth_pass">Войти с помощью пароля</a>
+            </div>
         </form>
+
     </div>
 </div>

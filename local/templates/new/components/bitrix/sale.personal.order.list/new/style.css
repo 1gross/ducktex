@@ -1,3 +1,44 @@
+.mt-10 {
+    margin-top: 10px;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+.group-field__paysystems-btn {
+    /*display: flex;
+    justify-content: center;
+    align-items: center;*/
+}
+.modal.active .modal-block.modal-order .modal-body .btn.btn-mid {
+    height: 40px;
+    padding: 0;
+    line-height: 1.2;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+.group-field__paysystems {
+    width:100%;
+    padding: 0 10px 10px;
+    border-radius: 7px;
+}
+.group-field__paysystems th {
+    padding: 0 5px 8px 0;
+    margin-bottom: 5px;
+    text-align: left;
+    border-bottom: 2px solid #f7f7f7;
+}
+.group-field__paysystems td {
+    padding: 2px 5px 2px 0;
+    text-align: left;
+}
+.is-paid__fail {
+    color:#ed6565;
+}
+.is-paid__success {
+    color:#30cc8c;
+}
 .block-overlay {
     padding: 35px 30px 30px;
     background: #f6f6f6;

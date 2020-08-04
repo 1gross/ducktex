@@ -13,7 +13,8 @@
             <tr>
                 <th>Номер заказа</th>
                 <th>Дата заказа</th>
-                <th>Статус</th>
+                <th>Статус заказа</th>
+                <th>Статус доставки</th>
                 <th>Трек-номер</th>
                 <th></th>
                 <th></th>
@@ -42,6 +43,7 @@
                     <td><span class="js-init-order__show btn-link__underline">№<?=$arOrder['ORDER']['ID']?></span></td>
                     <td><?=$arOrder['ORDER']['DATE_INSERT_FORMATED']?></td>
                     <td><?=$arOrder['ORDER']['STATUS']?></td>
+                    <td><?=$arOrder['DELIVERY']['STATUS']?></td>
                     <td><?=$arOrder['ORDER']['TRACKING_NUMBER'] ?: '-'?></td>
                     <td><span class="js-init-order__show btn-link__underline btn-icon">Посмотреть</span></td>
                     <td><span class="js-init-order__buy btn-link" data-products='<?=json_encode($arProducts)?>'>Повторить</span></td>
@@ -74,33 +76,67 @@
         ?>
         <div class="order_<?=$arOrder['ORDER']['ID']?>">
             <div class="group-field">
-                <div class="group-field__title">Заказ</div>
+                <div class="group-field__title">Информация о заказе</div>
                 <div class="group-field__item">
-                    <div class="group-field__cell group-field__item-name">Статус:</div>
-                    <div class="group-field__cell group-field__item-value"><?=$arOrder['ORDER']['STATUS']?></div>
-                </div>
-                <div class="group-field__item">
-                    <div class="group-field__cell group-field__item-name">Дата:</div>
+                    <div class="group-field__cell group-field__item-name">Дата создания:</div>
                     <div class="group-field__cell group-field__item-value"><?=$arOrder['ORDER']['DATE_INSERT_FORMATED']?></div>
                 </div>
+                <div class="group-field__item">
+                    <div class="group-field__cell group-field__item-name">Текущий статус:</div>
+                    <div class="group-field__cell group-field__item-value">
+                        <?=$arOrder['ORDER']['STATUS']?>
+                        <?if ($arOrder['ORDER']['PAYED'] == 'N' && $arOrder['ORDER']['PERSON_TYPE_ID'] != 2) {?>
+                            <div class="group-field__paysystems-btn">
+                                <?foreach ($arOrder['PAYMENTS'] as $arPayment) {?>
+                                    <a href="<?=SITE_DIR?>order/payment/?ORDER_ID=<?=$arOrder['ORDER']['ID']?>&PAYMENT_ID=<?=$arPayment['ID']?>"
+                                       target="_blank"
+                                       class="btn btn-mid mt-10 mb-10 blue">
+                                        <span>Оплатить <?=$arPayment['NAME']?></span>
+                                    </a>
+                                <?}?>
+                            </div>
+                        <?}?>
+                    </div>
+                </div>
+                <?if ($arOrder['PAYMENTS']) {?>
+                    <div class="group-field__item">
+                        <div class="group-field__cell group-field__item-name">Информация об оплате:</div>
+                        <div class="group-field__cell group-field__item-value">
+                            <table class="group-field__paysystems">
+                                <thead>
+                                <tr>
+                                    <th>Тип оплаты</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?foreach ($arOrder['PAYMENTS'] as $arPayment) {?>
+                                        <tr>
+                                            <td><?=$arPayment['NAME']?></td>
+                                            <td><?=str_replace('.', ',', $arPayment['SUM'])?> руб.</td>
+                                            <td>
+                                                <span class="is-paid__<?=$arPayment['IS_PAID'] ? 'success' : 'fail'?>">
+                                                    <?=$arPayment['IS_PAID'] ? 'Оплачено' : 'Не оплачено'?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?}?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <?}?>
             </div>
-            <?foreach ($arOrder['PROPS']['groups'] as $groupId => $group) {?>
+
+            <?foreach ($arOrder['PROPS']['groups'] as $groupId => $group) {
+                if ($groupId == '5') {
+                     continue;
+                }?>
                 <div class="group-field" style="text-align:left">
                     <div class="group-field__title"><?=$group['NAME']?></div>
                     <?foreach ($arOrder['PROPS']['properties'] as $property) {?>
                         <?if ($groupId == $property['PROPS_GROUP_ID'] && strlen($property['VALUE'][0]) > 0) {
-
-                            if ($property['CODE'] == 'IPOLSDEK_CNTDTARIF') {
-                                $show = false;
-                                foreach ($arOrder['SHIPMENT'] as $shipment) {
-                                    if (strpos(strtolower($shipment['NAME']), 'сдэк') !== false) {
-                                        $show = true;
-                                    }
-                                }
-                                if ($show == false) {
-                                    continue;
-                                }
-                            }
                             switch ($property['TYPE']) {
                                 case 'Y/N':
                                     $value = $property['VALUE'][0] == 'Y' ? 'Да' : 'Нет';

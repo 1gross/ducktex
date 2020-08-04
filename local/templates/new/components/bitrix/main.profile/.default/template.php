@@ -152,6 +152,22 @@ foreach ($arTabs as $typeID => $arProfile) {
                            name="PHONE"
                            placeholder="Телефон">
 
+                    <div class="field-group__pass">
+                        <input type="password"
+                               value=""
+                               name="NEW_PASS"
+                               placeholder="Новый пароль">
+                        <span class="hide-field js-init-show-pass"></span>
+                    </div>
+
+                    <div class="field-group__pass">
+                        <input type="password"
+                               value=""
+                               name="CONFIRM_PASS"
+                               placeholder="Повторите новый пароль">
+                        <span class="hide-field js-init-show-pass"></span>
+                    </div>
+
                     <input type="text"
                            value="<?=isset($arProps['EMAIL']) ? $arProps['EMAIL']['VALUE'] : ''?>"
                            name="EMAIL"
@@ -206,6 +222,22 @@ foreach ($arTabs as $typeID => $arProfile) {
                            value="<?=isset($arProps['EMAIL']) ? $arProps['EMAIL']['VALUE'] : ''?>"
                            name="EMAIL"
                            placeholder="Email">
+
+                    <div class="field-group__pass">
+                        <input type="password"
+                               value=""
+                               name="NEW_PASS"
+                               placeholder="Новый пароль">
+                        <span class="hide-field js-init-show-pass"></span>
+                    </div>
+
+                    <div class="field-group__pass">
+                        <input type="password"
+                               value=""
+                               name="CONFIRM_PASS"
+                               placeholder="Повторите новый пароль">
+                        <span class="hide-field js-init-show-pass"></span>
+                    </div>
 
                     <input type="text"
                            value="<?=isset($arProps['CONTACT_PERSON']) ? $arProps['CONTACT_PERSON']['VALUE'] : ''?>"

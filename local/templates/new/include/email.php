@@ -1,1 +1,0 @@
-info@ducktex.ru
