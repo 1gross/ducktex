@@ -35,7 +35,10 @@
             <div class="modal-error error"></div>
             <div class="modal-body">
                 <form action="/">
-                    <input type="text" name="EMAIL" placeholder="Введите ваш телефон начиная с +" required="">
+                    <input type="tel" name="PHONE_NUMBER" class="" placeholder="+_(___)___-____" required="">
+                    <div class="modal-flag__wrap">
+                        <div class="modal-flag"></div>
+                    </div>
                     <input type="password" name="PASS" placeholder="Пароль" required="">
                     <button type="submit" class="btn blue js-init-action" data-action="send_form" data-modal-type="<?=$arParams['MODAL_ID'] ?: 'sign'?>" data-id="auth_pass">Войти</button>
                     <div class="politic">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности</div>
@@ -46,6 +49,11 @@
             </div>
         </form>
     </div>
+    <script>
+        $(document).ready(function () {
+            //$('[name="dob"]').mask("00/00/0000");
+        });
+    </script>
 </div>
 <div style="display: none">
     <div class="modal active" id="code">
