@@ -51,8 +51,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
             switch ($_REQUEST['id']) {
                 case 'auth_pass':
                     $isError = false;
-                    if (!isset($arFields['EMAIL']) || empty($arFields['EMAIL'])) {
-                        $arResponse['message']['EMAIL'] = 'Поле "E-mail" обязательно для заполнения';
+                    if (!isset($arFields['PHONE_NUMBER']) || empty($arFields['PHONE_NUMBER'])) {
+                        $arResponse['message']['PHONE_NUMBER'] = 'Поле "Телефон" обязательно для заполнения';
                         $isError = true;
                     }
                     if (!isset($arFields['PASS']) || empty($arFields['PASS'])) {
@@ -63,11 +63,19 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                     if ($isError) {
                         $arResponse['result'] = false;
                     } else {
-                        $arUser = CUser::GetList($by, $order, [
-                            'LOGIN' => $arFields['EMAIL']
-                        ], [])->Fetch();
+                        $rsUserPhoneAuth = UserPhoneAuthTable::getList(
+                            array(
+                                "filter" => array(
+                                    "?PHONE_NUMBER" => $arFields['PHONE_NUMBER']
+                                )
+                            ));
+                        $arUserPhoneAuth = $rsUserPhoneAuth->fetch();
 
-                        if ($arUser['ID']) {
+                        if ($arUserPhoneAuth['USER_ID']) {
+                            $arUser = CUser::GetList($by, $order, [
+                                'ID' => $arUserPhoneAuth['USER_ID']
+                            ], [])->Fetch();
+
                             $salt = substr($arUser['PASSWORD'], 0, (strlen($arUser['PASSWORD']) - 32));
                             $realPassword = substr($arUser['PASSWORD'], -32);
                             $password = md5($salt.$arFields['PASS']);
