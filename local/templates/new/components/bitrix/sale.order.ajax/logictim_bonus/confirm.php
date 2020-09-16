@@ -5,11 +5,15 @@ $APPLICATION->AddChainItem('Спасибо за заказ!', $APPLICATION->GetC
     <section class="order-complete">
         <div class="wrapper">
             <h1>ЗАКАЗ СФОРМИРОВАН №<?=$arResult["ORDER"]["ACCOUNT_NUMBER"]?></h1>
-            <?if ($arResult['ORDER']['PERSON_TYPE_ID'] == 2) {?>
-                <p>
-                    Спасибо за заказ, мы в течение 2-х часов сформируем счет и вшлем вам его на элекстронную почту
-                </p>
-            <?}?>
+
+            <p>
+                <?if ($arResult['PAY_SYSTEM']['DESCRIPTION']) {
+                    echo $arResult['PAY_SYSTEM']['DESCRIPTION'];
+                } else {?>
+                    Спасибо за заказ, мы с вами свяжемся в ближайшее время!
+                <?}?>
+            </p>
+
             <div class="order-complete-block">
                 <table class="order-complete-table">
                     <thead>
