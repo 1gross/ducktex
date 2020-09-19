@@ -3,9 +3,34 @@
  * @author Lukmanov Mikhail <lukmanof92@gmail.com>
  */
 
-use Bitrix\Main;
-use Bitrix\Main\UserPhoneAuthTable;
+use Bitrix\Main,
+    Bitrix\Main\EventManager,
+    Bitrix\Main\UserPhoneAuthTable;
 
+EventManager::getInstance()->addEventHandler('main', 'OnProlog', 'checkCatalogProductRedirect');
+function checkCatalogProductRedirect()
+{
+    global $APPLICATION;
+
+    if (strpos($APPLICATION->GetCurPage(), '/catalog/') !== false) {
+        $arPath = array_diff(explode('/', $APPLICATION->GetCurPage()),['']);
+        $lastElPath = end($arPath);
+
+        if (is_numeric($lastElPath)) {
+            $productID = intval($lastElPath);
+            $arProduct = CIBlockElement::GetList([],
+                ['ID' => $productID, 'IBLOCK_ID' => IBLOCK_CATALOG_ID], false, false,
+                ['ID', 'IBLOCK_ID', 'DETAIL_PAGE_URL'])->GetNext();
+
+
+            if ($arProduct['DETAIL_PAGE_URL']) {
+                LocalRedirect($arProduct['DETAIL_PAGE_URL'], false, '301 Moved permanently');
+            }
+
+        }
+    }
+
+}
 //AddEventHandler("main", "OnProlog", 'authTempUser');
 function authTempUser()
 {
