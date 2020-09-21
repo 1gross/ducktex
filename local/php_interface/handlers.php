@@ -13,6 +13,16 @@ function checkCatalogProductRedirect()
     global $APPLICATION;
 
     if (strpos($APPLICATION->GetCurPage(), '/catalog/') !== false) {
+        $arSectionsUrls = [
+            'kulirnaya_glad' => 'kulirnaya__glad'
+        ];
+        foreach ($arSectionsUrls as $code => $str) {
+            if (strpos($APPLICATION->GetCurPage(), '/'.$code.'/') !== false) {
+                LocalRedirect(str_replace($code, $str, $APPLICATION->GetCurPage()), false, '301 Moved permanently');
+            }
+        }
+
+
         $arPath = array_diff(explode('/', $APPLICATION->GetCurPage()),['']);
         $lastElPath = end($arPath);
 
