@@ -7,6 +7,26 @@ use Bitrix\Main,
     Bitrix\Main\EventManager,
     Bitrix\Main\UserPhoneAuthTable;
 
+EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockElementAdd', 'setElementCode');
+EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockElementUpdate', 'setElementCode');
+function setElementCode(&$arFields)
+{
+
+    if (isset($arFields['IBLOCK_ID']) && $arFields['IBLOCK_ID'] == IBLOCK_CATALOG_ID) {
+        if (isset($arFields['ID']) && $arFields['ID']) {
+            if (isset($arFields['CODE']) && $arFields['CODE']) {
+                $arItem = CIBlockElement::GetByID($arFields['ID'])->Fetch();
+                if ($arItem['CODE'] != $arFields['CODE']) {
+                    $arFields['CODE'] = CUtil::translit($arFields['NAME'], 'ru');
+                }
+            }
+        } else {
+            $arFields['CODE'] = CUtil::translit($arFields['NAME'], 'ru');
+        }
+    }
+}
+
+
 EventManager::getInstance()->addEventHandler('main', 'OnProlog', 'checkCatalogProductRedirect');
 function checkCatalogProductRedirect()
 {
