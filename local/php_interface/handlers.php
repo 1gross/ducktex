@@ -14,7 +14,7 @@ function checkCatalogProductRedirect()
 
     if (strpos($APPLICATION->GetCurPage(), '/catalog/') !== false) {
         $arSectionsUrls = [
-            'kulirnaya_glad' => 'kulirnaya__glad'
+            'kulirnaya_glad' => 'kulirnaja_glad'
         ];
         foreach ($arSectionsUrls as $code => $str) {
             if (strpos($APPLICATION->GetCurPage(), '/'.$code.'/') !== false) {
