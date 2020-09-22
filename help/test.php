@@ -1,7 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Помощь");
-$USER->Authorize(1);
 ?>
 <div class="block_w1">
 <div class="stores1 news">
