@@ -130,7 +130,7 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                             "CODE" => 'Код подтверждения: ' . $code,
                         ]
                     );
-                    $sms->setSite('s1');
+
                     if ($isNewUser) {
                         $smsP = new Bitrix\Main\Sms\Event(
                             'SMS_USER_CONFIRM_NUMBER',
@@ -139,9 +139,9 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                 "CODE" => 'Пароль для входа на сайт ducktex.ru: ' . $pass,
                             ]
                         );
-                        $smsP->setSite('s1');
+
                         if ($smsTestMode == false) {
-                            $smsP->send();
+                            sendSms($phoneNumber, 'Пароль для входа на сайт ducktex.ru: ' . $pass);
                         }
                     }
 
@@ -154,17 +154,18 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
 
                     if ($smsTestMode) {
-                        $res = true;
+                        $res['status'] = 'OK';
                     } else {
-                        $result = $sms->send();
-                        $res = $result->isSuccess();
+                        /*$result = $sms->send();
+                        $res = $result->isSuccess();*/
+                        $res = sendSms($phoneNumber, 'Код подтверждения: ' . $code);
                     }
 
                     if ($arFields['REDIRECT_URL']) {
                         $arResponse['redirect_url'] = $arFields['REDIRECT_URL'];
                     }
 
-                    if ($res) {
+                    if ($res['status'] == 'OK') {
                         $arResponse['result'] = true;
                         $arResponse['phone'] = $phoneNumber;
                         $arResponse['user_id'] = $userID;
@@ -259,22 +260,23 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                     "CODE" => 'Код подтверждения: '.$arUserFields['UF_HASHKEY'],
                                 ]
                             );
-                            $sms->setSite('s1');
+
 
                             if ($smsTestMode) {
                                 $res = true;
                                 $arResponse['code'] = $code;
                             } else {
-                                $result = $sms->send();
-                                $res = $result->isSuccess();
+                                $res = sendSms($arUserAuth['PHONE_NUMBER'], 'Код подтверждения: '.$arUserFields['UF_HASHKEY']);
+                                /*$result = $sms->send();
+                                $res = $result->isSuccess();*/
                             }
 
-                            if ($res) {
+                            if ($res['status'] == 'OK') {
                                 $arResponse['result'] = true;
                                 $arResponse['user_id'] = $arFields['USER_ID'];
                                 $arResponse['send_sms'] = true;
                                 $arResponse['sign_data'] = PhoneAuth::signData([
-                                    'phoneNumber' => $phoneNumber
+                                    'phoneNumber' => $arUserAuth['PHONE_NUMBER']
                                 ]);
                             } else {
                                 $arResponse['false'] = false;
@@ -323,7 +325,8 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
                                                 "CODE" => 'Новый пароль для входа ducktex.ru: '.$arFields['CONFIRM_PASS'],
                                             ]
                                         );
-                                        $smsEv->send();
+                                        $res = sendSms($arUserFields['PHONE_NUMBER'], 'Новый пароль для входа ducktex.ru: '.$arFields['CONFIRM_PASS']);
+                                        //$smsEv->send();
                                     }
 
                                 }
@@ -565,3 +568,22 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
     die();
 }
 
+function sendSms($number, $text)
+{
+    $arResponse = [
+        'api_id' => 'C1B7FBD1-BEF9-9622-B332-647CCDD9AA95',
+        'to' => $number,
+        'msg' => $text,
+        'from' => 'Ducktex.ru',
+        'json' => 1,
+        'test=1' => 1,
+        'test' => 1
+    ];
+    $httpClient = new \Bitrix\Main\Web\HttpClient();
+    $httpClient->query('POST', 'https://sms.ru/sms/send', $arResponse);
+    $result = json_decode($httpClient->getResult(), true);
+
+    file_put_contents('sms_log_'.date('d_m_Y').'.log', json_encode($result, JSON_UNESCAPED_UNICODE));
+    
+    return $result;
+}
