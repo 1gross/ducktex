@@ -576,7 +576,7 @@ function sendSms($number, $text)
         'msg' => $text,
         'from' => 'Ducktex.ru',
         'json' => 1,
-        'test=1' => 1,
+        //'test=1' => 1,
         'test' => 1
     ];
     $httpClient = new \Bitrix\Main\Web\HttpClient();
@@ -584,6 +584,6 @@ function sendSms($number, $text)
     $result = json_decode($httpClient->getResult(), true);
 
     file_put_contents('sms_log_'.date('d_m_Y').'.log', json_encode($result, JSON_UNESCAPED_UNICODE));
-    
+
     return $result;
 }
