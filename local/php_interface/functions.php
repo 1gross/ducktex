@@ -79,6 +79,8 @@ function dump($var, $die = false)
     var_dump($var);
     echo '</pre>';
     if ($die) {
-        die();
+		
+      //  die();
     }
+	
 }

@@ -7,9 +7,12 @@ use Bitrix\Main,
     Bitrix\Main\EventManager,
     Bitrix\Main\UserPhoneAuthTable;
 
-EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockElementAdd', 'setElementCode');
-EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockElementUpdate', 'setElementCode');
-function setElementCode(&$arFields)
+EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockSectionAdd', 'setSectionCode');
+EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockSectionUpdate', 'setSectionCode');
+
+EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockElementAdd', 'setSectionCode');
+EventManager::getInstance()->addEventHandler('iblock', 'OnBeforeIBlockElementUpdate', 'setSectionCode');
+function setSectionCode(&$arFields)
 {
 
     if (isset($arFields['IBLOCK_ID']) && $arFields['IBLOCK_ID'] == IBLOCK_CATALOG_ID) {
@@ -33,16 +36,7 @@ function checkCatalogProductRedirect()
     global $APPLICATION;
 
     if (strpos($APPLICATION->GetCurPage(), '/catalog/') !== false) {
-        $arSectionsUrls = [
-            'kulirnaya_glad' => 'kulirnaja_glad'
-        ];
-        foreach ($arSectionsUrls as $code => $str) {
-            if (strpos($APPLICATION->GetCurPage(), '/'.$code.'/') !== false) {
-                LocalRedirect(str_replace($code, $str, $APPLICATION->GetCurPage()), false, '301 Moved permanently');
-            }
-        }
-
-
+      
         $arPath = array_diff(explode('/', $APPLICATION->GetCurPage()),['']);
         $lastElPath = end($arPath);
 
