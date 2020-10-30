@@ -8,7 +8,7 @@
     <div class="wrapper">
         <div class="sales-block">
             <div class="header">
-                <h2>Рекомендованные товары</h2>
+                <h2>С этим товаром покупают</h2>
                 <div class="сontrol">
                     <button class="arrow left"></button>
                     <div class="count"></div>
