@@ -244,6 +244,14 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                             <?}?>
                         </div>
                     <?}?>
+
+                    <!-- цветопередача -->
+                    <div class="alert_color_view">
+                        <div class="alert_text">Обращаем Ваше внимание! Цветопередача на разных устройствах может отличаться и не совпадать с реальным оттенком.</div>
+                    </div>
+                    <!-- цветопередача -->
+
+
                     <div class="pluses desktop">
                         <div class="pluses-block">
                             <div class="item">
@@ -478,7 +486,7 @@ if ($_REQUEST['ajax_mode'] == 'Y') {
                 ?>
             </div>
         </div>
-        <div class="card-block">
+        <div class="card-block  desktop_show">
             <div class="card-body">
                 <div class="data">
                     <div class="pluses mobile">

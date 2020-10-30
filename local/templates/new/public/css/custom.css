@@ -27,12 +27,96 @@
 .mobile-menu .mobile-menu-block {
     transform: none;
 }
+.show_mobile{
+    display: none;
+}
+.desktop_show{
+    display: block;
+}
+
+
 @media screen and (max-width: 767px) {
     .mobile-menu .mobile-menu-block {
         overflow-y: scroll;
         max-width: 315px;
     }
+    #card .card-block .card-body .data {
+        display: flex;
+        flex-direction: column;
+    }
+    #card .card-block .card-body .data .title-mob {
+        order: 0;
+    }
+    #card .card-block .card-body .data .price-block{
+        order: 1;
+    }
+    #card .card-block .card-body .data .bonus{
+        order: 2;
+    }
+    #card .card-block .card-body .data .add-cart{
+        order: 5;
+        font-size: 18px;
+    }
+    #card .card-block .card-body .data .props{
+        order: 3
+    }
+     #card .card-block .card-body .data .alert_color_view{
+        order: 4
+    }
+    #card .card-block .card-body .data .pluses{
+        order:6;
+    }
+  
+   #card .card-block .card-body .data .address.mob{
+    order: 6;
+   }
+   #card .tabs-block .tab-link{
+    height: 38px!important;
+    line-height: 38px!important;
+   }
+
+   .show_mobile{
+    display: block;
+   }
+   .desktop_show{
+    display: none;
 }
+
+.pluses .mobile{
+    display: flex;
+    margin-bottom: 20px;
+
+}
+.card-block .pluses-block{
+    display: flex;
+    justify-content: space-between;
+    
+    font-size: 14px;
+    line-height: 16px;
+  
+
+     flex-wrap: wrap;
+    margin: 10px auto;
+}
+.pluses .pluses-block .item{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 10px;
+    display: flex;
+    margin: 15px;
+    width: 100%;
+}
+.pluses .pluses-block .item .text{
+    width: 75%;
+    text-align: left;
+    margin-left: 30px;
+}
+}
+
+}
+
+
 .modal-message.error-info {
     color: #b74a45;
 }
