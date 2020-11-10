@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("Оптовикам");
  <br>
 </ul>
  <span style="color: #000000;">
-<h3><a href="/DUCK%20TEX%20_Прайс%20мелкооптовый%20от%2008.11.2019.xlsx">Скачать прайс</a></h3>
+<h3>Скачать прайс</h3>
  </span><br>
  <br>
 <p style="color: black;">
