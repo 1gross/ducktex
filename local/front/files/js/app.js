@@ -327,7 +327,7 @@ $(document).ready(function() {
                    if (response.result === true) {
                        switch (action) {
                            case 'send_form':
-                               if (id !== 'auth' && id !== 'auth_pass' && id !== 'resend_code') {
+                               if (id !== 'auth' && id !== 'auth_pass' && id !== 'resend_code' && id !== 'auth_check_code') {
                                    dataLayer.push({'event': 'formsend'});
                                }
 
