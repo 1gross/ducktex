@@ -10,6 +10,7 @@ ini_set('display_startup_errors', 1);
 */
 CJSCore::Init('jquery');
 //require_once __DIR__ . "/test.php";
+
 require_once __DIR__ . "/constants.php";
 
 require_once __DIR__ . "/classes/B24TechSiteHelper.php";
