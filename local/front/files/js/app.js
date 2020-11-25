@@ -352,11 +352,23 @@ $(document).ready(function() {
                                            phoneDesc = verificationForm.find('.modal-desc__phone'),
                                            btnSubmit = verificationForm.find('.btn-accept');
 
-                                       verificationForm.prepend('<input type="hidden" name="SIGN_DATA" value="'+response.sign_data+'">');
-                                       verificationForm.prepend('<input type="hidden" name="USER_ID" value="'+response.user_id+'">');
+                                       if (verificationForm.find('[name="SIGN_DATA"]').length) {
+                                           verificationForm.find('[name="SIGN_DATA"]').val(response.sign_data);
+                                       } else {
+                                           verificationForm.prepend('<input type="hidden" name="SIGN_DATA" value="'+response.sign_data+'">');
+                                       }
+                                       if (verificationForm.find('[name="USER_ID"]').length) {
+                                           verificationForm.find('[name="USER_ID"]').val(response.user_id);
+                                       } else {
+                                           verificationForm.prepend('<input type="hidden" name="USER_ID" value="'+response.user_id+'">');
+                                       }
 
                                        if (response.redirect_url) {
-                                           verificationForm.prepend('<input type="hidden" name="REDIRECT_URL" value="'+response.redirect_url+'">');
+                                           if (verificationForm.find('[name="REDIRECT_URL"]').length) {
+                                               verificationForm.find('[name="REDIRECT_URL"]').val(response.redirect_url);
+                                           } else {
+                                               verificationForm.prepend('<input type="hidden" name="REDIRECT_URL" value="'+response.redirect_url+'">');
+                                           }
                                        }
                                        phoneDesc.text(response.phone);
 
