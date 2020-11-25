@@ -20,37 +20,44 @@
 
         <tbody>
         <?foreach ($arResult['ITEMS'] as $arItem) {?>
-            <tr>
-                <td>
-                    <?switch ($arItem['PROPERTIES']['OPERATION_TYPE']['VALUE_XML_ID']) {
-                        case 'ADD_FROM_ORDER':
-                        case 'BACK_FROM_CANCEL':
-                        case 'BACK_FROM_DELETTE':
-                        case 'ADD_FROM_REGISTER':
-                        case 'ADD_FROM_BIRTHDAY':
-                        case 'ADD_FROM_REPOST':
-                        case 'ADD_FROM_REVIEW':
-                        case 'ADD_FROM_LINK':
-                        case 'ADD_FROM_REFERAL':
-                            ?>
-                            <span class="add__bonus">+ <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
-                            <?
-                            break;
-                        case 'MINUS_FROM_ORDER':
-                        case 'DEACIVATE_FROM_DATE':
-                        case 'EXIT_BONUS':
-                        case 'EXIT_REFUND_BONUS':
-                            ?>
-                            <span class="remove__bonus">- <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
+            <?if ($arItem['PROPERTIES']['OPERATION_TYPE']['VALUE_XML_ID'] != 'USER_BALLANCE_CHANGE') {?>
+                <tr>
+                    <td>
+                        <?switch ($arItem['PROPERTIES']['OPERATION_TYPE']['VALUE_XML_ID']) {
+                            case 'ADD_FROM_ORDER':
+                            case 'BACK_FROM_CANCEL':
+                            case 'BACK_FROM_DELETTE':
+                            case 'ADD_FROM_REGISTER':
+                            case 'ADD_FROM_BIRTHDAY':
+                            case 'ADD_FROM_REPOST':
+                            case 'ADD_FROM_REVIEW':
+                            case 'ADD_FROM_LINK':
+                            case 'ADD_FROM_REFERAL':
+                                ?>
+                                <span class="add__bonus">+ <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
+                                <?
+                                break;
+                            case 'MINUS_FROM_ORDER':
+                            case 'DEACIVATE_FROM_DATE':
+                            case 'EXIT_BONUS':
+                            case 'EXIT_REFUND_BONUS':
+                                ?>
+                                <span class="remove__bonus">- <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
 
-                            <?
-                            break;
-                    }?>
-                </td>
-                <td><?=$arItem['PROPERTIES']['OPERATION_SUM']['TIMESTAMP_X']?></td>
-                <td><?=$arItem['PROPERTIES']['OPERATION_TYPE']['VALUE']?></td>
-                <td><?=$arItem['PROPERTIES']['ORDER_ID']['VALUE']?></td>
-            </tr>
+                                <?
+                                break;
+                            case 'USER_BALLANCE_CHANGE':
+                                ?>
+                                <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?>
+                                <?
+                                break;
+                        }?>
+                    </td>
+                    <td><?=$arItem['PROPERTIES']['OPERATION_SUM']['TIMESTAMP_X']?></td>
+                    <td><?=$arItem['PROPERTIES']['OPERATION_TYPE']['VALUE']?></td>
+                    <td><?=$arItem['PROPERTIES']['ORDER_ID']['VALUE']?></td>
+                </tr>
+            <?}?>
         <?}?>
         </tbody>
     </table>
