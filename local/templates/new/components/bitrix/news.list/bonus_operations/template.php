@@ -20,10 +20,24 @@
 
         <tbody>
         <?foreach ($arResult['ITEMS'] as $arItem) {?>
-            <?if ($arItem['PROPERTIES']['OPERATION_TYPE']['VALUE_XML_ID'] != 'USER_BALLANCE_CHANGE') {?>
                 <tr>
                     <td>
                         <?switch ($arItem['PROPERTIES']['OPERATION_TYPE']['VALUE_XML_ID']) {
+                            case 'USER_BALLANCE_CHANGE':
+                                if ($arItem['PROPERTIES']['BALLANCE_BEFORE']['VALUE'] > $arItem['PROPERTIES']['BALLANCE_AFTER']['VALUE']) {
+                                    ?>
+                                    <span class="remove__bonus">- <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
+                                    <?
+                                } elseif ($arItem['PROPERTIES']['BALLANCE_BEFORE']['VALUE'] > $arItem['PROPERTIES']['BALLANCE_AFTER']['VALUE']) {
+                                    ?>
+                                    <span class="add__bonus">+ <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
+                                    <?
+                                } else {
+                                    ?>
+                                    <span class="add__bonus">+ <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?></span>
+                                    <?
+                                }
+                                break;
                             case 'ADD_FROM_ORDER':
                             case 'BACK_FROM_CANCEL':
                             case 'BACK_FROM_DELETTE':
@@ -46,19 +60,13 @@
 
                                 <?
                                 break;
-                            case 'USER_BALLANCE_CHANGE':
-                                ?>
-                                <?=$arItem['PROPERTIES']['OPERATION_SUM']['VALUE']?>
-                                <?
-                                break;
                         }?>
                     </td>
-                    <td><?=$arItem['PROPERTIES']['OPERATION_SUM']['TIMESTAMP_X']?></td>
+                    <td><?=FormatDate("d F Y в H:i", MakeTimeStamp($arItem['TIMESTAMP_X']))?></td>
                     <td><?=$arItem['PROPERTIES']['OPERATION_TYPE']['VALUE']?></td>
-                    <td><?=$arItem['PROPERTIES']['ORDER_ID']['VALUE']?></td>
+                    <td><?=$arItem['PROPERTIES']['ORDER_ID']['VALUE'] ?: '-'?></td>
                 </tr>
             <?}?>
-        <?}?>
         </tbody>
     </table>
     <?=$arResult['NAV_STRING']?>
