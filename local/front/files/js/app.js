@@ -558,6 +558,77 @@ function checkErrorAuthCode(form, clear = false) {
         }
     }
 }
+function timerCalc(refresh = false, time = 0) {
+    let timeBlock = $('.timer'),
+        sec = '';
+
+    if (timeBlock.length > 0) {
+        timeBlock.empty();
+console.log(time);
+
+            if (refresh === false) {
+                if (time === 0) {
+                    time = 179;
+                    timeBlock.empty().text('Запросить новый код можно через ').append('<span>2:59</span>');
+                    time--;
+                    setTimeout(function () {
+                        timerCalc(false, time);
+                    }, 1000);
+
+                } else if (time === 1) {
+                    setTimeout(function () {
+                        timeBlock.empty().text('Не получили код? Вы можете ').append('<button class="resend-link js-init-action" data-action="send_form" data-id="resend_code">запросить новый код</button>');
+                    }, 1000);
+
+
+                } else if (time >= 0 && time < 60) {
+                    if (time < 10) {
+                        sec = '0' + time;
+                    } else {
+                        sec = time;
+                    }
+                    timeBlock.empty().text('Запросить новый код можно через ').append('<span>0:'+sec+'</span>');
+                    time--;
+                    setTimeout(function () {
+                        timerCalc(false, time);
+                    }, 1000);
+
+
+                } else if (time >= 60 && time < 120) {
+                    if ((time - 60) < 10) {
+                        sec = '0' + (time - 60);
+                    } else {
+                        sec = time - 60;
+                    }
+                    timeBlock.empty().text('Запросить новый код можно через ').append('<span>1:'+sec+'</span>');
+                    time--;
+                    setTimeout(function () {
+                        timerCalc(false, time);
+                    }, 1000);
+
+                } else {
+                    if ((time - 120) < 10) {
+                        sec = '0' + (time - 120);
+                    } else {
+                        sec = time - 120;
+                    }
+                    timeBlock.empty().text('Запросить новый код можно через ').append('<span>2:'+(sec)+'</span>');
+                    time--;
+                    setTimeout(function () {
+                        timerCalc(false, time);
+                    }, 1000);
+
+                }
+            } else {
+                timeBlock.empty().text('Запросить новый код можно через ').append('<span>2:59</span>');
+                setTimeout(function () {
+                    timerCalc(false, 179);
+                }, 1000);
+            }
+
+    }
+}
+/*
 function timerCalc(refresh = false) {
     let timeBlock = $('.timer');
 
@@ -585,10 +656,10 @@ function timerCalc(refresh = false) {
                 }
             }
         } else {
-            timeBlock.empty().text('Запросить новый код можно через ').append('<span>0:59</span>');
+            timeBlock.empty().text('Запросить новый код можно через ').append('<span>1:59</span>');
             setTimeout(function () {
                 timerCalc();
             }, 1000);
         }
     }
-}
+}*/

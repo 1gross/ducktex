@@ -84,7 +84,8 @@
                 <div class="modal-message modal-body__btn">
                     <button type="submit" class="btn blue btn-accept js-init-action" disabled="disabled" data-action="send_form" data-id="auth_check_code">Подтвердить</button>
                 </div>
-                <div class="modal-message timer">Запросить новый код можно через <span>0:59</span></div>
+                <div class="modal-message timer">Запросить новый код можно через <span>1:59</span></div>
+                <div class="modal-message"><b>В редких случаях SMS может идти до 3х минут, пожалуйста подождите</b></div>
             </div>
             <div class="modal-footer">
                 <a class="btn btn-link btn-link__strong js-init-action" data-id="auth_pass" data-action="show_modal" data-modal="#auth_pass">Войти с помощью пароля</a>
