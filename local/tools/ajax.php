@@ -586,7 +586,7 @@ function sendSms($number, $text)
         'from' => 'Ducktex.ru',
         'json' => 1,
         //'test=1' => 1,
-        'test' => 1
+        //'test' => 1
     ];
     $httpClient = new \Bitrix\Main\Web\HttpClient();
     $httpClient->query('POST', 'https://sms.ru/sms/send', $arResponse);
