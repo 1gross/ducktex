@@ -24,6 +24,15 @@ if (isset($_REQUEST['action']) && strlen($_REQUEST['action']) > 0) {
 
     $arResponse = array();
     switch ($_REQUEST['action']) {
+        // change session ALERT_MES
+        case 'change_session':
+           if(!isset($_SESSION['ALERT_MES']) ||  $_SESSION['ALERT_MES'] !=='true'){
+            $_SESSION['ALERT_MES'] = $_REQUEST["alert_mes"];
+            $arResponse['result'] = true;
+           }
+        break;
+
+
         case 'send_form':
             $isError = false;
             if (isset($_REQUEST['data'])) {
