@@ -243,13 +243,44 @@ h2 {
   align-items: center; }
   @media screen and (max-width: 767px) {
     .сontrol {
-      display: none; } }
+      display: none; } 
+    }
   .сontrol .count {
     font-weight: bold;
     font-size: 18px;
     margin: 0 15px; }
     .сontrol .count span {
       color: #C4C4C4; }
+
+#header_alert .alert_box{
+    padding: 15px 0;
+    background: red;
+}
+#header_alert .alert_mes{
+  text-align: center;
+  color: white;
+
+}
+#header_alert .alert_text{
+  display: inline-block;
+  width: 90%;
+  color: white;
+  font-size: 18px;
+  /*text-shadow: 1px 1px 2px black;*/
+}
+#header_alert .close_icon{
+  display: inline-block;
+    color: white;
+    width: 18px;
+    height: 18px;
+    background: url(../img/close.svg) no-repeat 50%;
+
+}
+#header_alert .close_icon:hover{
+  cursor: pointer;
+  padding: 5px;
+}
+
 
 #header .top-line {
   padding: 30px 0;

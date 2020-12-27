@@ -42,7 +42,11 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
 
     <?if ($APPLICATION->GetViewContent('og:image')) {?>
         <meta property="og:image" content="<?=$APPLICATION->GetViewContent('og:image')?>">
-    <?}?>
+    <?}else{?>
+        <meta property="og:image" content="/local/front/files/img/ducktex_logo_link.jpg">
+    <?}
+    ?>
+
     <meta property="og:description" content="<?$APPLICATION->ShowProperty('description')?>">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -52,6 +56,42 @@ $pageLayout = $APPLICATION->GetCurPage(false) == SITE_DIR ? 'home' : $APPLICATIO
 </head>
 <body>
 <main>
+<? if(!isset($_SESSION['ALERT_MES']) || $_SESSION['ALERT_MES'] !== 'true') :?> 
+    
+    <?
+    $arFilter = array(
+        'IBLOCK_ID' => 39, // выборка элементов из инфоблока Уведомления
+        'ACTIVE' => 'Y',  // выборка только активных элементов
+    );
+
+    $res = CIBlockElement::GetList(array(), $arFilter, false, false, array('ID','NAME','ACTIVE','PROPERTY_UV_TEXT'));
+
+    // вывод элементов
+    while ($element = $res->GetNext()) {?>
+   
+
+     
+     <div id="header_alert">
+         <div class="alert_box">
+            <div class="wrapper">
+                 <div class="alert_mes">
+                    <p class="alert_text"><?=$element['PROPERTY_UV_TEXT_VALUE'];?></p>
+                    <span class="alert_button close_icon"></span>
+                </div>
+            </div>
+            
+         </div>
+     </div>  
+       
+
+        
+    <?
+     }
+    ?>
+<? endif;?>
+
+
+
     <?$APPLICATION->ShowPanel();?>
     <?
     //include header

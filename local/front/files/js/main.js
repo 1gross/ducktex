@@ -1,4 +1,28 @@
 $(document).ready(function () {
+     let url = '/local/tools/ajax.php';
+
+    $('.alert_button.close_icon').click(function(){
+       
+           $.ajax({
+                url: url,
+                dataType: 'json',
+                data: {
+                    alert_mes: true ,
+                    action: 'change_session',
+                   
+                },
+                success: function (response) {
+                    if (response.result === true) {
+                    $('#header_alert').css('display','none');
+                    }
+                }
+            });
+
+        
+
+    });
+
+
     $('.slider').each(function () {
         var status = $(this).prev().find('.count');
         $(this).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
