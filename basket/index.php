@@ -78,7 +78,12 @@ $APPLICATION->SetTitle("Корзина");
 		"USE_PREPAYMENT" => "N",
 		"USE_YM_GOALS" => "N",
 		"COMPONENT_TEMPLATE" => "logictim_bonus",
-		"SHOW_PAYMENT_SERVICES_NAMES" => "Y"
+		"SHOW_PAYMENT_SERVICES_NAMES" => "Y",
+		"ADDITIONAL_PICT_PROP_37" => "-",
+		"ADDITIONAL_PICT_PROP_38" => "-",
+		"ADDITIONAL_PICT_PROP_39" => "-",
+		"ADDITIONAL_PICT_PROP_40" => "-",
+		"ADDITIONAL_PICT_PROP_41" => "-"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
